@@ -1,3 +1,13 @@
-.productsContainer {
-  height: 400px;
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.cardsContainer {
+  gap: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }

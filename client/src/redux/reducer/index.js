@@ -1,19 +1,30 @@
 
 import {
-    ACTION_TEST
+    GET_ALL_PRODUCTS,
+    GET_ALL_CATEGORIES
 } from "../actions";
 
 const initialState = {
-    products: []
+    products: [],
+    productsCopy: [],
+    allCategories: []
 }
 
 const rootReducer = (state = initialState, action) => {
 
     switch(action.type) {
-        case ACTION_TEST:
-            console.log(action.payload);
-            break;
+        case GET_ALL_PRODUCTS:
+            return {
+                ...state,
+                products: action.payload,
+                productsCopy: action.payload
+            }
 
+        case GET_ALL_CATEGORIES:
+            return {
+                ...state,
+                allCategories: action.payload
+            }
         default: 
             return {...state}
     }
