@@ -11,15 +11,14 @@
   margin: auto 4px;
   text-align: center;
   text-align: center;
-  color: #ededed;
+  color: black;
   display: flex;
   box-sizing: border-box;
   align-items: center;
   border-radius: 50%;
   line-height: 1.43;
   font-size: 17px;
-  background-color: rgba(41, 1, 55, 0.759);
-  border: 0.1rem solid #fffefebd;
+  border: 0.1rem solid black;
 }
 
 .paginationItemDots {
@@ -28,8 +27,7 @@
 }
 
 .paginationContainerButton {
-  border: 0.1rem solid #fffefebd;
-  background-color: rgba(41, 1, 55, 0.759);
+  border: 0.1rem solid black;
   color: inherit;
   border: none;
   padding: 0;

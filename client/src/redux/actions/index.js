@@ -5,7 +5,7 @@ export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES";
 
 export const getAllProducts = () => {
     return async (dispatch) => {
-        const response = await axios.get("http://localhost:3001/productos");
+        const response = await axios.get("http://localhost:3004/productos");
         
         return dispatch({type: GET_ALL_PRODUCTS, payload: response.data});
     }
@@ -14,7 +14,7 @@ export const getAllProducts = () => {
 
 export const getAllCategories = () => {
     return async (dispatch) => {
-        const response = await axios.get("http://localhost:3001/categorias");
+        const response = await axios.get("http://localhost:3004/categorias");
 
         return dispatch({type: GET_ALL_CATEGORIES, payload: response.data})
     }
