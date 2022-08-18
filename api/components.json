@@ -1,0 +1,226 @@
+[
+    {
+        "img": "https://www.loltec.com/storage/media/VZwt2CMXwXiu5G7GfOjFGkxjWuJHJIv9WJomxMoS.png",
+        "brand": "AZZA",
+        "model": "PSAZ 850W.",
+        "price": "108.00",
+        "description": "Power supply AZZA PSAZ 850W.",
+        "benchmark": "#",
+        "specification": [
+            "Output capacity: 850W.",
+            "Certification: 80+ Gold",
+            "Type: Full Modular",
+            "Factor Form: ATX",
+            "1x ATX cable (20+4 PIN)",
+            "2x EPS cable (4+4 PIN)",
+            "2x PCI-e cable (4x 6+2 PIN)",
+            "2x SATA cable (6x SATA)",
+            "1x Molex cable (3x Molex)"
+        ],
+        "category": "power supply",
+        "stock": "40"
+    },{
+        "img": "https://www.loltec.com/storage/media/VZqzoRC6ljOv8XruHBmVcvtOlEQNSy1jMSeULCM8.png",
+        "brand": "AZZA",
+        "model": " PSAZ 750W.",
+        "price": "95.00",
+        "description": "Power supply AZZA PSAZ 750W.",
+        "benchmark": "#",
+        "specification": [
+            "Output capacity: 750W.",
+            "Certification: 80+ Gold",
+            "Type: Full Modular",
+            "Factor Form: ATX",
+            "1x ATX cable (20+4 PIN)",
+            "2x EPS cable (4+4 PIN)",
+            "2x PCI-e cable (4x 6+2 PIN)",
+            "2x SATA cable (6x SATA)",
+            "1x Molex cable (3x Molex)"
+        ],
+        "category": "power supply",
+        "stock": "40"
+    },{
+        "img": "https://www.loltec.com/storage/media/mjRgcFSpWUZMEvyaNUs0M38r8DdWyGbCF6E3mZux.png",
+        "brand": "A-DATA XPG",
+        "model": "PYLON 650W",
+        "price": "65.50",
+        "description": "A-DATA XPG Pylon 650W.",
+        "benchmark": "#",
+        "specification": [
+            "Output capacity: 650W.",
+            "Certification: 80+ Bronze.",
+            "Factor Form: ATX",
+            "8-pin EPS: 1.",
+            "4+4 Pin CPU: 1.",
+            "6+2 Pin PCI-E: 4.",
+            "Sata: 8.",
+            "Molex: 3.",
+            "4 pin flex: 1."
+        ],
+        "category": "power supply",
+        "stock": "26"
+    },{
+        "img": "https://www.loltec.com/storage/media/K84oFkomrrnbd0XEj1b20ACAZbzTXNjglwVbHg0h.png",
+        "brand": "AZZA",
+        "model": " PSAZ 750W.",
+        "price": "65.00",
+        "description": "Power supply AZZA PSAZ 750W.",
+        "benchmark": "#",
+        "specification": [
+            "Output capacity: 750W.",
+            "Certification: 80+ Bronce",
+            "Type: Full Modular",
+            "Factor Form: ATX",
+            "1x ATX cable (20+4 PIN)",
+            "2x EPS cable (4+4 PIN)",
+            "2x PCI-e cable (4x 6+2 PIN)",
+            "2x SATA cable (6x SATA)",
+            "1x Molex cable (3x Molex)"
+        ],
+        "category": "power supply",
+        "stock": "20"
+    },{
+        "img": "https://www.loltec.com/storage/media/8lhY8IUCQJovYsKOFIHG3z0xJEAtVLIGyC5B7z5c.png",
+        "brand": "EVGA",
+        "model": "110-BQ-0700-V1",
+        "price": "99.00",
+        "description": "Power supply EVGA 700W.",
+        "benchmark": "#",
+        "specification": [
+            "Output capacity: 700W.",
+            "Certification: 80+ Bronce",
+            "Factor Form: Micro ATX",
+            "140 x 5.91 x 85 pulgadas"
+        ],
+        "category": "power supply",
+        "stock": "20"
+    },{
+        "img": "https://www.loltec.com/storage/media/uTSbnydGRsird7EXQ3J9PeLRsvLRMPWdiraAHohJ.jpeg",
+        "brand": "ASUS",
+        "model": "ROG-STRIX-850G",
+        "price": "253.00",
+        "description": "Power supply GAMING 850W",
+        "benchmark": "#",
+        "specification": [
+            "Output capacity: 850W.","80+ GOLD", "1X ATX 24-PIN","2X CPU 4+4 PIN","6X PCI-E","8X SATA"
+        ],
+        "category": "power supply",
+        "stock": "10"
+    },{
+        "img": "https://www.loltec.com/storage/media/RLvptIFcPx1wAUxmonh2twvcCXI48uKKEWHyrGvJ.jpeg",
+        "brand": "AZZA",
+        "model": "PSAZ-550WG",
+        "price": "41.00",
+        "description": "Power supply AZZA PSAZ 550W.",
+        "benchmark": "#",
+        "specification": [
+            "Output capacity: 550W.","ATX 12V","80 PLUS BRONZE CERTIFIED","AC INPUT FROM 100 - 240V","200V - 240VAC"
+        ],
+        "category": "power supply",
+        "stock": "10"
+    },{
+        "img": "https://www.loltec.com/storage/media/S4Hhu43O9x1eSGLLjVtbeeSm7k3nYl4GLSWXi8JF.png",
+        "brand": "AZZA",
+        "model": "PSAZ-650W ARGB",
+        "price": "50.50",
+        "description": "Power supply AZZA PSAZ 650W. RGB",
+        "benchmark": "#",
+        "specification": [
+            "Output capacity: 650W.RGB","ATX12V","80PLUS BRONZE CERTIFIED","AC INPUT FROM 100V-240V", "200V-240VAC"
+        ],
+        "category": "power supply",
+        "stock": "8"
+    },{
+        "img": "https://www.loltec.com/storage/media/VPPOSOVkux3Lysao4jHOxuc7YpgnrSUHwx5LMAGh.png",
+        "brand": "GIGABYTE",
+        "model": "GP-P1000GM",
+        "price": "219.00",
+        "description": "Power supply GIGABYTE 1000W.",
+        "benchmark": "#",
+        "specification": [
+            "Output capacity: 1000W.",
+            "Certification: 80+ PlusGold",
+            "Type: Full Modular",
+            "Factor Form: ATX",
+            "2X CPU (4+4)",
+            "6X PCI-E (6+2)",
+            "6X SATA"
+        ],
+        "category": "power supply",
+        "stock": "40"
+    },{
+        "img": "https://www.loltec.com/storage/media/zKf9B4fzucvJoOqQ4QvAY4PWQ8lGhY0NlPp4oXPp.jpeg",
+        "brand": "EVGA",
+        "model": "100-BR-0700-K1",
+        "price": "89.00",
+        "description": "Power supply EVGA 700W.",
+        "benchmark": "#",
+        "specification": [
+            "Output capacity: 700W.",
+            "Certification: 80+ PlusGold",
+            "Type: Full Modular",
+            "Factor Form: ATX",
+            "1x ATX cable (20+4 PIN)",
+            "2x EPS cable (4+4 PIN)",
+            "2x PCI-e cable (4x 6+2 PIN)",
+            "2x SATA cable (6x SATA)",
+            "1x Molex cable (3x Molex)"
+        ],
+        "category": "power supply",
+        "stock": "40"
+    },{
+        "img": "https://www.loltec.com/storage/media/5ePzUtro6FAwag2LkzwoM4SzeukqiVNmzLT1wLqJ.jpeg",
+        "brand": "Cooler",
+        "model": "25DBA",
+        "price": "7.50",
+        "description": "Scoket : G775, 115X, AMD, AM2, AM2+, AM3, FM.",
+        "benchmark": "#",
+        "category": "fan",
+        "stock": "34"
+    },{
+        "img": "https://www.loltec.com/storage/media/HaWF2KfxKkcFN8yYe3W1YKk23QZB0CcRiusTGDoQ.png",
+        "brand": "XPG",
+        "model": "VENTO120ARGB-BKCWW",
+        "price": "15.85",
+        "description": "fan XPG Vento ARGB 1200mm ,Conexión 3 pin ,1200 RPM.",
+        "benchmark": "#",
+        "category": "fan",
+        "stock": "34"
+    },{
+        "img": "https://www.loltec.com/storage/media/HaWF2KfxKkcFN8yYe3W1YKk23QZB0CcRiusTGDoQ.png",
+        "brand": "COUGAR",
+        "model": "VORTEX VK 120",
+        "price": "65.00",
+        "description": "Kit de 3 fans Cougar 120mm ARGB:",
+        "benchmark": "#",
+        "category": "fan",
+        "stock": "30"
+    },{
+        "img": "https://www.loltec.com/storage/media/vuZ7lVhv3sPXdQSuH8KX3B4HEnbxzQ7V9mezYkBT.jpeg",
+        "brand": "EAGLE",
+        "model": " WARRIOR RING RGB",
+        "price": "34.00",
+        "description": " 2 ventiladores de 120mm con 18 LEDs",
+        "benchmark": "#",
+        "category": "fan",
+        "stock": "10"
+    },{
+        "img": "https://www.loltec.com/storage/media/NWs0Bk2820keS1BCGAlAZdbnhLbeFUexPYX6uF3c.jpeg",
+        "brand": "COUGAR",
+        "model": "VORTEX HPB 120",
+        "price": "25.00",
+        "description": " fan 120MM RGB",
+        "benchmark": "#",
+        "category": "fan",
+        "stock": "10"
+    },{
+        "img": "https://www.loltec.com/storage/media/8QyeCPE9hZ9HpUgbre7xRxIhlg6Qj4sPddWKfFkC.jpeg",
+        "brand": "CORSAIR",
+        "model": "CO-9050092-WW",
+        "price": "99.00",
+        "description": "PACK X3 RGB 2200RPM",
+        "benchmark": "#",
+        "category": "fan",
+        "stock": "10"
+    }
+]
