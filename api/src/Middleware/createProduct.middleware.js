@@ -16,3 +16,4 @@ let producto = await Product.create(
     let cat = await Category.findOrCreate({ where: {name: categoria}})
     await producto.addCategory(cat[0])
 }
+module.exports ={crearProducto}
