@@ -18,30 +18,29 @@ function ProductCards() {
     // Redux states and dispatch
     let allProducts = useSelector(state => state.products);
     const allCategories = useSelector(state => state.allCategories);
+    const currentBrands = useSelector(state => state.brands);
     const dispatch = useDispatch();
-    
-    // States filter and sort
-    const [currentCategory, setCurrentCategory] = useState("");
-    const [currentSort, setCurrentSort] = useState("");
-    const [checkedBrand, setCheckedBrand] = useState([]);
-    
+
+    useEffect(() => {
+        dispatch(getAllProducts());
+        dispatch(getAllCategories());
+
+    }, [dispatch]);
+
     // Pagination
     const [currentPage, setCurrentPage] = useState(1);
-
     const currentProducts = useMemo(() => {
         const firstPageIndex = (currentPage - 1) * pageSize;
         const lastPageIndex = firstPageIndex + pageSize;
 
         return allProducts.slice(firstPageIndex, lastPageIndex);
     }, [currentPage, allProducts]);
-
-    let brands = [];
-
-    if (currentCategory.length > 0) {
-        allProducts.forEach(product => {
-            if(brands.indexOf(product.marca) === -1) brands.push(product.marca);
-        });
-    }
+    
+    // States filter and sort
+    const [currentCategory, setCurrentCategory] = useState("");
+    const [currentSort, setCurrentSort] = useState("");
+    const [checkedBrand, setCheckedBrand] = useState([]);
+    
 
     // Filtros
     // By category
@@ -64,7 +63,6 @@ function ProductCards() {
         }
 
         dispatch(filterAndSortBy({category: currentCategory, sort: currentSort, brands: newCheked}));
-
         setCheckedBrand(newCheked);
 
         setCurrentPage(1);
@@ -82,11 +80,7 @@ function ProductCards() {
 
     }
 
-    useEffect(() => {
-        dispatch(getAllProducts());
-        dispatch(getAllCategories());
 
-    }, [dispatch]);
 
     return (
         <div className="mainContainer">
@@ -132,7 +126,7 @@ function ProductCards() {
                 </div>
                 <div>
                     <p>Filter by brand</p>
-                    {brands && brands.map((brand, index) => {
+                    {currentBrands && currentBrands.map((brand, index) => {
                         return (
                             <div key={index}>
                                 <label>{brand}</label>
