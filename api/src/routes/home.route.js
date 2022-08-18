@@ -14,7 +14,7 @@ router.get("/", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
 
     const { name } = req.body;
-    
+
     const test = await Products.create({
         name
     })

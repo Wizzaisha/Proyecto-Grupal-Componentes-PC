@@ -1,0 +1,23 @@
+.container {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.containerRow {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.containerColumn {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
