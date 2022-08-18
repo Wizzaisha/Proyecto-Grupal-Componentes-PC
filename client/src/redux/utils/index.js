@@ -17,7 +17,7 @@ export function filterData(data, category, sortType, brands) {
             return product.marca === brands[0];
         })
     }
-
+    
     return productsData;
 
 
