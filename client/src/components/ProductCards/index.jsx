@@ -19,7 +19,7 @@ function ProductCards() {
     let allProducts = useSelector(state => state.products);
     const allCategories = useSelector(state => state.allCategories);
     const dispatch = useDispatch();
-
+    
     // States filter and sort
     const [currentCategory, setCurrentCategory] = useState("");
     const [currentSort, setCurrentSort] = useState("");
