@@ -1,1 +1,1 @@
-const {Product,}
+const { Category} = require("../db")
