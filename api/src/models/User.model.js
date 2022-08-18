@@ -16,7 +16,6 @@ module.exports = (sequelize) =>
     username: {      type: DataTypes.STRING,    },
     email: {      type: DataTypes.STRING,    },
     password: {      type: DataTypes.STRING,    },
-    isAdmin: { type: DataTypes.BOOL, },
   });
   return User;
 };

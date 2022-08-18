@@ -16,6 +16,7 @@ function seederRole() {
         id: 3,
         name: ROLES.SuperAdmin,
       });
+      console.log("SeederRole")
   }
   
   module.exports = {
