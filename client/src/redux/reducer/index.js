@@ -1,8 +1,11 @@
 
 import {
     GET_ALL_PRODUCTS,
-    GET_ALL_CATEGORIES
+    GET_ALL_CATEGORIES,
+    FILTER_AND_SORT_BY
 } from "../actions";
+
+import { filterData } from "../utils";
 
 const initialState = {
     products: [],
@@ -24,6 +27,16 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 allCategories: action.payload
+            }
+
+        case FILTER_AND_SORT_BY:
+            const { category, sort, brands } = action.payload;
+            
+            const filteredProducts = filterData(state.productsCopy, category, sort, brands);
+            
+            return {
+                ...state,
+                products: filteredProducts
             }
         default: 
             return {...state}
