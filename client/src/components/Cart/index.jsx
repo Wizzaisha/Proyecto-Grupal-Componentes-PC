@@ -29,28 +29,31 @@ function Cart () {
         <div class={s.container}>
             <h1>Cart</h1>
             <div class={s.headers}>
-            <span class={s.span}>Product</span>
-            <span class={s.span}>Price</span>
             <span class={s.span}>Units</span>
+            <span class={s.span}>Price</span>
+            <span class={s.span}>Product</span>
             </div>
-            <button class={s.button} type='button' onClick={(e) => handleButton(e)}> X </button>
+            <button class={s.button} type='button' onClick={(e) => handleButton(e)}> Add a product </button>
             {
                 cart.map(el =>
                     
                     
-                        <div class = {s.products}>
-                        <div>
+                        <div class = {s.items}>
+                        <div class = {s.product}>
                         <img src = {el.background_image} alt = 'no image'></img>
-                        </div>
                         <p class={s.span}>{el.marca + ' ' + el.modelo}</p>
+                        </div>
+        
                         <label class={s.span}>{`$ ${el.precio}`}</label>
+
                         <input class={s.span}
                             id = {s.units}
                             type = "number"
                             min = "0"                   // Aca me falta handelear las cantidades
                             max = "100" 
                         />
-                        <button class={s.button} type='button' /*onClick={(e) => handleDelete(e)}*/> Add a product </button>
+                
+                        <button class={s.button} type='button' /*onClick={(e) => handleDelete(e)}*/> X </button>
                         
                     </div> )
             }

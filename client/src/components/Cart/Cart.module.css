@@ -14,7 +14,7 @@ body{
     margin: 50px auto auto
 }
 
-.products{
+.items{
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -33,8 +33,8 @@ body{
 
 img{
     border: 1px solid red;
-    height: 200px;
-    width: 200px;
+    height: 50px;
+    width: 50px;
 }
 
 span{
@@ -42,4 +42,9 @@ span{
     text-align: center;
     align-items: center;
     flex-direction: column;
+  }
+
+  .product{
+    display: flex;
+    align-items: center;
   }
