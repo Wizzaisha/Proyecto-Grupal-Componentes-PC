@@ -24,7 +24,7 @@ function ProductCards() {
     const [currentCategory, setCurrentCategory] = useState("");
     const [currentSort, setCurrentSort] = useState("");
     const [checkedBrand, setCheckedBrand] = useState([]);
-
+    
     // Pagination
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -83,7 +83,6 @@ function ProductCards() {
     }
 
     useEffect(() => {
-
         dispatch(getAllProducts());
         dispatch(getAllCategories());
 
@@ -154,7 +153,8 @@ function ProductCards() {
                 {currentProducts && currentProducts.map((product, index) => {
                     return (
                         <ProductCard
-                            key={index} 
+                            key={index}
+                            id={`${product.marca}${product.modelo}`} 
                             background_image={product.background_image}
                             marca={product.marca}
                             modelo={product.modelo}
