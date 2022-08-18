@@ -1,7 +1,7 @@
-import React, {useEffect} from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../redux/Actions";
-import { Link } from "react-router-dom";
+import { addToCart } from "../../redux/actions";
+//import { Link } from "react-router-dom";
 import s from './Cart.module.css';
 
 
@@ -9,30 +9,52 @@ function Cart () {
     
     const cart = useSelector(state => state.cart)
 
+    const dispatch = useDispatch()
+
+    const [input, setInput] = useState({
+        aux: 1
+    })
+    
+    function handleButton(e) {
+        e.preventDefault();
+        dispatch(addToCart(input.aux));
+        console.log(input.aux)
+        setInput({
+            aux: input.aux+1
+        })
+        
+    }
+
     return (
-        <div>
+        <div class={s.container}>
             <h1>Cart</h1>
-            <h3>Product</h3>
-            <h3>Price</h3>
-            <h3>Units</h3>
-            <h3>Subtotal</h3>
+            <div class={s.headers}>
+            <span class={s.span}>Product</span>
+            <span class={s.span}>Price</span>
+            <span class={s.span}>Units</span>
+            </div>
+            <button class={s.button} type='button' onClick={(e) => handleButton(e)}> X </button>
             {
                 cart.map(el =>
                     
-                    <div class = {s.div} key = {el.id}>
+                    
+                        <div class = {s.products}>
+                        <div>
                         <img src = {el.background_image} alt = 'no image'></img>
-                        <p>{el.marca + ' ' + el.modelo}</p>
-                        <label>{`$ ${el.precio}`}</label>
-                        <input
+                        </div>
+                        <p class={s.span}>{el.marca + ' ' + el.modelo}</p>
+                        <label class={s.span}>{`$ ${el.precio}`}</label>
+                        <input class={s.span}
                             id = {s.units}
                             type = "number"
                             min = "0"                   // Aca me falta handelear las cantidades
                             max = "100" 
                         />
-                        <label>{el.precio * input.units}</label>
+                        <button class={s.button} type='button' /*onClick={(e) => handleDelete(e)}*/> Add a product </button>
+                        
                     </div> )
             }
-            <button class={s.button} type='button' onClick={(e) => HandleButton(e)}>Add step</button>
+           
         </div>
     )
 }
