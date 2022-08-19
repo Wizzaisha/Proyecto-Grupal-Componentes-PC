@@ -38,7 +38,7 @@ const producto = {
     stock: e.stock,
     category: e.category.name
 };
-console.log(producto)
+
 return producto;
 }
 module.exports ={obtenerProductos,obtenerProductosById}
