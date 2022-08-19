@@ -7,10 +7,10 @@ const { seederRole} = require("./src/Seeders/role.seeder")
 const {productoSeeder} = require("./src/Seeders/product.seeder")
 
 conn.sync({force: true}).then(() => {
-    server.listen(3001, async() => {
+    server.listen(3001, () => {
         console.log('%s listening at 3001');
-        await seederCategory();
-        await seederRole();
-        await productoSeeder();
+         seederCategory();
+         seederRole();
+         productoSeeder();
     });
 });

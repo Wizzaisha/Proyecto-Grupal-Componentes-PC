@@ -1,4 +1,3 @@
-//JSON.parse()
 
 let PRODUCTOS =  [
     {
@@ -515,7 +514,7 @@ let PRODUCTOS =  [
       "description": "Monitor LED IPS 22\" Samsung LF22T350FHLCZB 75Hz Freesync",
       "benchmark": 100,
       "specs": ["Tamaño de pantalla:22\"","Resolucion Maxima:1920x1080","Entrada:HDMI - D-sub","Consumo:40w","Frecuencia Maxima:75hz","Tipo de panel:IPS","Tiempo de respuesta:5ms"],
-      "category": "MONITORES",
+      "category": "DISPLAY",
       "stock":10
     },
 
@@ -527,7 +526,7 @@ let PRODUCTOS =  [
       "description": "Monitor Led Gfast 19.5\" T-195 VGA-HDMI",
       "benchmark": 90,
       "specs": ["Tamaño de pantalla:19.5\"","Resolucion Maxima:1600x900","Entrada:HDMI - VGA","Consumo:50w","Frecuencia Maxima:60hz","Tipo de panel:LED","Tiempo de respuesta:14ms"],
-      "category": "MONITORES",
+      "category": "DISPLAY",
       "stock":10
     },
     {
@@ -538,7 +537,7 @@ let PRODUCTOS =  [
       "description": "Monitor LED CURVO 24\" Samsung Odyssey CRG5 G50 144Hz Freesync",
       "benchmark": 150,
       "specs": ["Tamaño de pantalla:24\"","Resolucion Maxima:1920x1080","Entrada:HDMI - VGA","Consumo:35w","Frecuencia Maxima:144hz","Tipo de panel:VA","Tiempo de respuesta:4ms"],
-      "category": "MONITORES",
+      "category": "DISPLAY",
       "stock":10
     },
     {
@@ -549,7 +548,7 @@ let PRODUCTOS =  [
       "description": "Monitor LED 24\" VIEWSONIC XG2405 144Hz IPS",
       "benchmark": 170,
       "specs": ["Tamaño de pantalla:24\"","Resolucion Maxima:1920x1080","Entrada:HDMI","Consumo:30w","Frecuencia Maxima:144hz","Tipo de panel:IPS","Tiempo de respuesta:1ms"],
-      "category": "MONITORES",
+      "category": "DISPLAY",
       "stock":10
     },
     {
@@ -560,7 +559,7 @@ let PRODUCTOS =  [
       "description": "Monitor LED 27\" Gigabyte Curvo G27QC A-SA QHD 165Hz 1Ms",
       "benchmark": 180,
       "specs": ["Tamaño de pantalla:27\"","Resolucion Maxima:2560x1440","Entrada:HDMI - DisplayPort","Consumo:70w","Frecuencia Maxima:165hz","Tipo de panel:VA","Tiempo de respuesta:1ms"],
-      "category": "MONITORES",
+      "category": "DISPLAY",
       "stock":10
     },
     {
@@ -571,7 +570,7 @@ let PRODUCTOS =  [
       "description": "Monitor LED CURVO 32\" Samsung Odyssey G5 QHD 165Hz Freesync Premium",
       "benchmark": 182,
       "specs": ["Tamaño de pantalla:32\"","Resolucion Maxima:2560x1440","Entrada:HDMI - DisplayPort","Consumo:No Especifica","Frecuencia Maxima:165hz","Tipo de panel:VA","Tiempo de respuesta:1ms"],
-      "category": "MONITORES",
+      "category": "DISPLAY",
       "stock":10
     },
     {
@@ -582,7 +581,7 @@ let PRODUCTOS =  [
       "description": "Monitor Led Curvo 27\" VIEWSONIC VX2768-2KPC-MHD WQHD 144Hz Freesync",
       "benchmark": 172,
       "specs": ["Tamaño de pantalla:27\"","Resolucion Maxima:2560x1440","Entrada:HDMI x2 - DisplayPort","Consumo:45w","Frecuencia Maxima:144hz","Tipo de panel:MVA","Tiempo de respuesta:1ms"],
-      "category": "MONITORES",
+      "category": "DISPLAY",
       "stock":10
     },
     {
@@ -593,7 +592,7 @@ let PRODUCTOS =  [
       "description": "Monitor LED 32\" Gaming Gigabyte G32QC A-SA QHD 165Hz Curvo 1Ms Freesync Premium Pro",
       "benchmark": 190,
       "specs": ["Tamaño de pantalla:32\"","Resolucion Maxima:2560x1440","Entrada:HDMI x2 - DisplayPort","Consumo:75w","Frecuencia Maxima:165hz","Tipo de panel:VA","Tiempo de respuesta:1ms"],
-      "category": "MONITORES",
+      "category": "DISPLAY",
       "stock":10
     },
     {
@@ -604,7 +603,7 @@ let PRODUCTOS =  [
       "description": "Monitor LED 27\" VIEWSONIC XG270QG QHD 165Hz 1ms IPS",
       "benchmark": 195,
       "specs": ["Tamaño de pantalla:27\"","Resolucion Maxima:2560x1440","Entrada:HDMI x2 - DisplayPort","Consumo:No Especifica","Frecuencia Maxima:165hz","Tipo de panel:IPS","Tiempo de respuesta:1ms"],
-      "category": "MONITORES",
+      "category": "DISPLAY",
       "stock":10
     },
     {
@@ -615,7 +614,7 @@ let PRODUCTOS =  [
       "description": "Monitor LED 24\" Asus VP247H-P 75Hz 1ms",
       "benchmark": 135,
       "specs": ["Tamaño de pantalla:24\"","Resolucion Maxima:1920x1080","Entrada:HDMI 2","Consumo:40w","Frecuencia Maxima:75hz","Tipo de panel:IPS","Tiempo de respuesta:1ms"],
-      "category": "MONITORES",
+      "category": "DISPLAY",
       "stock":10
     },
     {
@@ -626,7 +625,7 @@ let PRODUCTOS =  [
       "description": "Gabinete Naxido M8883",
       "benchmark": 150,
       "specs": ["USB 2.0:2","USB 3.0:1","Audio HD:Si","RGB:Si","Factor Mother:ITX - MATX - ATX","Ventiladores:5"],
-      "category": "CHASIS",
+      "category": "CABINET",
       "stock":10
     },
     {
@@ -637,7 +636,7 @@ let PRODUCTOS =  [
       "description": "Gabinete QBOX Gaming 852T Tempered Glass RGB",
       "benchmark": 160,
       "specs": ["USB 2.0:2","USB 3.0:1","Audio HD:Si","RGB:Si","Factor Mother:ATX / Micro ATX","Ventiladores:3"],
-      "category": "CHASIS",
+      "category": "CABINET",
       "stock":10
     },
     {
@@ -648,7 +647,7 @@ let PRODUCTOS =  [
       "description": "Gabinete MSI MAG VAMPIRIC 010 TG ARGB",
       "benchmark": 165,
       "specs": ["USB 2.0:2","USB 3.0:1","Audio HD:Si","RGB:No","Factor Mother:Mini ITX - MATX - ATX","Ventiladores:5"],
-      "category": "CHASIS",
+      "category": "CABINET",
       "stock":10
     },
     {
@@ -659,7 +658,7 @@ let PRODUCTOS =  [
       "description": "Gabinete Gamer Aureox Sculptor ARX 380G",
       "benchmark": 175,
       "specs": ["USB 2.0:2","USB 3.0:1","Audio HD:Si","RGB:Si","Factor Mother:ATX / MATX","Ventiladores:4"],
-      "category": "CHASIS",
+      "category": "CABINET",
       "stock":10
     },
     {
@@ -670,7 +669,7 @@ let PRODUCTOS =  [
       "description": "Gabinete MSI Mag Forge M100A - 2 Fan Fixed RGB (Rainbow)",
       "benchmark": 180,
       "specs": ["USB 2.0:2","USB 3.0:1","Audio HD:Si","RGB:Si","Factor Mother:Micro-ATX / Mini-ITX","Ventiladores:4"],
-      "category": "CHASIS",
+      "category": "CABINET",
       "stock":10
     },
     {
@@ -681,7 +680,7 @@ let PRODUCTOS =  [
       "description": "Gabinete Gamer Aureox Lynx ARX 390G",
       "benchmark": 185,
       "specs": ["USB 2.0:2","USB 3.0:1","Audio HD:Si","RGB:Si","Factor Mother:ATX / MATX","Ventiladores:2"],
-      "category": "CHASIS",
+      "category": "CABINET",
       "stock":10
     },
     {
@@ -692,7 +691,7 @@ let PRODUCTOS =  [
       "description": "Gabinete Aerocool Klaw Black Tempered",
       "benchmark": 190,
       "specs": ["USB 2.0:2","USB 3.0:1","Audio HD:Si","RGB:Si","Factor Mother:ATX / MATX","Ventiladores:5"],
-      "category": "CHASIS",
+      "category": "CABINET",
       "stock":10
     },
     {
@@ -703,7 +702,7 @@ let PRODUCTOS =  [
       "description": "Gabinete Aerocool Playa RGB Mid Tower",
       "benchmark": 195,
       "specs": ["USB 2.0:2","USB 3.0:1","Audio HD:Si","RGB:Si","Factor Mother:ATX / MATX","Ventiladores:2"],
-      "category": "CHASIS",
+      "category": "CABINET",
       "stock":10
     },
     {
@@ -714,7 +713,7 @@ let PRODUCTOS =  [
       "description": "Gabinete Gamer Raidmax H702TBF",
       "benchmark": 199,
       "specs": ["USB 2.0:2","USB 3.0:1","Audio HD:Si","RGB:Si","Factor Mother:ATX-MATX-Mini-ITX","Ventiladores:2"],
-      "category": "CHASIS",
+      "category": "CABINET",
       "stock":10
     },
     {
@@ -725,7 +724,7 @@ let PRODUCTOS =  [
       "description": "Gabinete Genesis IRID 503 ARGB",
       "benchmark": 200,
       "specs": ["USB 2.0:2","USB 3.0:1","Audio HD:Si","RGB:Si","Factor Mother:Micro-ATX, Mini-ITX","Ventiladores:5"],
-      "category": "CHASIS",
+      "category": "CABINET",
       "stock":10
     }
     

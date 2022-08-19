@@ -1,12 +1,14 @@
 const {Product,Category} = require("../db")
 
-const getProducto = async ()=>
+const obtenerProductos = async ()=>
 {
-    
-let productos = await Product.findAll( { include:{  model: Category, attributes:['name'] } })
-let toObj = productos?.map((e)=>
-{ console.log(e.categoryId)
-return {
+let productos = await Product.findAll()
+let toObj = []
+productos?.map( async (e)=>
+{
+let categoria = await Category.findByPk(e.categoryId,{ raw: true })
+ console.log(categoria.name)
+toObj.push ({
         id: e.id,
         brand: e.brand,
         model: e.model,
@@ -16,8 +18,9 @@ return {
         benchmark: e.benchmark,
         price: e.price,
         stock: e.stock,
-       }
+        // category: categoria.name
+       })
 })
 return toObj;
 }
-module.exports ={getProducto}
+module.exports ={obtenerProductos}
