@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
     getCurrentBrands,
     filterAndSortBy,
-    addAndRemoveFilterBrand
+    setCategory,
+    addAndRemoveFilterBrand,
 } from "../../redux/actions";
 
 import Pagination from "../Pagination/";
@@ -20,9 +21,9 @@ function ProductCards() {
     const allCategories = useSelector(state => state.allCategories);
     const currentBrands = useSelector(state => state.brands);
     const currentFilterBrands = useSelector(state => state.filterBrands);
+    const currentCategory = useSelector(state => state.category);
     const dispatch = useDispatch();
 
-    console.log(currentFilterBrands);
     // Pagination
     const [currentPage, setCurrentPage] = useState(1);
     const currentProducts = useMemo(() => {
@@ -33,15 +34,16 @@ function ProductCards() {
     }, [currentPage, allProducts]);
     
     // States filter and sort
-    const [currentCategory, setCurrentCategory] = useState("");
     const [currentSort, setCurrentSort] = useState("");    
     
     // Filtros
     // By category
     function handleCategorySelect(value) {
         
-        dispatch(filterAndSortBy({category: value, sort: currentSort, brands: []}));
+        dispatch(setCategory(value))
+        dispatch(filterAndSortBy({sort: currentSort}));
         dispatch(getCurrentBrands(value));
+
 
     }
 
@@ -51,7 +53,7 @@ function ProductCards() {
         
         dispatch(addAndRemoveFilterBrand(value));
 
-        dispatch(filterAndSortBy({category: currentCategory, sort: currentSort}));
+        dispatch(filterAndSortBy({sort: currentSort}));
 
         setCurrentPage(1);
     }
@@ -62,7 +64,7 @@ function ProductCards() {
         const { value } = event.target;
 
         if (value !== "default") {
-            dispatch(filterAndSortBy({category: currentCategory, sort: value}));
+            dispatch(filterAndSortBy({sort: value}));
             setCurrentSort(value);
         }
 
@@ -79,7 +81,6 @@ function ProductCards() {
                             <button 
                                 onClick={() => {
                                     handleCategorySelect(category.name);
-                                    setCurrentCategory(category.name);
                                 }}
                                 key={index}
                                 className={`list-group-item list-group-item-action`}
@@ -90,31 +91,37 @@ function ProductCards() {
                 </div>
 
                 <div>
-                    <p>Sort</p>
+                    
+                    { currentCategory &&
+                        <div>
+                            <p>Sort</p>
+                            <div>
+                                <span>Sort alphabetically</span>
+                                <select onChange={handleSort}>
+                                    <option value={"default"}>Select option</option>
+                                    <option value={"A - Z"}>A - Z</option>
+                                    <option value={"Z - A"}>Z - A</option>
+                                </select>
+                            </div>
+                            <div>
+                            <span>Sort by Price</span>
+                            <select onChange={handleSort}>
+                                <option value={"default"}>Select option</option>
+                                <option value={"priceAsc"}>Ascending</option>
+                                <option value={"priceDesc"}>Descending</option>
+                            </select>
+                            </div>
+                        </div>
+                    }
 
-                    <div>
-                        <span>Sort alphabetically</span>
-                        <select onChange={handleSort}>
-                            <option value={"default"}>Select option</option>
-                            <option value={"A - Z"}>A - Z</option>
-                            <option value={"Z - A"}>Z - A</option>
-                        </select>
-                    </div>
-                    <div>
-                        <span>Sort by Price</span>
-                        <select onChange={handleSort}>
-                            <option value={"default"}>Select option</option>
-                            <option value={"priceAsc"}>Ascending</option>
-                            <option value={"priceDesc"}>Descending</option>
-                        </select>
-                    </div>
 
                 </div>
                 <div>
                     <p>Filter by brand</p>
-                    {currentBrands && currentBrands.map((brand, index) => {
+                    {currentBrands && currentCategory && currentBrands.map((brand, index) => {
                         return (
                             <div key={index}>
+                                
                                 <label>{brand}</label>
                                 <input
                                     type={"checkbox"}
