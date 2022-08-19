@@ -5,7 +5,7 @@ const getProducto = async ()=>
     
 let productos = await Product.findAll( { include:{  model: Category, attributes:['name'] } })
 let toObj = productos?.map((e)=>
-{ console.log(e)
+{ console.log(e.categoryId)
 return {
         id: e.id,
         brand: e.brand,
@@ -18,5 +18,6 @@ return {
         stock: e.stock,
        }
 })
+return toObj;
 }
 module.exports ={getProducto}
