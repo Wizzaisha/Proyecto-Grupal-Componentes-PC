@@ -5,7 +5,8 @@ import {
     GET_CURRENT_BRANDS,
     ADD_REMOVE_FILTER_BRAND,
     FILTER_AND_SORT_BY,
-    SET_CATEGORY
+    SET_CATEGORY,
+    GET_PRODUCT_DETAILS
 } from "../actions";
 
 import { filterCurrentBrands, filterData } from "../utils";
@@ -17,11 +18,12 @@ const initialState = {
     filterBrands: [],
     allCategories: [],
     currentCategory: "",
+    details: []
 }
 
 const rootReducer = (state = initialState, action) => {
 
-    switch(action.type) {
+    switch (action.type) {
         case GET_ALL_PRODUCTS:
             return {
                 ...state,
@@ -70,17 +72,23 @@ const rootReducer = (state = initialState, action) => {
 
         case FILTER_AND_SORT_BY:
             const { sort } = action.payload;
-            
             // console.log("category", category);
             // console.log("sortVal", sort);
             // console.log("brands", brands);
             const filteredProducts = filterData(state.productsCopy, state.category, sort, state.filterBrands);
+
             return {
                 ...state,
                 products: filteredProducts,
             }
-        default: 
-            return {...state}
+        case GET_PRODUCT_DETAILS:
+            return {
+                ...state,
+                details: action.payload
+            }
+
+        default:
+            return { ...state }
     }
 }
 

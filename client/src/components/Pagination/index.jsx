@@ -40,27 +40,27 @@ const Pagination = props => {
     return (
         <ul className={"paginationContainer"}>
             {/* Left navigation arrow */}
-            <button 
-                onClick={onPrevious} 
+            <button
+                onClick={onPrevious}
                 disabled={currentPage === 1 ? true : null}
-                
+
             ><li
                 className={"paginationItem"}
             >
-                <FaAngleLeft />
-            </li>
+                    <FaAngleLeft />
+                </li>
             </button>
             {/* Render page pills */}
             {paginationRange.map((pageNumber, index) => {
                 if (pageNumber === DOTS) {
                     return <li
-                        key={index} 
+                        key={index}
                         className={"paginationItemDots"}
-                        >&#8230;</li>
+                    >&#8230;</li>
                 }
 
                 return (
-                    <li 
+                    <li
                         key={index}
                         onClick={() => onPageChange(pageNumber)}
                         className={pageNumber === currentPage ? "paginationItem selected" : "paginationItem"}
@@ -68,15 +68,15 @@ const Pagination = props => {
                 )
             })}
             {/* Right navigation arrow */}
-            <button 
-                onClick={onNext} 
+            <button
+                onClick={onNext}
                 disabled={currentPage === lastPage ? true : null}
-                
+
             ><li
                 className={"paginationItem"}
             >
-                <FaAngleRight />
-            </li>
+                    <FaAngleRight />
+                </li>
             </button>
         </ul>
     )
