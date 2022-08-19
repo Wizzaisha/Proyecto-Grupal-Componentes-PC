@@ -3,6 +3,8 @@ import axios from "axios";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES";
 export const FILTER_AND_SORT_BY = "FILTER_AND_SORT_BY";
+export const GET_CURRENT_BRANDS = "GET_CURRENT_BRANDS";
+export const ADD_REMOVE_FILTER_BRAND = "ADD_REMOVE_FILTER_BRAND";
 
 
 export const getAllProducts = () => {
@@ -26,5 +28,18 @@ export const getAllCategories = () => {
 export const filterAndSortBy = (filterValues) => {
     return (dispatch) => {
         return dispatch({type: FILTER_AND_SORT_BY, payload: filterValues});
+    }
+}
+
+export const getCurrentBrands = (filterValues) => {
+    return (dispatch) => {
+        return dispatch({type: GET_CURRENT_BRANDS, payload: filterValues});
+    }
+}
+
+
+export const addAndRemoveFilterBrand = (brand) => {
+    return (dispatch) => {
+        return dispatch({type: ADD_REMOVE_FILTER_BRAND, payload: brand});
     }
 }

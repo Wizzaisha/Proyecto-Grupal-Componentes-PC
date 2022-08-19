@@ -10,6 +10,7 @@ function Header() {
         <div className="headerContainer">
             <Link to={"/"}><p>Name page</p></Link>
             <ul>
+                <Link to={"/store"}>Store</Link>
                 <Link to={"/contact"}>Contact</Link>
                 <Link to={"/adminpanel"}>Admin Panel</Link>
                 <Link to={"/login"}>Login</Link>

@@ -2,9 +2,9 @@ export function filterData(data, category, sortType, brands) {
 
     let productsData = data;
 
-    if (sortType.length > 0){
-        sortItems(productsData, sortType);
-    }
+    
+    sortItems(productsData, sortType);
+    
 
     if (category.length > 0){
         productsData = productsData.filter(product => {
@@ -14,33 +14,48 @@ export function filterData(data, category, sortType, brands) {
 
     if (brands.length > 0){
         productsData = productsData.filter(product => {
-            return product.marca === brands[0];
-        })
+            return brands.indexOf(product.marca) > -1;
+        });
     }
     
     return productsData;
-
-
     
 
+}
+
+export function filterCurrentBrands(data, category){
+    
+    let brands = [];
+
+    const filterData = data.filter(product => {
+        return product.categoria === category;
+    });
+
+
+    filterData.forEach(element => {
+        if (brands.indexOf(element.marca) === -1) brands.push(element.marca);
+    });
+
+    return brands;
+    
 }
 
 export function sortItems(data, type) {
     switch(type){
         case "A - Z":
-            sortAscending(data, "marca");
-            break;
+            return sortAscending(data, "marca");
+            
         case "Z - A":
-            sortDescending(data, "marca");
-            break;
+            return sortDescending(data, "marca");
+            
         case "priceAsc":
-            sortAscending(data, "precio");
-            break;
+            return sortAscending(data, "precio");
+            
         case "priceDesc":
-            sortDescending(data, "precio");
-            break;
+            return sortDescending(data, "precio");
+            
         default:
-            return "Property not found";
+            return data;
     }
 }
 

@@ -2,14 +2,18 @@
 import {
     GET_ALL_PRODUCTS,
     GET_ALL_CATEGORIES,
+    GET_CURRENT_BRANDS,
+    ADD_REMOVE_FILTER_BRAND,
     FILTER_AND_SORT_BY
 } from "../actions";
 
-import { filterData } from "../utils";
+import { filterCurrentBrands, filterData } from "../utils";
 
 const initialState = {
     products: [],
     productsCopy: [],
+    brands: [],
+    filterBrands: [],
     allCategories: []
 }
 
@@ -28,15 +32,42 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 allCategories: action.payload
             }
+        case GET_CURRENT_BRANDS:
 
-        case FILTER_AND_SORT_BY:
-            const { category, sort, brands } = action.payload;
-            
-            const filteredProducts = filterData(state.productsCopy, category, sort, brands);
-            
+            const categoryType = action.payload;
+
+            const filteredBrands = filterCurrentBrands(state.productsCopy, categoryType);
+
             return {
                 ...state,
-                products: filteredProducts
+                brands: filteredBrands
+            }
+
+        case ADD_REMOVE_FILTER_BRAND:
+
+            const currentIndex = state.filterBrands.indexOf(action.payload);
+
+            if (currentIndex === -1){
+                return {
+                    ...state,
+                    filterBrands: [...state.filterBrands, action.payload]
+                }
+            } else {
+                return {
+                    ...state,
+                    filterBrands: state.filterBrands.filter(e => e !== action.payload)
+                }
+            }
+
+        case FILTER_AND_SORT_BY:
+            const { category, sort } = action.payload;
+            // console.log("category", category);
+            // console.log("sortVal", sort);
+            // console.log("brands", brands);
+            const filteredProducts = filterData(state.productsCopy, category, sort, state.filterBrands);
+            return {
+                ...state,
+                products: filteredProducts,
             }
         default: 
             return {...state}

@@ -1,9 +1,9 @@
+
 import "./ProductDetails.css";
 
 
 
 function ProductDetails() {
-
 
     return (
         <div>

@@ -1,11 +1,11 @@
 import "./ProductCards.css";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-    getAllProducts,
-    getAllCategories,
-    filterAndSortBy
+    getCurrentBrands,
+    filterAndSortBy,
+    addAndRemoveFilterBrand
 } from "../../redux/actions";
 
 import Pagination from "../Pagination/";
@@ -18,54 +18,40 @@ function ProductCards() {
     // Redux states and dispatch
     let allProducts = useSelector(state => state.products);
     const allCategories = useSelector(state => state.allCategories);
+    const currentBrands = useSelector(state => state.brands);
+    const currentFilterBrands = useSelector(state => state.filterBrands);
     const dispatch = useDispatch();
-    
-    // States filter and sort
-    const [currentCategory, setCurrentCategory] = useState("");
-    const [currentSort, setCurrentSort] = useState("");
-    const [checkedBrand, setCheckedBrand] = useState([]);
-    
+
+    console.log(currentFilterBrands);
     // Pagination
     const [currentPage, setCurrentPage] = useState(1);
-
     const currentProducts = useMemo(() => {
         const firstPageIndex = (currentPage - 1) * pageSize;
         const lastPageIndex = firstPageIndex + pageSize;
 
         return allProducts.slice(firstPageIndex, lastPageIndex);
     }, [currentPage, allProducts]);
-
-    let brands = [];
-
-    if (currentCategory.length > 0) {
-        allProducts.forEach(product => {
-            if(brands.indexOf(product.marca) === -1) brands.push(product.marca);
-        });
-    }
-
+    
+    // States filter and sort
+    const [currentCategory, setCurrentCategory] = useState("");
+    const [currentSort, setCurrentSort] = useState("");    
+    
     // Filtros
     // By category
     function handleCategorySelect(value) {
-        dispatch(filterAndSortBy({category: value, sort: currentSort, brands: checkedBrand}));
+        
+        dispatch(filterAndSortBy({category: value, sort: currentSort, brands: []}));
+        dispatch(getCurrentBrands(value));
 
     }
 
     // By brand
 
     function handleBrandCheckBox(value) {
-        const currentIndex = checkedBrand.indexOf(value);
+        
+        dispatch(addAndRemoveFilterBrand(value));
 
-        const newCheked = [...checkedBrand];
-
-        if (currentIndex === -1){
-            newCheked.push(value);
-        } else {
-            newCheked.splice(currentIndex, 1);
-        }
-
-        dispatch(filterAndSortBy({category: currentCategory, sort: currentSort, brands: newCheked}));
-
-        setCheckedBrand(newCheked);
+        dispatch(filterAndSortBy({category: currentCategory, sort: currentSort}));
 
         setCurrentPage(1);
     }
@@ -76,17 +62,11 @@ function ProductCards() {
         const { value } = event.target;
 
         if (value !== "default") {
-            dispatch(filterAndSortBy({category: currentCategory, sort: value, brands: checkedBrand}));
+            dispatch(filterAndSortBy({category: currentCategory, sort: value}));
             setCurrentSort(value);
         }
 
     }
-
-    useEffect(() => {
-        dispatch(getAllProducts());
-        dispatch(getAllCategories());
-
-    }, [dispatch]);
 
     return (
         <div className="mainContainer">
@@ -132,14 +112,14 @@ function ProductCards() {
                 </div>
                 <div>
                     <p>Filter by brand</p>
-                    {brands && brands.map((brand, index) => {
+                    {currentBrands && currentBrands.map((brand, index) => {
                         return (
                             <div key={index}>
                                 <label>{brand}</label>
                                 <input
                                     type={"checkbox"}
                                     onChange={() => handleBrandCheckBox(brand)}
-                                    checked={checkedBrand.indexOf(brand) === -1 ? false : true}
+                                    checked={currentFilterBrands.indexOf(brand) === -1 ? false : true}
                                 >
                                 </input>
                             </div>
