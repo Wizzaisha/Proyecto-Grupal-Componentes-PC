@@ -4,8 +4,9 @@ const obtenerProductos = async ()=>
 {
 let productos = await Product.findAll({ include: Category })
 let toObj = []
-productos?.map( async (e)=>
-{
+productos?.map(  (e)=>
+{ 
+    // console.log(e.category.name)
 toObj.push ({
         id: e.id,
         brand: e.brand,
