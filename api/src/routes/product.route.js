@@ -8,9 +8,10 @@ router.get('/', async (req, res, next)=>
     try
     {
         let productos = await obtenerProductos()
+        // console.log(productos)
         res.send(productos)
     }
-    catch (error) { next(error)  }
+    catch (error) { next(error) ; console.log(error) }
 })
 
 router.post('/', async (req, res, next)=>

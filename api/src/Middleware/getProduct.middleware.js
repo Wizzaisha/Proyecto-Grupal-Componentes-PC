@@ -2,12 +2,10 @@ const {Product,Category} = require("../db")
 
 const obtenerProductos = async ()=>
 {
-let productos = await Product.findAll()
+let productos = await Product.findAll({ include: Category })
 let toObj = []
 productos?.map( async (e)=>
 {
-// let categoria = await Category.findByPk(e.categoryId,{ raw: true })
-//  console.log(categoria.name)
 toObj.push ({
         id: e.id,
         brand: e.brand,
@@ -18,7 +16,8 @@ toObj.push ({
         benchmark: e.benchmark,
         price: e.price,
         stock: e.stock,
-        // category: categoria.name
+        category: e.category.name
+        
        })
 })
 return toObj;
