@@ -1,24 +1,27 @@
 export function filterData(data, category, sortType, brands) {
 
-    let productsData = data;
 
+    if (sortType.length > 0){
+        sortItems(data, sortType);
+    }
     
-    sortItems(productsData, sortType);
-    
-
-    if (category.length > 0){
-        productsData = productsData.filter(product => {
+    if (brands.length === 0){
+        return data.filter(product => {
             return product.categoria === category;
         })
-    }
-
-    if (brands.length > 0){
-        productsData = productsData.filter(product => {
+    } else if (category.length === 0){
+        return data.filter(product => {
             return brands.indexOf(product.marca) > -1;
         });
+    } else if (brands.length > 0 && category.length > 0){
+        return data.filter(product => {
+            return product.categoria === category && brands.indexOf(product.marca) > -1;;
+        })
+    } else {
+        return data;
     }
     
-    return productsData;
+    
     
 
 }
