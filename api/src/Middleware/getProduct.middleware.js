@@ -6,8 +6,8 @@ let productos = await Product.findAll()
 let toObj = []
 productos?.map( async (e)=>
 {
-let categoria = await Category.findByPk(e.categoryId,{ raw: true })
- console.log(categoria.name)
+// let categoria = await Category.findByPk(e.categoryId,{ raw: true })
+//  console.log(categoria.name)
 toObj.push ({
         id: e.id,
         brand: e.brand,
