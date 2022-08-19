@@ -1,43 +1,74 @@
 
 import "./ProductDetails.css"
-
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
-
+import { useParams } from 'react-router-dom'
+import { getProductDetails } from '../../redux/actions'
 
 function ProductDetails() {
-
     const p = {
-        "background_image": "https://http2.mlstatic.com/D_NQ_NP_895338-MLA51028758628_082022-O.webp",
-        "marca": "Genesis",
-        "modelo": "IRID 503 ARGB",
-        "precio": 70,
-        "description": "Gabinete Genesis IRID 503 ARGB",
-        "bentchmark": 200,
-        "especificaciones": ["USB 2.0:2", "USB 3.0:1", "Audio HD:Si", "RGB:Si", "Factor Mother:Micro-ATX, Mini-ITX", "Ventiladores:5"],
-        "categoria": "CHASIS",
+        "image": "https://m.media-amazon.com/images/I/51wqVVVtnyS._AC_SL1413_.jpg",
+        "brand": "Intel",
+        "model": "Core i5-11400F",
+        "price": 149,
+        "description": "The Rocket Lake i5-11400F paired with a B560 motherboard and 3200 RAM ($365 USD) offers unprecedented value for money to gamers. It completely prices AMD's 5000 series out of the market.",
+        "bentchmark": 96,
+        "specs": ["CPU Model:Intel Core i5", "CPU Speed:2.6 GHz"],
+        "categorys": "CPU",
         "stock": 10
+    }
+    const dispatch = useDispatch()
+    const { id } = useParams()
+    const details = useSelector(state => state.details)
+    const [value, setValue] = useState(1)
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        })
+    }, [dispatch])
+
+    useEffect(() => {
+        dispatch(getProductDetails(id))
+    }, [dispatch])
+
+
+
+    function handleAddToCart() {
+
     }
 
     return (
         <div className="container">
             <div className="containerRow">
-                <img src={p.background_image} />
+                <img src={p.image} className="img" />
                 <div className="containerColumn">
                     <div className="containerRow">
-                        <h1>{`${p.categoria[0] + p.categoria.slice(1).toLowerCase()} ${p.marca} ${p.modelo}`}</h1>
+                        <h1>{`${p.categorys[0] + p.categorys.slice(1).toLowerCase()} ${p.brand} ${p.model}`}</h1>
                         <Link to={'/'}>
-                            <button>X</button>
+                            <button className="btn btn-primary">X</button>
                         </Link>
                     </div>
-                    <h3>Brand: {p.marca}</h3>
-                    <h3>Model: {p.modelo}</h3>
-                    <h3>${p.precio}</h3>
-                    <p>{`(${p.stock} available)`} </p>
+                    <h3>Brand: {p.brand}</h3>
+                    <h3>Model: {p.model}</h3>
+                    <h3>${p.price}</h3>
+                    <p>{`Stock available: (${p.stock} available)`} </p>
+                    <div className="input-group">
+                        <button type="button" className="btn btn-outline-primary" onClick={() => setValue(value - 1)}>-</button>
+                        <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
+                        <button type="button" className="btn btn-outline-primary" onClick={() => setValue(value + 1)}>+</button>
+                    </div>
+                    <button type="submit" className="btn btn-primary" onClick={e => handleAddToCart(e)} >Add to cart</button>
                 </div>
             </div>
-            <h3>{p.description}</h3>
-            <h3>Specs</h3>
-            {p.especificaciones && p.especificaciones.map((e) => { return <li>{e}</li> })}
+            <div className="containerColumn2">
+                <h3>{p.description}</h3>
+                <h3>Specs</h3>
+                {p.specs && p.specs.map((e) => { return <li>{e}</li> })}
+            </div>
         </div>
     )
 }
