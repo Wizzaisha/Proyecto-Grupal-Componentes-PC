@@ -3,22 +3,23 @@ import "./ProductCards.css";
 import { useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-    getCurrentBrands,
     filterAndSortBy,
-    setCategory,
     addAndRemoveFilterBrand,
+    setSort,
+    getAllProducts,
 } from "../../redux/actions";
 
 import Pagination from "../Pagination/";
 import ProductCard from "../ProductCard";
+import CategoriesBar from "../CategoriesBar";
 
-let pageSize = 15;
+let pageSize = 10;
 
 function ProductCards() {
 
     // Redux states and dispatch
     let allProducts = useSelector(state => state.products);
-    const allCategories = useSelector(state => state.allCategories);
+    
     const currentBrands = useSelector(state => state.brands);
     const currentFilterBrands = useSelector(state => state.filterBrands);
     const currentCategory = useSelector(state => state.category);
@@ -33,29 +34,22 @@ function ProductCards() {
         return allProducts.slice(firstPageIndex, lastPageIndex);
     }, [currentPage, allProducts]);
     
-    // States filter and sort
-    const [currentSort, setCurrentSort] = useState("");    
+  
     
     // Filtros
-    // By category
-    function handleCategorySelect(value) {
-        
-        dispatch(setCategory(value))
-        dispatch(filterAndSortBy({sort: currentSort}));
-        dispatch(getCurrentBrands(value));
-
-
-    }
-
+    
     // By brand
-
     function handleBrandCheckBox(value) {
         
         dispatch(addAndRemoveFilterBrand(value));
 
-        dispatch(filterAndSortBy({sort: currentSort}));
+        dispatch(filterAndSortBy());
 
         setCurrentPage(1);
+    }
+
+    function handleClearFilters () {
+        dispatch(getAllProducts());
     }
 
     // Sort
@@ -64,8 +58,8 @@ function ProductCards() {
         const { value } = event.target;
 
         if (value !== "default") {
-            dispatch(filterAndSortBy({sort: value}));
-            setCurrentSort(value);
+            dispatch(setSort(value));
+            dispatch(filterAndSortBy());
         }
 
     }
@@ -73,28 +67,14 @@ function ProductCards() {
     return (
         <div className="mainContainer">
             <div>
-                <p>Filtro</p>
-                <div className="list-group list-group-horizontal">
-
-                    {allCategories && allCategories.map((category, index) => {
-                        return (
-                            <button 
-                                onClick={() => {
-                                    handleCategorySelect(category.name);
-                                }}
-                                key={index}
-                                className={`list-group-item list-group-item-action`}
-                            >{category.name}</button>
-                        )
-                    })}
-
-                </div>
+                
+                <CategoriesBar />
 
                 <div>
                     
                     { currentCategory &&
                         <div>
-                            <p>Sort</p>
+                            
                             <div>
                                 <span>Sort alphabetically</span>
                                 <select onChange={handleSort}>
@@ -117,7 +97,7 @@ function ProductCards() {
 
                 </div>
                 <div>
-                    <p>Filter by brand</p>
+                    {currentCategory && <p>Filter by brand</p>}
                     {currentBrands && currentCategory && currentBrands.map((brand, index) => {
                         return (
                             <div key={index}>
@@ -134,7 +114,11 @@ function ProductCards() {
                     })}
                 </div>
             </div>
-            
+            { currentCategory &&
+                <div>
+                    <button onClick={handleClearFilters}>Clear Filters</button>
+                </div>
+            }
             <div className="cardsContainer">
                 
                 {currentProducts && currentProducts.map((product, index) => {
@@ -152,12 +136,14 @@ function ProductCards() {
 
 
             </div>
+            
             <Pagination 
                 currentPage={currentPage}
                 totalCount={allProducts.length}
                 pageSize={pageSize}
                 onPageChange={page => setCurrentPage(page)}
             />
+            
         </div>
     )
 }
