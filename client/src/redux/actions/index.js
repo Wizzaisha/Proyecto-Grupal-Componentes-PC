@@ -1,4 +1,4 @@
-
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const ACTION_TEST = "ACTION_TEST";
 
@@ -13,6 +13,16 @@ export function addToCart(idProduct){
     }
 }
 
+export function removeFromCart(idProduct){
+// Creo una action que recibe el ID del producto a remover del carrito (desde el componente «Cart»)
+return async function(dispatch) {
+    // Despacho al reducer una accion de tipo «Remover del carrito» y como payload el ID
+    return dispatch({
+        type: REMOVE_FROM_CART,
+        payload: idProduct
+    })
+}
+}
 
 export const actionTest = (message) => {
     return (dispatch) => {

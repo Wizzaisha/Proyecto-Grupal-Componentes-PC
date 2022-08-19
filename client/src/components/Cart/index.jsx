@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../redux/actions";
+import { addToCart, removeFromCart } from "../../redux/actions";
 //import { Link } from "react-router-dom";
 import s from './Cart.module.css';
 
@@ -18,11 +18,16 @@ function Cart () {
     function handleButton(e) {
         e.preventDefault();
         dispatch(addToCart(input.aux));
-        console.log(input.aux)
         setInput({
             aux: input.aux+1
         })
         
+    }
+
+    function handleDelete(e) {
+        e.preventDefault();
+        dispatch(removeFromCart(e.target.value));
+        console.log(e.target.value)
     }
 
     return (
@@ -53,7 +58,7 @@ function Cart () {
                             max = "100" 
                         />
                 
-                        <button class={s.button} type='button' /*onClick={(e) => handleDelete(e)}*/> X </button>
+                        <button class={s.button} value={el.id} type='button' onClick={(e) => handleDelete(e)}> X </button>
                         
                     </div> )
             }

@@ -1,7 +1,8 @@
 
 import {
     ACTION_TEST,
-    ADD_TO_CART
+    ADD_TO_CART,
+    REMOVE_FROM_CART
 } from "../actions";
 
 const initialState = {
@@ -69,8 +70,8 @@ const initialState = {
         especificaciones: ["Inalambrico: No", "Color: Negro", "Formato: Over-ear"],
         categoria: "Headsets",
         stock: 12
-    } ],
-    cart:[{
+    },
+    {
         id: 4,
         background_image: "https://http2.mlstatic.com/D_NQ_NP_785994-MLA46540771007_062021-V.webp",
         marca: "JBL",
@@ -81,7 +82,8 @@ const initialState = {
         especificaciones: ["Inalambrico: Sí", "Color: Negro", "Formato: In-ear"],
         categoria: "Headsets",
         stock: 33
-    },]
+    }],
+    cart:[]
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -93,7 +95,7 @@ const rootReducer = (state = initialState, action) => {
 
         case ADD_TO_CART:
                 // Selecciono y guardo en una constante el objeto elegido para agregar al carrito
-                const chosenProduct = state.products.find(p => p.id === action.payload)
+                var chosenProduct = state.products.find(p => p.id === action.payload)
                 
                 // Aca busco si existe el producto buscandolo por ID entre los que se encuentran dentro del array «cart» del estado global...
                 // Negamos el resultado del condicional ya que solo en caso de que arroje undefined (no exista) vamos a solicitar que  nos retorne el 
@@ -104,6 +106,12 @@ const rootReducer = (state = initialState, action) => {
                 // else
                 return {...state}
 
+        case REMOVE_FROM_CART:
+                // Esto filtra el estado «cart» y retorna una copia sin el producto que coincida con el ID pasado por payload
+
+                return {...state, cart: state.cart.filter(p => p.id != action.payload)};
+
+                
         default: 
             return {...state}
     }
