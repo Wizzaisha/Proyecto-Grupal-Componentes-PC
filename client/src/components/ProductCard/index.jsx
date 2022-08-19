@@ -10,7 +10,7 @@ function ProductCard(props) {
     return (
         
         <div className="cardContainer">
-            <Link to={`/${props.id}`}>
+            <Link to={`/store/${props.id}`}>
                 <img className="cardImage" src={props.background_image} alt="img"></img>
                 <div className="textComplement">
                     <p>{props.marca} {props.modelo}</p>

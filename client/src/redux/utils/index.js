@@ -2,9 +2,9 @@ export function filterData(data, category, sortType, brands) {
 
     let productsData = data;
 
-    if (sortType.length > 0){
-        sortItems(productsData, sortType);
-    }
+    
+    sortItems(productsData, sortType);
+    
 
     if (category.length > 0){
         productsData = productsData.filter(product => {
@@ -19,6 +19,7 @@ export function filterData(data, category, sortType, brands) {
     }
     
     return productsData;
+    
 
 }
 
@@ -42,19 +43,19 @@ export function filterCurrentBrands(data, category){
 export function sortItems(data, type) {
     switch(type){
         case "A - Z":
-            sortAscending(data, "marca");
-            break;
+            return sortAscending(data, "marca");
+            
         case "Z - A":
-            sortDescending(data, "marca");
-            break;
+            return sortDescending(data, "marca");
+            
         case "priceAsc":
-            sortAscending(data, "precio");
-            break;
+            return sortAscending(data, "precio");
+            
         case "priceDesc":
-            sortDescending(data, "precio");
-            break;
+            return sortDescending(data, "precio");
+            
         default:
-            return "Property not found";
+            return data;
     }
 }
 
