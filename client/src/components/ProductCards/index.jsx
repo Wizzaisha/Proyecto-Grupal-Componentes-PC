@@ -28,7 +28,6 @@ function ProductCards() {
     // Pagination
     const [currentPage, setCurrentPage] = useState(1);
 
-    const [sort, setCurrentSort] = useState("");
 
     const currentProducts = useMemo(() => {
         const firstPageIndex = (currentPage - 1) * pageSize;
@@ -63,7 +62,6 @@ function ProductCards() {
         if (value !== "default") {
             dispatch(setSort(value));
             dispatch(filterAndSortBy());
-            setCurrentSort(value);
         }
 
     }
@@ -77,25 +75,25 @@ function ProductCards() {
                 />
 
                 <div>
+                    <div>
+                        
                         <div>
-                            
-                            <div>
-                                <span>Sort alphabetically</span>
-                                <select onChange={handleSort}>
-                                    <option value={"default"}>Select option</option>
-                                    <option value={"A - Z"}>A - Z</option>
-                                    <option value={"Z - A"}>Z - A</option>
-                                </select>
-                            </div>
-                            <div>
-                            <span>Sort by Price</span>
+                            <span>Sort alphabetically</span>
                             <select onChange={handleSort}>
                                 <option value={"default"}>Select option</option>
-                                <option value={"priceAsc"}>Ascending</option>
-                                <option value={"priceDesc"}>Descending</option>
+                                <option value={"A - Z"}>A - Z</option>
+                                <option value={"Z - A"}>Z - A</option>
                             </select>
-                            </div>
                         </div>
+                        <div>
+                        <span>Sort by Price</span>
+                        <select onChange={handleSort}>
+                            <option value={"default"}>Select option</option>
+                            <option value={"priceAsc"}>Ascending</option>
+                            <option value={"priceDesc"}>Descending</option>
+                        </select>
+                        </div>
+                    </div>
                     
 
 
