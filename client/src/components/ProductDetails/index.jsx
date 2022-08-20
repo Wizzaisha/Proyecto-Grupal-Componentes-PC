@@ -49,7 +49,7 @@ function ProductDetails() {
                 <div className="containerColumn">
                     <div className="containerRow">
                         <h1>{`${p.categorys[0] + p.categorys.slice(1).toLowerCase()} ${p.brand} ${p.model}`}</h1>
-                        <Link to={'/'}>
+                        <Link to={'/store'}>
                             <button className="btn btn-primary">X</button>
                         </Link>
                     </div>
