@@ -123,15 +123,16 @@ function ProductCards() {
             }
             <div className="cardsContainer">
                 
-                {currentProducts && currentProducts.map((product, index) => {
+                {currentProducts && currentProducts.map((product) => {
                     return (
                         <ProductCard
-                            key={index}
-                            id={`${product.marca}${product.modelo}`} 
-                            background_image={product.background_image}
-                            marca={product.marca}
-                            modelo={product.modelo}
-                            precio={product.precio}
+                            key={product.id}
+                            id={product.id} 
+                            image={product.image}
+                            brand={product.brand}
+                            model={product.model}
+                            price={product.price}
+                            stock={product.stock}
                         />
                     )
                 })}

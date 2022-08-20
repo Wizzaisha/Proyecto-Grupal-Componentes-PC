@@ -9,6 +9,8 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
+import { Link } from "react-router-dom";
+
 function Header() {
     const [wanted, setWanted] = useState("")
     const [admin, setAdmin] = useState(false)
@@ -20,7 +22,7 @@ function Header() {
     return (
         <Navbar bg="dark" expand="lg">
         <Container fluid>
-            <Navbar.Brand href="/" className="text-light">HENRY PF</Navbar.Brand>
+            <Link to={"/"} className="navbar-brand text-light">HENRY PF</Link>
             <Navbar.Toggle aria-controls="navbarScroll"/>
             <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -30,12 +32,12 @@ function Header() {
                 }}
                 navbarScroll
             >
-                <Nav.Link className="text-light" href="/home">Home</Nav.Link>
-                <Nav.Link className="text-light" href="/contact">Contact</Nav.Link>
-                <Nav.Link className="text-light" href="/login">Login</Nav.Link>
-                <Nav.Link className="text-light" href="/singup">SingUp</Nav.Link>
-                <Nav.Link className="text-light" href="/cart">Cart</Nav.Link>
-                {admin?<Nav.Link className="text-light" href="/adminpanel">Admin Panel</Nav.Link> : <div></div>}
+                <Link className="nav-link text-light" to="/store">Store</Link>
+                <Link className="nav-link text-light" to="/contact">Contact</Link>
+                <Link className="nav-link text-light" to="/login">Login</Link>
+                <Link className="nav-link text-light" to="/singup">SingUp</Link>
+                <Link className="nav-link text-light" to="/cart">Cart</Link>
+                {admin?<Link className="nav-link text-light" to="/adminpanel">Admin Panel</Link> : <div></div>}
             </Nav>
             <Form className="d-flex"
                 onChange={(e)=>{
