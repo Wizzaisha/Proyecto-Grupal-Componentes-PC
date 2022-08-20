@@ -1,28 +1,29 @@
-export function filterData(data, category, sortType, brands) {
-
+export function filterData(data, category, sortType, brands) {    
+    
 
     if (sortType.length > 0){
+        
         sortItems(data, sortType);
     }
-    
-    if (brands.length === 0){
-        return data.filter(product => {
-            return product.categoria === category;
-        })
-    } else if (category.length === 0){
-        return data.filter(product => {
-            return brands.indexOf(product.marca) > -1;
-        });
-    } else if (brands.length > 0 && category.length > 0){
+
+    if (brands.length > 0 && category.length > 0){
+        
         return data.filter(product => {
             return product.categoria === category && brands.indexOf(product.marca) > -1;;
         })
-    } else {
+    } 
+
+    if (category.length > 0){
+        
+        return data.filter(product => {
+            return product.categoria === category;
+        })
+    } 
+    
+    if (brands.length === 0 && category.length === 0){
         return data;
     }
-    
-    
-    
+
 
 }
 
@@ -44,23 +45,24 @@ export function filterCurrentBrands(data, category){
 }
 
 export function sortItems(data, type) {
-    switch(type){
+    switch(type) {
         case "A - Z":
-            return sortAscending(data, "marca");
-            
+            sortAscending(data, "marca");
+            break;
         case "Z - A":
-            return sortDescending(data, "marca");
-            
+            sortDescending(data, "marca");
+            break;
         case "priceAsc":
-            return sortAscending(data, "precio");
-            
+            sortAscending(data, "precio");
+            break;
         case "priceDesc":
-            return sortDescending(data, "precio");
-            
+            sortDescending(data, "precio");
+            break;
         default:
-            return data;
+            return "Property not found";
     }
 }
+
 
 function sortAscending(data, property) {
     data.sort((a, b) => {
