@@ -14,7 +14,7 @@ let producto = await Product.create(
         specs: specs,
         benchmark:benchmark,
         price:price,
-        stock:stock,
+        stock:stock,    
     })
 
 await producto.setCategory(cat)
