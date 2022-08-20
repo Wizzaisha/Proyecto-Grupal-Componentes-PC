@@ -82,12 +82,12 @@ const rootReducer = (state = initialState, action) => {
             }
 
         case FILTER_AND_SORT_BY:
-            
-            const filteredProducts = filterData(state.productsCopy, state.category, state.currentSort, state.filterBrands);
+
+            const filteredData = filterData(state.productsCopy, state.category, state.currentSort, state.filterBrands);
 
             return {
                 ...state,
-                products: filteredProducts,
+                products: filteredData.slice()
             }
         case GET_PRODUCT_DETAILS:
             return {

@@ -27,6 +27,9 @@ function ProductCards() {
 
     // Pagination
     const [currentPage, setCurrentPage] = useState(1);
+
+    const [sort, setCurrentSort] = useState("");
+
     const currentProducts = useMemo(() => {
         const firstPageIndex = (currentPage - 1) * pageSize;
         const lastPageIndex = firstPageIndex + pageSize;
@@ -60,6 +63,7 @@ function ProductCards() {
         if (value !== "default") {
             dispatch(setSort(value));
             dispatch(filterAndSortBy());
+            setCurrentSort(value);
         }
 
     }
@@ -68,11 +72,11 @@ function ProductCards() {
         <div className="mainContainer">
             <div>
                 
-                <CategoriesBar />
+                <CategoriesBar 
+                    setCurrentPage={setCurrentPage}
+                />
 
                 <div>
-                    
-                    { currentCategory &&
                         <div>
                             
                             <div>
@@ -92,7 +96,7 @@ function ProductCards() {
                             </select>
                             </div>
                         </div>
-                    }
+                    
 
 
                 </div>
