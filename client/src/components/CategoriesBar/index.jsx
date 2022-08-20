@@ -8,7 +8,7 @@ import {
     filterAndSortBy,
 } from "../../redux/actions";
 
-function CategoriesBar () {
+function CategoriesBar (props) {
 
     const allCategories = useSelector(state => state.allCategories);
 
@@ -20,6 +20,7 @@ function CategoriesBar () {
         dispatch(setCategory(value))
         dispatch(filterAndSortBy());
         dispatch(getCurrentBrands(value));
+        props.setCurrentPage(1);
         
     }
 
