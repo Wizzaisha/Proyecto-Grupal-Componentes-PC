@@ -6,7 +6,7 @@ module.exports = (sequelize) =>
   // defino el modelo
   sequelize.define('category',
   {
-    nombre: { type: DataTypes.STRING }, 
+    name: { type: DataTypes.STRING, unique: true}, 
   });
 
 };

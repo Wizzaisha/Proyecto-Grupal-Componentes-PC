@@ -35,7 +35,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Product, Category , User, Role, RefreshToken } = sequelize.models;
 
 Product.belongsTo(Category);
-Category.hasMany(Product, { foreignKey: 'category_id' });
+Category.hasMany(Product, { foreignKey: 'categoryId' });
 
 
 Product.belongsToMany(User, { through: 'user_product' })

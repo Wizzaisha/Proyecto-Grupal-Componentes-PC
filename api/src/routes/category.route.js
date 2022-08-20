@@ -1,12 +1,13 @@
 const {Router} = require('express')
-const {Category} = require('../db')
+const {obtenerCategorias} = require('../Middleware/getCategory.middleware')
 const router = Router()
 
 router.get('/', async (req, res, next)=>
 {
     try
     {
-
+    let categorias = await obtenerCategorias()
+    res.send(categorias)
     }
     catch (error) { next(error)  }
 })
