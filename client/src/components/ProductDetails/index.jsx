@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 import { getProductDetails } from '../../redux/actions'
 
 function ProductDetails() {
+
     const p = {
         "image": "https://m.media-amazon.com/images/I/51wqVVVtnyS._AC_SL1413_.jpg",
         "brand": "Intel",
@@ -18,7 +19,7 @@ function ProductDetails() {
         "stock": 10
     }
     const dispatch = useDispatch()
-    const { id } = useParams()
+    const { idProduct } = useParams()
     const details = useSelector(state => state.details)
     const [value, setValue] = useState(1)
 
@@ -32,8 +33,8 @@ function ProductDetails() {
     }, [dispatch])
 
     useEffect(() => {
-        dispatch(getProductDetails(id))
-    }, [dispatch])
+        dispatch(getProductDetails(idProduct))
+    }, [dispatch, idProduct])
 
 
 
@@ -44,11 +45,11 @@ function ProductDetails() {
     return (
         <div className="container">
             <div className="containerRow">
-                <img src={p.image} className="img" />
+                <img src={details.image} className="img" alt="img"/>
                 <div className="containerColumn">
                     <div className="containerRow">
                         <h1>{`${p.categorys[0] + p.categorys.slice(1).toLowerCase()} ${p.brand} ${p.model}`}</h1>
-                        <Link to={'/'}>
+                        <Link to={'/store'}>
                             <button className="btn btn-primary">X</button>
                         </Link>
                     </div>

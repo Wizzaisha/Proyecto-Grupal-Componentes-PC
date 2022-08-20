@@ -45,17 +45,17 @@ function CategoriesBar (props) {
                         return (
                             <div key={index}>
                                 <label 
-                                    className={`radioButton btn btn-outline-secondary ${currentCategory === category.name ? "checked" : "nochecked"} `}
+                                    className={`radioButton btn btn-outline-secondary ${currentCategory === category ? "checked" : "nochecked"} `}
                                 >
                                     <input
                                         type={"radio"} 
                                         className="btn-check"
                                         autoComplete="off"
-                                        value={category.name}
+                                        value={category}
                                         onChange={handleCategorySelect}
-                                        checked={currentCategory === category.name ? true : false}
+                                        checked={currentCategory === category ? true : false}
                                     /> 
-                                    {category.name}
+                                    {category}
                                 </label>
 
                             </div>
