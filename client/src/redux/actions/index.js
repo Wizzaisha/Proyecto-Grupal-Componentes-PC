@@ -11,7 +11,7 @@ export const SET_SORT = "SET_SORT";
 
 export const getAllProducts = () => {
     return async (dispatch) => {
-        const response = await axios.get("http://localhost:3001/productos");
+        const response = await axios.get("http://localhost:3001/api/productos");
 
         return dispatch({ type: GET_ALL_PRODUCTS, payload: response.data });
     }
@@ -20,7 +20,7 @@ export const getAllProducts = () => {
 
 export const getAllCategories = () => {
     return async (dispatch) => {
-        const response = await axios.get("http://localhost:3001/categorias");
+        const response = await axios.get("http://localhost:3001/api/categorias");
 
         return dispatch({ type: GET_ALL_CATEGORIES, payload: response.data })
     }
@@ -35,7 +35,7 @@ export const filterAndSortBy = (filterValues) => {
 
 export const getProductDetails = (payload) => {
     return async (dispatch) => {
-        const response = await axios.get(`http://localhost:3001/${payload}`);
+        const response = await axios.get(`http://localhost:3001/api/productos/${payload}`);
 
         return dispatch({ type: 'GET_PRODUCT_DETAILS', payload: response.data })
     }

@@ -11,10 +11,10 @@ function ProductCard(props) {
         
         <div className="cardContainer">
             <Link to={`/store/${props.id}`}>
-                <img className="cardImage" src={props.background_image} alt="img"></img>
+                <img className="cardImage" src={props.image} alt="img"></img>
                 <div className="textComplement">
-                    <p>{props.marca} {props.modelo}</p>
-                    <p>{props.precio} $</p>
+                    <p>{props.brand} {props.model}</p>
+                    <p>{props.price} $</p>
                 </div>
             </Link>
         </div>
