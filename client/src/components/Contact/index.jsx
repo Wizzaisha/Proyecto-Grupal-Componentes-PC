@@ -1,5 +1,7 @@
 import "./Contact.css";
 
+
+
 function Contact() {
 
 
@@ -9,6 +11,5 @@ function Contact() {
         </div>
     )
 }
-
 
 export default Contact;
