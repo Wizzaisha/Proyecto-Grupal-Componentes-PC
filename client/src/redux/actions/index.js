@@ -11,38 +11,6 @@ export const SET_SORT = "SET_SORT";
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const ADD_TO_CART = 'ADD_TO_CART';
 
-export const getAllProducts = () => {
-    return async (dispatch) => {
-        const response = await axios.get("http://localhost:3001/api/productos");
-
-        return dispatch({ type: GET_ALL_PRODUCTS, payload: response.data });
-    }
-}
-
-
-export const getAllCategories = () => {
-    return async (dispatch) => {
-        const response = await axios.get("http://localhost:3001/api/categorias");
-
-        return dispatch({ type: GET_ALL_CATEGORIES, payload: response.data })
-    }
-}
-
-
-export const filterAndSortBy = (filterValues) => {
-    return (dispatch) => {
-        return dispatch({ type: FILTER_AND_SORT_BY, payload: filterValues });
-    }
-}
-
-export const getProductDetails = (payload) => {
-    return async (dispatch) => {
-        const response = await axios.get(`http://localhost:3001/api/productos/${payload}`);
-
-        return dispatch({ type: 'GET_PRODUCT_DETAILS', payload: response.data })
-    }
-}
-
 export const getCurrentBrands = (filterValues) => {
     return (dispatch) => {
         return dispatch({type: GET_CURRENT_BRANDS, payload: filterValues});
