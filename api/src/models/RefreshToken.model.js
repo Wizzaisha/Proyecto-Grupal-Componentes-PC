@@ -1,4 +1,4 @@
-const config = require("./auth.config");
+const config = require("../Middleware/authConfig.middleware");
 const { v4: uuidv4 } = require("uuid");
 const { DataTypes } = require('sequelize');
 // Exportamos una funcion que define el modelo

@@ -13,15 +13,20 @@ import Login from './components/Login/Login';
 import SignUp from './components/SignUp';
 import ProductDetails from './components/ProductDetails';
 import Cart from './components/Cart';
+import LandingPage from './components/LandingPage';
 
 function App() {
   return (
     <div className="App">
       <Routes>
+
         <Route path='/' element={<Home />}>
-          <Route index element={<ProductCards />}></Route>
+          <Route index element={<LandingPage />}></Route>
+          <Route path='/store' element={<ProductCards />}>
+
+          </Route>
+          <Route path='store/:idProduct' element={<ProductDetails />}></Route>
           <Route path='contact' element={<Contact />}></Route>
-          <Route path='idProduct' element={<ProductDetails />}></Route>
           <Route path='cart' element={<Cart />}></Route>
 
         </Route>

@@ -1,24 +1,29 @@
-export function filterData(data, category, sortType, brands) {
-
-    let productsData = data;
+export function filterData(data, category, sortType, brands) {    
+    
 
     if (sortType.length > 0){
-        sortItems(productsData, sortType);
+        
+        sortItems(data, sortType);
     }
+
+    if (brands.length > 0 && category.length > 0){
+        
+        return data.filter(product => {
+            return product.category === category && brands.indexOf(product.brand) > -1;;
+        })
+    } 
 
     if (category.length > 0){
-        productsData = productsData.filter(product => {
-            return product.categoria === category;
+        
+        return data.filter(product => {
+            return product.category === category;
         })
+    } 
+    
+    if (brands.length === 0 && category.length === 0){
+        return data;
     }
 
-    if (brands.length > 0){
-        productsData = productsData.filter(product => {
-            return brands.indexOf(product.marca) > -1;
-        });
-    }
-    
-    return productsData;
 
 }
 
@@ -27,12 +32,12 @@ export function filterCurrentBrands(data, category){
     let brands = [];
 
     const filterData = data.filter(product => {
-        return product.categoria === category;
+        return product.category === category;
     });
 
 
     filterData.forEach(element => {
-        if (brands.indexOf(element.marca) === -1) brands.push(element.marca);
+        if (brands.indexOf(element.brand) === -1) brands.push(element.brand);
     });
 
     return brands;
@@ -40,23 +45,24 @@ export function filterCurrentBrands(data, category){
 }
 
 export function sortItems(data, type) {
-    switch(type){
+    switch(type) {
         case "A - Z":
-            sortAscending(data, "marca");
+            sortAscending(data, "brand");
             break;
         case "Z - A":
-            sortDescending(data, "marca");
+            sortDescending(data, "brand");
             break;
         case "priceAsc":
-            sortAscending(data, "precio");
+            sortAscending(data, "price");
             break;
         case "priceDesc":
-            sortDescending(data, "precio");
+            sortDescending(data, "price");
             break;
         default:
             return "Property not found";
     }
 }
+
 
 function sortAscending(data, property) {
     data.sort((a, b) => {
