@@ -20,7 +20,7 @@ function Header() {
         console.log(wanted)
     }
     return (
-        <Navbar bg="dark" expand="lg">
+        <Navbar bg="dark" expand="lg" className="shadow-lg p-3">
         <Container fluid>
             <Link to={"/"} className="navbar-brand text-light">HENRY PF</Link>
             <Navbar.Toggle aria-controls="navbarScroll"/>
