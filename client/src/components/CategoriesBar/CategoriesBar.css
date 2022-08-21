@@ -1,0 +1,12 @@
+.checked {
+  background-color: #727a85;
+  color: white;
+}
+
+.nochecked {
+  background-color: white;
+}
+
+.radioButton {
+  width: 150px;
+}

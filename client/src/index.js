@@ -1,6 +1,7 @@
+import './index.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import { BrowserRouter } from "react-router-dom";
 //Importamos el provider y el store
@@ -8,16 +9,19 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
+// Redux && Store
+import store from "./redux/store";
+import { Provider } from "react-redux";
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-// Envolvemos todo con el provider
-  <Provider store = {store}>
-  <BrowserRouter>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </BrowserRouter>,
-  </Provider>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </BrowserRouter>
+  </Provider>
 );
 
 

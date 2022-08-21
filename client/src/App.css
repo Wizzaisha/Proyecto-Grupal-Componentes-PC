@@ -1,4 +1,13 @@
 .App {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   text-align: center;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.homeContainer{
+  margin: 0;
+  padding: 0;
 }
