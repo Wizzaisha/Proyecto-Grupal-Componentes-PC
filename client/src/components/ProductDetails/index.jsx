@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import { useParams } from 'react-router-dom'
-import { getProductDetails } from '../../redux/actions'
+import { getProductDetails, addToCart } from '../../redux/actions'
 
 function ProductDetails() {
 
@@ -37,15 +37,15 @@ function ProductDetails() {
     }, [dispatch, idProduct])
 
 
-
-    function handleAddToCart() {
-
+    function handleButton(e) {
+        e.preventDefault();
+        dispatch(addToCart(e.target.value));
     }
 
     return (
         <div className="container">
             <div className="containerRow">
-                <img src={details.image} className="img" alt="img"/>
+                <img src={details.image} className="img" alt="img" />
                 <div className="containerColumn">
                     <div className="containerRow">
                         <h1>{`${p.categorys[0] + p.categorys.slice(1).toLowerCase()} ${p.brand} ${p.model}`}</h1>
@@ -62,7 +62,7 @@ function ProductDetails() {
                         <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
                         <button type="button" className="btn btn-outline-primary" onClick={() => setValue(value + 1)}>+</button>
                     </div>
-                    <button type="submit" className="btn btn-primary" onClick={e => handleAddToCart(e)} >Add to cart</button>
+                    <button type="submit" className="btn btn-primary" onClick={e => handleButton(e)} >Add to cart</button>
                 </div>
             </div>
             <div className="containerColumn2">

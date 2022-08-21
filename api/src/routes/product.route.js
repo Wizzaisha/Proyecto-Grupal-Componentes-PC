@@ -30,7 +30,8 @@ router.post('/', async (req, res, next)=>
     try
     {
     let productoCreado = await crearProducto(brand,model,image,description,specs,benchmark,price,stock,category)
-    res.send(productoCreado)
+    productoCreado? res.send("Producto creado")
+    :res.send("Problema al crear el producto")
     }
     catch (error) { next(error)  }
 })

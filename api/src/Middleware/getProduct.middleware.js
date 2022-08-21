@@ -18,7 +18,6 @@ toObj.push ({
         price: e.price,
         stock: e.stock,
         category: e.category.name
-        
        })
 })
 return toObj;
