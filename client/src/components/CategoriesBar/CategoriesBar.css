@@ -10,3 +10,21 @@
 .radioButton {
   width: 150px;
 }
+
+.collapseButton {
+  width: 150px;
+}
+
+.clearFilters {
+  width: 150px;
+}
+
+.categoriesBarContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.collapseContainer {
+  padding: 1rem 0;
+}
