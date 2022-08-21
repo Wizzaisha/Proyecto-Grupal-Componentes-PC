@@ -2,6 +2,7 @@
   display: flex;
   list-style-type: none;
   justify-content: center;
+  padding: 1rem;
 }
 
 .paginationItem {
@@ -26,8 +27,18 @@
   padding: 0 0.5rem;
 }
 
-.paginationContainerButton {
-  border: 0.1rem solid black;
+.paginationContainer button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+.paginationContainer button:disabled {
+  background-color: rgb(209, 196, 196);
+  border-radius: 50%;
   color: inherit;
   border: none;
   padding: 0;
@@ -36,18 +47,13 @@
   outline: inherit;
 }
 
-.paginationContainer button:disabled {
-  background-color: rgb(87, 85, 85);
-  border-radius: 50%;
-}
-
 .paginationItem:hover {
-  background-color: #fffefebd;
+  background-color: #9d02026a;
   cursor: pointer;
 }
 
 .selected {
-  background-color: rgba(29, 183, 203, 0.814);
+  background-color: rgba(66, 71, 72, 0.366);
 }
 
 @media screen and (max-width: 750px) {
