@@ -18,7 +18,7 @@ function Header() {
         console.log(wanted)
     }
     return (
-        <Navbar bg="dark" expand="lg">
+        <Navbar bg="dark" expand="lg" className="shadow-lg p-3">
         <Container fluid>
             <Navbar.Brand href="/" className="text-light">HENRY PF</Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll"/>
