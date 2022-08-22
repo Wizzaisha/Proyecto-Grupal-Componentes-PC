@@ -90,3 +90,32 @@ return async function(dispatch) {
     })
 }
 }
+
+export function postLogIn (email, password){
+    return async function (dispatch){
+        try {
+            console.log(email,password)
+            let response = await axios.post(`http://localhost:3001/LogIn`,{
+                email ,
+                password
+            })
+            return response;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+export function postSingIn (user,email, password){
+    return async function (dispatch){
+        try {
+            let response = await axios.post(`http://localhost:3001/singin`,{
+                user,
+                email ,
+                password
+            })
+            return response;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}

@@ -43,7 +43,7 @@ const Pagination = props => {
             <button
                 onClick={onPrevious}
                 disabled={currentPage === 1 ? true : null}
-
+                
             ><li
                 className={"paginationItem"}
             >
@@ -74,9 +74,7 @@ const Pagination = props => {
 
             ><li
                 className={"paginationItem"}
-            >
-                    <FaAngleRight />
-                </li>
+            ><FaAngleRight /></li>
             </button>
         </ul>
     )

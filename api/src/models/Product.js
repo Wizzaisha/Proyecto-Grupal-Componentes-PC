@@ -12,7 +12,7 @@ module.exports = (sequelize) =>
     description: { type: DataTypes.TEXT },
     specs: { type:DataTypes.ARRAY(DataTypes.STRING), },
     benchmark: { type: DataTypes.INTEGER },
-    price: { type: DataTypes.INTEGER },
+    price: { type: DataTypes.FLOAT },
     stock: { type: DataTypes.INTEGER },
   });
 
