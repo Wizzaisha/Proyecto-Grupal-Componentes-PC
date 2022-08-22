@@ -12,6 +12,7 @@
   flex-direction: row;
   border-bottom: 1px solid #438a00;
   justify-content: space-between;
+  padding: .75rem;
 }
 
 .headers {
