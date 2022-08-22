@@ -39,8 +39,6 @@ function ProductDetails() {
 
     function handleButton(e) {
         e.preventDefault();
-        console.log('| DETAILS |')
-        console.log(details)
         // Traemos el «cart» del localStorage y lo parseamos para poder manipularlo
         let cart = JSON.parse(localStorage.getItem('cart'));
         // Si no existe (primera vez que se agrega un producto) lo definimos como un array y le pusheamos el producto en cuestion
@@ -58,8 +56,6 @@ function ProductDetails() {
         // Luego «cart» a string y lo subimos al localStorage
         localStorage.setItem('cart', JSON.stringify(cart))
 
-        console.log('| ID |')
-        console.log(details.id);
         alert(`Added ${details.category} ${details.brand} ${details.model} to cart`)
     }
 

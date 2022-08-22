@@ -1,34 +1,30 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart } from "../../redux/actions";
+import React, { useEffect, useState } from "react";
+
 //import { Link } from "react-router-dom";
 import './Cart.css';
 
 
 function Cart() {
 
-    //const cart = useSelector(state => state.cart)
-
-    const dispatch = useDispatch()
-
-    const cart = JSON.parse(localStorage.getItem('cart'));
-
-    /*useEffect( () => {
-        
-    }, []);*/
-
-    /*
-    BOTON PARA PROBAR AGREGAR UN PRODUCTO
-    function handleButton(e) {
+    // Creamos un estado local «cart»
+    const [state, setState] = useState({
+        // Lo inicializamos con el valor del localStorage
+        cart: JSON.parse(localStorage.getItem('cart'))
+    })
+    
+    
+    function handleDelete(e) {
         e.preventDefault();
-        dispatch(addToCart(e.target.value));
-    }
-    <button class={s.button} value={el.id} type='button' onClick={(e) => handleButton(e)}> Add a product </button>
-    */
-    function handleDelete(e, el) {
-        // El handler este le da el ID a la accion del producto que quiere remover
-        e.preventDefault();
-        dispatch(removeFromCart(e.target.value));
+         // Traemos el «cart» del localStorage y lo parseamos para poder manipularlo
+         let cart = JSON.parse(localStorage.getItem('cart'));
+         // Filtramos los productos del «cart» por el id que nos pasa el event
+         cart = cart.filter(p => p.id != e.target.value)
+         // Sobreescribimos el localStorage con el «cart» modificado (que ya no tiene el producto que eliminamos)
+         localStorage.setItem('cart', JSON.stringify(cart))
+         // Actualizamos el estado del componente para que vuelva a renderizarse
+         setState({
+            cart: cart
+        })
     }
 
     return (
@@ -40,8 +36,8 @@ function Cart() {
                 <span className={"span"}>Units</span>
             </div>
             {
-                // Mapeo el carrito que me traigo con useSelector para crear cada item
-                cart? cart.map(el =>
+                // Mapeo el «cart» del estado local para crear cada item
+                state.cart.length? state.cart.map(el =>
 
                     <div className={"items"}>
                         <div className={"product"}>
