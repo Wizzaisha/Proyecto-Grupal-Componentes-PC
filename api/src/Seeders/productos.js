@@ -1345,6 +1345,71 @@ let PRODUCTOS =  [
     "specs": ["Wireless: No", "Color: black", "Formato: In-ear"],
     "category": "HEADPHONE",
     "stock": 51
+  },{
+    "image": "https://www.loltec.com/storage/media/5ePzUtro6FAwag2LkzwoM4SzeukqiVNmzLT1wLqJ.jpeg",
+    "brand": "COOLER",
+    "model": "25DBA",
+    "price": 7.50,
+    "description": "Scoket : G775, 115X, AMD, AM2, AM2+, AM3, FM.",
+    "benchmark": 398,
+    "category": "COOLER",
+    "stock": 34,
+    "specs": []
+  },
+  {
+    "image": "https://www.loltec.com/storage/media/HaWF2KfxKkcFN8yYe3W1YKk23QZB0CcRiusTGDoQ.png",
+    "brand": "XPG",
+    "model": "VENTO120ARGB-BKCWW",
+    "price": 15.85,
+    "description": "COOLER XPG Vento ARGB 1200mm ,Conexión 3 pin ,1200 RPM.",
+    "benchmark": 865,
+    "category": "COOLER",
+    "stock": 34,
+    "specs": []
+  },
+  {
+    "image": "https://www.loltec.com/storage/media/HaWF2KfxKkcFN8yYe3W1YKk23QZB0CcRiusTGDoQ.png",
+    "brand": "COUGAR",
+    "model": "VORTEX VK 120",
+    "price": 65.00,
+    "description": "Kit de 3 COOLERs Cougar 120mm ARGB:",
+    "benchmark": 6586,
+    "category": "COOLER",
+    "stock": 30,
+    "specs": []
+  },
+  {
+    "image": "https://www.loltec.com/storage/media/vuZ7lVhv3sPXdQSuH8KX3B4HEnbxzQ7V9mezYkBT.jpeg",
+    "brand": "EAGLE",
+    "model": " WARRIOR RING RGB",
+    "price": 34.00,
+    "description": " 2 ventiladores de 120mm con 18 LEDs",
+    "benchmark": 78,
+    "category": "COOLER",
+    "stock": 10,
+    "specs": []
+  },
+  {
+    "image": "https://www.loltec.com/storage/media/NWs0Bk2820keS1BCGAlAZdbnhLbeFUexPYX6uF3c.jpeg",
+    "brand": "COUGAR",
+    "model": "VORTEX HPB 120",
+    "price": 25.00,
+    "description": " COOLER 120MM RGB",
+    "benchmark": 583,
+    "category": "COOLER",
+    "stock": 10,
+    "specs": []
+  },
+  {
+    "image": "https://www.loltec.com/storage/media/8QyeCPE9hZ9HpUgbre7xRxIhlg6Qj4sPddWKfFkC.jpeg",
+    "brand": "CORSAIR",
+    "model": "CO-9050092-WW",
+    "price": 99.00,
+    "description": "PACK X3 RGB 2200RPM",
+    "benchmark": 3983,
+    "category": "COOLER",
+    "stock": 10,
+    "specs": []
   }
 ]
 
