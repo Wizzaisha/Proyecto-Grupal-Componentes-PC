@@ -39,7 +39,9 @@ function ProductDetails() {
 
     function handleButton(e) {
         e.preventDefault();
-        dispatch(addToCart(e.target.value));
+        dispatch(addToCart(details.id));
+        console.log(details.id);
+        alert(`Added ${details.category} ${details.brand} ${details.model} to cart`)
     }
 
     return (
@@ -48,15 +50,15 @@ function ProductDetails() {
                 <img src={details.image} className="img" alt="img" />
                 <div className="containerColumn">
                     <div className="containerRow">
-                        <h1>{`${p.categorys[0] + p.categorys.slice(1).toLowerCase()} ${p.brand} ${p.model}`}</h1>
+                        <h1>{`${details.category} ${details.brand} ${details.model}`}</h1>
                         <Link to={'/store'}>
                             <button className="btn btn-primary">X</button>
                         </Link>
                     </div>
-                    <h3>Brand: {p.brand}</h3>
-                    <h3>Model: {p.model}</h3>
-                    <h3>${p.price}</h3>
-                    <p>{`Stock available: (${p.stock} available)`} </p>
+                    <h3>Brand: {details.brand}</h3>
+                    <h3>Model: {details.model}</h3>
+                    <h3>${details.price}</h3>
+                    <p>{`Stock available: (${details.stock} available)`} </p>
                     <div className="input-group">
                         <button type="button" className="btn btn-outline-primary" onClick={() => setValue(value - 1)}>-</button>
                         <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
@@ -66,9 +68,9 @@ function ProductDetails() {
                 </div>
             </div>
             <div className="containerColumn2">
-                <h3>{p.description}</h3>
+                <h3>{details.description}</h3>
                 <h3>Specs</h3>
-                {p.specs && p.specs.map((e) => { return <li>{e}</li> })}
+                {details.specs && details.specs.map((e) => { return <li>{e}</li> })}
             </div>
         </div>
     )
