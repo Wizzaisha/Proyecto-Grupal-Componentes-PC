@@ -39,7 +39,26 @@ function ProductDetails() {
 
     function handleButton(e) {
         e.preventDefault();
-        dispatch(addToCart(details.id));
+        console.log('| DETAILS |')
+        console.log(details)
+        // Traemos el «cart» del localStorage y lo parseamos para poder manipularlo
+        let cart = JSON.parse(localStorage.getItem('cart'));
+        // Si no existe (primera vez que se agrega un producto) lo definimos como un array y le pusheamos el producto en cuestion
+        if(!cart){
+            cart = [];
+            cart.push(details);
+        }
+        else{
+            // Si ya existe el «cart» (ya se pushearon uno o mas productos) preguntamos si encuentra el producto dentro
+            if(!cart.find(p => p.id === details.id)){
+                // En caso de no encontrarlo lo pushea
+                cart.push(details)
+            }
+        }
+        // Luego «cart» a string y lo subimos al localStorage
+        localStorage.setItem('cart', JSON.stringify(cart))
+
+        console.log('| ID |')
         console.log(details.id);
         alert(`Added ${details.category} ${details.brand} ${details.model} to cart`)
     }

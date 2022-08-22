@@ -4,10 +4,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter } from "react-router-dom";
-//Importamos el provider y el store
-
-import { Provider } from 'react-redux';
-import store from './redux/store';
 
 // Redux && Store
 import store from "./redux/store";
