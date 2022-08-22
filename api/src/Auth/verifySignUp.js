@@ -1,6 +1,7 @@
-const { User_role, Admin,SuperAdmin } = require("..\Seeders\roles");
-const ROLES = [User_role, Admin,SuperAdmin];
-const { User } = require("../config/db.config");
+const { ROLES} = require("../Seeders/roles");
+// const ROLES = [User_role, Admin,SuperAdmin];
+const { User } = require("../db");
+
 checkDuplicateUsernameOrEmail = (req, res, next) => {
   //Username
   User.findOne({
@@ -46,9 +47,10 @@ checkRolesExisted = (req, res, next) => {
   next();
 };
 
-const veryfySignUp = {
-  checkDuplicateUsernameOrEmail: checkDuplicateUsernameOrEmail,
-  checkRolesExisted: checkRolesExisted,
-};
+// const veryfySignUp = {
+//   checkDuplicateUsernameOrEmail: checkDuplicateUsernameOrEmail,
+//   checkRolesExisted: checkRolesExisted,
+// };
 
-module.exports = veryfySignUp;
+// module.exports = {veryfySignUp};
+module.exports = { checkDuplicateUsernameOrEmail, checkRolesExisted};

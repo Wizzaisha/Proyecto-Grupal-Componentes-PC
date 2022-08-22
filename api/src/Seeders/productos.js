@@ -4,7 +4,7 @@ let PRODUCTOS =  [
       "image": "https://m.media-amazon.com/images/I/41jGx-EgaJL._AC_.jpg",
       "brand": "Intel",
       "model":"Core i9-11900K",
-      "price": 356,
+      "price": "356",
       "description": "The i9-11900K is the fastest CPU in Intel's 11th Gen Rocket Lake-S lineup which brings higher IPC (early samples indicate +19%) and 50% stronger integrated graphics. There are also 500 series chipset improvements including: 20 PCIe4 CPU lanes (up from 16) and USB 3.2 Gen 2x2 (20 Gbps up from 10 Gbps). Rocket Lake's IPC uplift translates to around a 10% faster Effective Speed than both Intel's 10th Gen and AMD's 5000 series.",
       "benchmark": 109,
       "specs": ["CPU Speed:3.7 GHz", "Wattage:125 watts"],

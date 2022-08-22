@@ -1,23 +1,16 @@
 const {Router} = require('express')
-const {User} = require('../db')
+const {  checkDuplicateUsernameOrEmail, verifySignUp , controller } = require("../Auth");
 const router = Router()
 
-router.get('/', async (req, res, next)=>
-{
-    try
-    {
+router.post("/signup",
+   [checkDuplicateUsernameOrEmail, verifySignUp],
+    controller.signup
+  );
+  
+  router.post("/signin", controller.signin);
+  
+  router.post("/refreshtoken", controller.refreshToken);
 
-    }
-    catch (error) { next(error)  }
-})
 
-router.post('/', async (req, res, next)=>
-{
-    try
-    {
-    
-    }
-    catch (error) { next(error)  }
-})
 
 module.exports = router
