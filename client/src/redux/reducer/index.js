@@ -23,7 +23,7 @@ const initialState = {
     category: "",
     currentSort: "",
     details: [],
-    cart:[]
+    cart: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -59,7 +59,7 @@ const rootReducer = (state = initialState, action) => {
 
             const currentIndex = state.filterBrands.indexOf(action.payload);
 
-            if (currentIndex === -1){
+            if (currentIndex === -1) {
                 return {
                     ...state,
                     filterBrands: [...state.filterBrands, action.payload]
@@ -70,7 +70,7 @@ const rootReducer = (state = initialState, action) => {
                     filterBrands: state.filterBrands.filter(e => e !== action.payload)
                 }
             }
-        
+
         case SET_CATEGORY:
             return {
                 ...state,
@@ -87,7 +87,7 @@ const rootReducer = (state = initialState, action) => {
         case FILTER_AND_SORT_BY:
 
             const filteredData = filterData(state.productsCopy, state.category, state.currentSort, state.filterBrands);
-            
+
             return {
                 ...state,
                 products: filteredData.slice()
@@ -101,18 +101,17 @@ const rootReducer = (state = initialState, action) => {
         case ADD_TO_CART:
             // Selecciono y guardo en una constante el objeto elegido para agregar al carrito
             var chosenProduct = state.products.find(p => p.id === action.payload)
-            
+
             // Aca busco si existe el producto buscandolo por ID entre los que se encuentran dentro del array «cart» del estado global...
             // Negamos el resultado del condicional ya que solo en caso de que arroje undefined (no exista) vamos a solicitar que  nos retorne el 
             // estado «cart» con el producto actual agregado. De lo contrario retorna el estado tal cual esta
-            if(!state.cart.find(p => p.id === action.payload)) return {...state, cart: [...state.cart, chosenProduct]};
+            if (!state.cart.find(p => p.id === action.payload)) return { ...state, cart: [...state.cart, chosenProduct] };
             // else
-            return {...state}
+            return { ...state }
 
         case REMOVE_FROM_CART:
-                // Esto filtra el estado «cart» y retorna una copia sin el producto que coincida con el ID pasado por payload
-
-                return {...state, cart: state.cart.filter(p => p.id !== action.payload)};
+            // Esto filtra el estado «cart» y retorna una copia sin el producto que coincida con el ID pasado por payload
+            return { ...state, cart: state.cart.filter(p => p.id != action.payload) };
         default:
             return { ...state }
     }

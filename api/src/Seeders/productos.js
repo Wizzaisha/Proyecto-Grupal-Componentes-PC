@@ -1,5 +1,196 @@
-
 let PRODUCTOS = [
+  {
+    "image": "https://www.loltec.com/storage/media/VZwt2CMXwXiu5G7GfOjFGkxjWuJHJIv9WJomxMoS.png",
+    "brand": "AZZA",
+    "model": "PSAZ 850W.",
+    "price": 108.0,
+    "description": "POWER SUPPLY AZZA PSAZ 850W.",
+    "benchmark": 10,
+    "specs": [
+      "Output capacity: 850W.",
+      "Certification: 80+ Gold",
+      "Type: Full Modular",
+      "Factor Form: ATX",
+      "1x ATX cable (20+4 PIN)",
+      "2x EPS cable (4+4 PIN)",
+      "2x PCI-e cable (4x 6+2 PIN)",
+      "2x SATA cable (6x SATA)",
+      "1x Molex cable (3x Molex)"
+    ],
+    "category": "POWER SUPPLY",
+    "stock": 40
+  },
+  {
+    "image": "https://www.loltec.com/storage/media/VZqzoRC6ljOv8XruHBmVcvtOlEQNSy1jMSeULCM8.png",
+    "brand": "AZZA",
+    "model": " PSAZ 750W.",
+    "price": 95.0,
+    "description": "POWER SUPPLY AZZA PSAZ 750W.",
+    "benchmark": 41,
+    "specs": [
+      "Output capacity: 750W.",
+      "Certification: 80+ Gold",
+      "Type: Full Modular",
+      "Factor Form: ATX",
+      "1x ATX cable (20+4 PIN)",
+      "2x EPS cable (4+4 PIN)",
+      "2x PCI-e cable (4x 6+2 PIN)",
+      "2x SATA cable (6x SATA)",
+      "1x Molex cable (3x Molex)"
+    ],
+    "category": "POWER SUPPLY",
+    "stock": 40
+  },
+  {
+    "image": "https://www.loltec.com/storage/media/mjRgcFSpWUZMEvyaNUs0M38r8DdWyGbCF6E3mZux.png",
+    "brand": "A-DATA XPG",
+    "model": "PYLON 650W",
+    "price": 65.5,
+    "description": "A-DATA XPG Pylon 650W.",
+    "benchmark": 441,
+    "specs": [
+      "Output capacity: 650W.",
+      "Certification: 80+ Bronze.",
+      "Factor Form: ATX",
+      "8-pin EPS: 1.",
+      "4+4 Pin CPU: 1.",
+      "6+2 Pin PCI-E: 4.",
+      "Sata: 8.",
+      "Molex: 3.",
+      "4 pin flex: 1."
+    ],
+    "category": "POWER SUPPLY",
+    "stock": 26
+  },
+  {
+    "image": "https://www.loltec.com/storage/media/K84oFkomrrnbd0XEj1b20ACAZbzTXNjglwVbHg0h.png",
+    "brand": "AZZA",
+    "model": " PSAZ 750W.",
+    "price": 65.0,
+    "description": "POWER SUPPLY AZZA PSAZ 750W.",
+    "benchmark": 5825,
+    "specs": [
+      "Output capacity: 750W.",
+      "Certification: 80+ Bronce",
+      "Type: Full Modular",
+      "Factor Form: ATX",
+      "1x ATX cable (20+4 PIN)",
+      "2x EPS cable (4+4 PIN)",
+      "2x PCI-e cable (4x 6+2 PIN)",
+      "2x SATA cable (6x SATA)",
+      "1x Molex cable (3x Molex)"
+    ],
+    "category": "POWER SUPPLY",
+    "stock": 20
+  },
+  {
+    "image": "https://www.loltec.com/storage/media/8lhY8IUCQJovYsKOFIHG3z0xJEAtVLIGyC5B7z5c.png",
+    "brand": "EVGA",
+    "model": "110-BQ-0700-V1",
+    "price": 99.0,
+    "description": "POWER SUPPLY EVGA 700W.",
+    "benchmark": 478,
+    "specs": [
+      "Output capacity: 700W.",
+      "Certification: 80+ Bronce",
+      "Factor Form: Micro ATX",
+      "140 x 5.91 x 85 pulgadas"
+    ],
+    "category": "POWER SUPPLY",
+    "stock": 20
+  },
+  {
+    "image": "https://www.loltec.com/storage/media/uTSbnydGRsird7EXQ3J9PeLRsvLRMPWdiraAHohJ.jpeg",
+    "brand": "ASUS",
+    "model": "ROG-STRIX-850G",
+    "price": 253.0,
+    "description": "POWER SUPPLY GAMING 850W",
+    "benchmark": 528,
+    "specs": [
+      "Output capacity: 850W.",
+      "80+ GOLD",
+      "1X ATX 24-PIN",
+      "2X CPU 4+4 PIN",
+      "6X PCI-E",
+      "8X SATA"
+    ],
+    "category": "POWER SUPPLY",
+    "stock": 10
+  },
+  {
+    "image": "https://www.loltec.com/storage/media/RLvptIFcPx1wAUxmonh2twvcCXI48uKKEWHyrGvJ.jpeg",
+    "brand": "AZZA",
+    "model": "PSAZ-550WG",
+    "price": 41.0,
+    "description": "POWER SUPPLY AZZA PSAZ 550W.",
+    "benchmark": 427,
+    "specs": [
+      "Output capacity: 550W.",
+      "ATX 12V",
+      "80 PLUS BRONZE CERTIFIED",
+      "AC INPUT FROM 100 - 240V",
+      "200V - 240VAC"
+    ],
+    "category": "POWER SUPPLY",
+    "stock": 10
+  },
+  {
+    "image": "https://www.loltec.com/storage/media/S4Hhu43O9x1eSGLLjVtbeeSm7k3nYl4GLSWXi8JF.png",
+    "brand": "AZZA",
+    "model": "PSAZ-650W ARGB",
+    "price": 50.5,
+    "description": "POWER SUPPLY AZZA PSAZ 650W. RGB",
+    "benchmark": 12312312,
+    "specs": [
+      "Output capacity: 650W.RGB",
+      "ATX12V",
+      "80PLUS BRONZE CERTIFIED",
+      "AC INPUT FROM 100V-240V",
+      "200V-240VAC"
+    ],
+    "category": "POWER SUPPLY",
+    "stock": 8
+  },
+  {
+    "image": "https://www.loltec.com/storage/media/VPPOSOVkux3Lysao4jHOxuc7YpgnrSUHwx5LMAGh.png",
+    "brand": "GIGABYTE",
+    "model": "GP-P1000GM",
+    "price": 219.0,
+    "description": "POWER SUPPLY GIGABYTE 1000W.",
+    "benchmark": 68858,
+    "specs": [
+      "Output capacity: 1000W.",
+      "Certification: 80+ PlusGold",
+      "Type: Full Modular",
+      "Factor Form: ATX",
+      "2X CPU (4+4)",
+      "6X PCI-E (6+2)",
+      "6X SATA"
+    ],
+    "category": "POWER SUPPLY",
+    "stock": 40
+  },
+  {
+    "image": "https://www.loltec.com/storage/media/zKf9B4fzucvJoOqQ4QvAY4PWQ8lGhY0NlPp4oXPp.jpeg",
+    "brand": "EVGA",
+    "model": "100-BR-0700-K1",
+    "price": 89.0,
+    "description": "POWER SUPPLY EVGA 700W.",
+    "benchmark": 22,
+    "specs": [
+      "Output capacity: 700W.",
+      "Certification: 80+ PlusGold",
+      "Type: Full Modular",
+      "Factor Form: ATX",
+      "1x ATX cable (20+4 PIN)",
+      "2x EPS cable (4+4 PIN)",
+      "2x PCI-e cable (4x 6+2 PIN)",
+      "2x SATA cable (6x SATA)",
+      "1x Molex cable (3x Molex)"
+    ],
+    "category": "POWER SUPPLY",
+    "stock": 40
+  },
   {
     "image": "https://m.media-amazon.com/images/I/41jGx-EgaJL._AC_.jpg",
     "brand": "Intel",
@@ -117,7 +308,10 @@ let PRODUCTOS = [
     "price": 1513,
     "description": "The RTX 3090 is Nvidia's 3000 series flagship. It takes the crown as the fastest consumer graphics card money can buy. Nvidia's new Ampere architecture, which supersedes Turing, offers both improved power efficiency and performance.",
     "benchmark": 233,
-    "specs": ["GPU Clock Speed:1890 MHz", "Video Output Interface:DisplayPort, HDMI"],
+    "specs": [
+      "GPU Clock Speed:1890 MHz",
+      "Video Output Interface:DisplayPort, HDMI"
+    ],
     "category": "GPU",
     "stock": 10
   },
@@ -139,7 +333,10 @@ let PRODUCTOS = [
     "price": 339,
     "description": "The high performance ray-tracing RTX 2080 Super follows the recent release of the 2060 Super and 2070 Super, from NVIDIA's latest range of refreshed Turing RTX GPUs.",
     "benchmark": 138,
-    "specs": ["GPU Clock Speed:1665 MHz", "Video Output Interface:DisplayPort, HDMI"],
+    "specs": [
+      "GPU Clock Speed:1665 MHz",
+      "Video Output Interface:DisplayPort, HDMI"
+    ],
     "category": "GPU",
     "stock": 10
   },
@@ -148,9 +345,12 @@ let PRODUCTOS = [
     "brand": "AMD",
     "model": "RX 6900-XT",
     "price": 799,
-    "description": "The RX 6900-XT assumes the flagship position in AMD's latest RX 6000 series of GPUs which deliver a huge generational jump in performance. The $1,000 USD 6900-XT offers a small improvement (11% more compute units) over the already launched $650 USD RX 6800-XT. AMD have upgraded the single fan cooler to a more efficient triple fan solution, perhaps indicating a shift in focus from benchmark busting headlines to user experience.",
+    "description": "The RX 6900-XT assumes the flagship position in AMD's latest RX 6000 series of GPUs which deliver a huge generational jump in performance. The $1,000 USD 6900-XT offers a small improvement (11% more compute units) over the already launched $650 USD RX 6800-XT. AMD have upgraded the single fan COOLER to a more efficient triple fan solution, perhaps indicating a shift in focus from benchmark busting headlines to user experience.",
     "benchmark": 192,
-    "specs": ["GPU Clock Speed:2235 MHz", "Video Output Interface:DisplayPort, HDMI"],
+    "specs": [
+      "GPU Clock Speed:2235 MHz",
+      "Video Output Interface:DisplayPort, HDMI"
+    ],
     "category": "GPU",
     "stock": 10
   },
@@ -161,7 +361,10 @@ let PRODUCTOS = [
     "price": 694,
     "description": "'Build it, and they will come' must be NVIDIA's thinking behind their latest consumer-focused GPU: the RTX 2080 Ti, which has been released alongside the RTX 2080. Following on from the Pascal architecture of the 1080 series, the 2080 series is based on a new Turing GPU architecture which features Tensor cores for AI (thereby potentially reducing GPU usage during machine learning workloads) and RT cores for ray tracing (rendering more realistic images).",
     "benchmark": 175,
-    "specs": ["GPU Clock Speed:1710 MHz", "Video Output Interface:DisplayPort, HDMI"],
+    "specs": [
+      "GPU Clock Speed:1710 MHz",
+      "Video Output Interface:DisplayPort, HDMI"
+    ],
     "category": "GPU",
     "stock": 10
   },
@@ -172,7 +375,10 @@ let PRODUCTOS = [
     "price": 479,
     "description": "Hyped as the 'Ultimate GEforce', the 1080 Ti is NVIDIA's latest flagship 4K VR ready GPU. It supersedes last years GTX 1080, offering a 30% increase in performance for a 40% premium (founders edition 1080 Tis will be priced at $699, pushing down the price of the 1080 to $499).",
     "benchmark": 137,
-    "specs": ["GPU Clock Speed:1695 MHz", "Video Output Interface:DisplayPort, HDMI"],
+    "specs": [
+      "GPU Clock Speed:1695 MHz",
+      "Video Output Interface:DisplayPort, HDMI"
+    ],
     "category": "GPU",
     "stock": 10
   },
@@ -199,7 +405,7 @@ let PRODUCTOS = [
     "stock": 10
   },
   {
-    "image": "https://www.userbenchmark.com/resources/img/generic/ram/corsair.jpg",
+    "image": "https://www.userbenchmark.com/resources/image/generic/ram/corsair.jpg",
     "brand": "Corsair",
     "model": "Vengeance RGB DDR4 3466 C16 2x8GB",
     "price": 253,
@@ -243,7 +449,7 @@ let PRODUCTOS = [
     "stock": 10
   },
   {
-    "image": "https://www.userbenchmark.com/resources/img/generic/ram/corsair.jpg",
+    "image": "https://www.userbenchmark.com/resources/image/generic/ram/corsair.jpg",
     "brand": "Corsair",
     "model": "Vengeance LED DDR4 2400 C16 2x8GB",
     "price": 169,
@@ -403,7 +609,10 @@ let PRODUCTOS = [
     "price": 314,
     "description": "The WD Gold 12TB (2017) averaged 12.7% higher than the peak scores attained by the group leaders. This is an excellent result which ranks the WD Gold 12TB (2017)",
     "benchmark": 112,
-    "specs": ["Hard Disk Form Factor:3.5 Inches", "Hard Disk Description:Hybrid Drive"],
+    "specs": [
+      "Hard Disk Form Factor:3.5 Inches",
+      "Hard Disk Description:Hybrid Drive"
+    ],
     "category": "HDD",
     "stock": 10
   },
@@ -414,7 +623,10 @@ let PRODUCTOS = [
     "price": 64,
     "description": "The new 3TB Seagate Barracuda 2016 (ST3000DM008) replaces its hugely successful predecessor, the 3TB Barracuda 7200.14 2011 (ST3000DM001). Comparing performance between the two models shows that the newer drive has 12% faster sequential speeds, comparable 4K speeds, improved mixed sequential speed and reduced mixed 4K speed. Overall",
     "benchmark": 94,
-    "specs": ["Hard Disk Rotational Speed:7200 RPM", "Specific Uses For Product:Gaming"],
+    "specs": [
+      "Hard Disk Rotational Speed:7200 RPM",
+      "Specific Uses For Product:Gaming"
+    ],
     "category": "HDD",
     "stock": 9
   },
@@ -425,7 +637,10 @@ let PRODUCTOS = [
     "price": 46,
     "description": "The 1TB Seagate Barracuda 2016 (ST1000DM010) has an impressive performance profile. With Sequential read/writes averaging 173 and 159 MBps respectively, the Barracuda can make short work of even moderately large backups.",
     "benchmark": 93,
-    "specs": ["Hard Disk Rotational Speed:7200 RPM", "Specific Uses For Product:Gaming"],
+    "specs": [
+      "Hard Disk Rotational Speed:7200 RPM",
+      "Specific Uses For Product:Gaming"
+    ],
     "category": "HDD",
     "stock": 10
   },
@@ -436,7 +651,10 @@ let PRODUCTOS = [
     "price": 39,
     "description": "The WD VelociRaptor 2.5 500GB averaged just 6.8% lower than the peak scores attained by the group leaders. This is an excellent result which ranks the WD VelociRaptor 2.5 500GB",
     "benchmark": 92,
-    "specs": ["Hard Disk Rotational Speed:7200 RPM", "Specific Uses For Product:Gaming"],
+    "specs": [
+      "Hard Disk Rotational Speed:7200 RPM",
+      "Specific Uses For Product:Gaming"
+    ],
     "category": "HDD",
     "stock": 10
   },
@@ -447,7 +665,10 @@ let PRODUCTOS = [
     "price": 129,
     "description": "The WD Black 4TB (2016) averaged just 7.0% lower than the peak scores attained by the group leaders. This is an excellent result which ranks the WD Black 4TB (2016)",
     "benchmark": 92,
-    "specs": ["Hard Disk Rotational Speed:7200 RPM", "Specific Uses For Product:Gaming"],
+    "specs": [
+      "Hard Disk Rotational Speed:7200 RPM",
+      "Specific Uses For Product:Gaming"
+    ],
     "category": "HDD",
     "stock": 10
   },
@@ -458,7 +679,10 @@ let PRODUCTOS = [
     "price": 49,
     "description": "The WD Gold 1TB (2016) averaged just 15.0% lower than the peak scores attained by the group leaders. This is an excellent result which ranks the WD Gold 1TB (2016) ",
     "benchmark": 87,
-    "specs": ["Hard Disk Rotational Speed:7200 RPM", "Specific Uses For Product:Gaming"],
+    "specs": [
+      "Hard Disk Rotational Speed:7200 RPM",
+      "Specific Uses For Product:Gaming"
+    ],
     "category": "HDD",
     "stock": 10
   },
@@ -469,7 +693,10 @@ let PRODUCTOS = [
     "price": 109,
     "description": "The WD Red 8TB (2017) averaged just 14.1% lower than the peak scores attained by the group leaders. This is an excellent result which ranks the WD Red 8TB (2017)",
     "benchmark": 86,
-    "specs": ["Hard Disk Rotational Speed:7200 RPM", "Specific Uses For Product:Gaming"],
+    "specs": [
+      "Hard Disk Rotational Speed:7200 RPM",
+      "Specific Uses For Product:Gaming"
+    ],
     "category": "HDD",
     "stock": 10
   },
@@ -480,7 +707,10 @@ let PRODUCTOS = [
     "price": 49,
     "description": "The Seagate Constellation CS 2TB averaged just 13.6% lower than the peak scores attained by the group leaders. This is an excellent result which ranks the Seagate Constellation CS 2TB ",
     "benchmark": 86,
-    "specs": ["Hard Disk Rotational Speed:7200 RPM", "Specific Uses For Product:Gaming"],
+    "specs": [
+      "Hard Disk Rotational Speed:7200 RPM",
+      "Specific Uses For Product:Gaming"
+    ],
     "category": "HDD",
     "stock": 10
   },
@@ -491,7 +721,10 @@ let PRODUCTOS = [
     "price": 39,
     "description": "The Hitachi UltraStar 15K600 450GB averaged just 15.5% lower than the peak scores attained by the group leaders. This is an excellent result which ranks the Hitachi UltraStar 15K600 450GB",
     "benchmark": 85,
-    "specs": ["Hard Disk Rotational Speed:7200 RPM", "Specific Uses For Product:Gaming"],
+    "specs": [
+      "Hard Disk Rotational Speed:7200 RPM",
+      "Specific Uses For Product:Gaming"
+    ],
     "category": "HDD",
     "stock": 10
   },
@@ -502,7 +735,10 @@ let PRODUCTOS = [
     "price": 82,
     "description": "The Seagate Barracuda 4TB (2016) averaged just 17.5% lower than the peak scores attained by the group leaders. This is an excellent result which ranks the Seagate Barracuda 4TB (2016)",
     "benchmark": 84,
-    "specs": ["Hard Disk Rotational Speed:7200 RPM", "Specific Uses For Product:Gaming"],
+    "specs": [
+      "Hard Disk Rotational Speed:7200 RPM",
+      "Specific Uses For Product:Gaming"
+    ],
     "category": "HDD",
     "stock": 10
   },
@@ -513,11 +749,18 @@ let PRODUCTOS = [
     "price": 340,
     "description": "Monitor LED IPS 22\" Samsung LF22T350FHLCZB 75Hz Freesync",
     "benchmark": 100,
-    "specs": ["Tamaño de pantalla:22\"", "Resolucion Maxima:1920x1080", "Entrada:HDMI - D-sub", "Consumo:40w", "Frecuencia Maxima:75hz", "Tipo de panel:IPS", "Tiempo de respuesta:5ms"],
+    "specs": [
+      "Screen size:22\"",
+      "maximum resolution:1920x1080",
+      "HDMI - D-sub",
+      "40w",
+      "maximum frequency:75hz",
+      "panel type:IPS",
+      "response time:5ms"
+    ],
     "category": "DISPLAY",
     "stock": 10
   },
-
   {
     "image": "https://http2.mlstatic.com/D_NQ_NP_918001-MLA49023314674_022022-O.webp",
     "brand": "Gfast",
@@ -525,7 +768,15 @@ let PRODUCTOS = [
     "price": 300,
     "description": "Monitor Led Gfast 19.5\" T-195 VGA-HDMI",
     "benchmark": 90,
-    "specs": ["Tamaño de pantalla:19.5\"", "Resolucion Maxima:1600x900", "Entrada:HDMI - VGA", "Consumo:50w", "Frecuencia Maxima:60hz", "Tipo de panel:LED", "Tiempo de respuesta:14ms"],
+    "specs": [
+      "Screen size:19.5\"",
+      "maximum resolution:1600x900",
+      "HDMI - VGA",
+      "50w",
+      "maximum frequency:60hz",
+      "panel type:LED",
+      "response time:14ms"
+    ],
     "category": "DISPLAY",
     "stock": 10
   },
@@ -534,9 +785,17 @@ let PRODUCTOS = [
     "brand": "Samsung",
     "model": "Odyssey CRG5 G50",
     "price": 400,
-    "description": "Monitor LED CURVO 24\" Samsung Odyssey CRG5 G50 144Hz Freesync",
+    "description": "Monitor LED CURVE 24\" Samsung Odyssey CRG5 G50 144Hz Freesync",
     "benchmark": 150,
-    "specs": ["Tamaño de pantalla:24\"", "Resolucion Maxima:1920x1080", "Entrada:HDMI - VGA", "Consumo:35w", "Frecuencia Maxima:144hz", "Tipo de panel:VA", "Tiempo de respuesta:4ms"],
+    "specs": [
+      "Screen size:24\"",
+      "maximum resolution:1920x1080",
+      "HDMI - VGA",
+      "35w",
+      "maximum frequency:144hz",
+      "panel type:VA",
+      "response time:4ms"
+    ],
     "category": "DISPLAY",
     "stock": 10
   },
@@ -547,7 +806,15 @@ let PRODUCTOS = [
     "price": 500,
     "description": "Monitor LED 24\" VIEWSONIC XG2405 144Hz IPS",
     "benchmark": 170,
-    "specs": ["Tamaño de pantalla:24\"", "Resolucion Maxima:1920x1080", "Entrada:HDMI", "Consumo:30w", "Frecuencia Maxima:144hz", "Tipo de panel:IPS", "Tiempo de respuesta:1ms"],
+    "specs": [
+      "Screen size:24\"",
+      "maximum resolution:1920x1080",
+      "HDMI",
+      "30w",
+      "maximum frequency:144hz",
+      "panel type:IPS",
+      "response time:1ms"
+    ],
     "category": "DISPLAY",
     "stock": 10
   },
@@ -558,7 +825,15 @@ let PRODUCTOS = [
     "price": 550,
     "description": "Monitor LED 27\" Gigabyte Curvo G27QC A-SA QHD 165Hz 1Ms",
     "benchmark": 180,
-    "specs": ["Tamaño de pantalla:27\"", "Resolucion Maxima:2560x1440", "Entrada:HDMI - DisplayPort", "Consumo:70w", "Frecuencia Maxima:165hz", "Tipo de panel:VA", "Tiempo de respuesta:1ms"],
+    "specs": [
+      "Screen size:27\"",
+      "maximum resolution:2560x1440",
+      "HDMI - DisplayPort",
+      "70w",
+      "maximum frequency:165hz",
+      "panel type:VA",
+      "response time:1ms"
+    ],
     "category": "DISPLAY",
     "stock": 10
   },
@@ -567,9 +842,17 @@ let PRODUCTOS = [
     "brand": "Samsung",
     "model": "Odyssey G5 QHD",
     "price": 600,
-    "description": "Monitor LED CURVO 32\" Samsung Odyssey G5 QHD 165Hz Freesync Premium",
+    "description": "Monitor LED CURVE 32\" Samsung Odyssey G5 QHD 165Hz Freesync Premium",
     "benchmark": 182,
-    "specs": ["Tamaño de pantalla:32\"", "Resolucion Maxima:2560x1440", "Entrada:HDMI - DisplayPort", "Consumo:No Especifica", "Frecuencia Maxima:165hz", "Tipo de panel:VA", "Tiempo de respuesta:1ms"],
+    "specs": [
+      "Screen size:32\"",
+      "maximum resolution:2560x1440",
+      "HDMI - DisplayPort",
+      "No Especifica",
+      "maximum frequency:165hz",
+      "panel type:VA",
+      "response time:1ms"
+    ],
     "category": "DISPLAY",
     "stock": 10
   },
@@ -580,7 +863,15 @@ let PRODUCTOS = [
     "price": 620,
     "description": "Monitor Led Curvo 27\" VIEWSONIC VX2768-2KPC-MHD WQHD 144Hz Freesync",
     "benchmark": 172,
-    "specs": ["Tamaño de pantalla:27\"", "Resolucion Maxima:2560x1440", "Entrada:HDMI x2 - DisplayPort", "Consumo:45w", "Frecuencia Maxima:144hz", "Tipo de panel:MVA", "Tiempo de respuesta:1ms"],
+    "specs": [
+      "Screen size:27\"",
+      "maximum resolution:2560x1440",
+      "HDMI x2 - DisplayPort",
+      "45w",
+      "maximum frequency:144hz",
+      "panel type:MVA",
+      "response time:1ms"
+    ],
     "category": "DISPLAY",
     "stock": 10
   },
@@ -591,7 +882,15 @@ let PRODUCTOS = [
     "price": 680,
     "description": "Monitor LED 32\" Gaming Gigabyte G32QC A-SA QHD 165Hz Curvo 1Ms Freesync Premium Pro",
     "benchmark": 190,
-    "specs": ["Tamaño de pantalla:32\"", "Resolucion Maxima:2560x1440", "Entrada:HDMI x2 - DisplayPort", "Consumo:75w", "Frecuencia Maxima:165hz", "Tipo de panel:VA", "Tiempo de respuesta:1ms"],
+    "specs": [
+      "Screen size:32\"",
+      "maximum resolution:2560x1440",
+      "HDMI x2 - DisplayPort",
+      "75w",
+      "maximum frequency:165hz",
+      "panel type:VA",
+      "response time:1ms"
+    ],
     "category": "DISPLAY",
     "stock": 10
   },
@@ -602,7 +901,15 @@ let PRODUCTOS = [
     "price": 750,
     "description": "Monitor LED 27\" VIEWSONIC XG270QG QHD 165Hz 1ms IPS",
     "benchmark": 195,
-    "specs": ["Tamaño de pantalla:27\"", "Resolucion Maxima:2560x1440", "Entrada:HDMI x2 - DisplayPort", "Consumo:No Especifica", "Frecuencia Maxima:165hz", "Tipo de panel:IPS", "Tiempo de respuesta:1ms"],
+    "specs": [
+      "Screen size:27\"",
+      "maximum resolution:2560x1440",
+      "HDMI x2 - DisplayPort",
+      "No Especifica",
+      "maximum frequency:165hz",
+      "panel type:IPS",
+      "response time:1ms"
+    ],
     "category": "DISPLAY",
     "stock": 10
   },
@@ -613,7 +920,15 @@ let PRODUCTOS = [
     "price": 320,
     "description": "Monitor LED 24\" Asus VP247H-P 75Hz 1ms",
     "benchmark": 135,
-    "specs": ["Tamaño de pantalla:24\"", "Resolucion Maxima:1920x1080", "Entrada:HDMI 2", "Consumo:40w", "Frecuencia Maxima:75hz", "Tipo de panel:IPS", "Tiempo de respuesta:1ms"],
+    "specs": [
+      "Screen size:24\"",
+      "maximum resolution:1920x1080",
+      "HDMI 2",
+      "40w",
+      "maximum frequency:75hz",
+      "panel type:IPS",
+      "response time:1ms"
+    ],
     "category": "DISPLAY",
     "stock": 10
   },
@@ -624,7 +939,14 @@ let PRODUCTOS = [
     "price": 20,
     "description": "Gabinete Naxido M8883",
     "benchmark": 150,
-    "specs": ["USB 2.0:2", "USB 3.0:1", "Audio HD:Si", "RGB:Si", "Factor Mother:ITX - MATX - ATX", "Ventiladores:5"],
+    "specs": [
+      "USB 2.0:2",
+      "USB 3.0:1",
+      "Audio HD:Si",
+      "RGB:Si",
+      "Factor Mother:ITX - MATX - ATX",
+      "Ventiladores:5"
+    ],
     "category": "CABINET",
     "stock": 10
   },
@@ -635,7 +957,14 @@ let PRODUCTOS = [
     "price": 25,
     "description": "Gabinete QBOX Gaming 852T Tempered Glass RGB",
     "benchmark": 160,
-    "specs": ["USB 2.0:2", "USB 3.0:1", "Audio HD:Si", "RGB:Si", "Factor Mother:ATX / Micro ATX", "Ventiladores:3"],
+    "specs": [
+      "USB 2.0:2",
+      "USB 3.0:1",
+      "Audio HD:Si",
+      "RGB:Si",
+      "Factor Mother:ATX / Micro ATX",
+      "Ventiladores:3"
+    ],
     "category": "CABINET",
     "stock": 10
   },
@@ -646,7 +975,14 @@ let PRODUCTOS = [
     "price": 30,
     "description": "Gabinete MSI MAG VAMPIRIC 010 TG ARGB",
     "benchmark": 165,
-    "specs": ["USB 2.0:2", "USB 3.0:1", "Audio HD:Si", "RGB:No", "Factor Mother:Mini ITX - MATX - ATX", "Ventiladores:5"],
+    "specs": [
+      "USB 2.0:2",
+      "USB 3.0:1",
+      "Audio HD:Si",
+      "RGB:No",
+      "Factor Mother:Mini ITX - MATX - ATX",
+      "Ventiladores:5"
+    ],
     "category": "CABINET",
     "stock": 10
   },
@@ -657,7 +993,14 @@ let PRODUCTOS = [
     "price": 35,
     "description": "Gabinete Gamer Aureox Sculptor ARX 380G",
     "benchmark": 175,
-    "specs": ["USB 2.0:2", "USB 3.0:1", "Audio HD:Si", "RGB:Si", "Factor Mother:ATX / MATX", "Ventiladores:4"],
+    "specs": [
+      "USB 2.0:2",
+      "USB 3.0:1",
+      "Audio HD:Si",
+      "RGB:Si",
+      "Factor Mother:ATX / MATX",
+      "Ventiladores:4"
+    ],
     "category": "CABINET",
     "stock": 10
   },
@@ -668,7 +1011,14 @@ let PRODUCTOS = [
     "price": 40,
     "description": "Gabinete MSI Mag Forge M100A - 2 Fan Fixed RGB (Rainbow)",
     "benchmark": 180,
-    "specs": ["USB 2.0:2", "USB 3.0:1", "Audio HD:Si", "RGB:Si", "Factor Mother:Micro-ATX / Mini-ITX", "Ventiladores:4"],
+    "specs": [
+      "USB 2.0:2",
+      "USB 3.0:1",
+      "Audio HD:Si",
+      "RGB:Si",
+      "Factor Mother:Micro-ATX / Mini-ITX",
+      "Ventiladores:4"
+    ],
     "category": "CABINET",
     "stock": 10
   },
@@ -679,7 +1029,14 @@ let PRODUCTOS = [
     "price": 45,
     "description": "Gabinete Gamer Aureox Lynx ARX 390G",
     "benchmark": 185,
-    "specs": ["USB 2.0:2", "USB 3.0:1", "Audio HD:Si", "RGB:Si", "Factor Mother:ATX / MATX", "Ventiladores:2"],
+    "specs": [
+      "USB 2.0:2",
+      "USB 3.0:1",
+      "Audio HD:Si",
+      "RGB:Si",
+      "Factor Mother:ATX / MATX",
+      "Ventiladores:2"
+    ],
     "category": "CABINET",
     "stock": 10
   },
@@ -690,7 +1047,14 @@ let PRODUCTOS = [
     "price": 50,
     "description": "Gabinete Aerocool Klaw Black Tempered",
     "benchmark": 190,
-    "specs": ["USB 2.0:2", "USB 3.0:1", "Audio HD:Si", "RGB:Si", "Factor Mother:ATX / MATX", "Ventiladores:5"],
+    "specs": [
+      "USB 2.0:2",
+      "USB 3.0:1",
+      "Audio HD:Si",
+      "RGB:Si",
+      "Factor Mother:ATX / MATX",
+      "Ventiladores:5"
+    ],
     "category": "CABINET",
     "stock": 10
   },
@@ -701,7 +1065,14 @@ let PRODUCTOS = [
     "price": 55,
     "description": "Gabinete Aerocool Playa RGB Mid Tower",
     "benchmark": 195,
-    "specs": ["USB 2.0:2", "USB 3.0:1", "Audio HD:Si", "RGB:Si", "Factor Mother:ATX / MATX", "Ventiladores:2"],
+    "specs": [
+      "USB 2.0:2",
+      "USB 3.0:1",
+      "Audio HD:Si",
+      "RGB:Si",
+      "Factor Mother:ATX / MATX",
+      "Ventiladores:2"
+    ],
     "category": "CABINET",
     "stock": 10
   },
@@ -712,7 +1083,14 @@ let PRODUCTOS = [
     "price": 60,
     "description": "Gabinete Gamer Raidmax H702TBF",
     "benchmark": 199,
-    "specs": ["USB 2.0:2", "USB 3.0:1", "Audio HD:Si", "RGB:Si", "Factor Mother:ATX-MATX-Mini-ITX", "Ventiladores:2"],
+    "specs": [
+      "USB 2.0:2",
+      "USB 3.0:1",
+      "Audio HD:Si",
+      "RGB:Si",
+      "Factor Mother:ATX-MATX-Mini-ITX",
+      "Ventiladores:2"
+    ],
     "category": "CABINET",
     "stock": 10
   },
@@ -723,461 +1101,24 @@ let PRODUCTOS = [
     "price": 70,
     "description": "Gabinete Genesis IRID 503 ARGB",
     "benchmark": 200,
-    "specs": ["USB 2.0:2", "USB 3.0:1", "Audio HD:Si", "RGB:Si", "Factor Mother:Micro-ATX, Mini-ITX", "Ventiladores:5"],
-    "category": "CABINET",
-    "stock": 10
-  },
-  {
-    "image": "https://www.loltec.com/storage/media/VZwt2CMXwXiu5G7GfOjFGkxjWuJHJIv9WJomxMoS.png",
-    "brand": "AZZA",
-    "model": "PSAZ 850W.",
-    "price": 108.00,
-    "description": "POWER SUPPLY AZZA PSAZ 850W.",
-    "benchmark": 10,
     "specs": [
-      "Output capacity: 850W.",
-      "Certification: 80+ Gold",
-      "Type: Full Modular",
-      "Factor Form: ATX",
-      "1x ATX cable (20+4 PIN)",
-      "2x EPS cable (4+4 PIN)",
-      "2x PCI-e cable (4x 6+2 PIN)",
-      "2x SATA cable (6x SATA)",
-      "1x Molex cable (3x Molex)"
+      "USB 2.0:2",
+      "USB 3.0:1",
+      "Audio HD:Si",
+      "RGB:Si",
+      "Factor Mother:Micro-ATX, Mini-ITX",
+      "Ventiladores:5"
     ],
-    "category": "POWER SUPPLY",
-    "stock": 40
-  }, {
-    "image": "https://www.loltec.com/storage/media/VZqzoRC6ljOv8XruHBmVcvtOlEQNSy1jMSeULCM8.png",
-    "brand": "AZZA",
-    "model": " PSAZ 750W.",
-    "price": 95.00,
-    "description": "POWER SUPPLY AZZA PSAZ 750W.",
-    "benchmark": 41,
-    "specs": [
-      "Output capacity: 750W.",
-      "Certification: 80+ Gold",
-      "Type: Full Modular",
-      "Factor Form: ATX",
-      "1x ATX cable (20+4 PIN)",
-      "2x EPS cable (4+4 PIN)",
-      "2x PCI-e cable (4x 6+2 PIN)",
-      "2x SATA cable (6x SATA)",
-      "1x Molex cable (3x Molex)"
-    ],
-    "category": "POWER SUPPLY",
-    "stock": 40
-  }, {
-    "image": "https://www.loltec.com/storage/media/mjRgcFSpWUZMEvyaNUs0M38r8DdWyGbCF6E3mZux.png",
-    "brand": "A-DATA XPG",
-    "model": "PYLON 650W",
-    "price": 65.50,
-    "description": "A-DATA XPG Pylon 650W.",
-    "benchmark": 441,
-    "specs": [
-      "Output capacity: 650W.",
-      "Certification: 80+ Bronze.",
-      "Factor Form: ATX",
-      "8-pin EPS: 1.",
-      "4+4 Pin CPU: 1.",
-      "6+2 Pin PCI-E: 4.",
-      "Sata: 8.",
-      "Molex: 3.",
-      "4 pin flex: 1."
-    ],
-    "category": "POWER SUPPLY",
-    "stock": 26
-  }, {
-    "image": "https://www.loltec.com/storage/media/K84oFkomrrnbd0XEj1b20ACAZbzTXNjglwVbHg0h.png",
-    "brand": "AZZA",
-    "model": " PSAZ 750W.",
-    "price": 65.00,
-    "description": "POWER SUPPLY AZZA PSAZ 750W.",
-    "benchmark": 5825,
-    "specs": [
-      "Output capacity: 750W.",
-      "Certification: 80+ Bronce",
-      "Type: Full Modular",
-      "Factor Form: ATX",
-      "1x ATX cable (20+4 PIN)",
-      "2x EPS cable (4+4 PIN)",
-      "2x PCI-e cable (4x 6+2 PIN)",
-      "2x SATA cable (6x SATA)",
-      "1x Molex cable (3x Molex)"
-    ],
-    "category": "POWER SUPPLY",
-    "stock": 20
-  }, {
-    "image": "https://www.loltec.com/storage/media/8lhY8IUCQJovYsKOFIHG3z0xJEAtVLIGyC5B7z5c.png",
-    "brand": "EVGA",
-    "model": "110-BQ-0700-V1",
-    "price": 99.00,
-    "description": "POWER SUPPLY EVGA 700W.",
-    "benchmark": 478,
-    "specs": [
-      "Output capacity: 700W.",
-      "Certification: 80+ Bronce",
-      "Factor Form: Micro ATX",
-      "140 x 5.91 x 85 pulgadas"
-    ],
-    "category": "POWER SUPPLY",
-    "stock": 20
-  }, {
-    "image": "https://www.loltec.com/storage/media/uTSbnydGRsird7EXQ3J9PeLRsvLRMPWdiraAHohJ.jpeg",
-    "brand": "ASUS",
-    "model": "ROG-STRIX-850G",
-    "price": 253.00,
-    "description": "POWER SUPPLY GAMING 850W",
-    "benchmark": 528,
-    "specs": [
-      "Output capacity: 850W.", "80+ GOLD", "1X ATX 24-PIN", "2X CPU 4+4 PIN", "6X PCI-E", "8X SATA"
-    ],
-    "category": "POWER SUPPLY",
-    "stock": 10
-  }, {
-    "image": "https://www.loltec.com/storage/media/RLvptIFcPx1wAUxmonh2twvcCXI48uKKEWHyrGvJ.jpeg",
-    "brand": "AZZA",
-    "model": "PSAZ-550WG",
-    "price": 41.00,
-    "description": "POWER SUPPLY AZZA PSAZ 550W.",
-    "benchmark": 427,
-    "specs": [
-      "Output capacity: 550W.", "ATX 12V", "80 PLUS BRONZE CERTIFIED", "AC INPUT FROM 100 - 240V", "200V - 240VAC"
-    ],
-    "category": "POWER SUPPLY",
-    "stock": 10
-  }, {
-    "image": "https://www.loltec.com/storage/media/S4Hhu43O9x1eSGLLjVtbeeSm7k3nYl4GLSWXi8JF.png",
-    "brand": "AZZA",
-    "model": "PSAZ-650W ARGB",
-    "price": 50.50,
-    "description": "POWER SUPPLY AZZA PSAZ 650W. RGB",
-    "benchmark": "#",
-    "specs": [
-      "Output capacity: 650W.RGB", "ATX12V", "80PLUS BRONZE CERTIFIED", "AC INPUT FROM 100V-240V", "200V-240VAC"
-    ],
-    "category": "POWER SUPPLY",
-    "stock": 8
-  }, {
-    "image": "https://www.loltec.com/storage/media/VPPOSOVkux3Lysao4jHOxuc7YpgnrSUHwx5LMAGh.png",
-    "brand": "GIGABYTE",
-    "model": "GP-P1000GM",
-    "price": 219.00,
-    "description": "POWER SUPPLY GIGABYTE 1000W.",
-    "benchmark": 68858,
-    "specs": [
-      "Output capacity: 1000W.",
-      "Certification: 80+ PlusGold",
-      "Type: Full Modular",
-      "Factor Form: ATX",
-      "2X CPU (4+4)",
-      "6X PCI-E (6+2)",
-      "6X SATA"
-    ],
-    "category": "POWER SUPPLY",
-    "stock": 40
-  }, {
-    "image": "https://www.loltec.com/storage/media/zKf9B4fzucvJoOqQ4QvAY4PWQ8lGhY0NlPp4oXPp.jpeg",
-    "brand": "EVGA",
-    "model": "100-BR-0700-K1",
-    "price": 89.00,
-    "description": "POWER SUPPLY EVGA 700W.",
-    "benchmark": 22,
-    "specs": [
-      "Output capacity: 700W.",
-      "Certification: 80+ PlusGold",
-      "Type: Full Modular",
-      "Factor Form: ATX",
-      "1x ATX cable (20+4 PIN)",
-      "2x EPS cable (4+4 PIN)",
-      "2x PCI-e cable (4x 6+2 PIN)",
-      "2x SATA cable (6x SATA)",
-      "1x Molex cable (3x Molex)"
-    ],
-    "category": "POWER SUPPLY",
-    "stock": 40
-  },
-  // {
-  //   "image": "https://www.loltec.com/storage/media/5ePzUtro6FAwag2LkzwoM4SzeukqiVNmzLT1wLqJ.jpeg",
-  //   "brand": "COOLER",
-  //   "model": "25DBA",
-  //   "price": 7.50,
-  //   "description": "Scoket : G775, 115X, AMD, AM2, AM2+, AM3, FM.",
-  //   "benchmark": 398,
-  //   "category": "COOLER",
-  //   "stock": 34
-  // }, {
-  //   "image": "https://www.loltec.com/storage/media/HaWF2KfxKkcFN8yYe3W1YKk23QZB0CcRiusTGDoQ.png",
-  //   "brand": "XPG",
-  //   "model": "VENTO120ARGB-BKCWW",
-  //   "price": 15.85,
-  //   "description": "COOLER XPG Vento ARGB 1200mm ,Conexión 3 pin ,1200 RPM.",
-  //   "benchmark": 865,
-  //   "category": "COOLER",
-  //   "stock": 34
-  // }, {
-  //   "image": "https://www.loltec.com/storage/media/HaWF2KfxKkcFN8yYe3W1YKk23QZB0CcRiusTGDoQ.png",
-  //   "brand": "COUGAR",
-  //   "model": "VORTEX VK 120",
-  //   "price": 65.00,
-  //   "description": "Kit de 3 COOLERs Cougar 120mm ARGB:",
-  //   "benchmark": 6586,
-  //   "category": "COOLER",
-  //   "stock": 30
-  // }, {
-  //   "image": "https://www.loltec.com/storage/media/vuZ7lVhv3sPXdQSuH8KX3B4HEnbxzQ7V9mezYkBT.jpeg",
-  //   "brand": "EAGLE",
-  //   "model": " WARRIOR RING RGB",
-  //   "price": 34.00,
-  //   "description": " 2 ventiladores de 120mm con 18 LEDs",
-  //   "benchmark": 78,
-  //   "category": "COOLER",
-  //   "stock": 10
-  // }, {
-  //   "image": "https://www.loltec.com/storage/media/NWs0Bk2820keS1BCGAlAZdbnhLbeFUexPYX6uF3c.jpeg",
-  //   "brand": "COUGAR",
-  //   "model": "VORTEX HPB 120",
-  //   "price": 25.00,
-  //   "description": " COOLER 120MM RGB",
-  //   "benchmark": 583,
-  //   "category": "COOLER",
-  //   "stock": 10
-  // }, {
-  //   "image": "https://www.loltec.com/storage/media/8QyeCPE9hZ9HpUgbre7xRxIhlg6Qj4sPddWKfFkC.jpeg",
-  //   "brand": "CORSAIR",
-  //   "model": "CO-9050092-WW",
-  //   "price": 99.00,
-  //   "description": "PACK X3 RGB 2200RPM",
-  //   "benchmark": 3983,
-  //   "category": "COOLER",
-  //   "stock": 10
-  // },
-  {
-    "image": "https://http2.mlstatic.com/D_NQ_NP_796587-MLA46165231779_052021-O.webp",
-    "brand": "Samsung",
-    "model": "LF22T350FHLCZB",
-    "price": 340,
-    "description": "Monitor LED IPS 22\" Samsung LF22T350FHLCZB 75Hz Freesync",
-    "bentchmark": 100,
-    "specs": ["Screen size:22\"", "maximum resolution:1920x1080", "HDMI - D-sub", "40w", "maximum frequency:75hz", "panel type:IPS", "response time:5ms"],
-    "category": "DISPLAY",
-    "stock": 10
-  },
-  {
-    "image": "https://http2.mlstatic.com/D_NQ_NP_918001-MLA49023314674_022022-O.webp",
-    "brand": "Gfast",
-    "model": "T-195",
-    "price": 300,
-    "description": "Monitor Led Gfast 19.5\" T-195 VGA-HDMI",
-    "bentchmark": 90,
-    "specs": ["Screen size:19.5\"", "maximum resolution:1600x900", "HDMI - VGA", "50w", "maximum frequency:60hz", "panel type:LED", "response time:14ms"],
-    "category": "DISPLAY",
-    "stock": 10
-  },
-  {
-    "image": "https://http2.mlstatic.com/D_NQ_NP_822841-MLA49097574759_022022-O.webp",
-    "brand": "Samsung",
-    "model": "Odyssey CRG5 G50",
-    "price": 400,
-    "description": "Monitor LED CURVE 24\" Samsung Odyssey CRG5 G50 144Hz Freesync",
-    "bentchmark": 150,
-    "specs": ["Screen size:24\"", "maximum resolution:1920x1080", "HDMI - VGA", "35w", "maximum frequency:144hz", "panel type:VA", "response time:4ms"],
-    "category": "DISPLAY",
-    "stock": 10
-  },
-  {
-    "image": "https://http2.mlstatic.com/D_NQ_NP_926379-MLA49771601432_042022-O.webp",
-    "brand": "VIEWSONIC",
-    "model": "XG2405",
-    "price": 500,
-    "description": "Monitor LED 24\" VIEWSONIC XG2405 144Hz IPS",
-    "bentchmark": 170,
-    "specs": ["Screen size:24\"", "maximum resolution:1920x1080", "HDMI", "30w", "maximum frequency:144hz", "panel type:IPS", "response time:1ms"],
-    "category": "DISPLAY",
-    "stock": 10
-  },
-  {
-    "image": "https://http2.mlstatic.com/D_NQ_NP_795853-MLA45168177016_032021-O.webp",
-    "brand": "Gigabyte",
-    "model": "G27QC A-SA QHD",
-    "price": 550,
-    "description": "Monitor LED 27\" Gigabyte Curvo G27QC A-SA QHD 165Hz 1Ms",
-    "bentchmark": 180,
-    "specs": ["Screen size:27\"", "maximum resolution:2560x1440", "HDMI - DisplayPort", "70w", "maximum frequency:165hz", "panel type:VA", "response time:1ms"],
-    "category": "DISPLAY",
-    "stock": 10
-  },
-  {
-    "image": "https://http2.mlstatic.com/D_NQ_NP_765726-MLA50821309559_072022-O.webp",
-    "brand": "Samsung",
-    "model": "Odyssey G5 QHD",
-    "price": 600,
-    "description": "Monitor LED CURVE 32\" Samsung Odyssey G5 QHD 165Hz Freesync Premium",
-    "bentchmark": 182,
-    "specs": ["Screen size:32\"", "maximum resolution:2560x1440", "HDMI - DisplayPort", "No Especifica", "maximum frequency:165hz", "panel type:VA", "response time:1ms"],
-    "category": "DISPLAY",
-    "stock": 10
-  },
-  {
-    "image": "https://http2.mlstatic.com/D_NQ_NP_702508-MLA49774594730_042022-O.webp",
-    "brand": "VIEWSONIC",
-    "model": "VX2768-2KPC-MHD WQHD",
-    "price": 620,
-    "description": "Monitor Led Curvo 27\" VIEWSONIC VX2768-2KPC-MHD WQHD 144Hz Freesync",
-    "bentchmark": 172,
-    "specs": ["Screen size:27\"", "maximum resolution:2560x1440", "HDMI x2 - DisplayPort", "45w", "maximum frequency:144hz", "panel type:MVA", "response time:1ms"],
-    "category": "DISPLAY",
-    "stock": 10
-  },
-  {
-    "image": "https://http2.mlstatic.com/D_NQ_NP_991888-MLA51025717734_082022-O.webp",
-    "brand": "Gigabyte",
-    "model": "G32QC A-SA QHD",
-    "price": 680,
-    "description": "Monitor LED 32\" Gaming Gigabyte G32QC A-SA QHD 165Hz Curvo 1Ms Freesync Premium Pro",
-    "bentchmark": 190,
-    "specs": ["Screen size:32\"", "maximum resolution:2560x1440", "HDMI x2 - DisplayPort", "75w", "maximum frequency:165hz", "panel type:VA", "response time:1ms"],
-    "category": "DISPLAY",
-    "stock": 10
-  },
-  {
-    "image": "https://http2.mlstatic.com/D_NQ_NP_991888-MLA51025717734_082022-O.webp",
-    "brand": "VIEWSONIC",
-    "model": "XG270QG QHD",
-    "price": 750,
-    "description": "Monitor LED 27\" VIEWSONIC XG270QG QHD 165Hz 1ms IPS",
-    "bentchmark": 195,
-    "specs": ["Screen size:27\"", "maximum resolution:2560x1440", "HDMI x2 - DisplayPort", "No Especifica", "maximum frequency:165hz", "panel type:IPS", "response time:1ms"],
-    "category": "DISPLAY",
-    "stock": 10
-  },
-  {
-    "image": "https://http2.mlstatic.com/D_NQ_NP_887397-MLA46544970616_062021-O.webp",
-    "brand": "Asus",
-    "model": "VP247H-P",
-    "price": 320,
-    "description": "Monitor LED 24\" Asus VP247H-P 75Hz 1ms",
-    "bentchmark": 135,
-    "specs": ["Screen size:24\"", "maximum resolution:1920x1080", "HDMI 2", "40w", "maximum frequency:75hz", "panel type:IPS", "response time:1ms"],
-    "category": "DISPLAY",
-    "stock": 10
-  },
-  {
-    "image": "https://http2.mlstatic.com/D_NQ_NP_960689-MLA50938238400_072022-O.webp",
-    "brand": "Naxido",
-    "model": "M8883",
-    "price": 20,
-    "description": "Gabinete Naxido M8883",
-    "bentchmark": 150,
-    "specs": ["USB 2.0:2", "USB 3.0:1", "Audio HD:Si", "RGB:Si", "Factor Mother:ITX - MATX - ATX", "Ventiladores:5"],
     "category": "CABINET",
     "stock": 10
   },
   {
-    "image": "https://http2.mlstatic.com/D_NQ_NP_666413-MLA49552471672_042022-O.webp",
-    "brand": "QBOX",
-    "model": "852T Tempered Glass",
-    "price": 25,
-    "description": "Gabinete QBOX Gaming 852T Tempered Glass RGB",
-    "bentchmark": 160,
-    "specs": ["USB 2.0:2", "USB 3.0:1", "Audio HD:Si", "RGB:Si", "Factor Mother:ATX / Micro ATX", "Ventiladores:3"],
-    "category": "CABINET",
-    "stock": 10
-  },
-  {
-    "image": "https://http2.mlstatic.com/D_NQ_NP_981456-MLA42850006619_072020-O.webp",
-    "brand": "MSI",
-    "model": "MAG VAMPIRIC 010 TG ARGB",
-    "price": 30,
-    "description": "Gabinete MSI MAG VAMPIRIC 010 TG ARGB",
-    "bentchmark": 165,
-    "specs": ["USB 2.0:2", "USB 3.0:1", "Audio HD:Si", "RGB:No", "Factor Mother:Mini ITX - MATX - ATX", "Ventiladores:5"],
-    "category": "CABINET",
-    "stock": 10
-  },
-  {
-    "image": "https://http2.mlstatic.com/D_NQ_NP_765884-MLA48748187647_012022-O.webp",
-    "brand": "Aureox",
-    "model": "ARX 380G",
-    "price": 35,
-    "description": "Gabinete Gamer Aureox Sculptor ARX 380G",
-    "bentchmark": 175,
-    "specs": ["USB 2.0:2", "USB 3.0:1", "Audio HD:Si", "RGB:Si", "Factor Mother:ATX / MATX", "Ventiladores:4"],
-    "category": "CABINET",
-    "stock": 10
-  },
-  {
-    "image": "https://http2.mlstatic.com/D_NQ_NP_688924-MLA44063844942_112020-O.webp",
-    "brand": "MSI",
-    "model": "Mag Forge M100A",
-    "price": 40,
-    "description": "Gabinete MSI Mag Forge M100A - 2 Fan Fixed RGB (Rainbow)",
-    "bentchmark": 180,
-    "specs": ["USB 2.0:2", "USB 3.0:1", "Audio HD:Si", "RGB:Si", "Factor Mother:Micro-ATX / Mini-ITX", "Ventiladores:4"],
-    "category": "CABINET",
-    "stock": 10
-  },
-  {
-    "image": "https://http2.mlstatic.com/D_NQ_NP_629931-MLA51117353926_082022-O.webp",
-    "brand": "Aureox",
-    "model": "Lynx ARX 390G",
-    "price": 45,
-    "description": "Gabinete Gamer Aureox Lynx ARX 390G",
-    "bentchmark": 185,
-    "specs": ["USB 2.0:2", "USB 3.0:1", "Audio HD:Si", "RGB:Si", "Factor Mother:ATX / MATX", "Ventiladores:2"],
-    "category": "CABINET",
-    "stock": 10
-  },
-  {
-    "image": "https://http2.mlstatic.com/D_NQ_NP_837677-MLA51025002936_082022-O.webp",
-    "brand": "Aerocool",
-    "model": "Klaw Black Tempered",
-    "price": 50,
-    "description": "Gabinete Aerocool Klaw Black Tempered",
-    "bentchmark": 190,
-    "specs": ["USB 2.0:2", "USB 3.0:1", "Audio HD:Si", "RGB:Si", "Factor Mother:ATX / MATX", "Ventiladores:5"],
-    "category": "CABINET",
-    "stock": 10
-  },
-  {
-    "image": "https://http2.mlstatic.com/D_NQ_NP_837677-MLA51025002936_082022-O.webp",
-    "brand": "Aerocool",
-    "model": "Playa RGB Mid Tower",
-    "price": 55,
-    "description": "Gabinete Aerocool Playa RGB Mid Tower",
-    "bentchmark": 195,
-    "specs": ["USB 2.0:2", "USB 3.0:1", "Audio HD:Si", "RGB:Si", "Factor Mother:ATX / MATX", "Ventiladores:2"],
-    "category": "CABINET",
-    "stock": 10
-  },
-  {
-    "image": "https://http2.mlstatic.com/D_NQ_NP_895338-MLA51028758628_082022-O.webp",
-    "brand": "Raidmax",
-    "model": "H702TBF",
-    "price": 60,
-    "description": "Gabinete Gamer Raidmax H702TBF",
-    "bentchmark": 199,
-    "specs": ["USB 2.0:2", "USB 3.0:1", "Audio HD:Si", "RGB:Si", "Factor Mother:ATX-MATX-Mini-ITX", "Ventiladores:2"],
-    "category": "CABINET",
-    "stock": 10
-  },
-  {
-    "image": "https://http2.mlstatic.com/D_NQ_NP_895338-MLA51028758628_082022-O.webp",
-    "brand": "Genesis",
-    "model": "IRID 503 ARGB",
-    "price": 70,
-    "description": "Gabinete Genesis IRID 503 ARGB",
-    "bentchmark": 200,
-    "specs": ["USB 2.0:2", "USB 3.0:1", "Audio HD:Si", "RGB:Si", "Factor Mother:Micro-ATX, Mini-ITX", "Ventiladores:5"],
-    "category": "CABINET",
-    "stock": 10
-  }, {
     "image": "https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_31482_KEYBOARD_Mecanico_ASUS_ROG_Strix_Scope_TKL_RGB_Cherry_Red_ac577937-grn.jpg",
     "brand": "Asus",
     "model": "ROG Strix Scope TKL RGB Cherry Red",
     "price": 18.5,
     "description": "ASUS ROG Strix Scope TKL RGB Cherry Red Mechanical Keyboard",
-    "bentchmark": 10,
+    "benchmark": 10,
     "specs": ["RGB: yes", "Architecture : Mechanical", "Connectivity: USB 2.0"],
     "category": "KEYBOARD",
     "stock": 40
@@ -1188,7 +1129,7 @@ let PRODUCTOS = [
     "model": "HyperX Alloy Origins 60 HX Switch Aqua",
     "price": 60,
     "description": "HP HyperX Alloy Origins 60 HX Switch Aqua Keyboard",
-    "bentchmark": 70,
+    "benchmark": 70,
     "specs": ["RGB: No", "Architecture: Membrane ", "Connectivity: Wireless"],
     "category": "KEYBOARD",
     "stock": 10
@@ -1199,8 +1140,12 @@ let PRODUCTOS = [
     "model": "HP HyperX Alloy Origins 65 Switch Red",
     "price": 9.9,
     "description": "HP HyperX Alloy Origins 65 Switch Red Mechanical Keyboard",
-    "bentchmark": 25,
-    "specs": ["RGB: yes", "Architecture : Mechanical", "Connectivity: Wireless"],
+    "benchmark": 25,
+    "specs": [
+      "RGB: yes",
+      "Architecture : Mechanical",
+      "Connectivity: Wireless"
+    ],
     "category": "KEYBOARD",
     "stock": 100
   },
@@ -1210,7 +1155,7 @@ let PRODUCTOS = [
     "model": "Glorious GMMK Compact RGB White",
     "price": 90,
     "description": "Glorious GMMK Compact RGB (Pre-Built) White Mechanical Keyboard",
-    "bentchmark": 70,
+    "benchmark": 70,
     "specs": ["RGB: yes", "Architecture : Mechanical", "Connectivity: USB 2.0"],
     "category": "KEYBOARD",
     "stock": 30
@@ -1221,7 +1166,7 @@ let PRODUCTOS = [
     "model": "K552",
     "price": 15,
     "description": "The great quality of the Redragon Kumara K552, and its affordable price make it an ideal attraction for you to have fun in front of the screen. Its ergonomics, non-slip base and fast response time allow your favorite games to feel closer than ever, at your fingertips. Full color distinction Its backlighting gives your equipment a different touch and highlights its composition when used in dimly lit spaces. Anti-ghosting technology This device has anti-ghosting keys. This quality is essential if you require intensive use of the peripheral. Thanks to this you can avoid mistakes when playing several keys at the same time.",
-    "bentchmark": 15,
+    "benchmark": 15,
     "specs": ["RGB: yes", "Architecture: Membrane ", "Connectivity: USB 2.0"],
     "category": "KEYBOARD",
     "stock": 170
@@ -1232,8 +1177,12 @@ let PRODUCTOS = [
     "model": "K380",
     "price": 85,
     "description": "Innovators in design and technology, Logitech is responsible for providing the best user experience for its users. Their KEYBOARD stand out for being resistant and of very good quality, so you can enjoy them for a long time.",
-    "bentchmark": 200,
-    "specs": ["RGB: No", "Architecture : Mechanical", "Connectivity: Bluetooth"],
+    "benchmark": 200,
+    "specs": [
+      "RGB: No",
+      "Architecture : Mechanical",
+      "Connectivity: Bluetooth"
+    ],
     "category": "KEYBOARD",
     "stock": 275
   },
@@ -1243,7 +1192,7 @@ let PRODUCTOS = [
     "model": "K630",
     "price": 55,
     "description": "Enjoy your games on another level with Redragon, a recognized brand that has specialized in providing the best gaming experience to the gamer public for more than 20 years. Its KEYBOARD adapt to all types of players and this makes them a true reflection of the high range and quality that the company offers. Full-color distinction, its backlighting gives a different touch to your equipment and highlights its composition when used in dimly lit spaces. Anti-ghosting technology. This device has anti-ghosting keys. This quality is essential if you require an intensive use of the peripheral.Thanks to this you will be able to avoid failures when touching several keys at the same time.",
-    "bentchmark": 55,
+    "benchmark": 55,
     "specs": ["RGB: yes", "Architecture : Mechanical", "Connectivity: USB 2.0"],
     "category": "KEYBOARD",
     "stock": 55
@@ -1254,7 +1203,7 @@ let PRODUCTOS = [
     "model": "K400 Plus",
     "price": 35,
     "description": "Innovators in design and technology, Logitech is responsible for providing the best user experience for its users. Their KEYBOARD stand out for being resistant and of very good quality, so you can enjoy them for a long time. Facilidad de manejo con su touchpad incorporado podés controlar el cursor de manera sencilla and mantener una cómoda navegación en cualquier interfaz.",
-    "bentchmark": 69,
+    "benchmark": 69,
     "specs": ["RGB: No", "Architecture: Membrane ", "Connectivity: USB 2.0"],
     "category": "KEYBOARD",
     "stock": 56
@@ -1265,8 +1214,12 @@ let PRODUCTOS = [
     "model": "NSKBGZ61 Outemu",
     "price": 74,
     "description": "Ideal keyboard for professional gamers! This Nisuta model stands out for its economic value in the keyboard market. In addition, its lightness and compact size make it a unique playmate, easy to carry anywhere. In turn, it includes a double micro USB input that allows connectivity with compatible devices. Distinction in full color, its backlighting gives your equipment a different touch and highlights its composition when used in dimly lit spaces. Anti-ghosting technology This device has anti-ghosting keys. This quality is essential if you require intensive use of the peripheral. Thanks to this you can avoid failures when playing several keys at the same time.",
-    "bentchmark": 180,
-    "specs": ["RGB: yes", "Architecture : Mechanical", "Connectivity: Bluetooth"],
+    "benchmark": 180,
+    "specs": [
+      "RGB: yes",
+      "Architecture : Mechanical",
+      "Connectivity: Bluetooth"
+    ],
     "category": "KEYBOARD",
     "stock": 80
   },
@@ -1276,7 +1229,7 @@ let PRODUCTOS = [
     "model": "K550 Outemu Purple",
     "price": 102,
     "description": "Enjoy your games on another level with Redragon, a recognized brand that has specialized in providing the best gaming experience to the gamer public for more than 20 years. Its KEYBOARD adapt to all types of players and this makes them a true reflection of the high range and quality that the company offers. Full-color distinction, its backlighting gives a different touch to your equipment and highlights its composition when used in dimly lit spaces. Anti-ghosting technology. This device has anti-ghosting keys. This quality is essential if you require an intensive use of the peripheral.Thanks to this you will be able to avoid failures when touching several keys at the same time.",
-    "bentchmark": 89,
+    "benchmark": 89,
     "specs": ["RGB: yes", "Architecture : Mechanical", "Connectivity: USB 2.0"],
     "category": "KEYBOARD",
     "stock": 6
@@ -1287,7 +1240,7 @@ let PRODUCTOS = [
     "model": "AirPods",
     "price": 26.99,
     "description": "AirPods give you an unmatched wireless experience with high-quality sound, access to voice-activated Siri, and a charging case that gives you more than 24 hours of audio playback. Just take them out of the case and they're ready to go with all your devices. Put them on and they connect instantly for rich, high-quality sound. Pure magic. Legal Notices Siri may not be available in all languages ​​and areas, and features may vary by area. Battery life varies by use and settings. Requires an iCloud account and macOS 11.1, iOS 14.3, iPadOS 14.3, watchOS 7.2, or tvOS 14.3 or later.",
-    "bentchmark": 95,
+    "benchmark": 95,
     "specs": ["Wireless: yes", "Color: white", "Formato: In-ear"],
     "category": "HEADPHONE",
     "stock": 12
@@ -1298,7 +1251,7 @@ let PRODUCTOS = [
     "model": "TrueFree 2",
     "price": 42.99,
     "description": "On the street, on the bus or in the office, always have your Soundpeats headphones close at hand and escape from the routine for a while! You will be able to enjoy the music you like the most and your favorite podcasts whenever and wherever you want. The perfect format for you as it is in-ear, they improve audio quality and are small in size so they can be inserted into your ear. They are ideal to accompany you when exercising while you immerse yourself in the best surround sound. 100% Wireless Unlike other connectivity, this device is made with TWS (True Wireless Stereo) technology. It allows a total wireless connection and works without a single cable between pairs. With it you will be able to enjoy the sound environment without having to be aware of physical connections. Last generation Bluetooth with the version of bluetooth 5.0 you have a lot of benefits to take advantage of. Compared to its predecessor BT 4.2, you will be able to obtain transmission speeds of up to 2.2 Mbps of data and reach a maximum connection distance of 200 meters. But one of the most outstanding novelties is that with its dual mode you will have the possibility of playing audio at the same time on two different devices.",
-    "bentchmark": 95,
+    "benchmark": 95,
     "specs": ["Wireless: yes", "Color: black", "Formato: In-ear"],
     "category": "HEADPHONE",
     "stock": 22
@@ -1309,7 +1262,7 @@ let PRODUCTOS = [
     "model": "WH-CH510",
     "price": 11,
     "description": "Sony, without a doubt, is one of the most recognized brands in the world for the manufacture of audio devices. Its range of headphones is characterized by always providing a great user experience for its users and offering high quality in all the components of its players. This means that you can notice a great sound from its first use. The perfect format for you, being on-ear, they rest comfortably on your ears and offer great sound quality. Use them on long trips or outdoor activities. Latest generation BluetoothWith the version of bluetooth 5.0 you have a lot of benefits to take advantage of. Compared to its predecessor BT 4.2, you will be able to obtain transmission speeds of up to 2.2 Mbps of data and reach a maximum connection distance of 200 meters. But one of the most outstanding novelties is that with its dual mode you will have the possibility of playing audio at the same time on two different devices.",
-    "bentchmark": 95,
+    "benchmark": 95,
     "specs": ["Wireless: yes", "Color: black", "Formato: In-ear"],
     "category": "HEADPHONE",
     "stock": 99
@@ -1320,7 +1273,7 @@ let PRODUCTOS = [
     "model": "Tune 510BT",
     "price": 64.99,
     "description": "Enjoy these state-of-the-art JBL headphones!.",
-    "bentchmark": 75,
+    "benchmark": 75,
     "specs": ["Wireless: yes", "Color: black", "Formato: In-ear"],
     "category": "HEADPHONE",
     "stock": 33
@@ -1331,7 +1284,7 @@ let PRODUCTOS = [
     "model": "G Series G435",
     "price": 19,
     "description": "Experience the adrenaline of immersing yourself in the scene in another way! Having specific headphones to play completely changes your experience in each game. With the Logitech G435 you don't miss any detail and you hear the audio as it was intended by the creators. The perfect format for you, the over-ear design provides unbeatable comfort thanks to its soft cushions. At the same time, its surround sound of the highest level becomes the protagonist of the scene.",
-    "bentchmark": 104,
+    "benchmark": 104,
     "specs": ["Wireless: No", "Color: black and yellow", "Formato: Over-ear"],
     "category": "HEADPHONE",
     "stock": 88
@@ -1342,7 +1295,7 @@ let PRODUCTOS = [
     "model": "Aris NG-BT469",
     "price": 11,
     "description": "These Noga headphones are an excellent option for those demanding users with sound quality.",
-    "bentchmark": 12,
+    "benchmark": 12,
     "specs": ["Wireless: yes", "Color: green and black", "Formato: In-ear"],
     "category": "HEADPHONE",
     "stock": 99
@@ -1353,7 +1306,7 @@ let PRODUCTOS = [
     "model": "M-Series ATH-M40x",
     "price": 6.99,
     "description": "The perfect format for you The over-ear design provides unbeatable comfort thanks to its soft cushions. At the same time, its surround sound of the highest level becomes the protagonist of the scene.",
-    "bentchmark": 8,
+    "benchmark": 8,
     "specs": ["Wireless: No", "Color: black", "Formato: Over-ear"],
     "category": "HEADPHONE",
     "stock": 12
@@ -1364,7 +1317,7 @@ let PRODUCTOS = [
     "model": "HD 206",
     "price": 26.99,
     "description": "The Senheiser are headphones made in Germany with the best quality on the market",
-    "bentchmark": 100,
+    "benchmark": 100,
     "specs": ["Wireless: yes", "Color: silver", "Formato: In-ear"],
     "category": "HEADPHONE",
     "stock": 160
@@ -1375,7 +1328,7 @@ let PRODUCTOS = [
     "model": "Tune 500",
     "price": 39.99,
     "description": "JBL, a world-renowned brand in the audio market, has been a benchmark for the high quality of its products for more than 70 years. It is a good option to make you enjoy your favorite music. The perfect format for you, being on-ear, they rest comfortably on your ears and offer great sound quality. Use them on long trips or outdoor activities.",
-    "bentchmark": 130,
+    "benchmark": 130,
     "specs": ["Wireless: yes", "Color: white", "Formato: Over-ear"],
     "category": "HEADPHONE",
     "stock": 3
@@ -1386,12 +1339,76 @@ let PRODUCTOS = [
     "model": "K52",
     "price": 26.99,
     "description": "Since 1976 Apple has been working for a better world. All of their products are designed to reduce their impact on the planet while optimizing their performance and endurance.",
-    "bentchmark": 43,
+    "benchmark": 43,
     "specs": ["Wireless: No", "Color: black", "Formato: In-ear"],
     "category": "HEADPHONE",
     "stock": 51
+  }, {
+    "image": "https://www.loltec.com/storage/media/5ePzUtro6FAwag2LkzwoM4SzeukqiVNmzLT1wLqJ.jpeg",
+    "brand": "COOLER",
+    "model": "25DBA",
+    "price": 7.50,
+    "description": "Scoket : G775, 115X, AMD, AM2, AM2+, AM3, FM.",
+    "benchmark": 398,
+    "category": "COOLER",
+    "stock": 34,
+    "specs": []
+  },
+  {
+    "image": "https://www.loltec.com/storage/media/HaWF2KfxKkcFN8yYe3W1YKk23QZB0CcRiusTGDoQ.png",
+    "brand": "XPG",
+    "model": "VENTO120ARGB-BKCWW",
+    "price": 15.85,
+    "description": "COOLER XPG Vento ARGB 1200mm ,Conexión 3 pin ,1200 RPM.",
+    "benchmark": 865,
+    "category": "COOLER",
+    "stock": 34,
+    "specs": []
+  },
+  {
+    "image": "https://www.loltec.com/storage/media/HaWF2KfxKkcFN8yYe3W1YKk23QZB0CcRiusTGDoQ.png",
+    "brand": "COUGAR",
+    "model": "VORTEX VK 120",
+    "price": 65.00,
+    "description": "Kit de 3 COOLERs Cougar 120mm ARGB:",
+    "benchmark": 6586,
+    "category": "COOLER",
+    "stock": 30,
+    "specs": []
+  },
+  {
+    "image": "https://www.loltec.com/storage/media/vuZ7lVhv3sPXdQSuH8KX3B4HEnbxzQ7V9mezYkBT.jpeg",
+    "brand": "EAGLE",
+    "model": " WARRIOR RING RGB",
+    "price": 34.00,
+    "description": " 2 ventiladores de 120mm con 18 LEDs",
+    "benchmark": 78,
+    "category": "COOLER",
+    "stock": 10,
+    "specs": []
+  },
+  {
+    "image": "https://www.loltec.com/storage/media/NWs0Bk2820keS1BCGAlAZdbnhLbeFUexPYX6uF3c.jpeg",
+    "brand": "COUGAR",
+    "model": "VORTEX HPB 120",
+    "price": 25.00,
+    "description": " COOLER 120MM RGB",
+    "benchmark": 583,
+    "category": "COOLER",
+    "stock": 10,
+    "specs": []
+  },
+  {
+    "image": "https://www.loltec.com/storage/media/8QyeCPE9hZ9HpUgbre7xRxIhlg6Qj4sPddWKfFkC.jpeg",
+    "brand": "CORSAIR",
+    "model": "CO-9050092-WW",
+    "price": 99.00,
+    "description": "PACK X3 RGB 2200RPM",
+    "benchmark": 3983,
+    "category": "COOLER",
+    "stock": 10,
+    "specs": []
   }
-
 ]
 
 
