@@ -27,14 +27,18 @@ function Cart() {
     }
 
     return (
-        <div className={"container"}>
+        <div className={"cartContainer"}>
             <h1>Cart</h1>
+            {state.cart.length ?
             <div className={"headers"}>
                 <span className={"span"}>Product</span>
                 <span className={"span"}>Price</span>
                 <span className={"span"}>Units</span>
-            </div>
+            </div> : null
+            }
+            <div className={"container-xl"}>
             {
+            
                 // Mapeo el «cart» del estado local para crear cada item
                 state.cart.length? state.cart.map(el =>
 
@@ -55,8 +59,9 @@ function Cart() {
                         {/* Este boton que se renderiza por cada uno de los componentes toma como value el ID del producto */}
                         <button className={"button"} value={el.id} type='button' onClick={(e) => handleDelete(e)}> X </button>
                     </div>) : <h1>You don't add any product...</h1>
+            
             }
-
+            </div>
         </div>
     )
 }
