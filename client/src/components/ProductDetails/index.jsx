@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import { useParams } from 'react-router-dom'
-import { getProductDetails, addToCart } from '../../redux/actions'
+import { getProductDetails, } from '../../redux/actions'
 
 function ProductDetails() {
 
