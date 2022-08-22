@@ -1,6 +1,4 @@
-
-
-let PRODUCTOS =  [
+let PRODUCTOS = [
   {
     "image": "https://www.loltec.com/storage/media/VZwt2CMXwXiu5G7GfOjFGkxjWuJHJIv9WJomxMoS.png",
     "brand": "AZZA",
@@ -1345,7 +1343,7 @@ let PRODUCTOS =  [
     "specs": ["Wireless: No", "Color: black", "Formato: In-ear"],
     "category": "HEADPHONE",
     "stock": 51
-  },{
+  }, {
     "image": "https://www.loltec.com/storage/media/5ePzUtro6FAwag2LkzwoM4SzeukqiVNmzLT1wLqJ.jpeg",
     "brand": "COOLER",
     "model": "25DBA",
