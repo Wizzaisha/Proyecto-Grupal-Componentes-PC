@@ -35,7 +35,7 @@ function Header() {
                 <Link className="nav-link text-light" to="/store">Store</Link>
                 <Link className="nav-link text-light" to="/contact">Contact</Link>
                 <Link className="nav-link text-light" to="/login">Login</Link>
-                <Link className="nav-link text-light" to="/signup">SingUp</Link>
+                <Link className="nav-link text-light" to="/signup">SignUp</Link>
                 <Link className="nav-link text-light" to="/cart">Cart</Link>
                 {admin?<Link className="nav-link text-light" to="/adminpanel">Admin Panel</Link> : <div></div>}
             </Nav>
