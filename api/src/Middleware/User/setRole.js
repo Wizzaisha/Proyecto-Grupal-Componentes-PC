@@ -3,10 +3,10 @@ const {User} = require("../../db")
 const modificarRol = async ( id, admin ) => 
 {
 User.findByPk(id)
-    .then((u) =>
+    .then(async (u) =>
     { 
-        if (admin){   u.setRoles([]) ;   u.setRoles([2]) }
-        else { {   u.setRoles([]) ;   u.setRoles([1]) }}
+        if (admin){  await u.setRoles([]) ; await  u.setRoles([2]) }
+        else { {  await u.setRoles([]) ; await  u.setRoles([1]) }}
     })
     return true;
 }
