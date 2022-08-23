@@ -58,8 +58,6 @@ function ProductDetails() {
         }
         // Luego «cart» a string y lo subimos al localStorage
         localStorage.setItem('cart', JSON.stringify(cart))
-
-        
     }
 
     return (
