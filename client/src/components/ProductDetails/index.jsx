@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import { useParams } from 'react-router-dom'
-import { getProductDetails, addToCart } from '../../redux/actions'
+import { getProductDetails, } from '../../redux/actions'
 
 function ProductDetails() {
 
@@ -39,9 +39,25 @@ function ProductDetails() {
 
     function handleButton(e) {
         e.preventDefault();
-        dispatch(addToCart(details.id));
-        console.log(details.id);
-        alert(`Added ${details.category} ${details.brand} ${details.model} to cart`)
+        // Traemos el «cart» del localStorage y lo parseamos para poder manipularlo
+        let cart = JSON.parse(localStorage.getItem('cart'));
+        // Si no existe (primera vez que se agrega un producto) lo definimos como un array y le pusheamos el producto en cuestion
+        if(!cart){
+            cart = [];
+            cart.push(details);
+            alert(`Added ${details.category} ${details.brand} ${details.model} to cart`)
+        }
+        else{
+            // Si ya existe el «cart» (ya se pushearon uno o mas productos) preguntamos si encuentra el producto dentro
+            if(!cart.find(p => p.id === details.id)){
+                // En caso de no encontrarlo lo pushea
+                cart.push(details)
+                alert(`Added ${details.category} ${details.brand} ${details.model} to cart`)
+            }
+            else alert(`This product is already added to cart`)
+        }
+        // Luego «cart» a string y lo subimos al localStorage
+        localStorage.setItem('cart', JSON.stringify(cart))
     }
 
     return (

@@ -1,4 +1,4 @@
-.container {
+.cartContainer {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -12,6 +12,7 @@
   flex-direction: row;
   border-bottom: 1px solid #438a00;
   justify-content: space-between;
+  padding: .75rem;
 }
 
 .headers {
@@ -26,4 +27,9 @@
 .product {
   display: flex;
   align-items: center;
+}
+
+.cartImg{
+  height: 50px;
+  width: 50px;
 }
