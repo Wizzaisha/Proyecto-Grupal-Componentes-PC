@@ -1,5 +1,5 @@
-const {Product} = require("../db")
-const {crearCategoria} = require('../Middleware/createCategory.middleware')
+const {Product} = require("../../db")
+const {crearCategoria} = require('./createCategory.middleware')
 
 const modificarProducto = async ( id, brand,model,image,description,specs,benchmark,price,stock,category)=>
 {

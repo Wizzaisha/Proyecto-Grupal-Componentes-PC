@@ -1,9 +1,9 @@
 const {Router} = require('express')
-const {obtenerProductos,obtenerProductosById} = require('../Middleware/getProduct.middleware')
-const {crearProducto} = require('../Middleware/createProduct.middleware')
-const {modificarProducto} = require('../Middleware/updateProduct.middleware')
-const {modificarStockProducto} = require('../Middleware/discountStok.middleware')
-const {eliminarProducto} = require('../Middleware/deleteProduct.middleware')
+const {obtenerProductos,obtenerProductosById} = require('../Middleware/Product and Category/getProduct.middleware')
+const {crearProducto} = require('../Middleware/Product and Category/createProduct.middleware')
+const {modificarProducto} = require('../Middleware/Product and Category/updateProduct.middleware')
+const {modificarStockProducto} = require('../Middleware/Product and Category/discountStok.middleware')
+const {eliminarProducto} = require('../Middleware/Product and Category/deleteProduct.middleware')
 const router = Router()
 
 router.get('/', async (req, res, next)=>
@@ -28,7 +28,7 @@ router.get('/:id', async (req, res, next)=>
     catch (error) { next(error) ; console.log(error) }
 })
 
-router.post('/', async (req, res, next)=>
+router.post('/',/* [authJwt.verifyToken, authJwt.isSuperAdminOrAdmin], */ async (req, res, next)=>
 {
     let {brand,model,image,description,specs,benchmark,price,stock,category}=req.body
     try
@@ -40,7 +40,7 @@ router.post('/', async (req, res, next)=>
     catch (error) { next(error)  }
 })
 
-router.put('/:id', async (req, res, next)=>
+router.put('/:id',/* [authJwt.verifyToken, authJwt.isSuperAdminOrAdmin], */ async (req, res, next)=>
 {
     let {brand,model,image,description,specs,benchmark,price,stock,category}=req.body
     let {id} = req.params
@@ -66,7 +66,7 @@ router.put('/stock/:id', async (req, res, next)=>
     catch (error) { next(error)  }
 })
 
-router.delete('/:id', async (req, res, next)=>
+router.delete('/:id',/* [authJwt.verifyToken, authJwt.isSuperAdminOrAdmin], */  async (req, res, next)=>
 {
      let {id} = req.params
     try

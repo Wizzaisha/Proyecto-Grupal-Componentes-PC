@@ -1,6 +1,6 @@
 const {Router} = require('express')
-const {obtenerCategorias,} = require('../Middleware/getCategory.middleware')
-const {crearCategoria} = require('../Middleware/createCategory.middleware')
+const {obtenerCategorias,} = require('../Middleware/Product and Category/getCategory.middleware')
+const {crearCategoria} = require('../Middleware/Product and Category/createCategory.middleware')
 const router = Router()
 
 router.get('/', async (req, res, next)=>

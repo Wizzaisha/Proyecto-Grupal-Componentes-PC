@@ -1,4 +1,4 @@
-const {Product} = require("../db")
+const {Product} = require("../../db")
 
 //descontar es boolean, si es true se descuenta, de lo contrario se agrega
 //cantidad es la cantidad de stock a descontar o agregar

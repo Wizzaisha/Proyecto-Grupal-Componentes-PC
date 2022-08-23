@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { admin, user2 , secret } = require("./authConfig");
+const { admin, user2 ,superAdmin, secret } = require("./authConfig");
  
 const { User } = require("../db");
 const { TokenExpiredError } = jwt;
@@ -24,6 +24,40 @@ const verifyToken = (req, res, next) => {
     }
     req.userId = decoded.id;
     next();
+  });
+};
+
+const isSuperAdmin = (req, res, next) => {
+  User.findByPk(req.userId).then((user) => {
+    user.getRoles().then((roles) => {
+      for (let i = 0; i < roles.length; i++) {
+        if (roles[i].name === superAdmin) {
+          next();
+          return;
+        }
+      }
+      res.status(403).send({
+        message: "Require SuperAdmin Role!",
+      });
+      return;
+    });
+  });
+};
+
+const isSuperAdminOrAdmin = (req, res, next) => {
+  User.findByPk(req.userId).then((user) => {
+    user.getRoles().then((roles) => {
+      for (let i = 0; i < roles.length; i++) {
+        if (roles[i].name === superAdmin || roles[i].name === admin ) {
+          next();
+          return;
+        }
+      }
+      res.status(403).send({
+        message: "Require SuperAdmin Role!",
+      });
+      return;
+    });
   });
 };
 
@@ -64,6 +98,8 @@ const isUser = (req, res, next) => {
 const authJwt = {
   verifyToken: verifyToken,
   isAdmin: isAdmin,
+  isSuperAdmin: isSuperAdmin,
+  isSuperAdminOrAdmin :isSuperAdminOrAdmin,
   isUser: isUser,
 };
 

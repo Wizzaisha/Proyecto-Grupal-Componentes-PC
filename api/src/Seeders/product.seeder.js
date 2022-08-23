@@ -1,5 +1,5 @@
 const {PRODUCTOS} = require( "./productos")
-const{crearProducto} = require( "../Middleware/createProduct.middleware")
+const{crearProducto} = require( "../Middleware/Product and Category/createProduct.middleware")
 
 const productoSeeder= ()=> {
     PRODUCTOS.map((e)=> 

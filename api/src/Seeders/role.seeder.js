@@ -14,7 +14,7 @@ function seederRole() {
 
     Role.create({
         id: 3,
-        name: ROLES.SuperAdmin,
+        name: ROLES.superAdmin,
       });
       console.log("SeederRole")
   }

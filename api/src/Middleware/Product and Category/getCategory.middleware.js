@@ -1,4 +1,4 @@
-const {Category} = require("../db")
+const {Category} = require("../../db")
 const obtenerCategorias = async ()=>
 {
 let categorias = await Category.findAll()
