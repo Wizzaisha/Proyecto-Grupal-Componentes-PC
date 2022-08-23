@@ -1408,7 +1408,54 @@ let PRODUCTOS = [
     "category": "COOLER",
     "stock": 10,
     "specs": []
-  }
+  },
+  {
+    "image":"https://http2.mlstatic.com/D_Q_NP_796046-MLA41816931312_052020-R.webp",
+    "brand":"Logitech",
+    "model":"Lightspeed",
+    "price":73,
+    "description":"With 15 programmable controls, LIGHTSPEED wireless technology, a super-fast scroll wheel and the revolutionary HERO 16K sensor, the G604 offers both versatility and high performance with plenty of possibilities.Dominate your arsenal in tactical game genres like Battle Royale, MMO and MOBA, with all the necessary customizable button configuration.Dual connectivity lets you switch between Bluetooth® technology and superfast 1ms LIGHTSPEED advanced wireless technology, even on different devices. Change the scrolling mode on your own to quickly scroll through menus or carefully inspect weapon or spell selections. Extremely accurate tracking and class-leading power efficiency enable up to 240 hours of high-performance gaming on one AA battery. play masterfully",
+    "bentchmark":100,
+    "specs":
+    [
+        "Color: Black ",
+        "Mouse Type: Of Gamer",
+        "Supported Operating Systems: MacOS 10.12, Windows 7, Chrome OS, Android 3.2, Android 5.0 ",
+        "USB Wireless: Yes ",
+        "Maximum Speed: 400ips ",
+        "Number Of Buttons:15 ",
+        "Interfaces: USB ",
+        "Bluetooh: Yes ",
+        "Scroll Wheel: Yes ",
+        "Sensor Type: Optical ",
+        "Sensor Technology: Hero ",
+        "Sensor Resolution: 25600dpi "
+
+    ],
+    "category":"MOUSE",
+    "stock":10
+},
+{
+    "image":"https://http2.mlstatic.com/D_Q_NP_743885-MLA42361842481_062020-R.webp",
+    "brand":"Logitech",
+    "model":"M280",
+    "price":16,
+    "description":"Adapted to your movements. Its effective design makes this mouse a comfortable element, with a great user experience for those who seek security in each click. Functionality at your fingertips. The optical movement detection system will allow you to move the cursor in a more precise and sensitive way than in traditional systems.Button speed and reliability.With its 3 buttons you can have greater control and independence to execute.Plug And Play Just plug the receiver into a USB port on your computer and you're ready to go. There is no need to pair the mouse or download software to use it.",
+    "bentchmark":75,
+    "specs":
+    [
+        "Color: Blue ",
+        "Mouse Yype: Conventional ",
+        "Supported Operating Systems: Windows 7, Windows 8, Windows 10, macOS 10.5, Chrome OS, Linux ",
+        "USB Wireless: Yes ",
+        "Number Of Buttons: 3 ",
+        "Interfaces: USB ",
+        "Bluetooh: Yes ",
+        "Scroll Wheel: Yes "
+    ],
+    "category":"MOUSE",
+    "stock":10
+}
 ]
 
 
