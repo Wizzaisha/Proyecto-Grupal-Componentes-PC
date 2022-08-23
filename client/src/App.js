@@ -14,6 +14,7 @@ import SignUp from './components/SignUp';
 import ProductDetails from './components/ProductDetails';
 import Cart from './components/Cart';
 import LandingPage from './components/LandingPage';
+import Payment from './components/Payment';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path='store/:idProduct' element={<ProductDetails />}></Route>
           <Route path='contact' element={<Contact />}></Route>
           <Route path='cart' element={<Cart />}></Route>
+          <Route path='/payment' element={<Payment />}></Route>
 
         </Route>
         <Route path='/adminpanel' element={<AdminPanel />}>
