@@ -66,7 +66,6 @@ export const setSort = (sortType) => {
         return dispatch({ type: SET_SORT, payload: sortType });
     }
 }
-
 export function postLogIn(email, password) {
     return async function (dispatch) {
         try {

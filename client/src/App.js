@@ -15,12 +15,14 @@ import ProductDetails from './components/ProductDetails';
 import Cart from './components/Cart';
 import LandingPage from './components/LandingPage';
 import Payment from './components/Payment';
+// globalizo la funcion AuthProvider a todos los componentes
+import {AuthProvider} from './components/context/authContext';
 
 function App() {
   return (
     <div className="App">
+      <AuthProvider>
       <Routes>
-
         <Route path='/' element={<Home />}>
           <Route index element={<LandingPage />}></Route>
           <Route path='/store' element={<ProductCards />}>
@@ -41,6 +43,7 @@ function App() {
           {<h1>There's nothing here!</h1>}
         ></Route>
       </Routes>
+      </AuthProvider>
     </div>
   );
 }

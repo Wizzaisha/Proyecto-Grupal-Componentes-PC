@@ -1,14 +1,16 @@
 import "./Register.css";
 import React,{useState} from "react";
+import {useNavigate} from "react-router-dom"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Header from "../Header";
-import { useDispatch } from "react-redux";
-import {postSingIn} from "../../redux/actions/index"
-
+import { useAuth } from "../context/authContext";
+import { async } from "@firebase/util";
 
 function SignUp() {
-    const dispatch = useDispatch()
+    const auth = useAuth();
+    const navigate = useNavigate();
+    const [error, setError] = useState()
     const [checkOut, setCheckOut] = useState("password")
     const handlerCheckOut = (e) =>{
         if(checkOut === "password"){
@@ -32,15 +34,23 @@ function SignUp() {
         setPassword(e.target.value)
         console.log(password)
     }
-    const handlerSubmit = (e) =>{
+    const handlerSubmit = async (e) =>{
         e.preventDefault()
-        dispatch(postSingIn(user,email,password))
+        try {
+            await auth.register(email,password)
+            navigate("/")
+        } catch (error) {
+            setError(error)
+        }
     }
     return (
         <>
         <Header/>
         <div className="containerForm justify-content-around">
-            <h1 className="display-6 shadow-lg p-3 mb-5 bg-body rounded">Welcome, create an account to continue</h1>
+            {   error
+                ?<h1 className="display-6 shadow-lg p-3 mb-5 bg-body rounded">Error : {error}</h1>
+                :<h1 className="display-6 shadow-lg p-3 mb-5 bg-body rounded">Welcome, create an account to continue</h1>
+            }
             <Form
                 onSubmit={(e)=>{
                     handlerSubmit(e)
@@ -77,7 +87,7 @@ function SignUp() {
                     autoComplete="on"
                 />
                 <Form.Text className="text-muted">
-                Only eight alphanumeric characters
+                the password must be greater than eight characters
                 </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3 shadow-lg p-3 bg-body rounded" controlId="formBasicCheckbox">
@@ -86,14 +96,14 @@ function SignUp() {
                 }} type="checkbox" label="Check me out" />
             </Form.Group>
             {
-                password.length > 8
+                password.length < 6 || password.length > 16
                 ?
                 <Button variant="warning" type="submit" disabled>
-                    Submit
+                    Register
                 </Button>
                 :
                 <Button variant="primary" type="submit">
-                    Submit
+                    Register
                 </Button>
             }
             </Form>
