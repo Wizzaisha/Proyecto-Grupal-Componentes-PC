@@ -3,11 +3,8 @@ import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Header from "../Header";
-import { useDispatch } from "react-redux";
-import { postLogIn } from "../../redux/actions/index"
 
 function Login() {
-    const dispatch = useDispatch()
     const [checkOut, setCheckOut] = useState("password")
     const handlerCheckOut = (e) => {
         if (checkOut === "password") {
@@ -28,7 +25,6 @@ function Login() {
     }
     const handlerSubmit = (e) => {
         e.preventDefault()
-        dispatch(postLogIn(email, password))
     }
     return (
         <>
