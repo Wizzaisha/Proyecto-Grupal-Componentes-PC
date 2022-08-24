@@ -8,6 +8,6 @@ User.findByPk(id)
         if (admin){  await u.setRoles([]) ; await  u.setRoles([2]) }
         else { {  await u.setRoles([]) ; await  u.setRoles([1]) }}
     })
-    return true;
+    return true
 }
 module.exports = {modificarRol}

@@ -36,5 +36,27 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   console.error(err);
   res.status(status).send(message);
 });
+// server.use((req, res, next) => {
+//   bodyParser.json()(req, res, err => {
+//       if (err) {
+//           console.error(err);
+//           return res.sendStatus(400); // Bad request
+//       }
+
+//       next();
+//   });
+// });
 
 module.exports = server;
+/*
+ at invokeCallback  
+ 
+    at IncomingMessage.onEnd  
+    at IncomingMessage.emit  
+    at endReadableNT   
+  expose: true,
+  statusCode: 400,
+  status: 400,
+  body: ' ',
+  type: 'entity.parse.failed'
+ */
