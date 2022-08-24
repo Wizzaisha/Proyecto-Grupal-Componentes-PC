@@ -8,8 +8,6 @@ export const ADD_REMOVE_FILTER_BRAND = "ADD_REMOVE_FILTER_BRAND";
 export const SET_CATEGORY = "SET_CATEGORY";
 export const GET_PRODUCT_DETAILS = "GET_PRODUCT_DETAILS";
 export const SET_SORT = "SET_SORT";
-export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
-export const ADD_TO_CART = 'ADD_TO_CART';
 
 
 export const getAllProducts = () => {
@@ -68,26 +66,31 @@ export const setSort = (sortType) => {
         return dispatch({ type: SET_SORT, payload: sortType });
     }
 }
-
-export function addToCart(idProduct) {
-    // Creo una action que recibe el ID del producto (desde el componente «Detail» cuando se presiona boton para agregar al carrito)
+export function postLogIn(email, password) {
     return async function (dispatch) {
-        // Despacho al reducer una accion de tipo «Agregar al carrito» y como payload el ID
-        return dispatch({
-            type: ADD_TO_CART,
-            payload: idProduct
-        })
+        try {
+            console.log(email, password)
+            let response = await axios.post(`http://localhost:3001/LogIn`, {
+                email,
+                password
+            })
+            return response;
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
-
-export function removeFromCart(idProduct) {
-    // Creo una action que recibe el ID del producto a remover del carrito (desde el componente «Cart»)
+export function postSingIn(user, email, password) {
     return async function (dispatch) {
-        // Despacho al reducer una accion de tipo «Remover del carrito» y como payload el ID
-        return dispatch({
-            type: REMOVE_FROM_CART,
-            payload: idProduct
-        })
+        try {
+            let response = await axios.post(`http://localhost:3001/singin`, {
+                user,
+                email,
+                password
+            })
+            return response;
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
-
