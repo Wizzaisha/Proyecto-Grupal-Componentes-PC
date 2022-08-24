@@ -6,6 +6,7 @@ const product = require ('./product.route')
 const category = require ('./category.route')
 const user = require ('./user.route')
 const checkout = require("./checkout.route")
+const orderList = require("./OrderList.route");
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -14,5 +15,6 @@ router.use('/productos', product)
 router.use('/categorias', category)
 router.use('/usuarios', user)
 router.use('/checkout', checkout)
+router.use("/order-list", orderList);
 
 module.exports = router;
