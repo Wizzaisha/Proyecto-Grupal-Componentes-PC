@@ -8,6 +8,10 @@ export const ADD_REMOVE_FILTER_BRAND = "ADD_REMOVE_FILTER_BRAND";
 export const SET_CATEGORY = "SET_CATEGORY";
 export const GET_PRODUCT_DETAILS = "GET_PRODUCT_DETAILS";
 export const SET_SORT = "SET_SORT";
+export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
+export const GET_ORDER_DETAILS = "GET_ORDER_DETAILS";
+export const GET_CUSTOMER_HISTORY = "GET_CUSTOMER_HISTORY";
+export const UPDATED_ORDER = "UPDATED_ORDER";
 
 
 export const getAllProducts = () => {
@@ -38,7 +42,7 @@ export const getProductDetails = (payload) => {
     return async (dispatch) => {
         const response = await axios.get(`http://localhost:3001/api/productos/${payload}`);
 
-        return dispatch({ type: 'GET_PRODUCT_DETAILS', payload: response.data })
+        return dispatch({ type: GET_PRODUCT_DETAILS, payload: response.data })
     }
 }
 
@@ -92,5 +96,38 @@ export function postSingIn(user, email, password) {
         } catch (error) {
             console.log(error)
         }
+    }
+}
+
+export const getOrdersList = () => {
+    return async (dispatch) => {
+
+        const response = await axios.get("http://localhost:3001/api/order-list");
+        
+        return dispatch({type: GET_ALL_ORDERS, payload: response.data});
+    }
+}
+
+export const getOrderDetails = (id) => {
+    return async (dispatch) => {
+        const response = await axios.get(`http://localhost:3001/api/order-list/${id}`);
+
+        return dispatch({type: GET_ORDER_DETAILS, payload: response.data});
+    }
+}
+
+export const getCustomerHistory = (id) => {
+    return async (dispatch) => {
+        const response = await axios.get(`http://localhost:3001/api/order-list/customer/${id}`);
+
+        return dispatch({type: GET_CUSTOMER_HISTORY, payload: response.data});
+    }
+}
+
+export const updateOrder = (id, data) => {
+    return async (dispatch) => {
+        const response = await axios.post(`http://localhost:3001/api/order-list/${id}`, data);
+
+        return dispatch({type: UPDATED_ORDER, payload: response.data});
     }
 }

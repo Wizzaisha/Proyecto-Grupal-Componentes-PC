@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import './Cart.css';
 
-
 function Cart() {
 
     // Creamos un estado local «cart»
     const [state, setState] = useState({
         // Lo inicializamos con el valor del localStorage
-        cart: JSON.parse(localStorage.getItem('cart'))
+        cart: JSON.parse(localStorage.getItem('cart')),
     })
     
     
@@ -24,6 +23,10 @@ function Cart() {
             cart: cart
         })
     }
+    // Esta variable va a guardar el calculo del monto total
+    var total = 0;
+    // Guarda la suma de multiplicar el precio * cantidad de cada producto
+    state.cart.forEach( product => total += product.price * product.quantities)
 
     return (
         <div className={"cartContainer"}>
@@ -37,7 +40,6 @@ function Cart() {
             }
             <div className={"container-xl"}>
             {
-            
                 // Mapeo el «cart» del estado local para crear cada item
                 state.cart.length? state.cart.map(el =>
 
@@ -49,20 +51,17 @@ function Cart() {
 
                         <label className={"span"}>{`$ ${el.price}`}</label>
 
-                        <input className={"span"}
-                            id={"units"}
-                            type="number"
-                            min="0"                   // Aca me falta handelear las cantidades
-                            max="100"
-                        />
+                        <label className={"span"}>{`x${el.quantities}`}</label>
                         {/* Este boton que se renderiza por cada uno de los componentes toma como value el ID del producto */}
                         <button className={"button"} value={el.id} type='button' onClick={(e) => handleDelete(e)}> X </button>
                     </div>) : <h1>You don't add any product...</h1>
-            
             }
+
+            {state.cart.length? <button className={"buyButton"} type='button' > Make a purchase for { '$ ' + total} </button> : null}
             </div>
         </div>
     )
 }
 
 export default Cart; 
+

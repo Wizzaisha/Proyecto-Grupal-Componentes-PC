@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 
 function Header() {
     const [wanted, setWanted] = useState("")
-    const [admin, setAdmin] = useState(false)
+    const [admin, setAdmin] = useState(true)
     const handlerSearch = (e) =>{
         e.preventDefault(e)
         setWanted(e.target.value)

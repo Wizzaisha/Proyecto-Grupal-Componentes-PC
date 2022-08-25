@@ -8,6 +8,8 @@ import {
     SET_CATEGORY,
     GET_PRODUCT_DETAILS,
     SET_SORT,
+    GET_ORDER_DETAILS,
+    GET_ALL_ORDERS,
 } from "../actions";
 
 import { filterCurrentBrands, filterData } from "../utils";
@@ -21,7 +23,9 @@ const initialState = {
     category: "",
     currentSort: "",
     details: [],
-    cart: []
+    cart: [],
+    orderList: [],
+    orderDetails: {}, 
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -96,6 +100,17 @@ const rootReducer = (state = initialState, action) => {
                 details: action.payload
             }
 
+        case GET_ALL_ORDERS:
+            
+            return {
+                ...state,
+                orderList: action.payload
+            }
+        case GET_ORDER_DETAILS:
+            return {
+                ...state,
+                orderDetails: action.payload
+            }
         default:
             return { ...state }
     }
