@@ -49,6 +49,9 @@ function SignUp() {
             }
         }
     }
+    const handlerGoogle = async (e) => {
+        await auth.loginWithGoogle()
+    }
     return (
         <>
         <Header/>
@@ -111,7 +114,9 @@ function SignUp() {
                         }}
                     >Log in</Link>
                     </Button>
-                    <Button variant="primary" type="">
+                    <Button onClick={()=>{
+                        handlerGoogle()
+                    }} variant="primary" type="">
                         Google
                     </Button>
                     </div>
