@@ -52,7 +52,9 @@ function App() {
           <Route path='order-details/:idPayment' element={<AdminOrderDetails />}></Route>
           <Route path='customer-history/:idCustomer' element={<AdminCustomerHistory />}></Route>
         </Route>
-        <Route path='/login' element={<Login />}></Route>
+        <Route path='/login' element={
+          <Login />
+        }></Route>
         <Route path='/signup' element={<SignUp />}></Route>
         <Route path='*' element=
           {<h1>There's nothing here!</h1>}

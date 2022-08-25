@@ -39,7 +39,7 @@ const index = () => {
                     products: cart.map(e => {
                         let properties = {
                             id: e.id,
-                            price: e.price * 100,
+                            price: e.price,
                             quantity: 1
                         }
                         return properties
@@ -58,7 +58,7 @@ const index = () => {
                 }
                 console.log(body)
                 // const {id } = paymentMethod;
-                const { data } = await axios.post('http://localhost:3001/api/checkout', body)
+                const { data } = await axios.post('http://localhost:3001/api/checkout/', body)
                 console.log(data);
                 // ^^^ CONECTAR CON BACKEND ^^^
             }
