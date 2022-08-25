@@ -66,6 +66,10 @@ function ProductDetails() {
         localStorage.setItem('cart', JSON.stringify(cart))
     }
 
+    function stockValidator(e){
+        if (e.target.value === '+' && value < details.stock) {setValue(value + 1)}
+        if (e.target.value === '-' && value > 1) {setValue(value - 1)}
+    }
 
     return (
         <div className="container">
@@ -83,9 +87,9 @@ function ProductDetails() {
                     <h3>${details.price}</h3>
                     <p>{`Stock available: (${details.stock} available)`} </p>
                     <div className="input-group">
-                        <button type="button" className="btn btn-outline-primary" onClick={() => setValue(value - 1)}>-</button>
+                        <button type="button" className="btn btn-outline-primary" value={'-'} onClick={(e) => stockValidator(e) /*setValue(value - 1)*/}>-</button>
                         <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
-                        <button type="button" className="btn btn-outline-primary" onClick={() => setValue(value + 1)}>+</button>
+                        <button type="button" className="btn btn-outline-primary" value={'+'} onClick={(e) => stockValidator(e) /*setValue(value + 1)*/}>+</button>
                     </div>
                     <button type="submit" className="btn btn-primary" onClick={e => handleButton(e)} >Add to cart</button>
                 </div>

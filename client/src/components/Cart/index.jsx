@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import './Cart.css';
 
-
 function Cart() {
 
     // Creamos un estado local «cart»
