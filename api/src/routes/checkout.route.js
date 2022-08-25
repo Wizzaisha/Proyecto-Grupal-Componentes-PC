@@ -54,7 +54,7 @@ router.post("/", async (req, res, next) => {
         // Email de test, se debe remplazar con el email que resulte de la bsuqueda por id
         const email = customerEmail;
 
-        const amount = getTotalAmount(products) * 100;
+        const amount = getTotalAmount(products);
         const description = await getDescription(products);
         
         let customerResponse = {};
@@ -79,7 +79,7 @@ router.post("/", async (req, res, next) => {
             payment_method: method_pay,
             metadata: {
                 productsOrdered: JSON.stringify(products),
-                orderStatus: "PENDING"
+                orderStatus: "CREATED"
             },
             customer: customerResponse.id,
             receipt_email: customerResponse.email,
