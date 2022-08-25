@@ -47,7 +47,18 @@ function Login() {
     }
     const handlerLogout = async (e) =>{
         e.preventDefault()
-        await auth.logout()
+        try {
+            await auth.logout()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    const handlerGoogle = async (e) => {
+        try {
+            await auth.loginWithGoogle()
+        } catch (error) {
+            console.log(error)
+        }
     }
     return (
         <>
@@ -56,7 +67,7 @@ function Login() {
                 <div className="d-flex flex-column">
                     {   error
                         ?<h1 className="display-6 shadow-lg p-3 mb-5 bg-body rounded">{error}</h1>
-                        :<h1 className="display-6 shadow-lg p-3 mb-5 bg-body rounded">Welcome user</h1>
+                        :<h1 className="display-6 shadow-lg p-3 mb-5 bg-body rounded">Welcome User</h1>
                     }
                     {
                         auth.user !==null &&
@@ -102,17 +113,26 @@ function Login() {
                             handlerCheckOut(e)
                         }} type="checkbox" label="Check me out" />
                     </Form.Group>
-                    {
+                        <div className="d-flex flex-column">
+                        {
                         password.length < 6 || password.length > 16
-                            ?
-                            <Button variant="warning" type="submit" disabled>
-                                Log in
-                            </Button>
-                            :
-                            <Button variant="primary" type="submit">
-                                Log in
-                            </Button>
-                    }
+                        ?
+                        <Button variant="warning" type="submit" disabled>
+                            Log in
+                        </Button>
+                        :
+                        <Button variant="primary" type="submit">
+                            Log in
+                        </Button>
+                        }
+                        <Button onClick={()=>{
+                            handlerGoogle()
+                        }} variant="primary" type=""
+                        className="mt-2"
+                        >
+                            Log in wiht Google
+                        </Button>
+                        </div>
                 </Form>
             </div>
         </>
