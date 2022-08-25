@@ -44,31 +44,31 @@ function ProductDetails() {
         // Traemos el «cart» del localStorage y lo parseamos para poder manipularlo
         let cart = JSON.parse(localStorage.getItem('cart'));
         // Si no existe (primera vez que se agrega un producto) lo definimos como un array y le pusheamos el producto en cuestion
-        if(!cart){
+        if (!cart) {
             cart = [];
             cart.push(details);
             alert(`Added ${details.category} ${details.brand} ${details.model} to cart`)
         }
-        else{
+        else {
             // Si ya existe el «cart» (ya se pushearon uno o mas productos) preguntamos si encuentra el producto dentro
-            if(!cart.find(p => p.id === details.id)){
+            if (!cart.find(p => p.id === details.id)) {
                 // En caso de no encontrarlo lo pushea
                 cart.push(details)
                 alert(`Added ${details.category} ${details.brand} ${details.model} to cart`)
             }
-            else 
-            // En caso de encontrarlo sobreescribe la cantidad
-            cart.forEach(product => { if (product.id === details.id) product.quantities = value;});
-            
+            else
+                // En caso de encontrarlo sobreescribe la cantidad
+                cart.forEach(product => { if (product.id === details.id) product.quantities = value; });
+
             /*alert(`This product is already added to cart`)*/
         }
         // Luego «cart» a string y lo subimos al localStorage
         localStorage.setItem('cart', JSON.stringify(cart))
     }
 
-    function stockValidator(e){
-        if (e.target.value === '+' && value < details.stock) {setValue(value + 1)}
-        if (e.target.value === '-' && value > 1) {setValue(value - 1)}
+    function stockValidator(e) {
+        if (e.target.value === '+' && value < details.stock) { setValue(value + 1) }
+        if (e.target.value === '-' && value > 1) { setValue(value - 1) }
     }
 
     return (
