@@ -8,12 +8,21 @@ const {
     STRIPE_S_KEY,
 } = process.env;
 
+
+const dateFormated = (dateToConvert) => {
+    const date = new Date(dateToConvert * 1000);
+
+    const result = date.toLocaleString();
+    
+    return result;
+}
+
 const dataOrderController = (data) => {
     return data.map(element => {
         return {
             id: element.id,
             amount: element.amount,
-            created: element.created,
+            created: dateFormated(element.created),
             customer: element.customer,
             metadata: element.metadata,
             payment_method: element.payment_method,
@@ -27,7 +36,7 @@ const oneDataController = (element) => {
     return {
         id: element.id,
         amount: element.amount,
-        created: element.created,
+        created: dateFormated(element.created),
         customer: element.customer,
         metadata: element.metadata,
         payment_method: element.payment_method,
