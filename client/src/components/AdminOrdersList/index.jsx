@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import "./AdminOrdersList.css";
 
 
@@ -22,8 +23,18 @@ function AdminOrdersList () {
                     {allOrders && allOrders.map(order => {
                         return (
                             <tr key={order.id}>
-                                <th scope="row">{order.id}</th>
-                                <td>{order.receipt_email}</td>
+                                <th scope="row">
+                                    <Link 
+                                        to={`/adminpanel/order-details/${order.id}`}
+                                        className="linkTo"
+                                    >{order.id}</Link>
+                                </th>
+                                <td>
+                                    <Link 
+                                        to={`/adminpanel/customer-history/${order.customer}`}
+                                        className="linkTo"
+                                    >{order.receipt_email}</Link>
+                                </td>
                                 <td>{order.metadata.orderStatus}</td>
                                 <td>{order.created}</td>
                             </tr>

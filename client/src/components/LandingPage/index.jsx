@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import {
     getAllProducts,
     getAllCategories,
+    getOrdersList
 } from "../../redux/actions";
 
 
@@ -20,6 +21,7 @@ function LandingPage() {
     useEffect(() => {
         dispatch(getAllProducts());
         dispatch(getAllCategories());
+        dispatch(getOrdersList());
     }, [dispatch]);
 
     return (
