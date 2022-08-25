@@ -5,6 +5,6 @@ export function ProtectedRouter({children}){
     const auth = useAuth();
 
     if(!auth.user.email) return <Navigate to={"/login"}/>
-    return <>{children}</>
+    return <>{children} </>
 }
 //ruta protegida por componente
