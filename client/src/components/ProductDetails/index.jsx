@@ -39,6 +39,8 @@ function ProductDetails() {
 
     function handleButton(e) {
         e.preventDefault();
+        // Le agrego/sobreescribo una propiedad cantidad al producto
+        details.quantities = value;
         // Traemos el «cart» del localStorage y lo parseamos para poder manipularlo
         let cart = JSON.parse(localStorage.getItem('cart'));
         // Si no existe (primera vez que se agrega un producto) lo definimos como un array y le pusheamos el producto en cuestion
@@ -54,11 +56,16 @@ function ProductDetails() {
                 cart.push(details)
                 alert(`Added ${details.category} ${details.brand} ${details.model} to cart`)
             }
-            else alert(`This product is already added to cart`)
+            else 
+            // En caso de encontrarlo sobreescribe la cantidad
+            cart.forEach(product => { if (product.id === details.id) product.quantities = value;});
+            
+            /*alert(`This product is already added to cart`)*/
         }
         // Luego «cart» a string y lo subimos al localStorage
         localStorage.setItem('cart', JSON.stringify(cart))
     }
+
 
     return (
         <div className="container">
