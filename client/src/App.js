@@ -37,7 +37,9 @@ function App() {
         <Route path='/adminpanel' element={<AdminPanel />}>
 
         </Route>
-        <Route path='/login' element={<Login />}></Route>
+        <Route path='/login' element={
+          <Login />
+        }></Route>
         <Route path='/signup' element={<SignUp />}></Route>
         <Route path='*' element=
           {<h1>There's nothing here!</h1>}
