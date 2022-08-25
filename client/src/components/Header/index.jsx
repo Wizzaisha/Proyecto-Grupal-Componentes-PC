@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 
 function Header() {
     const [wanted, setWanted] = useState("")
-    const [admin, setAdmin] = useState(false)
+    const [admin, setAdmin] = useState(true)
     const handlerSearch = (e) =>{
         e.preventDefault(e)
         setWanted(e.target.value)
@@ -35,7 +35,7 @@ function Header() {
                 <Link className="nav-link text-light" to="/store">Store</Link>
                 <Link className="nav-link text-light" to="/contact">Contact</Link>
                 <Link className="nav-link text-light" to="/login">Login</Link>
-                <Link className="nav-link text-light" to="/signup">SingUp</Link>
+                <Link className="nav-link text-light" to="/signup">SignUp</Link>
                 <Link className="nav-link text-light" to="/cart">Cart</Link>
                 {admin?<Link className="nav-link text-light" to="/adminpanel">Admin Panel</Link> : <div></div>}
             </Nav>
