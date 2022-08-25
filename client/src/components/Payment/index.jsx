@@ -4,6 +4,7 @@ import { Elements, CardElement, useStripe, useElements } from '@stripe/react-str
 import './payment.css'
 import axios from 'axios'
 import { useAuth } from '../context/authContext'
+import { useNavigate } from 'react-router-dom'
 
 const index = () => {
 
@@ -14,6 +15,7 @@ const index = () => {
         const stripe = useStripe()
         const elements = useElements()
         const auth = useAuth()
+        const navigate = useNavigate();
 
         useEffect(() => {
             setCart(JSON.parse(localStorage.getItem('cart')))
@@ -63,6 +65,8 @@ const index = () => {
                     const { data } = await axios.post('http://localhost:3001/api/checkout', body)
                     console.log(data);
                     alert('Successful payment!')
+                    localStorage.setItem('cart', '[ ]')
+                    navigate('/succesfulPurchase')
                 }
             } else {
                 alert('payment failed, please check the data.')
