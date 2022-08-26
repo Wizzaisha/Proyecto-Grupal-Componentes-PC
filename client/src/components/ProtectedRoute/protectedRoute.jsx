@@ -7,4 +7,4 @@ export function ProtectedRouter({children}){
     if(!auth.user.email) return <Navigate to={"/login"}/>
     return <>{children} </>
 }
-//ruta protegida por componente
+//ruta protegida por componenteA
