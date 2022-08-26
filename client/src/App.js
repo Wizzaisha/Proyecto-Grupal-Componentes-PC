@@ -15,6 +15,7 @@ import ProductDetails from './components/ProductDetails';
 import Cart from './components/Cart';
 import LandingPage from './components/LandingPage';
 import Payment from './components/Payment';
+import SuccesBuy from './components/SuccesBuy';
 
 // Admin
 import AdminProductList from "./components/AdminProductList";
@@ -25,41 +26,41 @@ import AdminOrderDetails from "./components/AdminOrderDetails";
 import AdminCustomerHistory from "./components/AdminCustomerHistory";
 
 // globalizo la funcion AuthProvider a todos los componentes
-import {AuthProvider} from './components/context/authContext';
+import { AuthProvider } from './components/context/authContext';
 
 function App() {
   return (
     <div className="App">
       <AuthProvider>
-      <Routes>
-        <Route path='/' element={<Home />}>
-          <Route index element={<LandingPage />}></Route>
-          <Route path='store' element={<ProductCards />}>
+        <Routes>
+          <Route path='/' element={<Home />}>
+            <Route index element={<LandingPage />}></Route>
+            <Route path='store' element={<ProductCards />}>
 
+            </Route>
+            <Route path='store/:idProduct' element={<ProductDetails />}></Route>
+            <Route path='contact' element={<Contact />}></Route>
+            <Route path='cart' element={<Cart />}></Route>
+            <Route path='payment' element={<Payment />}></Route>
+            <Route path='succesfulPurchase' element={<SuccesBuy />}></Route>
           </Route>
-          <Route path='store/:idProduct' element={<ProductDetails />}></Route>
-          <Route path='contact' element={<Contact />}></Route>
-          <Route path='cart' element={<Cart />}></Route>
-          <Route path='payment' element={<Payment />}></Route>
+          <Route path='/adminpanel' element={<AdminPanel />}>
+            <Route path='list-product' element={<AdminProductList />}></Route>
+            <Route path='create-product' element={<AdminCreateProduct />}></Route>
+            <Route path='product-details' element={<AdminProductDetails />}></Route>
 
-        </Route>
-        <Route path='/adminpanel' element={<AdminPanel />}>
-          <Route path='list-product' element={<AdminProductList />}></Route>
-          <Route path='create-product' element={<AdminCreateProduct />}></Route>
-          <Route path='product-details' element={<AdminProductDetails />}></Route>
-          
-          <Route path='order-list' element={<AdminOrdersList />}></Route>
-          <Route path='order-details' element={<AdminOrderDetails />}></Route>
-          <Route path='customer-history' element={<AdminCustomerHistory />}></Route>
-        </Route>
-        <Route path='/login' element={
-          <Login />
-        }></Route>
-        <Route path='/signup' element={<SignUp />}></Route>
-        <Route path='*' element=
-          {<h1>There's nothing here!</h1>}
-        ></Route>
-      </Routes>
+            <Route path='order-list' element={<AdminOrdersList />}></Route>
+            <Route path='order-details' element={<AdminOrderDetails />}></Route>
+            <Route path='customer-history' element={<AdminCustomerHistory />}></Route>
+          </Route>
+          <Route path='/login' element={
+            <Login />
+          }></Route>
+          <Route path='/signup' element={<SignUp />}></Route>
+          <Route path='*' element=
+            {<h1>There's nothing here!</h1>}
+          ></Route>
+        </Routes>
       </AuthProvider>
     </div>
   );
