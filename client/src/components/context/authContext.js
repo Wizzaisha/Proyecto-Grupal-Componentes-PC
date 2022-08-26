@@ -16,7 +16,8 @@ import {
 } from "firebase/auth"
 import {
     doc ,
-    setDoc
+    setDoc,
+    getDoc,
 } from "firebase/firestore"
 
 export const authContext = createContext();
@@ -34,6 +35,7 @@ export const useAuth = () => {
 };
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(false)
+    const [admin , setAdmin] = useState(false)
     useEffect(()=>{
         const unsuscribe = onAuthStateChanged(auth , (currentUser) =>{
             setUser(currentUser)
@@ -53,9 +55,18 @@ export function AuthProvider({ children }) {
             admin : admin
         })
     }
+    const getRole = async (uid) =>{
+        const docRef = doc(db , `user/${uid}`)
+        const userDb = await getDoc(docRef)
+        const data = userDb.data()
+        setAdmin(data.admin)
+    }
     // loguea un usuario existente
     const login = async (email,password) => {
         await signInWithEmailAndPassword(auth,email,password)
+        .then((userData)=>{
+            getRole(userData.user.uid)
+        });
     }
     const loginWithGoogle = () => {
         const googleProvider = new GoogleAuthProvider()
@@ -67,8 +78,9 @@ export function AuthProvider({ children }) {
     // cierra la sesion actual
     const logout = async () =>{
         await signOut(auth)
+        setAdmin(false)
     }
     return (
-        <authContext.Provider value={{ register , login , user ,logout , loginWithGoogle}}>{children}</authContext.Provider>
+        <authContext.Provider value={{ register , login , user ,admin ,logout , loginWithGoogle}}>{children}</authContext.Provider>
     );
 }
