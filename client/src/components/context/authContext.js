@@ -1,5 +1,5 @@
 /* Creating a context and a provider. */
-import { auth } from "../../firebase/firebaseConfig";
+import { auth, db } from "../../firebase/firebaseConfig";
 import {
     createContext,
     useContext,
@@ -10,8 +10,14 @@ import {
     createUserWithEmailAndPassword ,
     signInWithEmailAndPassword ,
     onAuthStateChanged ,
-    signOut
+    signOut,
+    GoogleAuthProvider,
+    signInWithPopup
 } from "firebase/auth"
+import {
+    doc ,
+    setDoc
+} from "firebase/firestore"
 
 export const authContext = createContext();
 
@@ -28,25 +34,41 @@ export const useAuth = () => {
 };
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(false)
+    useEffect(()=>{
+        const unsuscribe = onAuthStateChanged(auth , (currentUser) =>{
+            setUser(currentUser)
+        })
+        return () => unsuscribe();
+    },[])
     //crea un usuario en la tabla de firabase
-    const register = async (email,password) => {
-        await createUserWithEmailAndPassword(auth ,email,password)
+    const register = async (email,password,admin = false) => {
+        const userCredentials = await createUserWithEmailAndPassword(auth ,email,password)
+        .then((userData)=>{
+            return userData
+        });
+        const docRef = doc(db , `user/${userCredentials.user.uid}`)
+        setDoc(docRef,{
+            email : email,
+            password : password,
+            admin : admin
+        })
     }
     // loguea un usuario existente
     const login = async (email,password) => {
         await signInWithEmailAndPassword(auth,email,password)
     }
+    const loginWithGoogle = () => {
+        const googleProvider = new GoogleAuthProvider()
+        googleProvider.setCustomParameters({
+            'login_hint': 'user@example.com'
+        });
+        return signInWithPopup(auth, googleProvider)
+    }
     // cierra la sesion actual
     const logout = async () =>{
         await signOut(auth)
     }
-    useEffect(()=>{
-        const unsuscribe = onAuthStateChanged(auth , currentUser =>{
-            setUser(currentUser)
-        })
-        return () => unsuscribe();
-    },[])
     return (
-        <authContext.Provider value={{ register , login , user ,logout}}>{children}</authContext.Provider>
+        <authContext.Provider value={{ register , login , user ,logout , loginWithGoogle}}>{children}</authContext.Provider>
     );
 }

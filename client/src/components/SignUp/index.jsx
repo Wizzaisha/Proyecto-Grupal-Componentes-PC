@@ -28,12 +28,10 @@ function SignUp() {
     const handlerEmail = (e) =>{
         setError("")
         setEmail(e.target.value)
-        console.log(email)
     }
     const [password, setPassword] = useState("")
     const handlerPassword = (e) =>{
         setPassword(e.target.value)
-        console.log(password)
     }
     const handlerSubmit = async (e) =>{
         e.preventDefault()
@@ -112,7 +110,12 @@ function SignUp() {
                     >Log in</Link>
                     </Button>
                     <Button variant="primary" type="">
+                        <Link to={"/login"} className="text-light"
+                        style={{
+                            textDecoration: 'none'
+                        }}>
                         Google
+                        </Link>
                     </Button>
                     </div>
                 <Form.Text className="text-muted">
