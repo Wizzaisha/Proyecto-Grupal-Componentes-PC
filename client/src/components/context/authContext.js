@@ -1,5 +1,5 @@
 /* Creating a context and a provider. */
-import { auth } from "../../firebase/firebaseConfig";
+import { auth, db } from "../../firebase/firebaseConfig";
 import {
     createContext,
     useContext,
@@ -14,6 +14,11 @@ import {
     GoogleAuthProvider,
     signInWithPopup
 } from "firebase/auth"
+import {
+    doc ,
+    setDoc,
+    getDoc,
+} from "firebase/firestore"
 
 export const authContext = createContext();
 
@@ -30,29 +35,52 @@ export const useAuth = () => {
 };
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(false)
-    //crea un usuario en la tabla de firabase
-    const register = async (email,password) => {
-        await createUserWithEmailAndPassword(auth ,email,password)
-    }
-    // loguea un usuario existente
-    const login = async (email,password) => {
-        await signInWithEmailAndPassword(auth,email,password)
-    }
-    const loginWithGoogle = async() => {
-        const googleProvider = new GoogleAuthProvider()
-        return await signInWithPopup(auth, googleProvider)
-    }
-    // cierra la sesion actual
-    const logout = async () =>{
-        await signOut(auth)
-    }
+    const [admin , setAdmin] = useState(false)
     useEffect(()=>{
-        const unsuscribe = onAuthStateChanged(auth , currentUser =>{
+        const unsuscribe = onAuthStateChanged(auth , (currentUser) =>{
             setUser(currentUser)
         })
         return () => unsuscribe();
     },[])
+    //crea un usuario en la tabla de firabase
+    const register = async (email,password,admin = false) => {
+        const userCredentials = await createUserWithEmailAndPassword(auth ,email,password)
+        .then((userData)=>{
+            return userData
+        });
+        const docRef = doc(db , `user/${userCredentials.user.uid}`)
+        setDoc(docRef,{
+            email : email,
+            password : password,
+            admin : admin
+        })
+    }
+    const getRole = async (uid) =>{
+        const docRef = doc(db , `user/${uid}`)
+        const userDb = await getDoc(docRef)
+        const data = userDb.data()
+        setAdmin(data.admin)
+    }
+    // loguea un usuario existente
+    const login = async (email,password) => {
+        await signInWithEmailAndPassword(auth,email,password)
+        .then((userData)=>{
+            getRole(userData.user.uid)
+        });
+    }
+    const loginWithGoogle = () => {
+        const googleProvider = new GoogleAuthProvider()
+        googleProvider.setCustomParameters({
+            'login_hint': 'user@example.com'
+        });
+        return signInWithPopup(auth, googleProvider)
+    }
+    // cierra la sesion actual
+    const logout = async () =>{
+        await signOut(auth)
+        setAdmin(false)
+    }
     return (
-        <authContext.Provider value={{ register , login , user ,logout , loginWithGoogle}}>{children}</authContext.Provider>
+        <authContext.Provider value={{ register , login , user ,admin ,logout , loginWithGoogle}}>{children}</authContext.Provider>
     );
 }
