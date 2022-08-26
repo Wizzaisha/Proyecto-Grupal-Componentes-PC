@@ -8,6 +8,7 @@ import "./AdminOrderDetails.css";
 function AdminOrderDetails() {
 
     const { idPayment } = useParams();
+    console.log(idPayment)
 
     const paymentDetail = useSelector(state => state.orderDetails);
     
@@ -20,7 +21,7 @@ function AdminOrderDetails() {
 
     return (
         <div>
-            {paymentDetail && <div className="card cardOrderDetail">
+            {paymentDetail.hasOwnProperty("id") && <div className="card cardOrderDetail">
                 <div>
                     <h4>Id</h4>
                     <p>{paymentDetail.id}</p>
