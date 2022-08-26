@@ -1,4 +1,5 @@
 const {Router} = require('express')
+const { authJwt } = require("../Auth");
 const {obtenerProductos,obtenerProductosById} = require('../Middleware/Product and Category/getProduct.middleware')
 const {crearProducto} = require('../Middleware/Product and Category/createProduct.middleware')
 const {modificarProducto} = require('../Middleware/Product and Category/updateProduct.middleware')
@@ -53,7 +54,7 @@ router.put('/:id',/* [authJwt.verifyToken, authJwt.isSuperAdminOrAdmin], */ asyn
     catch (error) { next(error)  }
 })
 
-router.put('/stock/:id', async (req, res, next)=>
+router.put('/stock/:id',/* authJwt.verifyToken, */  async (req, res, next)=>
 {
     let {descontar,cantidad}=req.body
     let {id} = req.params

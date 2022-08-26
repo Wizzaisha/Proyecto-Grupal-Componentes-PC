@@ -11,7 +11,8 @@ toObj = usuarios?.map(  (e)=>
 return{
         id: e.id,
         username: e.username,
-        email: e.email
+        email: e.email,
+        roles: e.roles.map(r=>(r.name) )
        }
 })
 if (email)
@@ -21,7 +22,6 @@ if (email)
 }
 return toObj
 }
-
 
 const obtenerUsuariosById = async (id)=>
 {

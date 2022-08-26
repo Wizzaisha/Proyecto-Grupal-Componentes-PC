@@ -1,4 +1,5 @@
 const {Router} = require('express')
+const { authJwt } = require("../Auth");
 const {obtenerCategorias,} = require('../Middleware/Product and Category/getCategory.middleware')
 const {crearCategoria} = require('../Middleware/Product and Category/createCategory.middleware')
 const router = Router()
@@ -13,7 +14,7 @@ router.get('/', async (req, res, next)=>
     catch (error) { next(error)  }
 })
 
-router.post('/', async (req, res, next)=>
+router.post('/',/* [authJwt.verifyToken, authJwt.isSuperAdminOrAdmin], */ async (req, res, next)=>
 {
     let {category} = req.body
     try

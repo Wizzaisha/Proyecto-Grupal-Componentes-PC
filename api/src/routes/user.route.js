@@ -10,7 +10,7 @@ const router = Router()
 
 router.use(express.json());
 
-router.get("/",   async (req, res, next)=>
+router.get("/", /* [authJwt.verifyToken, authJwt.isSuperAdminOrAdmin], */   async (req, res, next)=>
 { 
    let {  email } = req.query
     console.log("entro")
@@ -23,7 +23,7 @@ router.get("/",   async (req, res, next)=>
     catch (error) { next(error) ; /*console.log(error) */}
 })
 
-router.get("/:id", async (req, res, next)=>
+router.get("/:id", /* [authJwt.verifyToken, authJwt.isSuperAdminOrAdmin], */ async (req, res, next)=>
 {   let {  id } = req.params
     try
     {
@@ -35,7 +35,7 @@ router.get("/:id", async (req, res, next)=>
     catch (error) { next(error) ; console.log(error) }
 })
 
-router.post("/", async (req, res, next)=>
+router.post("/", /* [authJwt.verifyToken, authJwt.isSuperAdminOrAdmin], */ async (req, res, next)=>
 {   let {username, email, password} = req.body
     try
     {
@@ -45,8 +45,8 @@ router.post("/", async (req, res, next)=>
     }
     catch (error) { next(error) ; console.log(error) }
 })
-  
-  router.put("/:id" , async (req, res, next)=>
+
+router.put("/:id" , /* [authJwt.verifyToken, authJwt.isSuperAdminOrAdmin], */ async (req, res, next)=>
   {   let {username, email, password} = req.body
       let {id} = req.params
       try
@@ -56,9 +56,9 @@ router.post("/", async (req, res, next)=>
           res.send({ message:"Usuario "+username+" midficado"}): res.send(usuario.message)
       }
       catch (error) { next(error) ; console.log(error) }}
-  );
+);
 
-  router.put("/rol/:id", async (req, res, next)=>
+router.put("/rol/:id", /* [authJwt.verifyToken, authJwt.isSuperAdmin], */ async (req, res, next)=>
   {   let {admin} = req.body
       let {id} = req.params
       try
@@ -69,9 +69,9 @@ router.post("/", async (req, res, next)=>
       }
       catch (error) { next(error) ; console.log(error) }
   }
-  );
-  
-  router.delete("/:id", async (req, res, next)=>
+);
+
+router.delete("/:id", /* [authJwt.verifyToken, authJwt.isSuperAdminOrAdmin], */ async (req, res, next)=>
   {   let {id} = req.params
       try
       {
@@ -80,6 +80,6 @@ router.post("/", async (req, res, next)=>
           res.send({ message:"Usuario eliminado"}): res.send({ message:"Usuario no encontrado"})
       }
       catch (error) { next(error) ; console.log(error) }}
-  );
+);
 
 module.exports = router
