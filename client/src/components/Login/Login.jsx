@@ -20,13 +20,11 @@ function Login() {
     const [email, setEmail] = useState("")
     const handlerEmail = (e) => {
         setEmail(e.target.value)
-        console.log(email)
         setError("")
     }
     const [password, setPassword] = useState("")
     const handlerPassword = (e) => {
         setPassword(e.target.value)
-        console.log(password)
         setError("")
     }
     const handlerSubmit = async (e) =>{
@@ -53,11 +51,13 @@ function Login() {
             console.log(error)
         }
     }
-    const handlerGoogle = async (e) => {
+    const handlerGoogle = async () => {
         try {
             await auth.loginWithGoogle()
+            navigate("/login")
+            console.log(auth.user)
         } catch (error) {
-            console.log(error)
+            console.log(error, "error google")
         }
     }
     return (
@@ -125,15 +125,15 @@ function Login() {
                             Log in
                         </Button>
                         }
-                        <Button onClick={()=>{
-                            handlerGoogle()
-                        }} variant="primary" type=""
-                        className="mt-2"
-                        >
-                            Log in wiht Google
-                        </Button>
                         </div>
                 </Form>
+                        <Button onClick={()=>{
+                            handlerGoogle()
+                        }} variant="primary" type="button"
+                        className="mt-2"
+                        >
+                            Log in with Google
+                        </Button>
             </div>
         </>
     )
