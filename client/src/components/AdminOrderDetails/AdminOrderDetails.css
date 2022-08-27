@@ -1,0 +1,83 @@
+.shippingInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.productImage {
+  width: 40px;
+}
+
+.orderDetailsContainer {
+  padding: 0.5rem;
+}
+
+.firstRow {
+  border: 1px solid black;
+  border-bottom: 0;
+  border-radius: 10px 10px 0 0;
+}
+
+.secondRow {
+  border: 1px solid black;
+  border-bottom: 0;
+}
+
+.thirdRow {
+  border: 1px solid black;
+  border-radius: 0 0 10px 10px;
+}
+
+.paymentStatus div {
+  padding: 1rem;
+}
+
+.borderPayment {
+  border-right: 1px solid black;
+}
+
+.customerInfo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+}
+
+.customerInfoContainer {
+  border-right: 1px solid black;
+  padding: 1rem;
+}
+
+.paymentMethod {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.productsOrderedInfo {
+  padding: 1rem;
+  border-right: 1px solid black;
+}
+
+.editButton {
+  padding: 0.3rem 1rem;
+}
+
+.shippingInf {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.shippingDetails {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 3rem;
+  padding-top: 2rem;
+}

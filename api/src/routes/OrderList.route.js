@@ -2,6 +2,7 @@ require("dotenv").config();
 const {Router} = require('express');
 const Stripe = require("stripe");
 const router = Router();
+const { obtenerProductosById } = require("../Middleware/getProduct.middleware");
 
 
 const {
@@ -32,18 +33,40 @@ const dataOrderController = (data) => {
     });
 };
 
-const oneDataController = (element) => {
+
+const getProductsInfo = async (items) => {
+    
+    let data = JSON.parse(items)
+    
+    await Promise.all(
+        data.map(async e => {
+            let product = await obtenerProductosById(e.id);
+            e["image"] = product.image;
+            e["brand"] = product.brand;
+            e["model"] = product.model;
+        })
+    )
+
+    return data;
+};
+
+const oneDataController = async (element) => {
     return {
         id: element.id,
         amount: element.amount,
         created: dateFormated(element.created),
+        description: element.description,
         customer: element.customer,
-        metadata: element.metadata,
+        metadata: {
+            orderStatus: element.metadata.orderStatus,
+            productsOrdered: await getProductsInfo(element.metadata.productsOrdered)
+        },
         payment_method: element.payment_method,
         receipt_email: element.receipt_email,
         shipping: element.shipping
     }
 }
+
 
 const stripe = new Stripe(STRIPE_S_KEY);
 
@@ -67,8 +90,7 @@ router.get("/:idPayment", async (req, res, next) => {
         idPayment
     );
 
-    const paymentDetails = oneDataController(response);
-
+    const paymentDetails = await oneDataController(response);
 
     res.status(200).send(paymentDetails);
 })
@@ -90,14 +112,16 @@ router.get("/customer/:idCustomer", async (req, res, next) => {
 
 router.post("/:idPayment", async (req, res, next) => {
     const { idPayment } = req.params;
-    const typeUpdate = req.body; 
-
+    const typeUpdate = req.body;
+    
     const response = await stripe.paymentIntents.update(
         idPayment,
         typeUpdate
     );
 
-    res.status(201).send(response);
+    const data = await oneDataController(response);
+
+    res.status(201).send(data);
 })
 
 
