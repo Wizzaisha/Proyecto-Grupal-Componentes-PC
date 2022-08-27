@@ -50,8 +50,8 @@ function App() {
             <Route path='product-details' element={<AdminProductDetails />}></Route>
 
             <Route path='order-list' element={<AdminOrdersList />}></Route>
-            <Route path='order-details' element={<AdminOrderDetails />}></Route>
-            <Route path='customer-history' element={<AdminCustomerHistory />}></Route>
+            <Route path='order-details/:idPayment' element={<AdminOrderDetails />}></Route>
+            <Route path='customer-history/:idCustomer' element={<AdminCustomerHistory />}></Route>
           </Route>
           <Route path='/login' element={
             <Login />
