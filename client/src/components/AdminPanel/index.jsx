@@ -1,17 +1,11 @@
 import "./AdminPanel.css";
 import AdminNavBar from "../AdminNavBar";
 import { Outlet } from "react-router-dom";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getOrdersList } from "../../redux/actions";
+
 
 function AdminPanel() {
 
-    const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getOrdersList());
-    }, [dispatch]);
     return (
         <div className="container-fluid adminPanelContainer">
             <div className="row">
@@ -19,7 +13,7 @@ function AdminPanel() {
                     <AdminNavBar />
                 </div>
                 <div className="col-lg-10 adminContentContainer ">
-                    <p>Admin panel</p>
+                    <h2>Admin panel</h2>
                     <Outlet />
                 </div>
             </div>

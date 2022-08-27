@@ -1,15 +1,23 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./AdminOrdersList.css";
-
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getOrdersList } from "../../redux/actions";
 
 function AdminOrdersList () {
 
     const allOrders = useSelector(state => state.orderList);
     
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getOrdersList());
+    }, [dispatch]);
     
     return (
         <div>
+            <h5>All orders</h5>
             <table className="table">
                 <thead>
                     <tr>
