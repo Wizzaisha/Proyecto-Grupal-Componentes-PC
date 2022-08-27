@@ -23,7 +23,7 @@ const index = () => {
 
         const getTotal = () => {
             let total2 = 0;
-            cart.map((el) => { total2 += el.price * el.quantities });
+            cart.map((el) => {return total2 += el.price * el.quantities });
             return total2;
         }
 
@@ -36,7 +36,7 @@ const index = () => {
                 card: elements.getElement(CardElement)
             })
             if (!error) {
-                if (city == '' || state == '' || street == '' || phone == '' || name == '') {
+                if (city === '' || state === '' || street === '' || phone === '' || name === '') {
                     alert('Please fill in all the fields')
                 } else {
                     const body = {
