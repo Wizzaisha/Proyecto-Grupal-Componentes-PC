@@ -10,7 +10,9 @@ import {
     SET_SORT,
     GET_ORDER_DETAILS,
     GET_ALL_ORDERS,
-    GET_CUSTOMER_HISTORY
+    GET_CUSTOMER_HISTORY,
+    FILTER_BY_STATUS,
+    UPDATED_ORDER,
 } from "../actions";
 
 import { filterCurrentBrands, filterData } from "../utils";
@@ -26,8 +28,9 @@ const initialState = {
     details: [],
     cart: [],
     orderList: [],
+    orderListCopy: [],
     orderDetails: {},
-    customerHistory: [] 
+    customerHistory: [],
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -106,7 +109,8 @@ const rootReducer = (state = initialState, action) => {
             
             return {
                 ...state,
-                orderList: action.payload
+                orderList: action.payload,
+                orderListCopy: action.payload
             }
         case GET_ORDER_DETAILS: 
 
@@ -114,10 +118,28 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 orderDetails: action.payload
             }
+
         case GET_CUSTOMER_HISTORY:
             return {
                 ...state,
                 customerHistory: action.payload
+            }
+        
+        case UPDATED_ORDER:
+            
+            const findObjectIndex = state.orderList.findIndex(e => e.id === action.payload.id);
+
+            return {
+                ...state,
+                orderList: [...state.orderList.slice(0, findObjectIndex), action.payload, ...state.orderList.slice(findObjectIndex + 1)],
+                orderListCopy: [...state.orderListCopy.slice(0, findObjectIndex), action.payload, ...state.orderListCopy.slice(findObjectIndex + 1)]
+            }
+
+        case FILTER_BY_STATUS:
+
+            return {
+                ...state,
+                orderList: action.payload === "ALL" ? state.orderListCopy : state.orderListCopy.filter(e => e.metadata.orderStatus === action.payload)
             }
         default:
             return { ...state }

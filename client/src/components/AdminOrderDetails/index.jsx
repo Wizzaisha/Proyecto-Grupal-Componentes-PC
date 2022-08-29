@@ -8,10 +8,9 @@ import "./AdminOrderDetails.css";
 function AdminOrderDetails() {
 
     const { idPayment } = useParams();
-
     
     const dispatch = useDispatch();
-
+    
     const [activateEdit, setActivateEdit] = useState(false);
     const [input, setInput] = useState({
         metadata: ""
@@ -30,7 +29,7 @@ function AdminOrderDetails() {
         dispatch(updateOrder(paymentDetail.id,input))
         .then(response => setPaymentDetail(response.payload))
         .catch(error => console.log(error));
-        
+
         setActivateEdit(false);
         setInput({
             metadata: ""
