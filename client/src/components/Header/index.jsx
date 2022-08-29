@@ -38,7 +38,7 @@ function Header() {
                 <Link className="nav-link text-light" to="/login">Login</Link>
                 <Link className="nav-link text-light" to="/signup">SignUp</Link>
                 <Link className="nav-link text-light" to="/cart">Cart</Link>
-                {auth.admin && <Link className="nav-link text-light `${}`" to="/adminpanel">Admin Panel</Link>}
+                {localStorage.getItem('admin') === 'true' ? <Link className="nav-link text-light `${}`" to="/adminpanel">Admin Panel</Link> : null}
             </Nav>
             <Form className="d-flex"
                 onChange={(e)=>{

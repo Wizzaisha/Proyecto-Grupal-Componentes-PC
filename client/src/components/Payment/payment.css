@@ -1,0 +1,11 @@
+.container2022 {
+    display: flex;
+    flex-direction: row;
+}
+
+.tarjetas {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+}
