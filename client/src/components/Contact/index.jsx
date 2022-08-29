@@ -1,3 +1,4 @@
+// falta controlar buton "Send"
 import "./Contact.css";
 import Form from 'react-bootstrap/Form';
 import React,{useState} from "react";
