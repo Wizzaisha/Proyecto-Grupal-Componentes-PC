@@ -38,6 +38,7 @@ const rootReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case GET_ALL_PRODUCTS:
+
             return {
                 ...state,
                 brands: [],
@@ -56,7 +57,9 @@ const rootReducer = (state = initialState, action) => {
 
             const categoryType = action.payload;
 
-            const filteredBrands = filterCurrentBrands(state.productsCopy, categoryType);
+            const dataCopy = state.productsCopy.filter(e => e.isDeleted === false); 
+
+            const filteredBrands = filterCurrentBrands(dataCopy, categoryType);
 
             return {
                 ...state,
@@ -94,7 +97,9 @@ const rootReducer = (state = initialState, action) => {
 
         case FILTER_AND_SORT_BY:
 
-            const filteredData = filterData(state.productsCopy, state.category, state.currentSort, state.filterBrands);
+            const data = state.productsCopy.filter(e => e.isDeleted === false); 
+
+            const filteredData = filterData(data, state.category, state.currentSort, state.filterBrands);
 
             return {
                 ...state,
@@ -144,10 +149,18 @@ const rootReducer = (state = initialState, action) => {
             }
 
         case DELETE_PRODUCT:
+
+            const idObject = action.payload;
+            
+            const findIndex = state.products.findIndex(e => e.id === idObject);
+            const findObject = state.products.find(e => e.id === idObject);
+
+            findObject.isDeleted = !findObject.isDeleted;
+
             return {
                 ...state,
-                products: state.products.filter(e => e.id !== action.payload),
-                productsCopy: state.productsCopy.filter(e => e.id !== action.payload),
+                products: [...state.products.slice(0, findIndex), findObject, ...state.products.slice(findIndex + 1)],
+                productsCopy: [...state.productsCopy.slice(0, findIndex), findObject, ...state.productsCopy.slice(findIndex + 1)],
             }
         default:
             return { ...state }
