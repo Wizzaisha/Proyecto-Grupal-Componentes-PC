@@ -13,6 +13,7 @@ export const GET_ORDER_DETAILS = "GET_ORDER_DETAILS";
 export const GET_CUSTOMER_HISTORY = "GET_CUSTOMER_HISTORY";
 export const UPDATED_ORDER = "UPDATED_ORDER";
 export const FILTER_BY_STATUS = "FILTER_BY_STATUS";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
 
 export const getAllProducts = () => {
     return async (dispatch) => {
@@ -135,5 +136,12 @@ export const updateOrder = (id, data) => {
 export const filterByStatus = (value) => {
     return (dispatch) => {
         return dispatch({type: FILTER_BY_STATUS, payload: value});
+    }
+}
+
+export const deleteProduct = (id) => {
+    return async (dispatch) => {
+        await axios.delete(`http://localhost:3001/api/productos/${id}`); 
+        return dispatch({type: DELETE_PRODUCT, payload: id});
     }
 }

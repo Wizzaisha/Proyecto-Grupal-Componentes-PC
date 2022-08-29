@@ -13,6 +13,7 @@ import {
     GET_CUSTOMER_HISTORY,
     FILTER_BY_STATUS,
     UPDATED_ORDER,
+    DELETE_PRODUCT,
 } from "../actions";
 
 import { filterCurrentBrands, filterData } from "../utils";
@@ -140,6 +141,13 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 orderList: action.payload === "ALL" ? state.orderListCopy : state.orderListCopy.filter(e => e.metadata.orderStatus === action.payload)
+            }
+
+        case DELETE_PRODUCT:
+            return {
+                ...state,
+                products: state.products.filter(e => e.id !== action.payload),
+                productsCopy: state.productsCopy.filter(e => e.id !== action.payload),
             }
         default:
             return { ...state }
