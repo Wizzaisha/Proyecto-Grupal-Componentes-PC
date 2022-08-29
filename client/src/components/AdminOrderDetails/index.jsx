@@ -8,10 +8,9 @@ import "./AdminOrderDetails.css";
 function AdminOrderDetails() {
 
     const { idPayment } = useParams();
-
     
     const dispatch = useDispatch();
-
+    
     const [activateEdit, setActivateEdit] = useState(false);
     const [input, setInput] = useState({
         metadata: ""
@@ -30,7 +29,7 @@ function AdminOrderDetails() {
         dispatch(updateOrder(paymentDetail.id,input))
         .then(response => setPaymentDetail(response.payload))
         .catch(error => console.log(error));
-        
+
         setActivateEdit(false);
         setInput({
             metadata: ""
@@ -58,7 +57,7 @@ function AdminOrderDetails() {
     }, [dispatch, idPayment]);
 
     return (
-        <div>
+        <div className="container-fluid">
             <h5>Details order: {paymentDetail.id}</h5>
             {paymentDetail.hasOwnProperty("id") && 
                 <div className="container-fluid orderDetailsContainer">
@@ -119,47 +118,47 @@ function AdminOrderDetails() {
 
                         <div className="col-12 col-sm-6 productsOrderedInfo">
                             <h4>Products Ordered</h4>
+                            <div className="tableResponsive">
+                                <table className="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col"></th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {paymentDetail.metadata.productsOrdered && paymentDetail.metadata.productsOrdered.map(e => {
+                                            return (
+                                                <tr key={e.id}>
+                                                    <th scope="row">
+                                                        <p>{e.id}</p>
+                                                    </th>
 
-                            <table className="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Id</th>
-                                        <th scope="col"></th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Quantity</th>
-                                        <th scope="col">Name</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {paymentDetail.metadata.productsOrdered && paymentDetail.metadata.productsOrdered.map(e => {
-                                        return (
-                                            <tr key={e.id}>
-                                                <th scope="row">
-                                                    <p>{e.id}</p>
-                                                </th>
+                                                    <td>
+                                                        <img src={e.image} alt="img" className="productImage"></img>
+                                                    </td>
 
-                                                <td>
-                                                    <img src={e.image} alt="img" className="productImage"></img>
-                                                </td>
+                                                    <td>
+                                                        <p>Price: </p>
+                                                        <p>{e.price}</p>
+                                                    </td>
 
-                                                <td>
-                                                    <p>Price: </p>
-                                                    <p>{e.price}</p>
-                                                </td>
-
-                                                <td>
-                                                    <p>{e.quantity}</p>
-                                                </td>
-                                             
-                                                <td>
-                                                    <p>{e.brand} {e.model}</p>
-                                                </td>
-                                            </tr>
-                                        )})
-                                    }
-                                </tbody>
-                            </table>
-
+                                                    <td>
+                                                        <p>{e.quantity}</p>
+                                                    </td>
+                                                
+                                                    <td>
+                                                        <p>{e.brand} {e.model}</p>
+                                                    </td>
+                                                </tr>
+                                            )})
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         
                         <div className="col-12 col-sm-6 shippingInf">
