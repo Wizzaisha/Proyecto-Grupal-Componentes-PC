@@ -39,25 +39,36 @@ function ProductDetails() {
 
     function handleButton(e) {
         e.preventDefault();
+        // Le agrego/sobreescribo una propiedad cantidad al producto
+        details.quantities = value;
         // Traemos el «cart» del localStorage y lo parseamos para poder manipularlo
         let cart = JSON.parse(localStorage.getItem('cart'));
         // Si no existe (primera vez que se agrega un producto) lo definimos como un array y le pusheamos el producto en cuestion
-        if(!cart){
+        if (!cart) {
             cart = [];
             cart.push(details);
             alert(`Added ${details.category} ${details.brand} ${details.model} to cart`)
         }
-        else{
+        else {
             // Si ya existe el «cart» (ya se pushearon uno o mas productos) preguntamos si encuentra el producto dentro
-            if(!cart.find(p => p.id === details.id)){
+            if (!cart.find(p => p.id === details.id)) {
                 // En caso de no encontrarlo lo pushea
                 cart.push(details)
                 alert(`Added ${details.category} ${details.brand} ${details.model} to cart`)
             }
-            else alert(`This product is already added to cart`)
+            else
+                // En caso de encontrarlo sobreescribe la cantidad
+                cart.forEach(product => { if (product.id === details.id) product.quantities = value; });
+
+            /*alert(`This product is already added to cart`)*/
         }
         // Luego «cart» a string y lo subimos al localStorage
         localStorage.setItem('cart', JSON.stringify(cart))
+    }
+
+    function stockValidator(e) {
+        if (e.target.value === '+' && value < details.stock) { setValue(value + 1) }
+        if (e.target.value === '-' && value > 1) { setValue(value - 1) }
     }
 
     return (
@@ -76,9 +87,9 @@ function ProductDetails() {
                     <h3>${details.price}</h3>
                     <p>{`Stock available: (${details.stock} available)`} </p>
                     <div className="input-group">
-                        <button type="button" className="btn btn-outline-primary" onClick={() => setValue(value - 1)}>-</button>
+                        <button type="button" className="btn btn-outline-primary" value={'-'} onClick={(e) => stockValidator(e) /*setValue(value - 1)*/}>-</button>
                         <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
-                        <button type="button" className="btn btn-outline-primary" onClick={() => setValue(value + 1)}>+</button>
+                        <button type="button" className="btn btn-outline-primary" value={'+'} onClick={(e) => stockValidator(e) /*setValue(value + 1)*/}>+</button>
                     </div>
                     <button type="submit" className="btn btn-primary" onClick={e => handleButton(e)} >Add to cart</button>
                 </div>

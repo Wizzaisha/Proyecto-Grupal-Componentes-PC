@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // falta controlar buton "Send"
+=======
+import { useAuth } from "../context/authContext";
+>>>>>>> development
 import "./Contact.css";
 import Form from 'react-bootstrap/Form';
 import React,{useState} from "react";
@@ -44,7 +48,8 @@ import React,{useState} from "react";
     // Form.addEventListener("keyup", validate)
 
 function Contact() {
-
+const auth = useAuth()
+console.log(auth.user)
 
     
     const [input,setInput]=useState({

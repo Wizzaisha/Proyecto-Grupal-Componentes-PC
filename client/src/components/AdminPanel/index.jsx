@@ -1,11 +1,29 @@
 import "./AdminPanel.css";
+import AdminNavBar from "../AdminNavBar";
+import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { getOrdersList } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 
 function AdminPanel() {
 
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getOrdersList());
+    }, [dispatch]);
 
     return (
-        <div>
-            <p>Admin panel</p>
+        <div className="container-fluid adminPanelContainer">
+            <div className="row">
+                <div className="col-lg-2">
+                    <AdminNavBar />
+                </div>
+                <div className="col-lg-10 adminContentContainer ">
+                    <h2>Admin panel</h2>
+                    <Outlet />
+                </div>
+            </div>
         </div>
     )
 }
