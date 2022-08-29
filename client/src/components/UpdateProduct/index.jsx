@@ -64,7 +64,7 @@ export default function UpdateProduct(id, brand,model,image,description,specs,be
       ...input,
       specsI:array
     })
-    console.log('arrayPlat', arrayPlat)
+    // console.log('arrayPlat', arrayPlat)
     const validations = validate(input);
     setErrors(validations)
      }
@@ -200,7 +200,7 @@ export default function UpdateProduct(id, brand,model,image,description,specs,be
 
           <div className={style.check}><label> Plataforma permitidas: puedes seleccionar hasta 5 plataformas </label>
           <div>
-          {arrayPlat.map(plat=> {
+          {/* {arrayPlat.map(plat=> {
             return(
               <div className={style.checkbox}>
                 <ul><li>
@@ -216,14 +216,14 @@ export default function UpdateProduct(id, brand,model,image,description,specs,be
               </li></ul>
               </div>
               )})
-            }
+            } */}
             </div></div>
             <div>{errors.platform && <p>{ errors.platform }</p>} </div>
             
 
             <div /*className={style}*/><label> Categorias: puedes seleccionar 1 categoría</label>
  
-                  <select name='select' onChange={(e)=>handleGenre(e)} defaultValue="default">
+                  {/* <select name='select' onChange={(e)=>handleGenre(e)} defaultValue="default"> */}
                   <option value='default' disabled='disabled'>Categorias</option>
                  
                   categprias.map((cat)=>(
