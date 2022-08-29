@@ -12,7 +12,7 @@ export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
 export const GET_ORDER_DETAILS = "GET_ORDER_DETAILS";
 export const GET_CUSTOMER_HISTORY = "GET_CUSTOMER_HISTORY";
 export const UPDATED_ORDER = "UPDATED_ORDER";
-
+export const FILTER_BY_STATUS = "FILTER_BY_STATUS";
 
 export const getAllProducts = () => {
     return async (dispatch) => {
@@ -129,5 +129,11 @@ export const updateOrder = (id, data) => {
         const response = await axios.post(`http://localhost:3001/api/order-list/${id}`, data);
 
         return dispatch({type: UPDATED_ORDER, payload: response.data});
+    }
+}
+
+export const filterByStatus = (value) => {
+    return (dispatch) => {
+        return dispatch({type: FILTER_BY_STATUS, payload: value});
     }
 }
