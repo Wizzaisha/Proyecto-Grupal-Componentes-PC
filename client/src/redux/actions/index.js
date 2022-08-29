@@ -14,6 +14,7 @@ export const GET_CUSTOMER_HISTORY = "GET_CUSTOMER_HISTORY";
 export const UPDATED_ORDER = "UPDATED_ORDER";
 export const FILTER_BY_STATUS = "FILTER_BY_STATUS";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
+export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 
 export const getAllProducts = () => {
     return async (dispatch) => {
@@ -143,5 +144,18 @@ export const deleteProduct = (id) => {
     return async (dispatch) => {
         await axios.delete(`http://localhost:3001/api/productos/${id}`); 
         return dispatch({type: DELETE_PRODUCT, payload: id});
+    }
+}
+
+export function editProduct(id, brand,model,image,description,specs,benchmark,price,stock,category) {
+    return async function (dispatch) {
+        try {
+            let response = await axios.post(`http://localhost:3001/api/productos/${id}`, {
+                id, brand,model,image,description,specs,benchmark,price,stock,category})
+                console.log(response.data)
+                return dispatch({type: UPDATE_PRODUCT});
+        } catch (error) {
+            console.log(error)
+        }
     }
 }

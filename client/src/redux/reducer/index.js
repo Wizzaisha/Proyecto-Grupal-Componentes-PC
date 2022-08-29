@@ -14,6 +14,7 @@ import {
     FILTER_BY_STATUS,
     UPDATED_ORDER,
     DELETE_PRODUCT,
+    UPDATE_PRODUCT
 } from "../actions";
 
 import { filterCurrentBrands, filterData } from "../utils";
@@ -149,6 +150,10 @@ const rootReducer = (state = initialState, action) => {
                 products: state.products.filter(e => e.id !== action.payload),
                 productsCopy: state.productsCopy.filter(e => e.id !== action.payload),
             }
+
+            case UPDATE_PRODUCT:
+                return {  ...state    }
+
         default:
             return { ...state }
     }
