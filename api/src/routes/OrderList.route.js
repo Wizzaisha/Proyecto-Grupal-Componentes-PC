@@ -89,7 +89,7 @@ router.get("/:idPayment", async (req, res, next) => {
     const response = await stripe.paymentIntents.retrieve(
         idPayment
     );
-
+    
     const paymentDetails = await oneDataController(response);
 
     res.status(200).send(paymentDetails);

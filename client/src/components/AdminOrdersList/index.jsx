@@ -1,9 +1,8 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./AdminOrdersList.css";
-import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getOrdersList } from "../../redux/actions";
+import { filterByStatus } from "../../redux/actions";
 
 function AdminOrdersList () {
 
@@ -11,13 +10,29 @@ function AdminOrdersList () {
     
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getOrdersList());
-    }, [dispatch]);
+    function handleChangeStatus (event) {
+        const { value } = event.target;
+
+        if (value !== "default") {
+            dispatch(filterByStatus(value));
+        }
+    } 
+
+
     
     return (
         <div>
             <h5>All orders</h5>
+            <div>
+                <select onChange={handleChangeStatus}>
+                    <option value={"default"}>Filter by status</option>
+                    <option value={"ALL"}>ALL</option>
+                    <option value={"CREATED"}>CREATED</option>
+                    <option value={"PROCESSING"}>PROCESSING</option>
+                    <option value={"CANCELED"}>CANCELED</option>
+                    <option value={"COMPLETED"}>COMPLETED</option>
+                </select>
+            </div>
             <table className="table">
                 <thead>
                     <tr>
