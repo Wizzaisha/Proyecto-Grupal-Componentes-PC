@@ -8,8 +8,9 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import {useAuth} from "../context/authContext"
-
+import {useAuth} from "../context/authContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "react-router-dom";
 
 function Header() {
@@ -32,12 +33,12 @@ function Header() {
                     maxHeight: '100px',
                 }}
                 navbarScroll
-            >
+            > 
                 <Link className="nav-link text-light" to="/store">Store</Link>
                 <Link className="nav-link text-light" to="/contact">Contact</Link>
                 <Link className="nav-link text-light" to="/login">Login</Link>
                 <Link className="nav-link text-light" to="/signup">SignUp</Link>
-                <Link className="nav-link text-light" to="/cart">Cart</Link>
+                <Link className="nav-link text-light" to="/cart"><FontAwesomeIcon icon={faCartShopping}/><div className="cartNumber">4</div></Link>
                 {localStorage.getItem('admin') === 'true' ? <Link className="nav-link text-light `${}`" to="/adminpanel">Admin Panel</Link> : null}
             </Nav>
             <Form className="d-flex"
