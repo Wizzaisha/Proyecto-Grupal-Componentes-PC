@@ -1,6 +1,6 @@
 import "./Header.css";
 import React,{
-    useState
+    useState,
 } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
@@ -8,12 +8,13 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import {useAuth} from "../context/authContext"
 
 import { Link } from "react-router-dom";
 
 function Header() {
     const [wanted, setWanted] = useState("")
-    const [admin, setAdmin] = useState(false)
+    const auth = useAuth()
     const handlerSearch = (e) =>{
         e.preventDefault(e)
         setWanted(e.target.value)
@@ -37,7 +38,7 @@ function Header() {
                 <Link className="nav-link text-light" to="/login">Login</Link>
                 <Link className="nav-link text-light" to="/signup">SignUp</Link>
                 <Link className="nav-link text-light" to="/cart">Cart</Link>
-                {admin?<Link className="nav-link text-light" to="/adminpanel">Admin Panel</Link> : <div></div>}
+                {auth.admin && <Link className="nav-link text-light `${}`" to="/adminpanel">Admin Panel</Link>}
             </Nav>
             <Form className="d-flex"
                 onChange={(e)=>{

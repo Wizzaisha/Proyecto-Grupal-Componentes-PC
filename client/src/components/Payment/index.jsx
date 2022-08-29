@@ -23,7 +23,7 @@ const index = () => {
 
         const getTotal = () => {
             let total2 = 0;
-            cart.map((el) => { total2 += el.price * el.quantities });
+            cart.map((el) => {return total2 += el.price * el.quantities });
             return total2;
         }
 
@@ -36,7 +36,7 @@ const index = () => {
                 card: elements.getElement(CardElement)
             })
             if (!error) {
-                if (city == '' || state == '' || street == '' || phone == '' || name == '') {
+                if (city === '' || state === '' || street === '' || phone === '' || name === '') {
                     alert('Please fill in all the fields')
                 } else {
                     const body = {
@@ -95,18 +95,27 @@ const index = () => {
         }
 
         return (
-            <div>
-                {
-                    cart.length ? cart.map(el =>
-                        <div className="card">
-                            <p >{`${el.category} ${el.brand} ${el.model}`}</p>
-                            <img src={el.image} alt={el.model} className="img-fluid col" />
-                            <p>x{el.quantities}</p>
-                            <p >price: ${el.price}</p>
-                        </div>
-                    ) : <p>You don't add any product...</p>
-                }
-                <form onSubmit={handleSubmit} className="card card-body" style={{ width: '25rem' }}>
+            <div className="container2022">
+                <div>
+                    {
+                        cart.length ? cart.map(el =>
+                            <div className="card mb-4" style={{ width: "540px" }}>
+                                <div className="tarjetas">
+                                    <div className="col-md-2">
+                                        <img src={el.image} alt={el.model} className="img-cover" style={{ width: '100%' }} />
+                                    </div>
+                                    <div className="card-body">
+                                        <h5 className="card-title">{`${el.category} ${el.brand} ${el.model}`}</h5>
+                                        <p className='card-text'>x{el.quantities}</p>
+                                        <p className='card-text'>price: ${el.price}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ) : <p>You don't add any product...</p>
+                    }
+                </div>
+
+                <form onSubmit={handleSubmit} className="card card-body formslide" style={{ width: '25rem' }}>
                     <h2>shipping adress:</h2>
                     <p>Name</p>
                     <input type="text" name="Name" placeholder="write your name" onChange={(e) => handleInputName(e)}></input>
