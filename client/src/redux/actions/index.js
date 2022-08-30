@@ -14,14 +14,12 @@ export const GET_CUSTOMER_HISTORY = "GET_CUSTOMER_HISTORY";
 export const UPDATED_ORDER = "UPDATED_ORDER";
 export const FILTER_BY_STATUS = "FILTER_BY_STATUS";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
-<<<<<<< branchSanti
 export const SEARCH_PRODUCTS = "SEARCH_PRODUCTS";
-=======
 export const SET_ADMIN_CATEGORY = "SET_ADMIN_CATEGORY";
 export const FILTER_CATEGORY_ADMIN = "FILTER_CATEGORY_ADMIN";
 export const CLEAR_FILTER_ADMIN = "CLEAR_FILTER_ADMIN";
 export const CLEAR_FILTER_STORE = "CLEAR_FILTER_STORE";
->>>>>>> development
+
 
 export const getAllProducts = () => {
     return async (dispatch) => {
@@ -162,24 +160,24 @@ export const searchProducts = (wanted) => {
 
 export const setAdminCategory = (value) => {
     return (dispatch) => {
-        return dispatch({type: SET_ADMIN_CATEGORY, payload: value});
+        return dispatch({ type: SET_ADMIN_CATEGORY, payload: value });
     }
 }
 
 export const adminFilterCategory = (filterValues) => {
     return (dispatch) => {
-        return dispatch({type: FILTER_CATEGORY_ADMIN, payload: filterValues})
+        return dispatch({ type: FILTER_CATEGORY_ADMIN, payload: filterValues })
     }
 }
 
 export const clearAdminFilter = () => {
     return (dispatch) => {
-        return dispatch({type: CLEAR_FILTER_ADMIN});
+        return dispatch({ type: CLEAR_FILTER_ADMIN });
     }
 }
 
 export const clearStoreFilter = () => {
     return (dispatch) => {
-        return dispatch({type: CLEAR_FILTER_STORE});
+        return dispatch({ type: CLEAR_FILTER_STORE });
     }
 }
