@@ -14,6 +14,10 @@ export const GET_CUSTOMER_HISTORY = "GET_CUSTOMER_HISTORY";
 export const UPDATED_ORDER = "UPDATED_ORDER";
 export const FILTER_BY_STATUS = "FILTER_BY_STATUS";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
+export const SET_ADMIN_CATEGORY = "SET_ADMIN_CATEGORY";
+export const FILTER_CATEGORY_ADMIN = "FILTER_CATEGORY_ADMIN";
+export const CLEAR_FILTER_ADMIN = "CLEAR_FILTER_ADMIN";
+export const CLEAR_FILTER_STORE = "CLEAR_FILTER_STORE";
 
 export const getAllProducts = () => {
     return async (dispatch) => {
@@ -143,5 +147,29 @@ export const deleteProduct = (id) => {
     return async (dispatch) => {
         await axios.delete(`http://localhost:3001/api/productos/${id}`); 
         return dispatch({type: DELETE_PRODUCT, payload: id});
+    }
+}
+
+export const setAdminCategory = (value) => {
+    return (dispatch) => {
+        return dispatch({type: SET_ADMIN_CATEGORY, payload: value});
+    }
+}
+
+export const adminFilterCategory = (filterValues) => {
+    return (dispatch) => {
+        return dispatch({type: FILTER_CATEGORY_ADMIN, payload: filterValues})
+    }
+}
+
+export const clearAdminFilter = () => {
+    return (dispatch) => {
+        return dispatch({type: CLEAR_FILTER_ADMIN});
+    }
+}
+
+export const clearStoreFilter = () => {
+    return (dispatch) => {
+        return dispatch({type: CLEAR_FILTER_STORE});
     }
 }
