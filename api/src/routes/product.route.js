@@ -72,7 +72,7 @@ router.delete('/:id', async (req, res, next)=>
     try
     {
     let productoEliminar = await eliminarProducto(id)
-    productoEliminar? res.send("Producto elminado")
+    productoEliminar? res.send({message: "Product updated", id})
     :res.send("Error al eliminar")
     }
     catch (error) { next(error)  }
