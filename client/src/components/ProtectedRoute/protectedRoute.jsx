@@ -3,8 +3,7 @@ import { useAuth } from "../context/authContext";
 
 export function ProtectedRouter({children}){
     const auth = useAuth();
-
-    if(!auth.user.email) return <Navigate to={"/login"}/>
+    if(!auth.admin) return <Navigate to={"/signup"}/>
     return <>{children} </>
 }
 //ruta protegida por componenteA

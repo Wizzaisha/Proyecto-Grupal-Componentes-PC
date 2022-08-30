@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 
 function Header() {
     const [wanted, setWanted] = useState("")
-    const auth = useAuth()
+    const admin = localStorage.getItem("admin")
     const handlerSearch = (e) =>{
         e.preventDefault(e)
         setWanted(e.target.value)
@@ -41,6 +41,7 @@ function Header() {
                 <Link className="nav-link text-light" to="/signup">SignUp</Link>
                 <Link className="nav-link text-light" to="/cart"><FontAwesomeIcon icon={faCartShopping}/><div id='counter' className="cartNumber">{JSON.parse(localStorage.getItem('cart')).length}</div></Link>
                 {localStorage.getItem('admin') === 'true' ? <Link className="nav-link text-light `${}`" to="/adminpanel">Admin Panel</Link> : null}
+                
             </Nav>
             <Form className="d-flex"
                 onChange={(e)=>{
@@ -59,14 +60,4 @@ function Header() {
         </Navbar>
     );
 }
-/*         <div className="headerContainer">
-            <Link to={"/"}><p>Name page</p></Link>
-            <ul>
-                <Link to={"/contact"}>Contact</Link>
-                <Link to={"/adminpanel"}>Admin Panel</Link>
-                <Link to={"/login"}>Login</Link>
-                <Link to={"/signup"}>SignUp</Link>
-                <Link to={"/cart"}>Shop Cart</Link>
-            </ul>
-        </div> */
 export default Header;

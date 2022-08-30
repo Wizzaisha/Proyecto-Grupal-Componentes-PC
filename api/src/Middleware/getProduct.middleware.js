@@ -17,7 +17,8 @@ toObj.push ({
         benchmark: e.benchmark,
         price: e.price,
         stock: e.stock,
-        category: e.category.name
+        category: e.category.name,
+        isDeleted: e.isDeleted
        })
 })
 return toObj;
@@ -36,7 +37,8 @@ const producto = {
     benchmark: e.benchmark,
     price: e.price,
     stock: e.stock,
-    category: e.category.name
+    category: e.category.name,
+    isDeleted: e.isDeleted
 };
 
 return producto;
