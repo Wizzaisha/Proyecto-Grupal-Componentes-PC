@@ -36,9 +36,11 @@ function ProductDetails() {
         dispatch(getProductDetails(idProduct))
     }, [dispatch, idProduct])
 
-
     function handleButton(e) {
         e.preventDefault();
+        // Las dos lineas de codigo siguiente actualizan el contador del cart del navbar
+        let cartCounter = Number(document.querySelector('#counter').innerText) + 1;
+        document.querySelector('#counter').innerText = cartCounter
         // Le agrego/sobreescribo una propiedad cantidad al producto
         details.quantities = value;
         // Traemos el «cart» del localStorage y lo parseamos para poder manipularlo
@@ -64,6 +66,7 @@ function ProductDetails() {
         }
         // Luego «cart» a string y lo subimos al localStorage
         localStorage.setItem('cart', JSON.stringify(cart))
+
     }
 
     function stockValidator(e) {
