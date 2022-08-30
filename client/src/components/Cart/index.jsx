@@ -7,7 +7,7 @@ function Cart() {
     // Creamos un estado local «cart»
     const [state, setState] = useState({
         // Lo inicializamos con el valor del localStorage
-        cart: JSON.parse(localStorage.getItem('cart')),
+        cart: JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : [],
     })
 
 
@@ -24,6 +24,7 @@ function Cart() {
             cart: cart
         })
     }
+    
     // Esta variable va a guardar el calculo del monto total
     var total = 0;
     // Guarda la suma de multiplicar el precio * cantidad de cada producto
