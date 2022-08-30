@@ -13,6 +13,10 @@ module.exports = (sequelize) => {
       benchmark: { type: DataTypes.INTEGER },
       price: { type: DataTypes.FLOAT },
       stock: { type: DataTypes.INTEGER },
+      isDeleted: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      }
     });
 
 };

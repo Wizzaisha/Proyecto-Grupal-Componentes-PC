@@ -11,14 +11,16 @@ import {
 import Pagination from "../Pagination/";
 import ProductCard from "../ProductCard";
 import CategoriesBar from "../CategoriesBar";
+import DataNotFound from "../DataNotFound";
 
 let pageSize = 10;
 
 function ProductCards() {
 
     // Redux states and dispatch
-    let allProducts = useSelector(state => state.products);
-    
+    let productState = useSelector(state => state.products);
+    let allProducts = productState.filter(e => e.isDeleted === false); 
+
     const currentBrands = useSelector(state => state.brands);
     const currentFilterBrands = useSelector(state => state.filterBrands);
     const currentCategory = useSelector(state => state.category);
@@ -31,8 +33,8 @@ function ProductCards() {
     const currentProducts = useMemo(() => {
         const firstPageIndex = (currentPage - 1) * pageSize;
         const lastPageIndex = firstPageIndex + pageSize;
-
-        return allProducts.slice(firstPageIndex, lastPageIndex);
+        
+        return !allProducts.message && allProducts.slice(firstPageIndex, lastPageIndex);
     }, [currentPage, allProducts]);
     
   
@@ -108,34 +110,40 @@ function ProductCards() {
                         </select>
                     </div>
                 </div>
+                
+                {allProducts.message 
+                    ?   <DataNotFound /> 
+                    : 
+                        <div>
+                            <div className="cardsContainer">
 
-                <div className="cardsContainer">
+                                {currentProducts && currentProducts.map((product) => {
+                                    return (
+                                        <ProductCard
+                                            key={product.id}
+                                            id={product.id} 
+                                            image={product.image}
+                                            brand={product.brand}
+                                            model={product.model}
+                                            price={product.price}
+                                            stock={product.stock}
+                                        />
+                                    )
+                                })}
+                            
+                            
+                            </div>
+                            <div>
+                                <Pagination 
+                                    currentPage={currentPage}
+                                    totalCount={allProducts.length}
+                                    pageSize={pageSize}
+                                    onPageChange={page => setCurrentPage(page)}
+                                />
+                            </div>
+                        </div>
+                }
 
-                    {currentProducts && currentProducts.map((product) => {
-                        return (
-                            <ProductCard
-                                key={product.id}
-                                id={product.id} 
-                                image={product.image}
-                                brand={product.brand}
-                                model={product.model}
-                                price={product.price}
-                                stock={product.stock}
-                            />
-                        )
-                    })}
-
-
-                </div>
-                <div>
-                    <Pagination 
-                        currentPage={currentPage}
-                        totalCount={allProducts.length}
-                        pageSize={pageSize}
-                        onPageChange={page => setCurrentPage(page)}
-                    />
-                </div>
-            
             </div>
             
         </div>
