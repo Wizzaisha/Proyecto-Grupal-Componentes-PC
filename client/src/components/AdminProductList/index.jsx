@@ -1,14 +1,32 @@
 import "./AdminProductList.css";
 
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProduct } from "../../redux/actions";
+import { adminFilterCategory, clearAdminFilter, deleteProduct, setAdminCategory } from "../../redux/actions";
 import DataNotFound from "../DataNotFound";
+import { useState } from "react";
 
 function AdminProductList() {
 
-    const allProducts2 = useSelector(state => state.products);
+    const allProducts2 = useSelector(state => state.productsAdmin);
+    const categories = useSelector(state => state.allCategories)
+    const admCurrCategory = useSelector(state => state.admCurrCategory);
 
     const dispatch = useDispatch();
+
+    const [productDeleted, setProductDeleted] = useState({});
+
+    function handleCategorySelect (event) {
+        const { value } = event.target;
+
+        dispatch(setAdminCategory(value));
+        dispatch(adminFilterCategory(""));
+
+    }
+
+    function handleClearAdminFilter () {
+        dispatch(clearAdminFilter());
+    }
+
 
     function handleEditButton (productId) {
         console.log(productId);
@@ -16,7 +34,8 @@ function AdminProductList() {
     }
 
     function handleDeleteButton (productId) {
-        dispatch(deleteProduct(productId));
+        dispatch(deleteProduct(productId))
+        .then(response => setProductDeleted(response));
     }
     
     return (
@@ -27,7 +46,39 @@ function AdminProductList() {
 
             {allProducts2.message 
                 ?   <DataNotFound />  
-                :    <div className="tableResponsive">
+                : <div>
+                    <button
+                        className="btn btn-outline-warning"
+                        onClick={handleClearAdminFilter}
+                    >Clear filter
+                    </button>
+                    <div>
+                        <div className="btn-group adminFilterContainer">
+                            {categories && categories.map((category, index) => {
+                                return (
+                                    <div key={index}>
+                                        <label 
+                                            className={`adminFilterButton btn btn-outline-secondary ${admCurrCategory === category ? "checked" : "nochecked"} `}
+                                        >
+                                            <input
+                                                type={"radio"} 
+                                                className="btn-check"
+                                                autoComplete="off"
+                                                value={category}
+                                                onChange={handleCategorySelect}
+                                                checked={admCurrCategory === category ? true : false}
+                                            /> 
+                                            {category}
+                                        </label>
+
+                                    </div>
+
+                                )
+                            })}
+                        </div>    
+                    </div>
+
+                    <div className="tableResponsive">
                         <table className="table">
                             <thead>
                                 <tr>
@@ -63,6 +114,7 @@ function AdminProductList() {
                             </tbody>
                         </table>
                     </div>
+                </div>
             }
         </div>
     )
