@@ -8,13 +8,12 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import {useAuth} from "../context/authContext"
 
 import { Link } from "react-router-dom";
 
 function Header() {
     const [wanted, setWanted] = useState("")
-    const auth = useAuth()
+    const admin = localStorage.getItem("admin")
     const handlerSearch = (e) =>{
         e.preventDefault(e)
         setWanted(e.target.value)
@@ -38,7 +37,7 @@ function Header() {
                 <Link className="nav-link text-light" to="/login">Login</Link>
                 <Link className="nav-link text-light" to="/signup">SignUp</Link>
                 <Link className="nav-link text-light" to="/cart">Cart</Link>
-                {localStorage.getItem('admin') === 'true' ? <Link className="nav-link text-light `${}`" to="/adminpanel">Admin Panel</Link> : null}
+                {admin==="true" && <Link className="nav-link text-light `${}`" to="/adminpanel">Admin Panel</Link>}
             </Nav>
             <Form className="d-flex"
                 onChange={(e)=>{
@@ -57,14 +56,4 @@ function Header() {
         </Navbar>
     );
 }
-/*         <div className="headerContainer">
-            <Link to={"/"}><p>Name page</p></Link>
-            <ul>
-                <Link to={"/contact"}>Contact</Link>
-                <Link to={"/adminpanel"}>Admin Panel</Link>
-                <Link to={"/login"}>Login</Link>
-                <Link to={"/signup"}>SignUp</Link>
-                <Link to={"/cart"}>Shop Cart</Link>
-            </ul>
-        </div> */
 export default Header;
