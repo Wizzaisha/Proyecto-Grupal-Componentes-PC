@@ -11,6 +11,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import {useAuth} from "../context/authContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+
 import { Link } from "react-router-dom";
 
 function Header() {
@@ -41,7 +42,7 @@ function Header() {
                 <Link className="nav-link text-light" to="/signup">SignUp</Link>
                 <Link className="nav-link text-light" to="/cart"><FontAwesomeIcon icon={faCartShopping}/><div id='counter' className="cartNumber">{JSON.parse(localStorage.getItem('cart')).length}</div></Link>
                 {localStorage.getItem('admin') === 'true' ? <Link className="nav-link text-light `${}`" to="/adminpanel">Admin Panel</Link> : null}
-                
+
             </Nav>
             <Form className="d-flex"
                 onChange={(e)=>{
