@@ -8,11 +8,12 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-
+import { useAuth } from "../context/authContext";
 import { Link } from "react-router-dom";
 
 function Header() {
     const [wanted, setWanted] = useState("")
+    const auth = useAuth();
     const admin = localStorage.getItem("admin")
     const handlerSearch = (e) =>{
         e.preventDefault(e)
@@ -34,8 +35,11 @@ function Header() {
             >
                 <Link className="nav-link text-light" to="/store">Store</Link>
                 <Link className="nav-link text-light" to="/contact">Contact</Link>
-                <Link className="nav-link text-light" to="/login">Login</Link>
-                <Link className="nav-link text-light" to="/signup">SignUp</Link>
+                {auth.user !==null
+                ?<Link className="nav-link text-primary" to="/login">LogOut</Link>
+                :<Link className="nav-link text-light" to="/login">Login</Link>}
+                {auth.user===null &&
+                <Link className="nav-link text-light" to="/signup">SignUp</Link>}
                 <Link className="nav-link text-light" to="/cart">Cart</Link>
                 {admin==="true" && <Link className="nav-link text-light `${}`" to="/adminpanel">Admin Panel</Link>}
             </Nav>

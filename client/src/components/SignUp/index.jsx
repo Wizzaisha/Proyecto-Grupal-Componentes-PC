@@ -18,12 +18,12 @@ function SignUp() {
             setCheckOut("password")
         }
     }
-/*     const [user , setUser] = useState("")
+    const [user , setUser] = useState("")
     const handlerUser = (e) =>{
         setError("")
         setUser(e.target.value)
         console.log(user)
-    } */
+    }
     const [email , setEmail] = useState("")
     const handlerEmail = (e) =>{
         setError("")
@@ -37,8 +37,12 @@ function SignUp() {
         e.preventDefault()
         setError("")
         try {
-            await auth.register(email,password)
-            navigate("/")
+            if(user && email && password){
+                await auth.register(user,email,password)
+                navigate("/")
+            }else{
+                setError("complete the form to create the account")
+            }
         } catch (error) {
             if(error.code === "auth/email-already-in-use"){
                 setError("email already in use")
@@ -50,27 +54,18 @@ function SignUp() {
     return (
         <>
         <Header/>
-        <div className="containerForm justify-content-around">
-            {   error
-                ?<h1 className="display-6 shadow-lg p-3 mb-5 bg-body rounded">Error : {error}</h1>
-                :<h1 className="display-6 shadow-lg p-3 mb-5 bg-body rounded">Welcome, create an account to continue</h1>
-            }
+        <div className="container justify-content-center">
             <Form
                 onSubmit={(e)=>{
                     handlerSubmit(e)
                 }}
             >
-{/*             <Form.Group className="mb-3 shadow-lg p-3 bg-body rounded" controlId="formBasicEmail">
-                <Form.Label>Username</Form.Label>
-                <Form.Control type="text" placeholder="Enter username"
-                onChange={(e)=>{
-                    handlerUser(e)
-                }}
-                />
-                <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-                </Form.Text>
-            </Form.Group> */}
+            {error &&
+                <Form.Group className="mb-3 shadow-lg p-3 bg-danger rounded">
+                    <Form.Text>
+                        <h6 className="text-light">{error}</h6>
+                    </Form.Text>
+                </Form.Group>}
             <Form.Group className="mb-3 shadow-lg p-3 bg-body rounded" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" placeholder="Enter email"
@@ -80,6 +75,17 @@ function SignUp() {
                 />
                 <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
+                </Form.Text>
+            </Form.Group>
+            <Form.Group className="mb-3 shadow-lg p-3 bg-body rounded" controlId="formBasicEmail">
+                <Form.Label>Username</Form.Label>
+                <Form.Control type="text" placeholder="Enter username"
+                onChange={(e)=>{
+                    handlerUser(e)
+                }}
+                />
+                <Form.Text className="text-muted">
+                Enter a username for your account
                 </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3 shadow-lg p-3 bg-body rounded" controlId="formBasicPassword">
