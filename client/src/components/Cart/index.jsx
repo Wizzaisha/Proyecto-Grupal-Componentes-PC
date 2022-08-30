@@ -10,9 +10,11 @@ function Cart() {
         cart: JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : [],
     })
 
-
     function handleDelete(e) {
         e.preventDefault();
+         // Las dos lineas de codigo siguiente actualizan el contador del cart del navbar
+         let cartCounter = Number(document.querySelector('#counter').innerText) - 1;
+         document.querySelector('#counter').innerText = cartCounter
         // Traemos el «cart» del localStorage y lo parseamos para poder manipularlo
         let cart = JSON.parse(localStorage.getItem('cart'));
         // Filtramos los productos del «cart» por el id que nos pasa el event
@@ -68,3 +70,4 @@ function Cart() {
 
 export default Cart;
 
+//console.log(document.querySelector('#counter').innerText)

@@ -21,6 +21,7 @@ function Header() {
         setWanted(e.target.value)
         console.log(wanted)
     }
+   
     return (
         <Navbar bg="dark" expand="lg" className="shadow-lg p-3">
         <Container fluid>
@@ -38,7 +39,7 @@ function Header() {
                 <Link className="nav-link text-light" to="/contact">Contact</Link>
                 <Link className="nav-link text-light" to="/login">Login</Link>
                 <Link className="nav-link text-light" to="/signup">SignUp</Link>
-                <Link className="nav-link text-light" to="/cart"><FontAwesomeIcon icon={faCartShopping}/><div className="cartNumber">4</div></Link>
+                <Link className="nav-link text-light" to="/cart"><FontAwesomeIcon icon={faCartShopping}/><div id='counter' className="cartNumber">{JSON.parse(localStorage.getItem('cart')).length}</div></Link>
                 {localStorage.getItem('admin') === 'true' ? <Link className="nav-link text-light `${}`" to="/adminpanel">Admin Panel</Link> : null}
             </Nav>
             <Form className="d-flex"
