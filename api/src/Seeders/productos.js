@@ -18,7 +18,7 @@ let PRODUCTOS = [
       "1x Molex cable (3x Molex)"
     ],
     "category": "POWER SUPPLY",
-    "stock": 40
+    "stock": 4
   },
   {
     "image": "https://www.loltec.com/storage/media/VZqzoRC6ljOv8XruHBmVcvtOlEQNSy1jMSeULCM8.png",
@@ -97,7 +97,7 @@ let PRODUCTOS = [
       "140 x 5.91 x 85 pulgadas"
     ],
     "category": "POWER SUPPLY",
-    "stock": 20
+    "stock": 5
   },
   {
     "image": "https://www.loltec.com/storage/media/uTSbnydGRsird7EXQ3J9PeLRsvLRMPWdiraAHohJ.jpeg",
@@ -115,7 +115,7 @@ let PRODUCTOS = [
       "8X SATA"
     ],
     "category": "POWER SUPPLY",
-    "stock": 10
+    "stock": 8
   },
   {
     "image": "https://www.loltec.com/storage/media/RLvptIFcPx1wAUxmonh2twvcCXI48uKKEWHyrGvJ.jpeg",
@@ -984,7 +984,7 @@ let PRODUCTOS = [
       "Ventiladores:5"
     ],
     "category": "CABINET",
-    "stock": 10
+    "stock": 2
   },
   {
     "image": "https://http2.mlstatic.com/D_NQ_NP_765884-MLA48748187647_012022-O.webp",
@@ -1351,7 +1351,7 @@ let PRODUCTOS = [
     "description": "Scoket : G775, 115X, AMD, AM2, AM2+, AM3, FM.",
     "benchmark": 398,
     "category": "COOLER",
-    "stock": 34,
+    "stock": 1,
     "specs": []
   },
   {
@@ -1579,7 +1579,7 @@ let PRODUCTOS = [
       "Lights: Yes"
   ],
   "category":"MOUSE",
-  "stock":10
+  "stock":1
  },
  {
   "image":"https://http2.mlstatic.com/D_NQ_NP_911551-MLA46389323606_062021-O.webp",
