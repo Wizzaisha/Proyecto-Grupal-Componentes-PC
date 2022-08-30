@@ -14,7 +14,12 @@ import {
     FILTER_BY_STATUS,
     UPDATED_ORDER,
     DELETE_PRODUCT,
-    SEARCH_PRODUCTS
+    SEARCH_PRODUCTS,
+    SET_ADMIN_CATEGORY,
+    FILTER_CATEGORY_ADMIN,
+    CLEAR_FILTER_ADMIN,
+    CLEAR_FILTER_STORE
+
 } from "../actions";
 
 import { filterCurrentBrands, filterData } from "../utils";
@@ -23,10 +28,13 @@ const initialState = {
     products: [],
     productsCopy: [],
     productsCopy2: [],
+    productsAdmin: [],
+    productsAdminCopy: [],
     brands: [],
     filterBrands: [],
     allCategories: [],
     category: "",
+    admCurrCategory: "",
     currentSort: "",
     details: [],
     cart: [],
@@ -46,9 +54,12 @@ const rootReducer = (state = initialState, action) => {
                 brands: [],
                 filterBrands: [],
                 category: "",
+                admCurrCategory: "",
                 products: action.payload,
                 productsCopy: action.payload,
-                productsCopy2: action.payload
+                productsCopy2: action.payload,
+                productsAdmin: action.payload,
+                productsAdminCopy: action.payload,
 
             }
 
@@ -61,7 +72,7 @@ const rootReducer = (state = initialState, action) => {
 
             const categoryType = action.payload;
 
-            const dataCopy = state.productsCopy.filter(e => e.isDeleted === false);
+            const dataCopy = state.productsCopy.filter(e => e.isDeleted === false); 
 
             const filteredBrands = filterCurrentBrands(dataCopy, categoryType);
 
@@ -92,6 +103,11 @@ const rootReducer = (state = initialState, action) => {
                 filterBrands: [],
                 category: action.payload
             }
+        case SET_ADMIN_CATEGORY:
+            return {
+                ...state,
+                admCurrCategory: action.payload
+            }
 
         case SET_SORT:
             return {
@@ -108,6 +124,28 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 products: filteredData.slice()
+            }
+        case FILTER_CATEGORY_ADMIN:
+            
+            const dataFiltered = filterData(state.productsAdminCopy, state.admCurrCategory, action.payload, []);
+            return {
+                ...state,
+                productsAdmin: dataFiltered
+            }
+            
+        case CLEAR_FILTER_ADMIN:
+            return {
+                ...state,
+                productsAdmin: state.productsAdminCopy,
+                admCurrCategory: "",
+            }
+        case CLEAR_FILTER_STORE:
+            return {
+                ...state,
+                products: state.productsCopy,
+                category: "",
+                currentSort: "",
+                filterBrands: [],
             }
         case GET_PRODUCT_DETAILS:
             return {
@@ -156,8 +194,8 @@ const rootReducer = (state = initialState, action) => {
 
             const idObject = action.payload;
 
-            const findIndex = state.products.findIndex(e => e.id === idObject);
-            const findObject = state.products.find(e => e.id === idObject);
+            const findIndex = state.productsCopy.findIndex(e => e.id === idObject);
+            const findObject = state.productsCopy.find(e => e.id === idObject);
 
             findObject.isDeleted = !findObject.isDeleted;
 
@@ -205,7 +243,6 @@ const rootReducer = (state = initialState, action) => {
                 })
                 ]
             }
-
 
         default:
             return { ...state }

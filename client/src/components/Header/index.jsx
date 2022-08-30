@@ -9,6 +9,9 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useDispatch } from 'react-redux'
+import {useAuth} from "../context/authContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "react-router-dom";
 import { searchProducts } from '../../redux/actions'
 
@@ -20,6 +23,7 @@ function Header() {
         e.preventDefault(e)
         dispatch(searchProducts(e.target.value))
     }
+   
     return (
         <Navbar bg="dark" expand="lg" className="shadow-lg p-3">
             <Container fluid>
@@ -50,7 +54,6 @@ function Header() {
                             className="me-2"
                             aria-label="Search"
                         />
-                        {/* <Button variant="outline-success" onclick={handleSubmit()}>Search</Button> */}
                     </Form>
                 </Navbar.Collapse>
             </Container>
