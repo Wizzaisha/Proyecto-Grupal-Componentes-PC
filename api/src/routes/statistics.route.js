@@ -15,6 +15,15 @@ const {
 
 const stripe = new Stripe(STRIPE_S_KEY);
 
+
+function sortAscending(data, property) {
+    data.sort((a, b) => {
+        if (a[property] > b[property]) return 1;
+        if (a[property] < b[property]) return -1;
+        return 0;
+    });
+}
+
 async function getOrderData () {
     const response = await stripe.paymentIntents.list({
         limit: 100
@@ -60,8 +69,14 @@ router.get("/", async (req, res, next) => {
 
     productsSold.forEach(element => {
         const findIndexObj = topSelling.findIndex(item => item.id === element.id);
+        const findProduct = dataProducts.find(e => e.id === element.id);
         if (findIndexObj === -1) {
-            topSelling.push({id: element.id, price: element.price/100, unitsSold: 1});
+            topSelling.push({
+                id: element.id, 
+                price: element.price/100, 
+                unitsSold: 1,
+                name: `${findProduct.brand} ${findProduct.model}`
+            });
         }
         else {
             topSelling[findIndexObj].unitsSold += 1;
@@ -74,7 +89,9 @@ router.get("/", async (req, res, next) => {
             stock: item.stock,
             name: `${item.brand} ${item.model}`
         }
-    })
+    });
+
+    sortAscending(dailyData, "day");
 
     res.status(200).send({
         dailyData,
