@@ -29,7 +29,25 @@ import AdminCustomerHistory from "./components/AdminCustomerHistory";
 import { AuthProvider } from './components/context/authContext';
 import AdminStatistics from './components/AdminStatistics';
 
+import {
+  getAllProducts,
+  getAllCategories,
+} from "./redux/actions";
+
+
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+
 function App() {
+
+
+  const dispatch = useDispatch();
+    
+  useEffect(() => {
+      dispatch(getAllProducts());
+      dispatch(getAllCategories());
+  }, [dispatch]);
+
   return (
     <div className="App">
       <AuthProvider>
