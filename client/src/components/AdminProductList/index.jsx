@@ -97,7 +97,10 @@ function AdminProductList() {
                                                 <th scope="row">{product.id}</th>
                                                 <td><img src={product.image} alt="img" className="imgList"></img></td>
                                                 <td>{product.brand} {product.model}</td>
-                                                <td>{product.stock}</td>
+                                                <td>
+                                                    <p style={{color: product.stock < 5 ? "red" : ""}}>{product.stock}</p>
+                                                    {product.stock < 5 ? <p style={{color: "red"}}>Low stock</p> : null}
+                                                </td>
                                                 <td>
                                                     <button 
                                                         className="btn btn-outline-secondary"
