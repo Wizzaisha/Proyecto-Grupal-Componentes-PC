@@ -25,11 +25,14 @@ async function getOrderData () {
     return listPayments;
 }
 
-router.get("/daily-sales", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
 
     let dailyData = [];
+    let topSelling = [];
+
 
     const data = await getOrderData();
+    const dataProducts = await obtenerProductos();
 
     const amountData = data.map(order => {
         const date = new Date(order.created);
@@ -40,7 +43,9 @@ router.get("/daily-sales", async (req, res, next) => {
             created: dateFormated,
             amount: order.amount
         }
-    })
+    });
+
+    let productsSold = data.map(order => JSON.parse(order.metadata.productsOrdered)[0]);
 
     amountData.forEach(e => {
         const findIndexObj = dailyData.findIndex(item => item.day === e.created);
@@ -53,33 +58,6 @@ router.get("/daily-sales", async (req, res, next) => {
 
     });
 
-    res.status(200).send(dailyData);
-});
-
-
-router.get("/stock-management", async (req, res, next) => {
-
-    const data = await obtenerProductos();
-
-    const stockData = data.map(item => {
-        return {
-            id: item.id,
-            stock: item.stock,
-            name: `${item.brand} ${item.model}`
-        }
-    })
-
-    res.status(200).send(stockData);
-});
-
-router.get("/top-selling-products", async (req, res, next) => {
-    
-    let topSelling = [];
-    
-    const data = await getOrderData();
-
-    let productsSold = data.map(order => JSON.parse(order.metadata.productsOrdered)[0]);
-
     productsSold.forEach(element => {
         const findIndexObj = topSelling.findIndex(item => item.id === element.id);
         if (findIndexObj === -1) {
@@ -90,7 +68,19 @@ router.get("/top-selling-products", async (req, res, next) => {
         }
     })
 
-    res.status(200).send(topSelling);
-})
+    const stockData = dataProducts.map(item => {
+        return {
+            id: item.id,
+            stock: item.stock,
+            name: `${item.brand} ${item.model}`
+        }
+    })
+
+    res.status(200).send({
+        dailyData,
+        topSelling,
+        stockData
+    });
+});
 
 module.exports = router;
