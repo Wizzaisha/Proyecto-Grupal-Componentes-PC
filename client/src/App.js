@@ -31,7 +31,7 @@ import AdminStatistics from './components/AdminStatistics';
 
 function App() {
   return (
-    <div className="App container-fluid p-0">
+    <div className="App">
       <AuthProvider>
         <Routes>
           <Route path='/' element={<Home />}>
