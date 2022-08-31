@@ -1,0 +1,19 @@
+.chart {
+  width: 60%;
+  height: 300px;
+}
+
+.chartContainer {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+  .chart {
+    width: 100%;
+  }
+}

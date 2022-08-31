@@ -18,7 +18,8 @@ import {
     SET_ADMIN_CATEGORY,
     FILTER_CATEGORY_ADMIN,
     CLEAR_FILTER_ADMIN,
-    CLEAR_FILTER_STORE
+    CLEAR_FILTER_STORE,
+    GET_STATISTICS_DATA
 
 } from "../actions";
 
@@ -42,6 +43,7 @@ const initialState = {
     orderListCopy: [],
     orderDetails: {},
     customerHistory: [],
+    statisticsData: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -242,6 +244,13 @@ const rootReducer = (state = initialState, action) => {
                     }
                 })
                 ]
+            }
+        
+        case GET_STATISTICS_DATA:
+            
+            return {
+                ...state,
+                statisticsData: action.payload
             }
 
         default:

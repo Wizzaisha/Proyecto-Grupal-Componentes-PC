@@ -19,6 +19,7 @@ export const SET_ADMIN_CATEGORY = "SET_ADMIN_CATEGORY";
 export const FILTER_CATEGORY_ADMIN = "FILTER_CATEGORY_ADMIN";
 export const CLEAR_FILTER_ADMIN = "CLEAR_FILTER_ADMIN";
 export const CLEAR_FILTER_STORE = "CLEAR_FILTER_STORE";
+export const GET_STATISTICS_DATA = "GET_STATISTICS_DATA";
 
 
 export const getAllProducts = () => {
@@ -179,5 +180,13 @@ export const clearAdminFilter = () => {
 export const clearStoreFilter = () => {
     return (dispatch) => {
         return dispatch({ type: CLEAR_FILTER_STORE });
+    }
+}
+
+export const getStatisticsData = () => {
+    return async (dispatch) => {
+        const response = await axios.get("http://localhost:3001/api/statistics-data");
+
+        return dispatch({ type: GET_STATISTICS_DATA, payload: response.data })
     }
 }
