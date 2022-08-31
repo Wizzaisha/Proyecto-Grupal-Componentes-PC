@@ -36,9 +36,11 @@ function ProductDetails() {
         dispatch(getProductDetails(idProduct))
     }, [dispatch, idProduct])
 
-
     function handleButton(e) {
         e.preventDefault();
+        // Las dos lineas de codigo siguiente actualizan el contador del cart del navbar
+        let cartCounter = Number(document.querySelector('#counter').innerText) + 1;
+        document.querySelector('#counter').innerText = cartCounter
         // Le agrego/sobreescribo una propiedad cantidad al producto
         details.quantities = value;
         // Traemos el «cart» del localStorage y lo parseamos para poder manipularlo
@@ -64,6 +66,7 @@ function ProductDetails() {
         }
         // Luego «cart» a string y lo subimos al localStorage
         localStorage.setItem('cart', JSON.stringify(cart))
+
     }
 
     function stockValidator(e) {
@@ -74,31 +77,34 @@ function ProductDetails() {
     return (
         <div className="container">
             <div className="containerRow">
-                <img src={details.image} className="img" alt="img" />
-                <div className="containerColumn">
-                    <div className="containerRow">
-                        <h1>{`${details.category} ${details.brand} ${details.model}`}</h1>
-                        <Link to={'/store'}>
-                            <button className="btn btn-primary">X</button>
-                        </Link>
+                <div>
+                    <img src={details.image} className="img" alt="img" />
+                </div>
+                <div className='start'>
+                    <h3>Description</h3>
+                    <p className='description'>{details.description}</p>
+                    <h3>Specs</h3>
+                    <div className="specs">
+                        {details.specs && details.specs.map((e) => { return <li>{e}</li> })}
                     </div>
-                    <h3>Brand: {details.brand}</h3>
-                    <h3>Model: {details.model}</h3>
-                    <h3>${details.price}</h3>
-                    <p>{`Stock available: (${details.stock} available)`} </p>
-                    <div className="input-group">
-                        <button type="button" className="btn btn-outline-primary" value={'-'} onClick={(e) => stockValidator(e) /*setValue(value - 1)*/}>-</button>
-                        <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
-                        <button type="button" className="btn btn-outline-primary" value={'+'} onClick={(e) => stockValidator(e) /*setValue(value + 1)*/}>+</button>
-                    </div>
-                    <button type="submit" className="btn btn-primary" onClick={e => handleButton(e)} >Add to cart</button>
                 </div>
             </div>
             <div className="containerColumn2">
-                <h3>{details.description}</h3>
-                <h3>Specs</h3>
-                {details.specs && details.specs.map((e) => { return <li>{e}</li> })}
+                <h1>{`${details.category} ${details.brand} ${details.model}`}</h1>
+                <h3>Brand: {details.brand}</h3>
+                <h3>Model: {details.model}</h3>
+                <h3>${details.price}</h3>
+                <p>{`Stock available: (${details.stock} available)`} </p>
+                <div className="input-group">
+                    <button type="button" className="btn btn-outline-primary" value={'-'} onClick={(e) => stockValidator(e) /*setValue(value - 1)*/}>-</button>
+                    <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
+                    <button type="button" className="btn btn-outline-primary" value={'+'} onClick={(e) => stockValidator(e) /*setValue(value + 1)*/}>+</button>
+                </div>
+                <button type="submit" className="btn btn-primary button3" onClick={e => handleButton(e)} >Add to cart</button>
             </div>
+            <Link to={'/store'}>
+                <button className="btn btn-primary">X</button>
+            </Link>
         </div>
     )
 }

@@ -7,12 +7,14 @@ function Cart() {
     // Creamos un estado local «cart»
     const [state, setState] = useState({
         // Lo inicializamos con el valor del localStorage
-        cart: JSON.parse(localStorage.getItem('cart')),
+        cart: JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : [],
     })
-
 
     function handleDelete(e) {
         e.preventDefault();
+         // Las dos lineas de codigo siguiente actualizan el contador del cart del navbar
+         let cartCounter = Number(document.querySelector('#counter').innerText) - 1;
+         document.querySelector('#counter').innerText = cartCounter
         // Traemos el «cart» del localStorage y lo parseamos para poder manipularlo
         let cart = JSON.parse(localStorage.getItem('cart'));
         // Filtramos los productos del «cart» por el id que nos pasa el event
@@ -24,6 +26,7 @@ function Cart() {
             cart: cart
         })
     }
+    
     // Esta variable va a guardar el calculo del monto total
     var total = 0;
     // Guarda la suma de multiplicar el precio * cantidad de cada producto
@@ -67,3 +70,4 @@ function Cart() {
 
 export default Cart;
 
+//console.log(document.querySelector('#counter').innerText)

@@ -5,3 +5,15 @@
 .tableResponsive {
   overflow-x: auto;
 }
+
+.adminFilterContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.1rem;
+}
+
+.adminFilterButton {
+  width: 150px;
+}

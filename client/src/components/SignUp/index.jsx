@@ -54,7 +54,7 @@ function SignUp() {
     return (
         <>
         <Header/>
-        <div className="container justify-content-center">
+        <div className="container d-flex justify-content-center align-items-center">
             <Form
                 onSubmit={(e)=>{
                     handlerSubmit(e)
