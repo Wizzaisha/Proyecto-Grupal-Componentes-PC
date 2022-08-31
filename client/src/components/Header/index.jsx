@@ -20,6 +20,13 @@ function Header() {
         setWanted(e.target.value)
         console.log(wanted)
     }
+    const nightMode = () =>{
+        if(localStorage.getItem("bg") === "bg-dark text-light"){
+            localStorage.setItem("bg","bg-light text-dark")
+        }else{
+        localStorage.setItem("bg","bg-dark text-light")
+        }
+    }
     return (
         <Navbar bg="dark" expand="lg" className="shadow-lg p-3">
         <Container fluid>
@@ -42,6 +49,11 @@ function Header() {
                 <Link className="nav-link text-light" to="/signup">SignUp</Link>}
                 <Link className="nav-link text-light" to="/cart">Cart</Link>
                 {admin==="true" && <Link className="nav-link text-light `${}`" to="/adminpanel">Admin Panel</Link>}
+                <Link className="nav-link text-light" to="#!"
+                onClick={()=>{
+                    nightMode()
+                }}
+                >NightMode</Link>
             </Nav>
             <Form className="d-flex"
                 onChange={(e)=>{

@@ -77,7 +77,7 @@ function SignUp() {
                 We'll never share your email with anyone else.
                 </Form.Text>
             </Form.Group>
-            <Form.Group className="mb-3 shadow-lg p-3 bg-body rounded" controlId="formBasicEmail">
+            <Form.Group className="mb-3 shadow-lg p-3 bg-body rounded" controlId="formBasicEmail2">
                 <Form.Label>Username</Form.Label>
                 <Form.Control type="text" placeholder="Enter username"
                 onChange={(e)=>{

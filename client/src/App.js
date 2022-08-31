@@ -36,7 +36,6 @@ function App() {
           <Route path='/' element={<Home />}>
             <Route index element={<LandingPage />}></Route>
             <Route path='store' element={<ProductCards />}>
-
             </Route>
             <Route path='store/:idProduct' element={<ProductDetails />}></Route>
             <Route path='contact' element={<Contact />}></Route>
