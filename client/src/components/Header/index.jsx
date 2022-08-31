@@ -22,6 +22,8 @@ function Header() {
         setWanted(e.target.value)
         console.log(wanted)
     }
+
+    if(!localStorage.getItem('cart')) (localStorage.setItem('cart', '[]'));
    
     return (
         <Navbar bg="dark" expand="lg" className="shadow-lg p-3">
