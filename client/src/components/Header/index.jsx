@@ -39,7 +39,7 @@ function Header() {
                         :<Link className="nav-link text-light" to="/login">Login</Link>}
                         {auth.user===null &&
                         <Link className="nav-link text-light" to="/signup">SignUp</Link>}
-                        <Link className="nav-link text-light" to="/cart"><FontAwesomeIcon icon={faCartShopping}/><div id='counter' className="cartNumber">{JSON.parse(localStorage.getItem('cart')).length}</div></Link>
+                        {localStorage.getItem("cart") && <Link className="nav-link text-light" to="/cart"><FontAwesomeIcon icon={faCartShopping}/><div id='counter' className="cartNumber">{JSON.parse(localStorage.getItem('cart')).length}</div></Link>}
                         {localStorage.getItem('admin') === 'true' ? <Link className="nav-link text-light `${}`" to="/adminpanel">Admin Panel</Link> : null}
                     </Nav>
                     <Form className="d-flex"
