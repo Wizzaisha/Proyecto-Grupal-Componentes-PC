@@ -23,6 +23,8 @@ function Header() {
         e.preventDefault(e)
         dispatch(searchProducts(e.target.value))
     }
+
+    if(!localStorage.getItem('cart')) (localStorage.setItem('cart', '[]'));
    
     return (
         <Navbar bg="dark" expand="lg" className="shadow-lg p-3">
