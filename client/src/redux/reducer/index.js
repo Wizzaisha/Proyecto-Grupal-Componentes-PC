@@ -14,10 +14,12 @@ import {
     FILTER_BY_STATUS,
     UPDATED_ORDER,
     DELETE_PRODUCT,
+    SEARCH_PRODUCTS,
     SET_ADMIN_CATEGORY,
     FILTER_CATEGORY_ADMIN,
     CLEAR_FILTER_ADMIN,
     CLEAR_FILTER_STORE
+
 } from "../actions";
 
 import { filterCurrentBrands, filterData } from "../utils";
@@ -25,6 +27,7 @@ import { filterCurrentBrands, filterData } from "../utils";
 const initialState = {
     products: [],
     productsCopy: [],
+    productsCopy2: [],
     productsAdmin: [],
     productsAdminCopy: [],
     brands: [],
@@ -54,8 +57,10 @@ const rootReducer = (state = initialState, action) => {
                 admCurrCategory: "",
                 products: action.payload,
                 productsCopy: action.payload,
+                productsCopy2: action.payload,
                 productsAdmin: action.payload,
                 productsAdminCopy: action.payload,
+
             }
 
         case GET_ALL_CATEGORIES:
@@ -66,7 +71,7 @@ const rootReducer = (state = initialState, action) => {
         case GET_CURRENT_BRANDS:
 
             const categoryType = action.payload;
-            
+
             const dataCopy = state.productsCopy.filter(e => e.isDeleted === false); 
 
             const filteredBrands = filterCurrentBrands(dataCopy, categoryType);
@@ -112,7 +117,7 @@ const rootReducer = (state = initialState, action) => {
 
         case FILTER_AND_SORT_BY:
 
-            const data = state.productsCopy.filter(e => e.isDeleted === false); 
+            const data = state.productsCopy.filter(e => e.isDeleted === false);
 
             const filteredData = filterData(data, state.category, state.currentSort, state.filterBrands);
 
@@ -149,13 +154,13 @@ const rootReducer = (state = initialState, action) => {
             }
 
         case GET_ALL_ORDERS:
-            
+
             return {
                 ...state,
                 orderList: action.payload,
                 orderListCopy: action.payload
             }
-        case GET_ORDER_DETAILS: 
+        case GET_ORDER_DETAILS:
 
             return {
                 ...state,
@@ -167,9 +172,9 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 customerHistory: action.payload
             }
-        
+
         case UPDATED_ORDER:
-            
+
             const findObjectIndex = state.orderList.findIndex(e => e.id === action.payload.id);
 
             return {
@@ -188,7 +193,7 @@ const rootReducer = (state = initialState, action) => {
         case DELETE_PRODUCT:
 
             const idObject = action.payload;
-            
+
             const findIndex = state.productsCopy.findIndex(e => e.id === idObject);
             const findObject = state.productsCopy.find(e => e.id === idObject);
 
@@ -198,6 +203,45 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 products: [...state.products.slice(0, findIndex), findObject, ...state.products.slice(findIndex + 1)],
                 productsCopy: [...state.productsCopy.slice(0, findIndex), findObject, ...state.productsCopy.slice(findIndex + 1)],
+            }
+
+        case SEARCH_PRODUCTS:
+
+            const wanted = action.payload
+            if (wanted.length === 0) {
+                console.log(wanted)
+                return {
+                    ...state,
+                    products: state.productsCopy2,
+                    productsCopy: state.productsCopy2
+                }
+            }
+            return {
+                ...state,
+                products: [...state.productsCopy.filter(e => e.isDeleted === false).filter(e => {
+                    if (e.brand.toUpperCase().includes(wanted.toUpperCase())) {
+                        return true
+                    } else if (e.category.toUpperCase().includes(wanted.toUpperCase())) {
+                        return true
+                    } else if (e.model.toUpperCase().includes(wanted.toUpperCase())) {
+                        return true
+                    } else {
+                        return false
+                    }
+                })
+                ],
+                productsCopy: [...state.productsCopy.filter(e => e.isDeleted === false).filter(e => {
+                    if (e.brand.toUpperCase().includes(wanted.toUpperCase())) {
+                        return true
+                    } else if (e.category.toUpperCase().includes(wanted.toUpperCase())) {
+                        return true
+                    } else if (e.model.toUpperCase().includes(wanted.toUpperCase())) {
+                        return true
+                    } else {
+                        return false
+                    }
+                })
+                ]
             }
 
         default:

@@ -14,10 +14,12 @@ export const GET_CUSTOMER_HISTORY = "GET_CUSTOMER_HISTORY";
 export const UPDATED_ORDER = "UPDATED_ORDER";
 export const FILTER_BY_STATUS = "FILTER_BY_STATUS";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
+export const SEARCH_PRODUCTS = "SEARCH_PRODUCTS";
 export const SET_ADMIN_CATEGORY = "SET_ADMIN_CATEGORY";
 export const FILTER_CATEGORY_ADMIN = "FILTER_CATEGORY_ADMIN";
 export const CLEAR_FILTER_ADMIN = "CLEAR_FILTER_ADMIN";
 export const CLEAR_FILTER_STORE = "CLEAR_FILTER_STORE";
+
 
 export const getAllProducts = () => {
     return async (dispatch) => {
@@ -108,8 +110,8 @@ export const getOrdersList = () => {
     return async (dispatch) => {
 
         const response = await axios.get("http://localhost:3001/api/order-list");
-        
-        return dispatch({type: GET_ALL_ORDERS, payload: response.data});
+
+        return dispatch({ type: GET_ALL_ORDERS, payload: response.data });
     }
 }
 
@@ -117,7 +119,7 @@ export const getOrderDetails = (id) => {
     return async (dispatch) => {
         const response = await axios.get(`http://localhost:3001/api/order-list/${id}`);
 
-        return dispatch({type: GET_ORDER_DETAILS, payload: response.data});
+        return dispatch({ type: GET_ORDER_DETAILS, payload: response.data });
     }
 }
 
@@ -125,7 +127,7 @@ export const getCustomerHistory = (id) => {
     return async (dispatch) => {
         const response = await axios.get(`http://localhost:3001/api/order-list/customer/${id}`);
 
-        return dispatch({type: GET_CUSTOMER_HISTORY, payload: response.data});
+        return dispatch({ type: GET_CUSTOMER_HISTORY, payload: response.data });
     }
 }
 
@@ -133,43 +135,49 @@ export const updateOrder = (id, data) => {
     return async (dispatch) => {
         const response = await axios.post(`http://localhost:3001/api/order-list/${id}`, data);
 
-        return dispatch({type: UPDATED_ORDER, payload: response.data});
+        return dispatch({ type: UPDATED_ORDER, payload: response.data });
     }
 }
 
 export const filterByStatus = (value) => {
     return (dispatch) => {
-        return dispatch({type: FILTER_BY_STATUS, payload: value});
+        return dispatch({ type: FILTER_BY_STATUS, payload: value });
     }
 }
 
 export const deleteProduct = (id) => {
     return async (dispatch) => {
-        await axios.delete(`http://localhost:3001/api/productos/${id}`); 
-        return dispatch({type: DELETE_PRODUCT, payload: id});
+        await axios.delete(`http://localhost:3001/api/productos/${id}`);
+        return dispatch({ type: DELETE_PRODUCT, payload: id });
+    }
+}
+
+export const searchProducts = (wanted) => {
+    return async (dispatch) => {
+        return dispatch({ type: SEARCH_PRODUCTS, payload: wanted });
     }
 }
 
 export const setAdminCategory = (value) => {
     return (dispatch) => {
-        return dispatch({type: SET_ADMIN_CATEGORY, payload: value});
+        return dispatch({ type: SET_ADMIN_CATEGORY, payload: value });
     }
 }
 
 export const adminFilterCategory = (filterValues) => {
     return (dispatch) => {
-        return dispatch({type: FILTER_CATEGORY_ADMIN, payload: filterValues})
+        return dispatch({ type: FILTER_CATEGORY_ADMIN, payload: filterValues })
     }
 }
 
 export const clearAdminFilter = () => {
     return (dispatch) => {
-        return dispatch({type: CLEAR_FILTER_ADMIN});
+        return dispatch({ type: CLEAR_FILTER_ADMIN });
     }
 }
 
 export const clearStoreFilter = () => {
     return (dispatch) => {
-        return dispatch({type: CLEAR_FILTER_STORE});
+        return dispatch({ type: CLEAR_FILTER_STORE });
     }
 }
