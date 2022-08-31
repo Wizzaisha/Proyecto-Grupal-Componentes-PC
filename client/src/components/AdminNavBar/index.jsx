@@ -13,7 +13,7 @@ function AdminNavBar() {
             </ul>
             <p>Product statistics</p>
             <ul className="list-group">
-                <Link to="/adminpanel/statics-sales" className="listLink"><li className="list-group-item">Product sales</li></Link>
+                <Link to="/adminpanel/admin-statistics" className="listLink"><li className="list-group-item">Product sales</li></Link>
             </ul>
             <p>Order Management</p>
             <ul className="list-group">

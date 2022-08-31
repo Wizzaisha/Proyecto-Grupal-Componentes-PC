@@ -27,6 +27,7 @@ import AdminCustomerHistory from "./components/AdminCustomerHistory";
 
 // globalizo la funcion AuthProvider a todos los componentes
 import { AuthProvider } from './components/context/authContext';
+import AdminStatistics from './components/AdminStatistics';
 
 function App() {
   return (
@@ -48,7 +49,7 @@ function App() {
             <Route path='list-product' element={<AdminProductList />}></Route>
             <Route path='create-product' element={<AdminCreateProduct />}></Route>
             <Route path='product-details' element={<AdminProductDetails />}></Route>
-
+            <Route path='admin-statistics' element={<AdminStatistics />}></Route>
             <Route path='order-list' element={<AdminOrdersList />}></Route>
             <Route path='order-details/:idPayment' element={<AdminOrderDetails />}></Route>
             <Route path='customer-history/:idCustomer' element={<AdminCustomerHistory />}></Route>
