@@ -34,8 +34,8 @@ router.post('/', async (req, res, next)=>
     try
     {
     let productoCreado = await crearProducto(brand,model,image,description,specs,benchmark,price,stock,category)
-    productoCreado? res.send("Producto creado")
-    :res.send("Problema al crear el producto")
+    productoCreado.flag? res.send(productoCreado.message)
+    :res.send(productoCreado.message)
     }
     catch (error) { next(error)  }
 })
@@ -47,8 +47,8 @@ router.put('/:id', async (req, res, next)=>
     try
     {
     let productoModificado = await modificarProducto(id,brand,model,image,description,specs,benchmark,price,stock,category)
-    productoModificado? res.send("Producto modificado")
-    :res.send("Ya se encuentra la misma informacion guardada")
+    productoModificado.flag? res.send(productoModificado.message)
+    :res.send(productoModificado.message)
     }
     catch (error) { next(error)  }
 })

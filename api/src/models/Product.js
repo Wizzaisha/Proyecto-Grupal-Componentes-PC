@@ -13,6 +13,7 @@ module.exports = (sequelize) => {
       benchmark: { type: DataTypes.INTEGER },
       price: { type: DataTypes.FLOAT },
       stock: { type: DataTypes.INTEGER },
+      rating: { type: DataTypes.FLOAT}
     });
 
 };

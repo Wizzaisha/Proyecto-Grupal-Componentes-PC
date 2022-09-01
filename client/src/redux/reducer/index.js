@@ -14,7 +14,9 @@ import {
     FILTER_BY_STATUS,
     UPDATED_ORDER,
     DELETE_PRODUCT,
-    UPDATE_PRODUCT
+    UPDATE_PRODUCT,
+    SET_MESSAGE,
+    CLEAR_MESSAGE
 } from "../actions";
 
 import { filterCurrentBrands, filterData } from "../utils";
@@ -33,6 +35,7 @@ const initialState = {
     orderListCopy: [],
     orderDetails: {},
     customerHistory: [],
+    message: "",
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -153,6 +156,11 @@ const rootReducer = (state = initialState, action) => {
 
             case UPDATE_PRODUCT:
                 return {  ...state    }
+
+            case SET_MESSAGE:
+                return { message: action.payload };
+            case CLEAR_MESSAGE:
+                return { message: "" };
 
         default:
             return { ...state }

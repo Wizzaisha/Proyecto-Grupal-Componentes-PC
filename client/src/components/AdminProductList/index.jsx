@@ -2,17 +2,14 @@ import "./AdminProductList.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct } from "../../redux/actions";
+import {  Link    } from 'react-router-dom'
 
 function AdminProductList() {
-
+   
     const allProducts = useSelector(state => state.products);
 
     const dispatch = useDispatch();
-
-    function handleEditButton (productId) {
-        console.log(productId);
-        console.log("Edit");
-    }
+ 
 
     function handleDeleteButton (productId) {
         dispatch(deleteProduct(productId));
@@ -44,10 +41,11 @@ function AdminProductList() {
                                         <td>{product.brand} {product.model}</td>
                                         <td>{product.stock}</td>
                                         <td>
-                                            <button 
-                                                className="btn btn-outline-secondary"
-                                                onClick={() => handleEditButton(product.id)}
-                                            >Edit</button></td>
+                                            <div><Link to={`update-product/${product.id}`}>
+                                            <button className="btn btn-outline-secondary">Edit</button>
+                                            </Link></div>
+                                            </td>
+                                            
                                         <td>
                                             <button 
                                                 className="btn btn-outline-danger"

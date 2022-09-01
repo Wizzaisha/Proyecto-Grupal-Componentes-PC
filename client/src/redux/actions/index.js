@@ -14,7 +14,9 @@ export const GET_CUSTOMER_HISTORY = "GET_CUSTOMER_HISTORY";
 export const UPDATED_ORDER = "UPDATED_ORDER";
 export const FILTER_BY_STATUS = "FILTER_BY_STATUS";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
-export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+export const UPDATE_PRODUCT = "UPDATE_PRODUCT"; 
+export const SET_MESSAGE = "SET_MESSAGE";
+export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 
 export const getAllProducts = () => {
     return async (dispatch) => {
@@ -23,7 +25,6 @@ export const getAllProducts = () => {
         return dispatch({ type: GET_ALL_PRODUCTS, payload: response.data });
     }
 }
-
 
 export const getAllCategories = () => {
     return async (dispatch) => {
@@ -147,10 +148,10 @@ export const deleteProduct = (id) => {
     }
 }
 
-export function editProduct(id, brand,model,image,description,specs,benchmark,price,stock,category) {
-    return async function (dispatch) {
+export const editProduct = (id, brand,model,image,description,specs,benchmark,price,stock,category) => {
+    return async  (dispatch) => {
         try {
-            let response = await axios.post(`http://localhost:3001/api/productos/${id}`, {
+            let response = await axios.put(`http://localhost:3001/api/productos/${id}`, {
                 id, brand,model,image,description,specs,benchmark,price,stock,category})
                 console.log(response.data)
                 return dispatch({type: UPDATE_PRODUCT});
@@ -159,3 +160,11 @@ export function editProduct(id, brand,model,image,description,specs,benchmark,pr
         }
     }
 }
+export const setMessage = (message) => ({
+    type: SET_MESSAGE,
+    payload: message,
+});
+
+export const clearMessage = () => ({
+    type: CLEAR_MESSAGE,
+});

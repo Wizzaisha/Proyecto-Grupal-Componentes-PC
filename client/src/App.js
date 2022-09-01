@@ -24,6 +24,7 @@ import AdminProductDetails from "./components/AdminProductDetails";
 import AdminOrdersList from "./components/AdminOrdersList";
 import AdminOrderDetails from "./components/AdminOrderDetails";
 import AdminCustomerHistory from "./components/AdminCustomerHistory";
+import AdminUpdateProduct from "./components/AdminUpdateProduct"
 
 // globalizo la funcion AuthProvider a todos los componentes
 import { AuthProvider } from './components/context/authContext';
@@ -47,6 +48,7 @@ function App() {
           <Route path='/adminpanel' element={<AdminPanel />}>
             <Route path='list-product' element={<AdminProductList />}></Route>
             <Route path='create-product' element={<AdminCreateProduct />}></Route>
+            <Route path='list-product/update-product/:idProduct' element={<AdminUpdateProduct />}></Route>
             <Route path='product-details' element={<AdminProductDetails />}></Route>
 
             <Route path='order-list' element={<AdminOrdersList />}></Route>
