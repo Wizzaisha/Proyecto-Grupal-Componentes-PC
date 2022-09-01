@@ -149,6 +149,12 @@ const rootReducer = (state = initialState, action) => {
                 products: state.products.filter(e => e.id !== action.payload),
                 productsCopy: state.productsCopy.filter(e => e.id !== action.payload),
             }
+
+            //-------------------Crear Producto----------
+            case "POST_PRODUCT":
+                return{
+                    ...state,
+                }
         default:
             return { ...state }
     }

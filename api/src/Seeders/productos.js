@@ -1414,7 +1414,7 @@ let PRODUCTOS = [
     "brand":"Logitech",
     "model":"Lightspeed",
     "price":73,
-    "description":"With 15 programmable controls, LIGHTSPEED wireless technology, a super-fast scroll wheel and the revolutionary HERO 16K sensor, the G604 offers both versatility and high performance with plenty of possibilities.Dominate your arsenal in tactical game genres like Battle Royale, MMO and MOBA, with all the necessary customizable button configuration.Dual connectivity lets you switch between Bluetooth® technology and superfast 1ms LIGHTSPEED advanced wireless technology, even on different devices. Change the scrolling mode on your own to quickly scroll through menus or carefully inspect weapon or spell selections. Extremely accurate tracking and class-leading power efficiency enable up to 240 hours of high-performance gaming on one AA battery. play masterfully",
+    "description":"With 15 programmable controls, LIGHTSPEED wireless technology, a super-fast scroll wheel and the revolutionary HERO 16K sensor, the G604 offers both versatility and high performance with plenty of possibilities.",
     "benchmark":100,
     "specs":
     [
@@ -1425,12 +1425,6 @@ let PRODUCTOS = [
         "Maximum Speed: 400ips ",
         "Number Of Buttons:15 ",
         "Interfaces: USB ",
-        "Bluetooh: Yes ",
-        "Scroll Wheel: Yes ",
-        "Sensor Type: Optical ",
-        "Sensor Technology: Hero ",
-        "Sensor Resolution: 25600dpi "
-
     ],
     "category":"MOUSE",
     "stock":10
@@ -1440,7 +1434,7 @@ let PRODUCTOS = [
     "brand":"Logitech",
     "model":"M280",
     "price":16,
-    "description":"Adapted to your movements. Its effective design makes this mouse a comfortable element, with a great user experience for those who seek security in each click. Functionality at your fingertips. The optical movement detection system will allow you to move the cursor in a more precise and sensitive way than in traditional systems.Button speed and reliability.With its 3 buttons you can have greater control and independence to execute.Plug And Play Just plug the receiver into a USB port on your computer and you're ready to go. There is no need to pair the mouse or download software to use it.",
+    "description":"Adapted to your movements. Its effective design makes this mouse a comfortable element, with a great user experience for those who seek security in each click. Functionality at your fingertips. ",
     "benchmark":75,
     "specs":
     [
@@ -1450,8 +1444,6 @@ let PRODUCTOS = [
         "USB Wireless: Yes ",
         "Number Of Buttons: 3 ",
         "Interfaces: USB ",
-        "Bluetooh: Yes ",
-        "Scroll Wheel: Yes "
     ],
     "category":"MOUSE",
     "stock":10
@@ -1480,7 +1472,7 @@ let PRODUCTOS = [
   "brand":"Logitech",
   "model":"Hero 16k",
   "price":65.90,
-  "description":"HERO 25K is our gaming sensor with next-gen precision and purpose-built architecture. With the fastest frame rate processing to date, HERO is capable of over 400 ips and 100 - 25,600 dpi, without smoothing, filtering or acceleration. HERO 25K offers precision at the highest competitive level and maximum response uniformity. Make sure to customize and adjust your dpi settings with Logitech G HUB. Use Logitech G HUB to program 11 buttons with your favorite macros and commands. Build, crouch, melee, heal... put your powers at your fingertips. Save ready-to-play profiles right on the mouse to take your setup with you anywhere.",
+  "description":"HERO 25K is our gaming sensor with next-gen precision and purpose-built architecture. With the fastest frame rate processing to date, HERO is capable of over 400 ips and 100 - 25,600 dpi, without smoothing, filtering or acceleration. HERO 25K offers precision at the highest competitive level and maximum response uniformity. Make sure to customize and adjust your dpi settings with Logitech G HUB.",
   "benchmark":150,
   "specs":
   [
@@ -1491,8 +1483,6 @@ let PRODUCTOS = [
       "Maximum speed: 400 ips",
       "Scroll Wheel: Yes",
       "Lights: Yes",
-      "Sensor Type: Optical",
-      "Sensor Technology: Hero 16K"
   ],
   "category":"MOUSE",
   "stock":10
@@ -1522,7 +1512,7 @@ let PRODUCTOS = [
   "brand":" Microsoft",
   "model":" Bluetooth Mouse",
   "price":29.29,
-  "description":"To work from home on your computer or take advantage of leisure time, you need comfort and ease of movement. With your Microsoft Bluetooth Mouse find what you are looking for in a single device with the best technology.With its 4 buttons you can have greater control and independence to execute. Wireless technology Work wirelessly and move freely without any interruption. With no cables, your desk stays clutter-free. Plus, you can easily take your mouse from one workspace to another. Work wirelessly and move freely without any interruption. With no cables, your desk stays clutter-free. Plus, you can easily take your mouse from one workspace to another.",
+  "description":"To work from home on your computer or take advantage of leisure time, you need comfort and ease of movement. With your Microsoft Bluetooth Mouse find what you are looking for in a single device with the best technology.With its 4 buttons you can have greater control and independence to execute. Wireless technology Work wirelessly and move freely without any interruption. With no cables, your desk stays clutter-free. Plus, you can easily take your mouse from one workspace to another.",
   "benchmark":98,
   "specs":
   [
@@ -1533,8 +1523,6 @@ let PRODUCTOS = [
       "Number Of Buttons: 40",
       "Interfaces: Bluetooth",
       "Bluetooh: Yes ",
-      "Scroll Wheel: Yes ",
-      "Type of Food: Batteriess"
   ],
   "category":"MOUSE",
   "stock":10
@@ -1544,7 +1532,7 @@ let PRODUCTOS = [
   "brand":"Trust",
   "model":"Ozaa",
   "price":43.44,
-  "description":"To work from home on your computer or take advantage of leisure time, you need comfort and ease of movement. With your Trust Ozaa find what you are looking for in a single device with the best technology. Its effective design makes this mouse a comfortable element, with a great user experience for those who seek security in each click. With its 6 buttons you can have greater control and independence to execute. Just plug the receiver into a USB port on your computer and you're ready to go. There is no need to pair the mouse or download software to use it.",
+  "description":"To work from home on your computer or take advantage of leisure time, you need comfort and ease of movement. With your Trust Ozaa find what you are looking for in a single device with the best technology. Its effective design makes this mouse a comfortable element, with a great user experience for those who seek security in each click. With its 6 buttons you can have greater control and independence to execute.",
   "benchmark":70,
   "specs":
   [
@@ -1554,8 +1542,6 @@ let PRODUCTOS = [
       "USB Wireless: Yes",
       "Number Of Buttons: 6",
       "Interfaces: USB-A",
-      "Bluetooh: No",
-      "Scroll Wheel: Yes "
   ],
   "category":"MOUSE",
   "stock":10
@@ -1565,7 +1551,7 @@ let PRODUCTOS = [
   "brand":"HyperX",
   "model":"Pulsefire Dart",
   "price":98.12,
-  "description":"To work from home on your computer or take advantage of leisure time, you need comfort and ease of movement. With your HyperX Pulsefire Dart find what you are looking for in a single device with the best technology. The gaming mouse will offer you the possibility to make a difference and take advantage of your games. Its connectivity and smooth sensor will help you scroll quickly on the screen. With its 6 buttons you can have greater control and independence to execute. Quickly navigate through documents and web pages thanks to its ultra-slim, ergonomic, lightweight and convenient design to take anywhere or travel.",
+  "description":"To work from home on your computer or take advantage of leisure time, you need comfort and ease of movement. With your HyperX Pulsefire Dart find what you are looking for in a single device with the best technology. The gaming mouse will offer you the possibility to make a difference and take advantage of your games. Its connectivity and smooth sensor will help you scroll quickly on the screen. With its 6 buttons you can have greater control and independence to execute..",
   "benchmark":153,
   "specs":
   [
@@ -1575,8 +1561,6 @@ let PRODUCTOS = [
       "USB Wireless: Yes",
       "Number Of Buttons: 6",
       "Interfaces: USB",
-      "Scroll Wheel: Yes",
-      "Lights: Yes"
   ],
   "category":"MOUSE",
   "stock":10
@@ -1586,7 +1570,7 @@ let PRODUCTOS = [
   "brand":"Razer",
   "model":"Viper Ultimate with charging dock",
   "price":201.96,
-  "description":"Since 2005 Razer has been the leading lifestyle brand for gamers. It has designed and built the world's largest ecosystem of hardware, software and services. The placement of each button and curve of Razer mice were created to perfectly fit your hand. Thanks to these devices, you will get a comfortable and pleasant gaming experience. The gaming mouse will offer you the possibility to make a difference and take advantage of your games. Its connectivity and smooth sensor will help you scroll quickly on the screen. The optical movement detection system will allow you to move the cursor in a more precise and sensitive way than in traditional systems. With a built-in rechargeable battery that you can easily charge with the included USB cable without the need to replace it. To prolong life, use the power switch to turn off the mouse when you're not using it.",
+  "description":"Since 2005 Razer has been the leading lifestyle brand for gamers. It has designed and built the world's largest ecosystem of hardware, software and services. The placement of each button and curve of Razer mice were created to perfectly fit your hand. Thanks to these devices, you will get a comfortable and pleasant gaming experience.",
   "benchmark":200,
   "specs":
   [
@@ -1597,8 +1581,7 @@ let PRODUCTOS = [
       "Number Of Buttons: 8",
       "Interfaces: USB ",
       "Type Sensor: Optical ",
-      "Tecnology Sensor: Focus+",
-      "Scroll Wheel: Yes"
+
   ],
   "category":"MOUSE",
   "stock":10
@@ -1608,7 +1591,7 @@ let PRODUCTOS = [
   "brand":"T-Dgger",
   "model":"T-TGM301RGB",
   "price":19.88,
-  "description":"The Pixart PMW3325 is a highly dynamic gaming optical sensor. Accurate, jitter-free, ready for speed. Together with a very high polling rate (1000 Hz), it leaves no room for error. In addition, the Lieutenant has Huano switches: very high quality and a durability of 20 million. The opposable thumb was an evolutionary advantage for primates, and it will be for you when you learn to use the 2 side buttons. And the 2 extra buttons on top? They are preconfigured to toggle between the 5 DPI profiles, but all 7 buttons are customizable via a dedicated controller, where you can even record macros (pro tip: do it!). of clicks. Even for our vice levels, that's a lot of clicks. The Lieutenant is equipped with a powerful RGB Chroma lighting system with 7 dynamic effects that you can customize to your liking. Why? Like moths, we simply love brightness. And speaking of sparkle, the mesh cable has a gold-plated connector. There are technical reasons for this, but we also like it. Yes, gold!",
+  "description":"The Pixart PMW3325 is a highly dynamic gaming optical sensor. Accurate, jitter-free, ready for speed. Together with a very high polling rate (1000 Hz), it leaves no room for error. In addition, the Lieutenant has Huano switches: very high quality and a durability of 20 million. The opposable thumb was an evolutionary advantage for primates, and it will be for you when you learn to use the 2 side buttons. And the 2 extra buttons on top? They are preconfigured to toggle between the 5 DPI profiles, but all 7 buttons are customizable via a dedicated controller, where you can even record macros (pro tip: do it!). of clicks. Even for our vice levels, that's a lot of clicks.!",
   "benchmark":139,
   "specs":
   [
@@ -1619,10 +1602,6 @@ let PRODUCTOS = [
       "Number Of Buttons: 7",
       "Interfaces: USB",
       "Bluetooh: No",
-      "Scroll Wheel: Yes",
-      "Type Sensor: Optical",
-      "Tecnology Sensor: P3327",
-      "Resolution Sensor: 12000 DPI"
   ],
   "category":"MOUSE",
   "stock":10

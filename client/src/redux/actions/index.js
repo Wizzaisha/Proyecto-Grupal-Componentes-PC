@@ -145,3 +145,10 @@ export const deleteProduct = (id) => {
         return dispatch({type: DELETE_PRODUCT, payload: id});
     }
 }
+//------------CREAR PRODUCTO--------------
+export function createProduct(input){
+    return async function(dispatch){
+        const product=await axios.post("http://localhost:3001/api/productos/", input)
+        return product
+    }
+}

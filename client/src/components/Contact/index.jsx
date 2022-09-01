@@ -49,7 +49,7 @@ import React,{useState} from "react";
 
 function Contact() {
 const auth = useAuth()
-console.log(auth.user)
+
 
     
     const [input,setInput]=useState({
