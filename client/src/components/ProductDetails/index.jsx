@@ -13,6 +13,7 @@ function ProductDetails() {
     const details = useSelector(state => state.details)
     const [value, setValue] = useState(1)
     const auth = useAuth()
+    const [favorite, setFavorite] = useState(false)
 
     useEffect(() => {
         window.scrollTo({
@@ -59,9 +60,15 @@ function ProductDetails() {
 
     }
 
-    const handleFavorite = async (e) => {
+    const handleFavorite = async () => {
         if (auth.user !== null) {
-            await auth.favorites().push(details.id)
+            if (favorite === false) {
+                await auth.addFavorite(details.id)
+                setFavorite(true)
+            } else if (favorite === true) {
+                await auth.removeFavorite(details.id)
+                setFavorite(false)
+            }
         } else {
             console.log('debes iniciar sesion');
         }
@@ -72,7 +79,7 @@ function ProductDetails() {
         if (e.target.value === '+' && value < details.stock) { setValue(value + 1) }
         if (e.target.value === '-' && value > 1) { setValue(value - 1) }
     }
-
+    console.log(details.id);
     return (
         <div className="container">
             <div className={`containerRow`}>

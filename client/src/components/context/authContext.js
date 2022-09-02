@@ -18,6 +18,9 @@ import {
     doc,
     setDoc,
     getDoc,
+    arrayUnion,
+    arrayRemove,
+    updateDoc
 } from "firebase/firestore"
 
 export const authContext = createContext();
@@ -51,7 +54,8 @@ export function AuthProvider({ children }) {
         setDoc(docRef, {
             email: email,
             password: password,
-            admin: admin
+            admin: admin,
+            favorites: []
         })
     }
     const getRole = async (uid) => {
@@ -85,14 +89,23 @@ export function AuthProvider({ children }) {
         localStorage.removeItem("admin")
     }
     // Agrega el atributo favorites al usuario
-    const favorites = (favorites) => {
+    const addFavorite = async (id) => {
         const docRef = doc(db, `user/${user.uid}`)
-        setDoc(docRef, {
-            ...setDoc,
-            favorites: favorites
+        updateDoc(docRef, {
+            favorite: arrayUnion(id)
         })
     }
+
+    const removeFavorite = async (id) => {
+        const docRef = doc(db, `user/${user.uid}`)
+        updateDoc(docRef, {
+            favorite: arrayRemove(id)
+        })
+    }
+
+
+
     return (
-        <authContext.Provider value={{ register, login, user, logout, loginWithGoogle, favorites }}>{children}</authContext.Provider>
+        <authContext.Provider value={{ register, login, user, logout, loginWithGoogle, addFavorite, removeFavorite }}>{children}</authContext.Provider>
     );
 }
