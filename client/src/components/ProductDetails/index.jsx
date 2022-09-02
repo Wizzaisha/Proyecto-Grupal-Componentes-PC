@@ -5,6 +5,8 @@ import { Link } from "react-router-dom"
 import { useParams } from 'react-router-dom'
 import { getProductDetails, } from '../../redux/actions'
 import { useAuth } from '../context/authContext'
+import starFilled from '../img/icons8-estrella-96 (1).png'
+import starEmpty from '../img/icons8-estrella-96.png'
 
 function ProductDetails() {
 
@@ -84,6 +86,11 @@ function ProductDetails() {
 
     return (
         <div className="container">
+            <button onClick={handleFavorite} className="btn border border-0 ">
+                {
+                    favorite === true ? <img src={starFilled} /> : <img src={starEmpty} />
+                }
+            </button>
             <div className={`containerRow`}>
                 {details.stock === 0 ? <h4 style={{ color: "red" }}>Out of stock</h4> : null}
                 <div>
@@ -116,7 +123,6 @@ function ProductDetails() {
                     disabled={details.stock === 0 ? "true" : null}
                 >Add to cart</button>
             </div>
-            <button onClick={handleFavorite}>Add to favorites</button>
             <Link to={'/store'}>
                 <button className="btn btn-primary">X</button>
             </Link>
