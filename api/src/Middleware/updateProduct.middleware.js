@@ -6,7 +6,7 @@ const modificarProducto = async ( id, brand,model,image,description,specs,benchm
 let producto = await Product.findByPk(id)
 
 let existe = await Product.findOne({where: {brand:brand , model:model, description: description,specs:specs}})
-if(existe) { return {flag : false , message :"El producto ya existe"} }
+if(existe) { return {flag : false , message :"Existing product!"} }
 brand ? producto.brand = brand : brand
 model ?   producto.model = model : model
 image ? producto.image = image : image
@@ -20,6 +20,6 @@ if(category)
     await producto.setCategory(cat)
 }
 producto.save();
-return {flag : true , message :"El producto fue modificado"};
+return {flag : true , message :"The product was modified!"};
 }
 module.exports ={modificarProducto}

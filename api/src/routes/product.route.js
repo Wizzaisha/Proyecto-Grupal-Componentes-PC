@@ -12,7 +12,7 @@ router.get('/', async (req, res, next)=>
     {
         let productos = await obtenerProductos()
         productos.length > 0 ?
-        res.send(productos): res.send({ message:"No se encontraron los productos"})
+        res.send(productos): res.send({ message:"No products"})
     }
     catch (error) { next(error) ; console.log(error) }
 })
@@ -60,7 +60,7 @@ router.put('/stock/:id', async (req, res, next)=>
     try
     {
     let modificarStock = await modificarStockProducto(id,descontar,cantidad)
-    modificarStock? res.send("Stock modificado")
+    modificarStock? res.send("Stock was modified")
     :res.send("Error")
     }
     catch (error) { next(error)  }
@@ -72,8 +72,8 @@ router.delete('/:id', async (req, res, next)=>
     try
     {
     let productoEliminar = await eliminarProducto(id)
-    productoEliminar? res.send("Producto elminado")
-    :res.send("Error al eliminar")
+    productoEliminar? res.send("Product deleted")
+    :res.send("Delete error")
     }
     catch (error) { next(error)  }
 })

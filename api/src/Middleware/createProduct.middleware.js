@@ -7,7 +7,7 @@ let cat = await crearCategoria(category)
 // let cat = await Category.findOrCreate({ where: {name: category}})
 // console.log(cat.dataValues)
 let existe = await Product.findOne({where: {brand:brand , model:model, description: description}})
-if(existe) {console.log(brand+" "+model+" ya existe!"); return{flag : false , message :"El producto ya existe"}}
+if(existe) {console.log(brand+" "+model+" ya existe!"); return{flag : false , message :"Existing product!"}}
 let producto = await Product.create(
     {
         brand:brand,
@@ -22,6 +22,6 @@ let producto = await Product.create(
 
 await producto.setCategory(cat)
 producto.save();
-return {flag : true , message :"Producto creado"};
+return {flag : true , message :"Product created!"};
 }
 module.exports ={crearProducto}
