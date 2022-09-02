@@ -134,7 +134,7 @@ function Login() {
                         We'll never share your email with anyone else.
                     </Form.Text>
                 </Form.Group>
-                <Form.Group className="mb-3 shadow-lg p-3 bg2 text-light rounded" controlId="formBasicPassword">
+                <Form.Group className="mb-3 shadow-lg p-3 bg2 fw-bold text-dark rounded" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control type={checkOut} placeholder="Password"
                         onChange={(e) => {
@@ -142,11 +142,11 @@ function Login() {
                         }}
                         autoComplete="on"
                     />
-                    <Form.Text className="text-light">
+                    <Form.Text className="text-dark">
                         Only eight alphanumeric characters
                     </Form.Text>
                 </Form.Group>
-                <Form.Group className="mb-3 shadow-lg p-3 bg3 text-light rounded" controlId="formBasicCheckbox">
+                <Form.Group className="mb-3 shadow-lg p-3 bg2 fw-bold text-dark rounded" controlId="formBasicCheckbox">
                     <Form.Check className="text-light" onClick={(e) => {
                         handlerCheckOut(e)
                     }} type="checkbox" label="Check me out" />

@@ -19,6 +19,9 @@ import {
     doc ,
     setDoc,
     getDoc,
+    updateDoc,
+    arrayUnion,
+    arrayRemove
 } from "firebase/firestore"
 
 export const authContext = createContext();
@@ -36,6 +39,7 @@ export const useAuth = () => {
 };
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(false)
+    const [favorite , setFavorite] = useState("")
     useEffect(()=>{
         const unsuscribe = onAuthStateChanged(auth , (currentUser) =>{
             setUser(currentUser)
@@ -53,7 +57,8 @@ export function AuthProvider({ children }) {
             userName : username,
             email : email,
             password : password,
-            admin : admin
+            admin : admin,
+            favorite : []
         })
     }
     const getRole = async (uid) =>{
