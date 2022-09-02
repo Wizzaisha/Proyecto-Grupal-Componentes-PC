@@ -207,6 +207,13 @@ const rootReducer = (state = initialState, action) => {
                 productsCopy: [...state.productsCopy.slice(0, findIndex), findObject, ...state.productsCopy.slice(findIndex + 1)],
             }
 
+
+            //-------------------Crear Producto----------
+            case "POST_PRODUCT":
+                return{
+                    ...state,
+                }
+//------------------------------------------------------
         case SEARCH_PRODUCTS:
 
             const wanted = action.payload
@@ -252,6 +259,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 statisticsData: action.payload
             }
+
 
         default:
             return { ...state }
