@@ -7,17 +7,6 @@ import { getProductDetails, } from '../../redux/actions'
 
 function ProductDetails() {
 
-    const p = {
-        "image": "https://m.media-amazon.com/images/I/51wqVVVtnyS._AC_SL1413_.jpg",
-        "brand": "Intel",
-        "model": "Core i5-11400F",
-        "price": 149,
-        "description": "The Rocket Lake i5-11400F paired with a B560 motherboard and 3200 RAM ($365 USD) offers unprecedented value for money to gamers. It completely prices AMD's 5000 series out of the market.",
-        "bentchmark": 96,
-        "specs": ["CPU Model:Intel Core i5", "CPU Speed:2.6 GHz"],
-        "categorys": "CPU",
-        "stock": 10
-    }
     const dispatch = useDispatch()
     const { idProduct } = useParams()
     const details = useSelector(state => state.details)
@@ -36,9 +25,11 @@ function ProductDetails() {
         dispatch(getProductDetails(idProduct))
     }, [dispatch, idProduct])
 
-
     function handleButton(e) {
         e.preventDefault();
+        // Las dos lineas de codigo siguiente actualizan el contador del cart del navbar
+        let cartCounter = Number(document.querySelector('#counter').innerText) + 1;
+        document.querySelector('#counter').innerText = cartCounter
         // Le agrego/sobreescribo una propiedad cantidad al producto
         details.quantities = value;
         // Traemos el «cart» del localStorage y lo parseamos para poder manipularlo
@@ -64,6 +55,7 @@ function ProductDetails() {
         }
         // Luego «cart» a string y lo subimos al localStorage
         localStorage.setItem('cart', JSON.stringify(cart))
+
     }
 
     function stockValidator(e) {
@@ -73,32 +65,41 @@ function ProductDetails() {
 
     return (
         <div className="container">
-            <div className="containerRow">
-                <img src={details.image} className="img" alt="img" />
-                <div className="containerColumn">
-                    <div className="containerRow">
-                        <h1>{`${details.category} ${details.brand} ${details.model}`}</h1>
-                        <Link to={'/store'}>
-                            <button className="btn btn-primary">X</button>
-                        </Link>
+            <div className={`containerRow`}>
+                {details.stock === 0 ? <h4 style={{color: "red"}}>Out of stock</h4> : null}
+                <div>
+                    <img src={details.image} className="img" alt="img" />
+                </div>
+                <div className='start'>
+                    <h3>Description</h3>
+                    <p className='description'>{details.description}</p>
+                    <h3>Specs</h3>
+                    <div className="specs">
+                        {details.specs && details.specs.map((e) => { return <li>{e}</li> })}
                     </div>
-                    <h3>Brand: {details.brand}</h3>
-                    <h3>Model: {details.model}</h3>
-                    <h3>${details.price}</h3>
-                    <p>{`Stock available: (${details.stock} available)`} </p>
-                    <div className="input-group">
-                        <button type="button" className="btn btn-outline-primary" value={'-'} onClick={(e) => stockValidator(e) /*setValue(value - 1)*/}>-</button>
-                        <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
-                        <button type="button" className="btn btn-outline-primary" value={'+'} onClick={(e) => stockValidator(e) /*setValue(value + 1)*/}>+</button>
-                    </div>
-                    <button type="submit" className="btn btn-primary" onClick={e => handleButton(e)} >Add to cart</button>
                 </div>
             </div>
             <div className="containerColumn2">
-                <h3>{details.description}</h3>
-                <h3>Specs</h3>
-                {details.specs && details.specs.map((e) => { return <li>{e}</li> })}
+                <h1>{`${details.category} ${details.brand} ${details.model}`}</h1>
+                <h3>Brand: {details.brand}</h3>
+                <h3>Model: {details.model}</h3>
+                <h3>${details.price}</h3>
+                <p>{`Stock available: (${details.stock} available)`} </p>
+                <div className="input-group">
+                    <button type="button" className="btn btn-outline-primary" value={'-'} onClick={(e) => stockValidator(e) /*setValue(value - 1)*/}>-</button>
+                    <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
+                    <button type="button" className="btn btn-outline-primary" value={'+'} onClick={(e) => stockValidator(e) /*setValue(value + 1)*/}>+</button>
+                </div>
+                <button 
+                    type="submit" 
+                    className="btn btn-primary button3" 
+                    onClick={e => handleButton(e)} 
+                    disabled={details.stock === 0 ? "true" : null}    
+                >Add to cart</button>
             </div>
+            <Link to={'/store'}>
+                <button className="btn btn-primary">X</button>
+            </Link>
         </div>
     )
 }

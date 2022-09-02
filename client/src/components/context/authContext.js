@@ -35,7 +35,6 @@ export const useAuth = () => {
 };
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(false)
-    const [admin , setAdmin] = useState(false)
     useEffect(()=>{
         const unsuscribe = onAuthStateChanged(auth , (currentUser) =>{
             setUser(currentUser)
@@ -59,12 +58,17 @@ export function AuthProvider({ children }) {
         const docRef = doc(db , `user/${uid}`)
         const userDb = await getDoc(docRef)
         const data = userDb.data()
-        setAdmin(data.admin)
+            if(data.admin === true){
+                localStorage.setItem("admin" , "true" )
+            }else{
+                localStorage.setItem("admin", "false")
+            }
     }
     // loguea un usuario existente
     const login = async (email,password) => {
         await signInWithEmailAndPassword(auth,email,password)
         .then((userData)=>{
+            console.log(userData)
             getRole(userData.user.uid)
         });
     }
@@ -78,9 +82,9 @@ export function AuthProvider({ children }) {
     // cierra la sesion actual
     const logout = async () =>{
         await signOut(auth)
-        setAdmin(false)
+        localStorage.removeItem("admin")
     }
     return (
-        <authContext.Provider value={{ register , login , user ,admin ,logout , loginWithGoogle}}>{children}</authContext.Provider>
+        <authContext.Provider value={{ register , login , user ,logout , loginWithGoogle}}>{children}</authContext.Provider>
     );
 }

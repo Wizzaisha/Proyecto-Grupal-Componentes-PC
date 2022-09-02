@@ -12,7 +12,8 @@ function AdminProductList() {
  
 
     function handleDeleteButton (productId) {
-        dispatch(deleteProduct(productId));
+        dispatch(deleteProduct(productId))
+        .then(response => setProductDeleted(response));
     }
     
     return (

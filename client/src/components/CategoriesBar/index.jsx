@@ -6,7 +6,7 @@ import {
     setCategory,
     getCurrentBrands,
     filterAndSortBy,
-    getAllProducts
+    clearStoreFilter
 } from "../../redux/actions";
 
 function CategoriesBar (props) {
@@ -29,7 +29,7 @@ function CategoriesBar (props) {
     }
 
     function handleClearFilters () {
-        dispatch(getAllProducts());
+        dispatch(clearStoreFilter());
     }
 
 

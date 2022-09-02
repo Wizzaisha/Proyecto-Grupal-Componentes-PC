@@ -14,9 +14,6 @@ export const GET_CUSTOMER_HISTORY = "GET_CUSTOMER_HISTORY";
 export const UPDATED_ORDER = "UPDATED_ORDER";
 export const FILTER_BY_STATUS = "FILTER_BY_STATUS";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
-export const UPDATE_PRODUCT = "UPDATE_PRODUCT"; 
-export const SET_MESSAGE = "SET_MESSAGE";
-export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 
 export const getAllProducts = () => {
     return async (dispatch) => {
@@ -106,8 +103,8 @@ export const getOrdersList = () => {
     return async (dispatch) => {
 
         const response = await axios.get("http://localhost:3001/api/order-list");
-        
-        return dispatch({type: GET_ALL_ORDERS, payload: response.data});
+
+        return dispatch({ type: GET_ALL_ORDERS, payload: response.data });
     }
 }
 
@@ -115,7 +112,7 @@ export const getOrderDetails = (id) => {
     return async (dispatch) => {
         const response = await axios.get(`http://localhost:3001/api/order-list/${id}`);
 
-        return dispatch({type: GET_ORDER_DETAILS, payload: response.data});
+        return dispatch({ type: GET_ORDER_DETAILS, payload: response.data });
     }
 }
 
@@ -123,7 +120,7 @@ export const getCustomerHistory = (id) => {
     return async (dispatch) => {
         const response = await axios.get(`http://localhost:3001/api/order-list/customer/${id}`);
 
-        return dispatch({type: GET_CUSTOMER_HISTORY, payload: response.data});
+        return dispatch({ type: GET_CUSTOMER_HISTORY, payload: response.data });
     }
 }
 
@@ -131,13 +128,13 @@ export const updateOrder = (id, data) => {
     return async (dispatch) => {
         const response = await axios.post(`http://localhost:3001/api/order-list/${id}`, data);
 
-        return dispatch({type: UPDATED_ORDER, payload: response.data});
+        return dispatch({ type: UPDATED_ORDER, payload: response.data });
     }
 }
 
 export const filterByStatus = (value) => {
     return (dispatch) => {
-        return dispatch({type: FILTER_BY_STATUS, payload: value});
+        return dispatch({ type: FILTER_BY_STATUS, payload: value });
     }
 }
 
@@ -147,24 +144,3 @@ export const deleteProduct = (id) => {
         return dispatch({type: DELETE_PRODUCT, payload: id});
     }
 }
-
-export const editProduct = (id, brand,model,image,description,specs,benchmark,price,stock,category) => {
-    return async  (dispatch) => {
-        try {
-            let response = await axios.put(`http://localhost:3001/api/productos/${id}`, {
-                id, brand,model,image,description,specs,benchmark,price,stock,category})
-                console.log(response.data)
-                return dispatch({type: UPDATE_PRODUCT});
-        } catch (error) {
-            console.log(error)
-        }
-    }
-}
-export const setMessage = (message) => ({
-    type: SET_MESSAGE,
-    payload: message,
-});
-
-export const clearMessage = () => ({
-    type: CLEAR_MESSAGE,
-});
