@@ -1,64 +1,7 @@
 .paginationContainer {
   display: flex;
-  list-style-type: none;
+  flex-direction: row;
   justify-content: center;
-  padding: 1rem;
-}
-
-.paginationItem {
-  padding: 1.2rem;
-  min-width: 30px;
-  height: 30px;
-  margin: auto 4px;
-  text-align: center;
-  text-align: center;
-  color: black;
-  display: flex;
-  box-sizing: border-box;
   align-items: center;
-  border-radius: 50%;
-  line-height: 1.43;
-  font-size: 17px;
-  border: 0.1rem solid black;
-}
-
-.paginationItemDots {
-  font-size: 30px;
-  padding: 0 0.5rem;
-}
-
-.paginationContainer button {
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
-}
-.paginationContainer button:disabled {
-  background-color: rgb(209, 196, 196);
-  border-radius: 50%;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
-}
-
-.paginationItem:hover {
-  background-color: #9d02026a;
-  cursor: pointer;
-}
-
-.selected {
-  background-color: rgba(66, 71, 72, 0.366);
-}
-
-@media screen and (max-width: 750px) {
-  .paginationContainer {
-    display: flex;
-    flex-wrap: wrap;
-  }
+  padding: 1rem;
 }

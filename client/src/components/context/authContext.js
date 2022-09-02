@@ -12,7 +12,8 @@ import {
     onAuthStateChanged,
     signOut,
     GoogleAuthProvider,
-    signInWithPopup
+    signInWithPopup,
+    sendPasswordResetEmail
 } from "firebase/auth"
 import {
     doc,
@@ -46,6 +47,7 @@ export function AuthProvider({ children }) {
         return () => unsuscribe()
     }, [])
     //crea un usuario en la tabla de firabase
+
     const register = async (email, password, admin = false) => {
         const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
             .then((userData) => {
@@ -63,6 +65,7 @@ export function AuthProvider({ children }) {
         const docRef = doc(db, `user/${uid}`)
         const userDb = await getDoc(docRef)
         const data = userDb.data()
+        localStorage.setItem("username", data.userName)
         if (data.admin === true) {
             localStorage.setItem("admin", "true")
         } else {
@@ -83,6 +86,10 @@ export function AuthProvider({ children }) {
             'login_hint': 'user@example.com'
         });
         return signInWithPopup(auth, googleProvider)
+    }
+    //reset password
+    const resetPassword = async (email) => {
+        await sendPasswordResetEmail(auth, email)
     }
     // cierra la sesion actual
     const logout = async () => {
