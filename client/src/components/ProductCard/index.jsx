@@ -11,6 +11,7 @@ function ProductCard(props) {
         
         <div className={`cardContainer ${props.stock < 5 ? "fewUnits" : ""}`}>
             <Link to={`/store/${props.id}`} className="linkStyle">
+                {props.stock === 0 ? <h5 style={{color: "red"}}>Out of stock</h5> : null}
                 <img className="cardImage" src={props.image} alt="img"></img>
                 <div className="textComplement">
                     <p>{props.brand} {props.model}</p>

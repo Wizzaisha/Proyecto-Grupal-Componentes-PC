@@ -64,7 +64,7 @@ function ProductCards() {
     }
 
     return (
-        <div className="cardsMainContainer">
+        <div className="container-fluid cardsMainContainer">
             <div className="filtersContainer">
 
                 <CategoriesBar

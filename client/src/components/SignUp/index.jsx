@@ -3,7 +3,6 @@ import React,{useState} from "react";
 import {useNavigate, Link} from "react-router-dom"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Header from "../Header";
 import { useAuth } from "../context/authContext";
 
 function SignUp() {
@@ -49,7 +48,6 @@ function SignUp() {
     }
     return (
         <>
-        <Header/>
         <div className="containerForm justify-content-around">
             {   error
                 ?<h1 className="display-6 shadow-lg p-3 mb-5 bg-body rounded">Error : {error}</h1>
