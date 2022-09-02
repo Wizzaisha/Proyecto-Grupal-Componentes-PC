@@ -85,14 +85,14 @@ export function AuthProvider({ children }) {
         localStorage.removeItem("admin")
     }
     // Agrega el atributo favorites al usuario
-    const favorites = async (favorites) => {
-        const docRef = doc(db, `user/${userCredentials.user.uid}`)
+    const favorites = (favorites) => {
+        const docRef = doc(db, `user/${user.uid}`)
         setDoc(docRef, {
             ...setDoc,
             favorites: favorites
         })
     }
     return (
-        <authContext.Provider value={{ register, login, user, logout, loginWithGoogle }}>{children}</authContext.Provider>
+        <authContext.Provider value={{ register, login, user, logout, loginWithGoogle, favorites }}>{children}</authContext.Provider>
     );
 }

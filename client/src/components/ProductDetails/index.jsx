@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import { useParams } from 'react-router-dom'
 import { getProductDetails, } from '../../redux/actions'
+import { useAuth } from '../context/authContext'
 
 function ProductDetails() {
 
@@ -11,7 +12,7 @@ function ProductDetails() {
     const { idProduct } = useParams()
     const details = useSelector(state => state.details)
     const [value, setValue] = useState(1)
-
+    const auth = useAuth()
 
     useEffect(() => {
         window.scrollTo({
@@ -58,6 +59,15 @@ function ProductDetails() {
 
     }
 
+    const handleFavorite = async (e) => {
+        if (auth.user !== null) {
+            await auth.favorites().push(details.id)
+        } else {
+            console.log('debes iniciar sesion');
+        }
+    }
+
+
     function stockValidator(e) {
         if (e.target.value === '+' && value < details.stock) { setValue(value + 1) }
         if (e.target.value === '-' && value > 1) { setValue(value - 1) }
@@ -66,7 +76,7 @@ function ProductDetails() {
     return (
         <div className="container">
             <div className={`containerRow`}>
-                {details.stock === 0 ? <h4 style={{color: "red"}}>Out of stock</h4> : null}
+                {details.stock === 0 ? <h4 style={{ color: "red" }}>Out of stock</h4> : null}
                 <div>
                     <img src={details.image} className="img" alt="img" />
                 </div>
@@ -90,13 +100,14 @@ function ProductDetails() {
                     <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
                     <button type="button" className="btn btn-outline-primary" value={'+'} onClick={(e) => stockValidator(e) /*setValue(value + 1)*/}>+</button>
                 </div>
-                <button 
-                    type="submit" 
-                    className="btn btn-primary button3" 
-                    onClick={e => handleButton(e)} 
-                    disabled={details.stock === 0 ? "true" : null}    
+                <button
+                    type="submit"
+                    className="btn btn-primary button3"
+                    onClick={e => handleButton(e)}
+                    disabled={details.stock === 0 ? "true" : null}
                 >Add to cart</button>
             </div>
+            <button onClick={handleFavorite}>Add to favorites</button>
             <Link to={'/store'}>
                 <button className="btn btn-primary">X</button>
             </Link>
