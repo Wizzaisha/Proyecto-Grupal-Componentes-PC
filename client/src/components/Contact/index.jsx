@@ -65,6 +65,18 @@ const auth = useAuth()
             [e.target.name]:e.target.value
         })
     }
+    
+function handleB(){
+let button=document.getElementById("button")
+button.disabled=true
+if(input.name && input.email && input.affair && input.message){
+    button.disabled=false
+}
+
+    }
+
+
+
 
 
 
@@ -82,9 +94,12 @@ const auth = useAuth()
         backgroundPosition:'center',
         backgroundSize:'cover'
         }}>
-            <h1 style={{marginTop:'5px'}}>Contact</h1>
-            <Form className="row" style={{margin:'25px 85px 75px 100px' }}
-            action="https://formsubmit.co/ayrtonacrc@gmail.com" method="POST" id="form">
+            <div>
+            <h1 style={{marginTop:'10px'}}>Contact</h1>
+            </div>
+           
+            <Form className="row" style={{margin:'25px 85px 75px 100px' }} onChange={handleB}
+            action="https://formsubmit.co/proyectofinalhenry2022@gmail.com" method="POST" id="form">
                 
                 <label>Name</label>
                  <input type="text" name="name" id="name"  placeholder="Enter name" className="form-control" value={input.name} onChange={handleChange}></input>
@@ -102,11 +117,11 @@ const auth = useAuth()
                 <label>Message</label>
                 <textarea name='message' rows='4' className="form-control" placeholder="Enter your query" value={input.message} onChange={handleChange}/>
                
-                <button type='submit' className="form-control btn btn-primary" style={{marginTop:'10px'}}  id="button">Send</button>
+                <button className="form-control btn btn-primary" style={{marginTop:'10px'}}  id="button" disabled>Send</button>
 
 
                 {/* input de personalizacion     */}
-            <input type="hidden" name="_next" value="http://localhost:3000/contact"/>
+            <input type="hidden" name="_next" value="http://localhost:3000/store"/>
             <input type="hidden" name="_captcha" value="false"/> 
               
 
