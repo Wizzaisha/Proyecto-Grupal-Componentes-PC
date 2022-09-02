@@ -49,13 +49,12 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="App">
+    <div className="App container-fluid p-0">
       <AuthProvider>
         <Routes>
           <Route path='/' element={<Home />}>
             <Route index element={<LandingPage />}></Route>
             <Route path='store' element={<ProductCards />}>
-
             </Route>
             <Route path='store/:idProduct' element={<ProductDetails />}></Route>
             <Route path='contact' element={<Contact />}></Route>
