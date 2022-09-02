@@ -19,8 +19,7 @@ import {
     FILTER_CATEGORY_ADMIN,
     CLEAR_FILTER_ADMIN,
     CLEAR_FILTER_STORE,
-    GET_STATISTICS_DATA
-
+    GET_STATISTICS_DATA,
     UPDATE_PRODUCT,
     SET_MESSAGE,
     CLEAR_MESSAGE
@@ -200,6 +199,51 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 statisticsData: action.payload
             }
+            case SEARCH_PRODUCTS:
+
+                const wanted = action.payload
+                if (wanted.length === 0) {
+                    console.log(wanted)
+                    return {
+                        ...state,
+                        products: state.productsCopy2,
+                        productsCopy: state.productsCopy2
+                    }
+                }
+                return {
+                    ...state,
+                    products: [...state.productsCopy.filter(e => e.isDeleted === false).filter(e => {
+                        if (e.brand.toUpperCase().includes(wanted.toUpperCase())) {
+                            return true
+                        } else if (e.category.toUpperCase().includes(wanted.toUpperCase())) {
+                            return true
+                        } else if (e.model.toUpperCase().includes(wanted.toUpperCase())) {
+                            return true
+                        } else {
+                            return false
+                        }
+                    })
+                    ],
+                    productsCopy: [...state.productsCopy.filter(e => e.isDeleted === false).filter(e => {
+                        if (e.brand.toUpperCase().includes(wanted.toUpperCase())) {
+                            return true
+                        } else if (e.category.toUpperCase().includes(wanted.toUpperCase())) {
+                            return true
+                        } else if (e.model.toUpperCase().includes(wanted.toUpperCase())) {
+                            return true
+                        } else {
+                            return false
+                        }
+                    })
+                    ]
+                }
+            
+            case GET_STATISTICS_DATA:
+                
+                return {
+                    ...state,
+                    statisticsData: action.payload
+                }
 
             case UPDATE_PRODUCT:
                 return {  ...state    }
@@ -208,6 +252,8 @@ const rootReducer = (state = initialState, action) => {
                 return { message: action.payload };
             case CLEAR_MESSAGE:
                 return { message: "" };
+
+                
 
         default:
             return { ...state }
