@@ -38,11 +38,12 @@ export const useAuth = () => {
 };
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(false)
+    const [favorite, setFavorite] = useState('')
     useEffect(() => {
         const unsuscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
         })
-        return () => unsuscribe();
+        return () => unsuscribe()
     }, [])
     //crea un usuario en la tabla de firabase
     const register = async (email, password, admin = false) => {
@@ -91,21 +92,28 @@ export function AuthProvider({ children }) {
     // Agrega el atributo favorites al usuario
     const addFavorite = async (id) => {
         const docRef = doc(db, `user/${user.uid}`)
-        updateDoc(docRef, {
+        await updateDoc(docRef, {
             favorite: arrayUnion(id)
         })
     }
 
     const removeFavorite = async (id) => {
         const docRef = doc(db, `user/${user.uid}`)
-        updateDoc(docRef, {
+        await updateDoc(docRef, {
             favorite: arrayRemove(id)
         })
     }
 
+    const getFavorite = async () => {
+        const docRef = doc(db, `user/${user.uid}`)
+        const userDb = await getDoc(docRef)
+        const data = userDb.data()
+        setFavorite(data.favorite)
+        console.log(favorite);
+    }
 
 
     return (
-        <authContext.Provider value={{ register, login, user, logout, loginWithGoogle, addFavorite, removeFavorite }}>{children}</authContext.Provider>
+        <authContext.Provider value={{ register, login, user, logout, loginWithGoogle, addFavorite, removeFavorite, getFavorite }}>{children}</authContext.Provider>
     );
 }

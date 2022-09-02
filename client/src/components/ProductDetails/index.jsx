@@ -64,22 +64,24 @@ function ProductDetails() {
         if (auth.user !== null) {
             if (favorite === false) {
                 await auth.addFavorite(details.id)
+                console.log('agrego');
                 setFavorite(true)
             } else if (favorite === true) {
                 await auth.removeFavorite(details.id)
                 setFavorite(false)
+                await auth.getFavorite();
+                console.log('removio');
             }
         } else {
             console.log('debes iniciar sesion');
         }
     }
 
-
     function stockValidator(e) {
         if (e.target.value === '+' && value < details.stock) { setValue(value + 1) }
         if (e.target.value === '-' && value > 1) { setValue(value - 1) }
     }
-    console.log(details.id);
+
     return (
         <div className="container">
             <div className={`containerRow`}>
