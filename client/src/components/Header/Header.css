@@ -1,28 +1,26 @@
 .headerContainer {
-  border: 1px solid green;
   height: 100px;
 }
 
-.cartIcon{
+.cartIcon {
   height: 25px;
   width: 25px;
   background-color: black;
 }
 
-.cartNumber{
-animation: pulse 1s ease-in-out infinite;
-background-color: #6246ea;
-border-radius: 15px;
-bottom: 30px;
-color: #fff;
-font-weight: 800;
-height: 19px;
-position: relative;
-text-align: center;
-left: 12px;
-width: 19px;
-display: flex;
-align-items: center;
-justify-content: space-evenly;
-
+.cartNumber {
+  animation: pulse 1s ease-in-out infinite;
+  background-color: #6246ea;
+  border-radius: 15px;
+  bottom: 30px;
+  color: #fff;
+  font-weight: 800;
+  height: 19px;
+  position: relative;
+  text-align: center;
+  left: 12px;
+  width: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }

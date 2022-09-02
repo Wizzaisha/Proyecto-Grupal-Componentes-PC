@@ -3,7 +3,6 @@ import React, { useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Header from "../Header";
 import { useAuth } from "../context/authContext";
 function Login() {
     const [error, setError] = useState("")
@@ -62,7 +61,6 @@ function Login() {
     }
     return (
         <>
-            <Header />
             <div className="containerForm justify-content-around">
                 <div className="d-flex flex-column">
                     {   error

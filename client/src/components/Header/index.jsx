@@ -1,15 +1,10 @@
 import "./Header.css";
-import React, {
-    useState,
-} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useDispatch } from 'react-redux'
-import {useAuth} from "../context/authContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "react-router-dom";
@@ -18,7 +13,6 @@ import { searchProducts } from '../../redux/actions'
 function Header() {
     const dispatch = useDispatch()
 
-    const admin = localStorage.getItem("admin")
     const handlerSearch = (e) => {
         e.preventDefault(e)
         dispatch(searchProducts(e.target.value))
