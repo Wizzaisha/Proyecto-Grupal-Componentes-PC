@@ -14,6 +14,15 @@ export const GET_CUSTOMER_HISTORY = "GET_CUSTOMER_HISTORY";
 export const UPDATED_ORDER = "UPDATED_ORDER";
 export const FILTER_BY_STATUS = "FILTER_BY_STATUS";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
+export const SEARCH_PRODUCTS = "SEARCH_PRODUCTS";
+export const SET_ADMIN_CATEGORY = "SET_ADMIN_CATEGORY";
+export const FILTER_CATEGORY_ADMIN = "FILTER_CATEGORY_ADMIN";
+export const CLEAR_FILTER_ADMIN = "CLEAR_FILTER_ADMIN";
+export const CLEAR_FILTER_STORE = "CLEAR_FILTER_STORE";
+export const GET_STATISTICS_DATA = "GET_STATISTICS_DATA";
+export const UPDATE_PRODUCT = "UPDATE_PRODUCT"; 
+export const SET_MESSAGE = "SET_MESSAGE";
+export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 
 export const getAllProducts = () => {
     return async (dispatch) => {
@@ -22,6 +31,7 @@ export const getAllProducts = () => {
         return dispatch({ type: GET_ALL_PRODUCTS, payload: response.data });
     }
 }
+
 
 export const getAllCategories = () => {
     return async (dispatch) => {
@@ -140,7 +150,65 @@ export const filterByStatus = (value) => {
 
 export const deleteProduct = (id) => {
     return async (dispatch) => {
-        await axios.delete(`http://localhost:3001/api/productos/${id}`); 
-        return dispatch({type: DELETE_PRODUCT, payload: id});
+        await axios.delete(`http://localhost:3001/api/productos/${id}`);
+        return dispatch({ type: DELETE_PRODUCT, payload: id });
     }
 }
+
+export const searchProducts = (wanted) => {
+    return async (dispatch) => {
+        return dispatch({ type: SEARCH_PRODUCTS, payload: wanted });
+    }
+}
+
+export const setAdminCategory = (value) => {
+    return (dispatch) => {
+        return dispatch({ type: SET_ADMIN_CATEGORY, payload: value });
+    }
+}
+
+export const adminFilterCategory = (filterValues) => {
+    return (dispatch) => {
+        return dispatch({ type: FILTER_CATEGORY_ADMIN, payload: filterValues })
+    }
+}
+
+export const clearAdminFilter = () => {
+    return (dispatch) => {
+        return dispatch({ type: CLEAR_FILTER_ADMIN });
+    }
+}
+
+export const clearStoreFilter = () => {
+    return (dispatch) => {
+        return dispatch({ type: CLEAR_FILTER_STORE });
+    }
+}
+
+export const getStatisticsData = () => {
+    return async (dispatch) => {
+        const response = await axios.get("http://localhost:3001/api/statistics-data");
+
+        return dispatch({ type: GET_STATISTICS_DATA, payload: response.data })
+    }
+}
+export const editProduct = (id, brand,model,image,description,specs,benchmark,price,stock,category) => {
+    return async  (dispatch) => {
+        try {
+            let response = await axios.put(`http://localhost:3001/api/productos/${id}`, {
+                id, brand,model,image,description,specs,benchmark,price,stock,category})
+                console.log(response.data)
+                return dispatch({type: UPDATE_PRODUCT});
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+export const setMessage = (message) => ({
+    type: SET_MESSAGE,
+    payload: message,
+});
+
+export const clearMessage = () => ({
+    type: CLEAR_MESSAGE,
+});
