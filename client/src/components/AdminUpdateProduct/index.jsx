@@ -242,7 +242,7 @@ return (
                   />
 
           {/* <button  type = "button" onClick={ () => handleSpecs } >Add Specification</button> */}
-          <Button variant="primary" onClick={ () => handleSpecs }>Primary</Button>
+          <Button variant="primary" onClick={ handleSpecs }>Add Specification</Button>
           </div>
 
 

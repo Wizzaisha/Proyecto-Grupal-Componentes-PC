@@ -7,6 +7,8 @@ const category = require ('./category.route')
 const user = require ('./user.route')
 const checkout = require("./checkout.route")
 const orderList = require("./OrderList.route");
+const comment =require("./comment.route");
+const statistics = require("./statistics.route")
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
