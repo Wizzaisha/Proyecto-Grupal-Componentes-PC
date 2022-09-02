@@ -121,6 +121,6 @@ export function AuthProvider({ children }) {
 
 
     return (
-        <authContext.Provider value={{ register, login, user, logout, loginWithGoogle, addFavorite, removeFavorite, getFavorite }}>{children}</authContext.Provider>
+        <authContext.Provider value={{ register, login, user, logout, loginWithGoogle, addFavorite, removeFavorite, getFavorite, resetPassword }}>{children}</authContext.Provider>
     );
 }
