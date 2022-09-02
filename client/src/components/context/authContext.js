@@ -7,15 +7,15 @@ import {
     useState
 } from "react";
 import {
-    createUserWithEmailAndPassword ,
-    signInWithEmailAndPassword ,
-    onAuthStateChanged ,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
     signOut,
     GoogleAuthProvider,
     signInWithPopup
 } from "firebase/auth"
 import {
-    doc ,
+    doc,
     setDoc,
     getDoc,
 } from "firebase/firestore"
@@ -35,42 +35,42 @@ export const useAuth = () => {
 };
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(false)
-    useEffect(()=>{
-        const unsuscribe = onAuthStateChanged(auth , (currentUser) =>{
+    useEffect(() => {
+        const unsuscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
         })
         return () => unsuscribe();
-    },[])
+    }, [])
     //crea un usuario en la tabla de firabase
-    const register = async (email,password,admin = false) => {
-        const userCredentials = await createUserWithEmailAndPassword(auth ,email,password)
-        .then((userData)=>{
-            return userData
-        });
-        const docRef = doc(db , `user/${userCredentials.user.uid}`)
-        setDoc(docRef,{
-            email : email,
-            password : password,
-            admin : admin
+    const register = async (email, password, admin = false) => {
+        const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
+            .then((userData) => {
+                return userData
+            });
+        const docRef = doc(db, `user/${userCredentials.user.uid}`)
+        setDoc(docRef, {
+            email: email,
+            password: password,
+            admin: admin
         })
     }
-    const getRole = async (uid) =>{
-        const docRef = doc(db , `user/${uid}`)
+    const getRole = async (uid) => {
+        const docRef = doc(db, `user/${uid}`)
         const userDb = await getDoc(docRef)
         const data = userDb.data()
-            if(data.admin === true){
-                localStorage.setItem("admin" , "true" )
-            }else{
-                localStorage.setItem("admin", "false")
-            }
+        if (data.admin === true) {
+            localStorage.setItem("admin", "true")
+        } else {
+            localStorage.setItem("admin", "false")
+        }
     }
     // loguea un usuario existente
-    const login = async (email,password) => {
-        await signInWithEmailAndPassword(auth,email,password)
-        .then((userData)=>{
-            console.log(userData)
-            getRole(userData.user.uid)
-        });
+    const login = async (email, password) => {
+        await signInWithEmailAndPassword(auth, email, password)
+            .then((userData) => {
+                console.log(userData)
+                getRole(userData.user.uid)
+            });
     }
     const loginWithGoogle = () => {
         const googleProvider = new GoogleAuthProvider()
@@ -80,11 +80,19 @@ export function AuthProvider({ children }) {
         return signInWithPopup(auth, googleProvider)
     }
     // cierra la sesion actual
-    const logout = async () =>{
+    const logout = async () => {
         await signOut(auth)
         localStorage.removeItem("admin")
     }
+    // Agrega el atributo favorites al usuario
+    const favorites = async (favorites) => {
+        const docRef = doc(db, `user/${userCredentials.user.uid}`)
+        setDoc(docRef, {
+            ...setDoc,
+            favorites: favorites
+        })
+    }
     return (
-        <authContext.Provider value={{ register , login , user ,logout , loginWithGoogle}}>{children}</authContext.Provider>
+        <authContext.Provider value={{ register, login, user, logout, loginWithGoogle }}>{children}</authContext.Provider>
     );
 }
