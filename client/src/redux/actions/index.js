@@ -190,3 +190,10 @@ export const getStatisticsData = () => {
         return dispatch({ type: GET_STATISTICS_DATA, payload: response.data })
     }
 }
+//------------CREAR PRODUCTO--------------
+export function createProduct(input){
+    return async function(dispatch){
+        const product=await axios.post("http://localhost:3001/api/productos/", input)
+        return product
+    }
+}

@@ -12,7 +12,8 @@ import {
     onAuthStateChanged ,
     signOut,
     GoogleAuthProvider,
-    signInWithPopup
+    signInWithPopup,
+    sendPasswordResetEmail
 } from "firebase/auth"
 import {
     doc ,
@@ -42,13 +43,14 @@ export function AuthProvider({ children }) {
         return () => unsuscribe();
     },[])
     //crea un usuario en la tabla de firabase
-    const register = async (email,password,admin = false) => {
+    const register = async (username,email,password,admin = false) => {
         const userCredentials = await createUserWithEmailAndPassword(auth ,email,password)
         .then((userData)=>{
             return userData
         });
         const docRef = doc(db , `user/${userCredentials.user.uid}`)
         setDoc(docRef,{
+            userName : username,
             email : email,
             password : password,
             admin : admin
@@ -58,6 +60,7 @@ export function AuthProvider({ children }) {
         const docRef = doc(db , `user/${uid}`)
         const userDb = await getDoc(docRef)
         const data = userDb.data()
+        localStorage.setItem("username", data.userName)
             if(data.admin === true){
                 localStorage.setItem("admin" , "true" )
             }else{
@@ -79,12 +82,16 @@ export function AuthProvider({ children }) {
         });
         return signInWithPopup(auth, googleProvider)
     }
+    //reset password
+    const resetPassword = async (email) => {
+        await sendPasswordResetEmail(auth, email)
+    }
     // cierra la sesion actual
     const logout = async () =>{
         await signOut(auth)
         localStorage.removeItem("admin")
     }
     return (
-        <authContext.Provider value={{ register , login , user ,logout , loginWithGoogle}}>{children}</authContext.Provider>
+        <authContext.Provider value={{ register , login ,resetPassword, user ,logout , loginWithGoogle}}>{children}</authContext.Provider>
     );
 }
