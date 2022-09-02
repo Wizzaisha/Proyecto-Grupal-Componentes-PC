@@ -3,9 +3,9 @@ const {Router} = require('express');
 const Stripe = require("stripe");
 const router = Router();
 
-
 const { Product } = require("../db");
 const { obtenerProductosById } = require("../Middleware/getProduct.middleware");
+const { sendEmail } = require("../Middleware/sendEmail.middleware");
 
 const {
     STRIPE_S_KEY,
@@ -92,6 +92,9 @@ router.post("/", async (req, res, next) => {
             upDateStock(JSON.parse(payment.metadata.productsOrdered));
         }
         
+        const receiptUrl = payment.charges.data[0].receipt_url;
+
+        sendEmail(email, receiptUrl);
 
         res.status(201).send({message: "Successfull pay"});
 

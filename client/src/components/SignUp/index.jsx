@@ -3,7 +3,6 @@ import React,{useState} from "react";
 import {useNavigate, Link} from "react-router-dom"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Header from "../Header";
 import { useAuth } from "../context/authContext";
 
 function SignUp() {
@@ -53,7 +52,6 @@ function SignUp() {
     }
     return (
         <>
-        <Header/>
         <div className="container d-flex justify-content-center align-items-center">
             <Form
                 onSubmit={(e)=>{

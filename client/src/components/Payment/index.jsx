@@ -5,6 +5,8 @@ import './payment.css'
 import axios from 'axios'
 import { useAuth } from '../context/authContext'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from "react-redux";
+import { getAllProducts } from '../../redux/actions';
 
 const index = () => {
 
@@ -16,6 +18,8 @@ const index = () => {
         const elements = useElements()
         const auth = useAuth()
         const navigate = useNavigate();
+
+        const dispatch = useDispatch();
 
         useEffect(() => {
             setCart(JSON.parse(localStorage.getItem('cart')))
@@ -67,6 +71,7 @@ const index = () => {
                     alert('Successful payment!')
                     localStorage.setItem('cart', '[ ]')
                     navigate('/succesfulPurchase')
+                    dispatch(getAllProducts());
                 }
             } else {
                 alert('payment failed, please check the data.')

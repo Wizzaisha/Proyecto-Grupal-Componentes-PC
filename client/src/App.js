@@ -29,7 +29,25 @@ import AdminCustomerHistory from "./components/AdminCustomerHistory";
 import { AuthProvider } from './components/context/authContext';
 import AdminStatistics from './components/AdminStatistics';
 
+import {
+  getAllProducts,
+  getAllCategories,
+} from "./redux/actions";
+
+
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+
 function App() {
+
+
+  const dispatch = useDispatch();
+    
+  useEffect(() => {
+      dispatch(getAllProducts());
+      dispatch(getAllCategories());
+  }, [dispatch]);
+
   return (
     <div className="App container-fluid p-0">
       <AuthProvider>
@@ -43,20 +61,22 @@ function App() {
             <Route path='cart' element={<Cart />}></Route>
             <Route path='payment' element={<Payment />}></Route>
             <Route path='succesfulPurchase' element={<SuccesBuy />}></Route>
+
+            <Route path='adminpanel' element={<AdminPanel />}>
+              <Route path='list-product' element={<AdminProductList />}></Route>
+              <Route path='create-product' element={<AdminCreateProduct />}></Route>
+              <Route path='product-details' element={<AdminProductDetails />}></Route>
+              <Route path='admin-statistics' element={<AdminStatistics />}></Route>
+              <Route path='order-list' element={<AdminOrdersList />}></Route>
+              <Route path='order-details/:idPayment' element={<AdminOrderDetails />}></Route>
+              <Route path='customer-history/:idCustomer' element={<AdminCustomerHistory />}></Route>
+            </Route>
+            <Route path='login' element={
+              <Login />
+            }></Route>
+            <Route path='signup' element={<SignUp />}></Route>
           </Route>
-          <Route path='/adminpanel' element={<AdminPanel />}>
-            <Route path='list-product' element={<AdminProductList />}></Route>
-            <Route path='create-product' element={<AdminCreateProduct />}></Route>
-            <Route path='product-details' element={<AdminProductDetails />}></Route>
-            <Route path='admin-statistics' element={<AdminStatistics />}></Route>
-            <Route path='order-list' element={<AdminOrdersList />}></Route>
-            <Route path='order-details/:idPayment' element={<AdminOrderDetails />}></Route>
-            <Route path='customer-history/:idCustomer' element={<AdminCustomerHistory />}></Route>
-          </Route>
-          <Route path='/login' element={
-            <Login />
-          }></Route>
-          <Route path='/signup' element={<SignUp />}></Route>
+
           <Route path='*' element=
             {<h1>There's nothing here!</h1>}
           ></Route>

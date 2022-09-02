@@ -4,7 +4,6 @@ import React, { useState} from "react";
 import { useNavigate ,Link} from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Header from "../Header";
 import { useAuth } from "../context/authContext";
 function Login() {
     const [error, setError] = useState("")
@@ -83,7 +82,6 @@ function Login() {
     }
     return (
         <>
-            <Header />
             {auth.user !== null
             ?
             <div className="container justify-content-center align-items-center">

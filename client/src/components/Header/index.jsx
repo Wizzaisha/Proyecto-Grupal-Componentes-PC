@@ -6,11 +6,11 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useDispatch } from 'react-redux'
-import {useAuth} from "../context/authContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "react-router-dom";
 import { searchProducts } from '../../redux/actions'
+import {useAuth} from "../context/authContext"
 
 function Header() {
     const dispatch = useDispatch()
@@ -19,6 +19,7 @@ function Header() {
         e.preventDefault(e)
         dispatch(searchProducts(e.target.value))
     }
+    if(!localStorage.getItem('cart')) (localStorage.setItem('cart', '[]'));
     return (
         <Navbar bg="dark" expand="lg" className="shadow-lg p-3">
             <Container fluid>
