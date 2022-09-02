@@ -30,7 +30,6 @@
   flex-direction: column;
   gap: 1rem;
   padding: 0.5rem;
-  border: 0.1px solid rgb(113, 111, 111);
   border-radius: 10px;
 }
 
@@ -38,4 +37,11 @@
   border: 0.1px solid rgb(113, 111, 111);
   border-radius: 10px;
   padding: 0.5rem;
+}
+
+@media screen and (max-width: 800px) {
+  .cardsMainContainer {
+    display: flex;
+    flex-direction: column;
+  }
 }
