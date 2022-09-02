@@ -1,4 +1,5 @@
 import "./Login.css";
+import "../../scss/custom.scss"
 import React, { useState} from "react";
 import { useNavigate ,Link} from "react-router-dom";
 import Button from 'react-bootstrap/Button';
@@ -35,8 +36,12 @@ function Login() {
         e.preventDefault()
         setError("")
         try {
-            await auth.login(email,password)
-            navigate("/")
+            if (email && password){
+                await auth.login(email,password)
+                navigate("/")
+            }else{
+                setError("complete the form")
+            }
         } catch (error) {
             if(error.code === "auth/wrong-password"){
                 setError("Wrong password :(")
@@ -110,7 +115,7 @@ function Login() {
                         <h6 className="text-light text-sm">{reset}</h6>
                     </Form.Text>
                 </Form.Group>}
-            <Form className={"form"}
+            <Form className={"form bg-body rounded"}
                 onSubmit={(e) => {
                     handlerSubmit(e)
                 }}
@@ -120,18 +125,18 @@ function Login() {
                         <h6 className="text-light">{error}</h6>
                     </Form.Text>
                 </Form.Group>}
-                <Form.Group className="mb-3 shadow-lg p-3 bg-body rounded" controlId="formBasicEmail">
+                <Form.Group className="mb-3 shadow-lg p-3 bg3 text-light rounded" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" placeholder="Enter email"
                         onChange={(e) => {
                             handlerEmail(e)
                         }}
                     />
-                    <Form.Text className="text-muted">
+                    <Form.Text className="text-light">
                         We'll never share your email with anyone else.
                     </Form.Text>
                 </Form.Group>
-                <Form.Group className="mb-3 shadow-lg p-3 bg-body rounded" controlId="formBasicPassword">
+                <Form.Group className="mb-3 shadow-lg p-3 bg2 text-light rounded" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control type={checkOut} placeholder="Password"
                         onChange={(e) => {
@@ -139,25 +144,25 @@ function Login() {
                         }}
                         autoComplete="on"
                     />
-                    <Form.Text className="text-muted">
+                    <Form.Text className="text-light">
                         Only eight alphanumeric characters
                     </Form.Text>
                 </Form.Group>
-                <Form.Group className="mb-3 shadow-lg p-3 bg-body rounded" controlId="formBasicCheckbox">
-                    <Form.Check onClick={(e) => {
+                <Form.Group className="mb-3 shadow-lg p-3 bg3 text-light rounded" controlId="formBasicCheckbox">
+                    <Form.Check className="text-light" onClick={(e) => {
                         handlerCheckOut(e)
                     }} type="checkbox" label="Check me out" />
                 </Form.Group>
-                <Form.Group className="mb-3 shadow-lg p-3 bg-body rounded">
+                <Form.Group className="mb-3 shadow-lg p-3 bg3 text-light rounded">
                     <div className="d-flex justify-content-around align-items-center">
                     {
                     password.length < 6 || password.length > 16
                     ?
-                    <Button variant="warning" type="submit" disabled>
+                    <Button className="bg4" type="submit" disabled>
                         Log in
                     </Button>
                     :
-                    <Button variant="primary" type="submit">
+                    <Button className="bg4" type="submit">
                         Log in
                     </Button>
                     }
