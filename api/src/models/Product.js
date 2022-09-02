@@ -12,8 +12,11 @@ module.exports = (sequelize) => {
       specs: { type: DataTypes.ARRAY(DataTypes.STRING), },
       benchmark: { type: DataTypes.INTEGER },
       price: { type: DataTypes.FLOAT },
-      stock: { type: DataTypes.INTEGER },
-      rating: { type: DataTypes.FLOAT}
+      stock: { type: DataTypes.INTEGER },     
+      points : { type: DataTypes.FLOAT},
+      buyers: { type: DataTypes.FLOAT},
+      rating: { type: DataTypes.VIRTUAL , defaultValue: 0,
+               get(){ return this.points / this.buyers}   }
     });
 
 };

@@ -3,6 +3,7 @@ import { useParams, useNavigate  , Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux' 
 import {getProductDetails, editProduct } from '../../redux/actions'
 import "./UpdateProduct.css";
+import Button from 'react-bootstrap/Button';
 
 const validate = (input) => {
   const errors = {}
@@ -45,13 +46,14 @@ export default function UpdateProduct()
     priceI:details.price,
     stockI:details.stock,
     categoryI: details.category,
+    specI: ""
   })
 
   const handleSpecs = (e) =>{
     e.preventDefault();
-    let array = input.specsI
-    let ver= array.push(e.target.value)
-    console.log('ver', ver[0])
+    var array = [...input.specsI]
+    array.push(input.specI)
+    // console.log('ver', ver[0])
     setInput({
       ...input,
       specsI:array
@@ -145,7 +147,11 @@ return (
         </div>  
 
         <form className="formActivity" onSubmit={handleSubmit}>
+
+            
           <span className='titleCreateActivity'> Edit Product </span>
+
+
           <div className="inputActivities">
             <label className='labelActivity'> Brand </label>
             <input
@@ -158,6 +164,9 @@ return (
             />
             {errors.brandI && <p className="e">{errors.brandI}</p>}
           </div>
+          
+
+
           <div className="inputActivities">
             <label> Model </label>
             <input
@@ -170,6 +179,9 @@ return (
             />
             {errors.modelI && <p className="e">{errors.modelI}</p>}
           </div>
+
+
+
           <div className="inputActivities">
             <label> Image </label>
             <input
@@ -182,6 +194,9 @@ return (
             />
             {errors.imageI && <p className="e">{errors.imageI}</p>}
           </div>
+
+
+
              <div className="inputinputActivities">
             <label> Description </label>
             <input
@@ -195,7 +210,9 @@ return (
             {errors.descriptionI && <p className="e">{errors.descriptionI}</p>}
           </div>
 
-          <div className="seasonInput">
+
+
+          <div>
              <label  className="i" >Categories </label>
              <input
             //   className="i"
@@ -205,22 +222,30 @@ return (
               placeholder={details.categoryI}
               onChange={handleChange}
             />
-             <datalist name="category">
-             {  productCategories.map(    (c) => ( <option className='op' value={c}>{c}</option> )    )   }
+             <datalist id="category">
+             {  productCategories.map(    (c) => ( <option  value={c}>{c}</option> )    )   }
              </datalist>
           {errors.categoryI && <p className="e">{errors.categoryI}</p>}
                </div>
+
+
 
           <div>
              <label  className="i" >Specs </label>
             <input
               className="i"
               type="text"
-              name="specsI"
+              name="specI"
+              value={input.specI}
               placeholder="Agregue especificaciones"
+              onChange={handleChange}
                   />
-          <button className='btnActivity' onClick={() =>handleSpecs}>Add Specification</button>
+
+          {/* <button  type = "button" onClick={ () => handleSpecs } >Add Specification</button> */}
+          <Button variant="primary" onClick={ () => handleSpecs }>Primary</Button>
           </div>
+
+
           <div className="textArea">
             {input.specsI && input.specsI.map((s) => (
               <div className='countrieAndButton'>
@@ -231,9 +256,16 @@ return (
             ))}
           </div>
           {errors.specsI && <p className="e">{errors.specsI}</p>}
+
+
+
           <div>
             <button className='btnActivity' type="submit">Save Edition</button>
           </div>
+
+
+
+
         </form>
       </div>
     </div>

@@ -17,6 +17,7 @@ toObj.push ({
         benchmark: e.benchmark,
         price: e.price,
         stock: e.stock,
+        rating: e.rating,
         category: e.category.name
        })
 })

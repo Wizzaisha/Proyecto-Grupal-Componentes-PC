@@ -1,7 +1,7 @@
 const {Comment,Product} = require("../db")
 const obtenerComentariosPorProducto = async (productId)=>
 {
-    let comentarios = await Comment.findAll({include: Product , where: { productId } })
+    let comentarios = await Comment.findAll({include:[{ model: Product , where: { id: productId } }]})
     let toObj = []
     comentarios?.map(  (e)=>
     { 
