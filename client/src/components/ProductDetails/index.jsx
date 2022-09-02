@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import { useParams } from 'react-router-dom'
 import { getProductDetails, } from '../../redux/actions'
+import { useAuth } from '../context/authContext'
+import starFilled from '../img/icons8-estrella-96 (1).png'
+import starEmpty from '../img/icons8-estrella-96.png'
 
 function ProductDetails() {
 
@@ -11,7 +14,8 @@ function ProductDetails() {
     const { idProduct } = useParams()
     const details = useSelector(state => state.details)
     const [value, setValue] = useState(1)
-
+    const auth = useAuth()
+    const [favorite, setFavorite] = useState(false)
 
     useEffect(() => {
         window.scrollTo({
@@ -58,6 +62,23 @@ function ProductDetails() {
 
     }
 
+    const handleFavorite = async () => {
+        if (auth.user !== null) {
+            if (favorite === false) {
+                await auth.addFavorite(details.id)
+                console.log('agrego');
+                setFavorite(true)
+            } else if (favorite === true) {
+                await auth.removeFavorite(details.id)
+                setFavorite(false)
+                await auth.getFavorite();
+                console.log('removio');
+            }
+        } else {
+            console.log('debes iniciar sesion');
+        }
+    }
+
     function stockValidator(e) {
         if (e.target.value === '+' && value < details.stock) { setValue(value + 1) }
         if (e.target.value === '-' && value > 1) { setValue(value - 1) }
@@ -65,8 +86,13 @@ function ProductDetails() {
 
     return (
         <div className="container">
+            <button onClick={handleFavorite} className="btn border border-0 ">
+                {
+                    favorite === true ? <img src={starFilled} /> : <img src={starEmpty} />
+                }
+            </button>
             <div className={`containerRow`}>
-                {details.stock === 0 ? <h4 style={{color: "red"}}>Out of stock</h4> : null}
+                {details.stock === 0 ? <h4 style={{ color: "red" }}>Out of stock</h4> : null}
                 <div>
                     <img src={details.image} className="img" alt="img" />
                 </div>
@@ -90,11 +116,11 @@ function ProductDetails() {
                     <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
                     <button type="button" className="btn btn-outline-primary" value={'+'} onClick={(e) => stockValidator(e) /*setValue(value + 1)*/}>+</button>
                 </div>
-                <button 
-                    type="submit" 
-                    className="btn btn-primary button3" 
-                    onClick={e => handleButton(e)} 
-                    disabled={details.stock === 0 ? "true" : null}    
+                <button
+                    type="submit"
+                    className="btn btn-primary button3"
+                    onClick={e => handleButton(e)}
+                    disabled={details.stock === 0 ? "true" : null}
                 >Add to cart</button>
             </div>
             <Link to={'/store'}>

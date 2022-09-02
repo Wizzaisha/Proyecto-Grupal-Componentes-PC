@@ -1,7 +1,7 @@
 
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
-import { usePagination, DOTS } from "./usePagination";
+import { usePagination } from "./usePagination";
 
 import "./Pagination.css";
 
@@ -28,55 +28,52 @@ const Pagination = props => {
         return null;
     }
 
-    const onNext = () => {
-        onPageChange(currentPage + 1);
+    const onNext = (currPage) => {
+        if (currPage !== lastPage) onPageChange(currPage + 1);
     };
 
-    const onPrevious = () => {
-        onPageChange(currentPage - 1);
+    const onPrevious = (currPage) => {
+        if (currPage !== 1) onPageChange(currPage - 1);
     };
 
     let lastPage = paginationRange[paginationRange.length - 1];
     return (
-        <ul className={"paginationContainer"}>
-            {/* Left navigation arrow */}
-            <button
-                onClick={onPrevious}
-                disabled={currentPage === 1 ? true : null}
+
+        <div className="paginationContainer">
+            <nav aria-label="...">
+                <ul className="pagination">
+                    <li 
+                        className={`page-item ${currentPage === 1 ? "disabled" : null}`}
+                        onClick={() => onPrevious(currentPage)}
+                    >
+                        <span className="page-link"><FaAngleLeft /></span>
+                    </li>
+
+                    {paginationRange.map((pageNumber, index) => {
+                        return (
+                            <li
+                                key={index}
+                                className="page-item"
+                            >
+                                <span 
+                                    onClick={() => onPageChange(pageNumber)}
+                                    className={`page-link ${pageNumber === currentPage ? "active" : null}`}
+                                >{pageNumber}</span>
+                            </li>   
+                        )
+                    })}
+                    <li 
+                        className={`page-item ${currentPage === lastPage ? "disabled" : null}`}
+                        onClick={() => onNext(currentPage)}
+                    >
+                        <span className="page-link"><FaAngleRight /></span>
+                    </li>
                 
-            ><li
-                className={"paginationItem"}
-            >
-                    <FaAngleLeft />
-                </li>
-            </button>
-            {/* Render page pills */}
-            {paginationRange.map((pageNumber, index) => {
-                if (pageNumber === DOTS) {
-                    return <li
-                        key={index}
-                        className={"paginationItemDots"}
-                    >&#8230;</li>
-                }
+                </ul>
+            </nav>
+        </div>
 
-                return (
-                    <li
-                        key={index}
-                        onClick={() => onPageChange(pageNumber)}
-                        className={pageNumber === currentPage ? "paginationItem selected" : "paginationItem"}
-                    >{pageNumber}</li>
-                )
-            })}
-            {/* Right navigation arrow */}
-            <button
-                onClick={onNext}
-                disabled={currentPage === lastPage ? true : null}
 
-            ><li
-                className={"paginationItem"}
-            ><FaAngleRight /></li>
-            </button>
-        </ul>
     )
 }
 
