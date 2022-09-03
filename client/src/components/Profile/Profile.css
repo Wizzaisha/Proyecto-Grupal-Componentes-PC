@@ -1,0 +1,15 @@
+.profileIcon{
+    height: 1.15rem;
+    width: 1.15rem;
+}
+
+.profileContainer{
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem;
+}
+
+.profileDiv{
+    display: block;
+    padding: 1rem;
+}

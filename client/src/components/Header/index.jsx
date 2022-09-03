@@ -7,10 +7,13 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import { faCartShopping, faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "react-router-dom";
 import { searchProducts } from '../../redux/actions'
 import {useAuth} from "../context/authContext"
+
+//import { auth } from "../../firebase/firebaseConfig";
+
 
 function Header() {
     const dispatch = useDispatch()
@@ -21,6 +24,7 @@ function Header() {
     }
 
     if(!localStorage.getItem('cart')) (localStorage.setItem('cart', '[]'));
+
     return (
         <Navbar bg="dark" expand="lg" className="shadow-lg p-3">
             <Container fluid>
@@ -36,6 +40,7 @@ function Header() {
                     >
                         <Link className="nav-link text-light" to="/store">Store</Link>
                         <Link className="nav-link text-light" to="/contact">Contact</Link>
+
                         {auth.user !==null
                         ?<Link className="nav-link text-primary" to="/login">LogOut</Link>
                         :<Link className="nav-link text-light" to="/login">Login</Link>}
@@ -43,8 +48,8 @@ function Header() {
                         <Link className="nav-link text-light" to="/signup">SignUp</Link>}
                         {localStorage.getItem("cart") && <Link className="nav-link text-light" to="/cart"><FontAwesomeIcon icon={faCartShopping}/><div id='counter' className="cartNumber">{JSON.parse(localStorage.getItem('cart')).length}</div></Link>}
                         {localStorage.getItem('admin') === 'true' ? <Link className="nav-link text-light `${}`" to="/adminpanel">Admin Panel</Link> : null}
-                        {auth.user !==null ? <Link className="nav-link text-light" to="/profile">Profile</Link> : null}
-                    
+                        {auth.user ? <Link className="nav-link text-light" to="/profile"><FontAwesomeIcon className="profileIcon" icon={faCircleUser}/></Link> : null}
+
                     </Nav>
                     <Form className="d-flex"
                         onChange={(e) => {

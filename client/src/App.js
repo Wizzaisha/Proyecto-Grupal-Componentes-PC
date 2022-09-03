@@ -20,6 +20,7 @@ import Profile from './components/Profile';
 import PurchaseHistory from './components/PurchaseHistory';
 
 
+
 // Admin
 import AdminProductList from "./components/AdminProductList";
 import AdminCreateProduct from "./components/AdminCreateProduct";
@@ -65,27 +66,22 @@ function App() {
             <Route path='cart' element={<Cart />}></Route>
             <Route path='payment' element={<Payment />}></Route>
             <Route path='succesfulPurchase' element={<SuccesBuy />}></Route>
-
-            <Route path='adminpanel' element={<AdminPanel />}>
-              <Route path='list-product' element={<AdminProductList />}></Route>
-              <Route path='create-product' element={<AdminCreateProduct />}></Route>
-              <Route path='product-details' element={<AdminProductDetails />}></Route>
-              <Route path='admin-statistics' element={<AdminStatistics />}></Route>
-              <Route path='order-list' element={<AdminOrdersList />}></Route>
-              <Route path='order-details/:idPayment' element={<AdminOrderDetails />}></Route>
-              <Route path='customer-history/:idCustomer' element={<AdminCustomerHistory />}></Route>
-            </Route>
-            <Route path='login' element={
-              <Login />
-            }></Route>
-            <Route path='signup' element={<SignUp />}></Route>
-          
-            <Route path='profile' element={<Profile />}>
-              <Route path='purchase-history/:email' element={<PurchaseHistory />}></Route>
-              <Route path="purchase-history/order-details/:orderId" element={<PurchaseDetails />}></Route>
-            </Route>
           
           </Route>
+          <Route path='/adminpanel' element={<AdminPanel />}>
+            <Route path='list-product' element={<AdminProductList />}></Route>
+            <Route path='create-product' element={<AdminCreateProduct />}></Route>
+            <Route path='product-details' element={<AdminProductDetails />}></Route>
+            <Route path='admin-statistics' element={<AdminStatistics />}></Route>
+            <Route path='order-list' element={<AdminOrdersList />}></Route>
+            <Route path='order-details/:idPayment' element={<AdminOrderDetails />}></Route>
+            <Route path='customer-history/:idCustomer' element={<AdminCustomerHistory />}></Route>
+          </Route>
+          <Route path='/login' element={
+            <Login />
+          }></Route>
+          <Route path='/profile' element={<Profile/>}></Route>
+          <Route path='/signup' element={<SignUp />}></Route>
 
           <Route path='*' element=
             {<h1>There's nothing here!</h1>}
