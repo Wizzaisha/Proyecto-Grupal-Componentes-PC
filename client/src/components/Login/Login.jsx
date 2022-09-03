@@ -85,10 +85,10 @@ function Login() {
             ?
             <div className="container justify-content-center align-items-center">
             {
-                <>
-                    <h1 className="display-6 shadow-lg p-3 mb-5 bg-body rounded">Welcome {auth.user.displayName || username}</h1>
+                <div className="container d-flex justify-content-center align-items-center flex-column">
+                    <h1 className="display-6 shadow-lg p-3 mb-5 bg1 rounded">Welcome {auth.user.displayName || username}</h1>
                     <div className="d-flex justify-content-around">
-                        <Button  className="display-6 shadow-lg p-3 rounded m-1"animation="glow" variant="success" type="Button"
+                        <Button  className="btn btn-outline-light display-6 shadow-lg p-3 rounded m-1 bg4"animation="glow" type="Button"
                         onClick={(e)=>{
                             handlerLogout(e)
                         }}
@@ -96,18 +96,18 @@ function Login() {
                             Log out
                         </Button>
                         <Link to="/">
-                            <Button className="display-6 shadow-lg p-3 rounded m-1 "animation="glow" variant="success" type="Button">
+                            <Button className="btn btn-outline-light display-6 shadow-lg p-3 rounded m-1 bg4"animation="" type="Button">
                             go shopping
                             </Button>
                         </Link>
                     </div>
-                </>
+                </div>
             }
             </div>
             :
-            <div className="container d-flex justify-content-center align-items-center">
+            <div className="container d-flex justify-content-center align-items-center flex-column">
                 {reset &&
-                <Form.Group className="mb-3 shadow-lg p-3 bg-success rounded">
+                <Form.Group className="mb-3 shadow-lg p-3 bg3 rounded">
                     <Form.Text>
                         <h6 className="text-light text-sm">{reset}</h6>
                     </Form.Text>
@@ -117,23 +117,23 @@ function Login() {
                     handlerSubmit(e)
                 }}
             >   {error &&
-                <Form.Group className="mb-3 shadow-lg p-3 bg-danger rounded">
+                <Form.Group className="mb-3 shadow-lg p-3 bg4 rounded">
                     <Form.Text>
                         <h6 className="text-light">{error}</h6>
                     </Form.Text>
                 </Form.Group>}
-                <Form.Group className="mb-3 shadow-lg p-3 bg3 text-light rounded" controlId="formBasicEmail">
+                <Form.Group className="mb-3 shadow-lg p-3 bg2 text-dark rounded" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" placeholder="Enter email"
                         onChange={(e) => {
                             handlerEmail(e)
                         }}
                     />
-                    <Form.Text className="text-light">
+                    <Form.Text className="text-dark">
                         We'll never share your email with anyone else.
                     </Form.Text>
                 </Form.Group>
-                <Form.Group className="mb-3 shadow-lg p-3 bg2 fw-bold text-dark rounded" controlId="formBasicPassword">
+                <Form.Group className="mb-3 shadow-lg p-3 bg2 text-dark rounded" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control type={checkOut} placeholder="Password"
                         onChange={(e) => {
@@ -145,21 +145,21 @@ function Login() {
                         Only eight alphanumeric characters
                     </Form.Text>
                 </Form.Group>
-                <Form.Group className="mb-3 shadow-lg p-3 bg2 fw-bold text-dark rounded" controlId="formBasicCheckbox">
-                    <Form.Check className="text-light" onClick={(e) => {
+                <Form.Group className="mb-3 shadow-lg p-3 bg2 text-dark rounded" controlId="formBasicCheckbox">
+                    <Form.Check className="text-dark" onClick={(e) => {
                         handlerCheckOut(e)
                     }} type="checkbox" label="Check me out" />
                 </Form.Group>
-                <Form.Group className="mb-3 shadow-lg p-3 bg3 text-light rounded">
+                <Form.Group className="mb-3 shadow-lg p-3 bg2 text-light rounded">
                     <div className="d-flex justify-content-around align-items-center">
                     {
                     password.length < 6 || password.length > 16
                     ?
-                    <Button className="bg4" type="submit" disabled>
+                    <Button className="bg4 border border-0 btn btn btn-dark shadow-lg rounded" type="submit" disabled>
                         Log in
                     </Button>
                     :
-                    <Button className="bg4" type="submit">
+                    <Button className="bg4 border border-0 btn btn btn-dark shadow-lg rounded" type="submit">
                         Log in
                     </Button>
                     }
@@ -167,7 +167,7 @@ function Login() {
                     onClick={()=>{
                         resetPassword()
                     }}
-                    className="align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+                    className="align-baseline text-sm text-dark"
                     >
                         Forgot password ?
                     </a>
@@ -175,8 +175,8 @@ function Login() {
                 </Form.Group>
                     <Button onClick={()=>{
                         handlerGoogle()
-                    }} variant="primary" type="button"
-                    className="mt-2"
+                    }} type="button"
+                    className="mt-2 bg4 border border-0 btn btn btn-dark"
                     >
                         Log in with Google
                     </Button>

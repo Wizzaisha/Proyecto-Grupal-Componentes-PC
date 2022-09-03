@@ -65,7 +65,7 @@ export function AuthProvider({ children }) {
         const docRef = doc(db, `user/${uid}`)
         const userDb = await getDoc(docRef)
         const data = userDb.data()
-        localStorage.setItem("username", data.userName)
+        localStorage.setItem("username", data.user)
             if(data.admin === true){
                 localStorage.setItem("admin" , "true" )
                 setAdmin(true)
