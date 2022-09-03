@@ -17,10 +17,10 @@ function PurchaseDetails () {
 
     return (
         <div className="container-fluid">
-            <h5>Details order: {orderId}</h5>
+            
             {findOrder && 
                 <div className="container-fluid orderDetailsContainer">
-                    
+                    <h5>Details order: {orderId}</h5>
                     <div className="row firstRow paymentStatus">
                         <div className="col-12 col-sm-6 borderPayment">
                             <h4>Created</h4>
