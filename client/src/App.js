@@ -28,6 +28,7 @@ import AdminProductDetails from "./components/AdminProductDetails";
 import AdminOrdersList from "./components/AdminOrdersList";
 import AdminOrderDetails from "./components/AdminOrderDetails";
 import AdminCustomerHistory from "./components/AdminCustomerHistory";
+import AdminUpdateProduct from "./components/AdminUpdateProduct"
 
 // globalizo la funcion AuthProvider a todos los componentes
 import { AuthProvider } from './components/context/authContext';
@@ -91,7 +92,6 @@ function App() {
             </Route>
           
           </Route>
-
           <Route path='*' element=
             {<h1>There's nothing here!</h1>}
           ></Route>

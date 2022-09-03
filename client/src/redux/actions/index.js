@@ -20,7 +20,9 @@ export const FILTER_CATEGORY_ADMIN = "FILTER_CATEGORY_ADMIN";
 export const CLEAR_FILTER_ADMIN = "CLEAR_FILTER_ADMIN";
 export const CLEAR_FILTER_STORE = "CLEAR_FILTER_STORE";
 export const GET_STATISTICS_DATA = "GET_STATISTICS_DATA";
-
+export const UPDATE_PRODUCT = "UPDATE_PRODUCT"; 
+export const SET_MESSAGE = "SET_MESSAGE";
+export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 
 export const getAllProducts = () => {
     return async (dispatch) => {
@@ -197,3 +199,23 @@ export function createProduct(input){
         return product
     }
 }
+export const editProduct = (id, brand,model,image,description,specs,benchmark,price,stock,category) => {
+    return async  (dispatch) => {
+        try {
+            let response = await axios.put(`http://localhost:3001/api/productos/${id}`, {
+                id, brand,model,image,description,specs,benchmark,price,stock,category})
+                console.log(response.data)
+                return dispatch({type: UPDATE_PRODUCT});
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+export const setMessage = (message) => ({
+    type: SET_MESSAGE,
+    payload: message,
+});
+
+export const clearMessage = () => ({
+    type: CLEAR_MESSAGE,
+});

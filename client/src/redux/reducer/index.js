@@ -19,8 +19,10 @@ import {
     FILTER_CATEGORY_ADMIN,
     CLEAR_FILTER_ADMIN,
     CLEAR_FILTER_STORE,
-    GET_STATISTICS_DATA
-
+    GET_STATISTICS_DATA,
+    UPDATE_PRODUCT,
+    SET_MESSAGE,
+    CLEAR_MESSAGE
 } from "../actions";
 
 import { filterCurrentBrands, filterData } from "../utils";
@@ -43,7 +45,7 @@ const initialState = {
     orderListCopy: [],
     orderDetails: {},
     customerHistory: [],
-    statisticsData: []
+    message: "",
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -208,11 +210,11 @@ const rootReducer = (state = initialState, action) => {
             }
 
 
-            //-------------------Crear Producto----------
-            case "POST_PRODUCT":
-                return{
-                    ...state,
-                }
+//-------------------Crear Producto----------
+        case "POST_PRODUCT":
+            return{
+                ...state,
+        }
 //------------------------------------------------------
         case SEARCH_PRODUCTS:
 
@@ -252,14 +254,22 @@ const rootReducer = (state = initialState, action) => {
                 })
                 ]
             }
-        
+
         case GET_STATISTICS_DATA:
-            
             return {
                 ...state,
                 statisticsData: action.payload
             }
+               
+        case UPDATE_PRODUCT:
+            return {  
+                ...state    
+        }
 
+        case SET_MESSAGE:
+            return { message: action.payload };
+        case CLEAR_MESSAGE:
+            return { message: "" };
 
         default:
             return { ...state }
