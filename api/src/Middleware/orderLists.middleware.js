@@ -24,6 +24,28 @@ const dataOrderController = (data) => {
     });
 };
 
+const dataOrderControllerCustomer = (data) => {
+
+    return data.map(element => {
+
+        const chargesData = element.charges.data[0];
+        
+        return {
+            id: element.id,
+            amount: chargesData.amount/100,
+            created: dateFormated(chargesData.created),
+            description: chargesData.description,
+            orderStatus: chargesData.metadata.orderStatus,
+            productsOrdered: chargesData.metadata.productsOrdered,
+            payment_method_details: chargesData.payment_method_details,
+            receipt_email: chargesData.receipt_email,
+            receipt_number: chargesData.receipt_number,
+            receipt_url: chargesData.receipt_url,
+            shipping: chargesData.shipping
+        }
+    });
+}
+
 
 const getProductsInfo = async (items) => {
     
@@ -59,4 +81,10 @@ const oneDataController = async (element) => {
     }
 }
 
-module.exports = { dateFormated, dataOrderController, oneDataController, getProductsInfo};
+module.exports = { 
+    dateFormated, 
+    dataOrderController, 
+    oneDataController, 
+    getProductsInfo,
+    dataOrderControllerCustomer
+};
