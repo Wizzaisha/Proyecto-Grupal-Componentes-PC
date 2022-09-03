@@ -11,7 +11,7 @@ function PurchaseHistory () {
     return (
         <div className="customerHistoryContainer">
             
-            {customerHistory.length > 0 && 
+            {customerHistory.length > 0 && !customerHistory.message &&
                 <div>
                     <h5>Orders History of: {customerHistory[0].receipt_email}</h5>
                     <table className="table">

@@ -25,7 +25,7 @@ function Profile(){
 
     
     useEffect(() => {
-        dispatch(getCustomerHistory(auth.user.email));
+        if (auth.user.email) dispatch(getCustomerHistory(auth.user.email));
     }, [dispatch, auth.user.email]);
 
     return (
