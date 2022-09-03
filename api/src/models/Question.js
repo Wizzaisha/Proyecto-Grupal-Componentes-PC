@@ -10,7 +10,7 @@ module.exports = (sequelize) =>
     emailUser: { type: DataTypes.STRING, allowNull: false},
     sendAdmin: { type: DataTypes.TEXT},
     emailAdmin: { type: DataTypes.STRING},
-    fecha: { type: DataTypes.DATE}
+    fecha: { type: DataTypes.DATE,allowNull: false}
   });
 
 };
