@@ -1,88 +1,57 @@
 import "./Profile.css";
-import React, { useState } from "react";
-import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Header from "../Header";
-import { useAuth } from "../context/authContext";
+
+import { useNavigate, Outlet } from "react-router-dom";
+import { useAuth } from '../context/authContext';
+import { getCustomerHistory } from "../../redux/actions";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
 
 
 function Profile(){
 
     const auth = useAuth();
-    const  [selector, setSelector] = useState('buyOrders')
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    function handleSelector(e){
-        e.preventDefault();
-        switch (e.target.name) {
-
-            case 'buyOrders':
-                setSelector('buyOrders')
-                 break; 
-        
-            case 'favourites':
-                setSelector('favourites')
-                 break;
-            default:
-                break;
-        }
+    function handleHistoryClick() {
+        navigate(`/profile/purchase-history/`);
     }
 
+    function handleFavoriteClick() {
+        console.log("Omg a favoritos");
+    }
+    
+    useEffect(() => {
+        dispatch(getCustomerHistory(auth.user.email));
+    }, [dispatch, auth.user.email]);
 
-    if (selector === 'buyOrders'){
+    return (
+        <div>
 
-        return (
-            <div>
-            <Header/>
-           
             <h1>Profile</h1>
-                <div className="container-fluid profileContainer">
+            <div className="container-fluid profileContainer">
                 <div className="profileDiv">
-                <h4 className="start display-8">Email</h4>
-                <label className="pt-2">{auth.user.email}</label>
+                    <h4 className="start display-8">Email</h4>
+                    <label className="pt-2">{auth.user.email}</label>
                 </div>
                 <div className="profileDiv">
-                <h4 className="start display-8">User name</h4>
-                <label className="pt-2">{auth.user.displayName}</label>
+                    <h4 className="start display-8">User name</h4>
+                    <label className="pt-2">{auth.user.displayName}</label>
                 </div>
-                </div>
-
-                <ButtonGroup size="lg" className="mb-2 pt-2">
-                    <Button type='submit' name='buyOrders' onClick={(e) => handleSelector(e)}>Historial de compras</Button>
-                    <Button type='submit' name='favourites' onClick={(e) => handleSelector(e)}>Favoritos</Button>
-                </ButtonGroup>
-
-                <h1>Historial de compras</h1>
-
             </div>
-        )}
 
-    else{ 
+            <div className="btn-group" role="group">
+                <button type="button" className="btn btn-primary" onClick={handleHistoryClick}>Purchase history</button>
+                <button type="button" className="btn btn-primary" onClick={handleFavoriteClick}>Favorites</button>
+            </div>
 
-        return (
             <div>
-            <Header/>
-
-            <h1>Profile</h1>   
-                <div className="container-fluid profileContainer">
-                <div className="profileDiv">
-                <h4 className="start display-8">Email</h4>
-                <label className="pt-2">{auth.user.email}</label>
-                </div>
-                <div className="profileDiv">
-                <h4 className="start display-8">User name</h4>
-                <label className="pt-2">{auth.user.displayName}</label>
-                </div>
-                </div>
-
-                <ButtonGroup size="lg" className="mb-2 pt-2">
-                    <Button type='submit' name='buyOrders' onClick={(e) => handleSelector(e)}>Historial de compras</Button>
-                    <Button type='submit' name='favourites' onClick={(e) => handleSelector(e)}>Favoritos</Button>
-                </ButtonGroup>
-
-                <h1>Favoritos</h1>
+                <Outlet />
             </div>
-        )}
-
+        </div>
+    )
 }
+
 
 export default Profile;

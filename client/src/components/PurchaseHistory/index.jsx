@@ -1,27 +1,18 @@
 
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import "./PurchaseHistory.css";
-import { getCustomerHistory } from "../../redux/actions";
+
 
 function PurchaseHistory () {
 
-    const { email } = useParams();
-
-    const dispatch = useDispatch();
     const customerHistory = useSelector(state => state.customerHistory);
 
-    useEffect(() => {
-        dispatch(getCustomerHistory(email));
-    }, [dispatch, email]);
-
     return (
-        <div>
-            <p>History</p>
+        <div className="customerHistoryContainer">
+            <h5>Orders History of: {customerHistory[0].receipt_email}</h5>
             {customerHistory.length > 0 && 
                 <div>
-                    <h5>Orders History of: {customerHistory[0].receipt_email}</h5>
                     <table className="table">
                         <thead>
                             <tr>
@@ -37,11 +28,11 @@ function PurchaseHistory () {
                                     <tr key={order.id}>
                                         <th scope="row">
                                             <Link 
-                                                to={`/profile/purchase-history/order-details/${order.id.slice(18, order.id.length)}`}
+                                                to={`/profile/purchase-history/order-details/${order.id}`}
                                                 className="linkTo"
                                             >{order.id.slice(18, order.id.length)}</Link>
                                         </th>
-                                        <td>{order.amount}</td>
+                                        <td>$ {order.amount}</td>
                                         <td>{order.orderStatus}</td>
                                         <td>{order.created}</td>
                                     </tr>

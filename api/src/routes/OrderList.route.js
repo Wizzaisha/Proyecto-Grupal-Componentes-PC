@@ -56,9 +56,7 @@ router.get("/customer/:email", async (req, res, next) => {
     });
 
 
-    const listPayments = dataOrderControllerCustomer(response.data);
-
-    console.log(listPayments);
+    const listPayments = await dataOrderControllerCustomer(response.data);
 
     res.status(200).send(listPayments);
 });
