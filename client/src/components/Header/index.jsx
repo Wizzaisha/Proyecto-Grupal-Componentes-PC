@@ -11,9 +11,10 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useDispatch } from 'react-redux'
 import {useAuth} from "../context/authContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import { faCartShopping, faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "react-router-dom";
 import { searchProducts } from '../../redux/actions'
+//import { auth } from "../../firebase/firebaseConfig";
 
 function Header() {
     const dispatch = useDispatch()
@@ -26,6 +27,9 @@ function Header() {
 
     if(!localStorage.getItem('cart')) (localStorage.setItem('cart', '[]'));
    
+    const auth = useAuth()
+    if (auth.user) {console.log(auth.user)};
+
     return (
         <Navbar bg="dark" expand="lg" className="shadow-lg p-3">
             <Container fluid>
@@ -44,7 +48,8 @@ function Header() {
                         <Link className="nav-link text-light" to="/login">Login</Link>
                         <Link className="nav-link text-light" to="/signup">SignUp</Link>
                         <Link className="nav-link text-light" to="/cart"><FontAwesomeIcon icon={faCartShopping}/><div id='counter' className="cartNumber">{JSON.parse(localStorage.getItem('cart')).length}</div></Link>
-                        {localStorage.getItem('admin') === 'true' ? <Link className="nav-link text-light `${}`" to="/adminpanel">Admin Panel</Link> : null}
+                        {localStorage.getItem('admin') === 'true' ? <Link className="nav-link text-light" to="/adminpanel">Admin Panel</Link> : null}
+                        {auth.user ? <Link className="nav-link text-light" to="/profile"><FontAwesomeIcon className="profileIcon" icon={faCircleUser}/></Link> : null}
                     </Nav>
                     <Form className="d-flex"
                         onChange={(e) => {

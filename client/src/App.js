@@ -16,6 +16,7 @@ import Cart from './components/Cart';
 import LandingPage from './components/LandingPage';
 import Payment from './components/Payment';
 import SuccesBuy from './components/SuccesBuy';
+import Profile from './components/Profile'
 
 // Admin
 import AdminProductList from "./components/AdminProductList";
@@ -75,6 +76,7 @@ function App() {
           <Route path='/login' element={
             <Login />
           }></Route>
+          <Route path='/profile' element={<Profile/>}></Route>
           <Route path='/signup' element={<SignUp />}></Route>
           <Route path='*' element=
             {<h1>There's nothing here!</h1>}
