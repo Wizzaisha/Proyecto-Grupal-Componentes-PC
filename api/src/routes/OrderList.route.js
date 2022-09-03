@@ -6,6 +6,7 @@ const router = Router();
 const {
     dataOrderController,
     oneDataController,
+    dataOrderControllerCustomer
 } = require("../Middleware/orderLists.middleware");
 
 const {
@@ -41,16 +42,21 @@ router.get("/:idPayment", async (req, res, next) => {
 })
 
 //Get payments of a customer using the id
-router.get("/customer/:idCustomer", async (req, res, next) => {
+router.get("/customer/:email", async (req, res, next) => {
 
-    const { idCustomer } = req.params;
+    const { email } = req.params;
+
+    const findCustomer = await stripe.customers.search({
+        query: `email:\'${email}\'`
+    });
 
     const response = await stripe.paymentIntents.list({
-        customer: idCustomer,
+        customer: findCustomer.data[0].id,
         limit: 100
     });
 
-    const listPayments = dataOrderController(response.data);
+
+    const listPayments = await dataOrderControllerCustomer(response.data);
 
     res.status(200).send(listPayments);
 });

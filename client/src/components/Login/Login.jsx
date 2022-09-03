@@ -5,7 +5,6 @@ import { useNavigate ,Link} from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useAuth } from "../context/authContext";
-import Header from "../Header/index"
 function Login() {
     const [error, setError] = useState("")
     const [reset, setReset] = useState("")

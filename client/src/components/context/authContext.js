@@ -38,10 +38,11 @@ export const useAuth = () => {
     return context;
 };
 export function AuthProvider({ children }) {
-    const [user, setUser] = useState(false)
+    const [user, setUser] = useState(false);
+    const [admin, setAdmin] = useState(false);
     const [favorite, setFavorite] = useState('')
-    useEffect(() => {
-        const unsuscribe = onAuthStateChanged(auth, (currentUser) => {
+    useEffect(()=>{
+        const unsuscribe = onAuthStateChanged(auth , (currentUser) =>{
             setUser(currentUser)
         })
         return () => unsuscribe()
@@ -64,13 +65,14 @@ export function AuthProvider({ children }) {
         const docRef = doc(db, `user/${uid}`)
         const userDb = await getDoc(docRef)
         const data = userDb.data()
-        if (data.admin === true) {
-            localStorage.setItem("admin", "true")
-            localStorage.setItem("username", data.user)
-        } else if(data.admin === false){
-            localStorage.setItem("admin", "false")
-            localStorage.setItem("username", data.user)
-        }
+        localStorage.setItem("username", data.userName)
+            if(data.admin === true){
+                localStorage.setItem("admin" , "true" )
+                setAdmin(true)
+            }else{
+                localStorage.setItem("admin", "false")
+                setAdmin(false)
+            }
     }
     // loguea un usuario existente
     const login = async (email, password) => {
@@ -101,6 +103,7 @@ export function AuthProvider({ children }) {
     // cierra la sesion actual
     const logout = async () => {
         await signOut(auth)
+        setAdmin(false)
         localStorage.removeItem("admin")
     }
     // Agrega el atributo favorites al usuario
@@ -132,6 +135,6 @@ export function AuthProvider({ children }) {
         })
     }
     return (
-        <authContext.Provider value={{ register, login, resetPassword,user, logout, loginWithGoogle, addFavorite, removeFavorite, getFavorite ,addAndRemoveAdmin}}>{children}</authContext.Provider>
+        <authContext.Provider value={{ register, login, user, admin, logout, loginWithGoogle, addFavorite, removeFavorite, getFavorite, resetPassword, addAndRemoveAdmin}}>{children}</authContext.Provider>
     );
 }
