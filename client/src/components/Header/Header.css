@@ -8,24 +8,8 @@
   background-color: black;
 }
 
-<<<<<<< HEAD
-.cartNumber {
-  animation: pulse 1s ease-in-out infinite;
-  background-color: #6246ea;
-  border-radius: 15px;
-  bottom: 30px;
-  color: #fff;
-  font-weight: 800;
-  height: 19px;
-  position: relative;
-  text-align: center;
-  left: 12px;
-  width: 19px;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-=======
+
+
 .cartNumber{
 animation: pulse 1s ease-in-out infinite;
 background-color: #6246ea;
@@ -48,4 +32,4 @@ justify-content: space-evenly;
   width: 1.15rem;
 }
 
->>>>>>> Ledi
+
