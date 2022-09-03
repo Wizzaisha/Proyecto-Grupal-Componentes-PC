@@ -12,9 +12,9 @@ const validate = (input) => {
   if(!input.descriptionI) errors.descriptionI = "Por favor escribe una descripción"
   if(!input.imageI) errors.imageI = "Por favor agregue una imagen"
   if(!input.specsI.length && input.specsI.length < 20) errors.specsI = "Por favor agregue hasta 20 especificaciones"
-  if(!input.benchmarkI && input.benchmarkI < 1) errors.benchmarkI = "Por favor agregue el numero beachmarck mayor a 0"
-  if(!input.priceI && input.priceI < 1) errors.priceI = "Por favor agregue un precio mayor a 0" 
-  if(!input.stockI && input.stockI < 1 ) errors.stockI = "Por favor agregue stock mayor a 0"  
+  if(!input.benchmarkI || input.benchmarkI < 1) errors.benchmarkI = "Por favor agregue el numero beachmarck mayor a 0"
+  if(!input.priceI || input.priceI < 1) errors.priceI = "Por favor agregue un precio mayor a 0" 
+  if(!input.stockI || input.stockI < 1 ) errors.stockI = "Por favor agregue stock mayor a 0"  
   if(!input.categoryI  ) errors.categoryI = "Por favor agregue una categoría"
   return errors;
 }

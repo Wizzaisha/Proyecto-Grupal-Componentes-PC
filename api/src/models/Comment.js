@@ -6,7 +6,7 @@ module.exports = (sequelize) =>
   // defino el modelo
   sequelize.define('comment',
   {
-    comentario: { type: DataTypes.TEXT, unique: true}, 
+    comentario: { type: DataTypes.TEXT}, 
     email: { type: DataTypes.STRING}
   });
 
