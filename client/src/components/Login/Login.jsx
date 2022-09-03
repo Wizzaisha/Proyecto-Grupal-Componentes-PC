@@ -5,6 +5,7 @@ import { useNavigate ,Link} from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useAuth } from "../context/authContext";
+import Header from "../Header/index"
 function Login() {
     const [error, setError] = useState("")
     const [reset, setReset] = useState("")
@@ -66,7 +67,7 @@ function Login() {
     const handlerLogout = async (e) =>{
         e.preventDefault()
         try {
-            await auth.logout()
+            await auth.logout();
         } catch (error) {
             console.log(error)
         }
@@ -75,7 +76,6 @@ function Login() {
         try {
             await auth.loginWithGoogle()
             navigate("/login")
-            console.log(auth.user)
         } catch (error) {
             console.log(error, "error google")
         }
