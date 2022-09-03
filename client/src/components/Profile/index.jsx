@@ -46,6 +46,7 @@ function Profile(){
             <div className="btn-group" role="group">
                 <button type="button" className="btn btn-primary" onClick={() => handleClick("history")}>Purchase history</button>
                 <button type="button" className="btn btn-primary" onClick={() => handleClick("products")}>Products Purchased</button>
+
             </div>
 
             <div>
