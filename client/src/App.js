@@ -16,6 +16,9 @@ import Cart from './components/Cart';
 import LandingPage from './components/LandingPage';
 import Payment from './components/Payment';
 import SuccesBuy from './components/SuccesBuy';
+import Profile from './components/Profile';
+import PurchaseHistory from './components/PurchaseHistory';
+
 
 // Admin
 import AdminProductList from "./components/AdminProductList";
@@ -37,6 +40,7 @@ import {
 
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import PurchaseDetails from './components/PurchaseDetails';
 
 function App() {
 
@@ -75,6 +79,12 @@ function App() {
               <Login />
             }></Route>
             <Route path='signup' element={<SignUp />}></Route>
+          
+            <Route path='profile' element={<Profile />}>
+              <Route path='purchase-history/:email' element={<PurchaseHistory />}></Route>
+              <Route path="purchase-history/order-details/:orderId" element={<PurchaseDetails />}></Route>
+            </Route>
+          
           </Route>
 
           <Route path='*' element=
