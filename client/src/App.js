@@ -35,6 +35,8 @@ import AdminStatistics from './components/AdminStatistics';
 import {
   getAllProducts,
   getAllCategories,
+  getOrdersList, 
+  getStatisticsData
 } from "./redux/actions";
 
 
@@ -50,6 +52,8 @@ function App() {
   useEffect(() => {
       dispatch(getAllProducts());
       dispatch(getAllCategories());
+      dispatch(getOrdersList());
+      dispatch(getStatisticsData());
   }, [dispatch]);
 
   return (

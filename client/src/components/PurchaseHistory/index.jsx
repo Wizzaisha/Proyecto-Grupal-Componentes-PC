@@ -37,11 +37,11 @@ function PurchaseHistory () {
                                     <tr key={order.id}>
                                         <th scope="row">
                                             <Link 
-                                                to={`/profile/purchase-history/order-details/${order.id.slice(18, order.id.length)}`}
+                                                to={`/profile/purchase-history/order-details/${order.id}`}
                                                 className="linkTo"
                                             >{order.id.slice(18, order.id.length)}</Link>
                                         </th>
-                                        <td>{order.amount}</td>
+                                        <td>$ {order.amount}</td>
                                         <td>{order.orderStatus}</td>
                                         <td>{order.created}</td>
                                     </tr>
