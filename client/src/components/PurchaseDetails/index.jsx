@@ -9,8 +9,8 @@ function PurchaseDetails () {
 
     const { orderId } = useParams();
     const customerHistory = useSelector(state => state.customerHistory);
-    let productState = useSelector(state => state.products);
-    let allProducts = productState.filter(e => e.isDeleted === false);
+    let productState = useSelector(state => state.productsCopy);
+    let products = productState.filter(e => e.isDeleted === false);
 
     const findOrder = customerHistory.find(e => e.id === orderId);
 
@@ -68,7 +68,7 @@ function PurchaseDetails () {
                                             return (
                                                 <tr key={e.id}>
                                                     <th scope="row">
-                                                        {allProducts.findIndex(item => item["id"] === e.id) === -1 ? <p>{e.id}</p> : <Link to={`/store/${e.id}`}><p>{e.id}</p></Link>}
+                                                        {products.findIndex(item => item["id"] === e.id) === -1 ? <p>{e.id}</p> : <Link to={`/store/${e.id}`}><p>{e.id}</p></Link>}
                                                     </th>
 
                                                     <td>

@@ -1,20 +1,12 @@
 
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import "./PurchaseHistory.css";
-import { getCustomerHistory } from "../../redux/actions";
+
 
 function PurchaseHistory () {
 
-    const { email } = useParams();
-
-    const dispatch = useDispatch();
     const customerHistory = useSelector(state => state.customerHistory);
-
-    useEffect(() => {
-        dispatch(getCustomerHistory(email));
-    }, [dispatch, email]);
 
     return (
         <div>

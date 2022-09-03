@@ -85,7 +85,7 @@ function App() {
             <Route path='signup' element={<SignUp />}></Route>
           
             <Route path='profile' element={<Profile />}>
-              <Route path='purchase-history/:email' element={<PurchaseHistory />}></Route>
+              <Route path='purchase-history' element={<PurchaseHistory />}></Route>
               <Route path="purchase-history/order-details/:orderId" element={<PurchaseDetails />}></Route>
             </Route>
           
