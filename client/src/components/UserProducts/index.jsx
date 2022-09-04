@@ -60,7 +60,7 @@ function UserProducts() {
     return (
         <div>
             {productsUser.length > 0 && 
-                <div>
+                <div className="tableResponsive">
                     <table className="table">
                         <thead>
                             <tr>
