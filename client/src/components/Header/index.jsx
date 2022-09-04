@@ -19,6 +19,7 @@ import "../../scss/custom.scss"
 function Header() {
     const dispatch = useDispatch()
     const auth = useAuth();
+
     const handlerSearch = (e) => {
         e.preventDefault(e)
         dispatch(searchProducts(e.target.value))

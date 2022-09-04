@@ -29,6 +29,7 @@ import AdminProductDetails from "./components/AdminProductDetails";
 import AdminOrdersList from "./components/AdminOrdersList";
 import AdminOrderDetails from "./components/AdminOrderDetails";
 import AdminCustomerHistory from "./components/AdminCustomerHistory";
+import AdminUpdateProduct from "./components/AdminUpdateProduct"
 
 // globalizo la funcion AuthProvider a todos los componentes
 import { AuthProvider } from './components/context/authContext';
@@ -45,6 +46,7 @@ import {
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import PurchaseDetails from './components/PurchaseDetails';
+import UserProducts from './components/UserProducts';
 
 function App() {
 
@@ -89,10 +91,10 @@ function App() {
             <Route path='profile' element={<Profile />}>
               <Route path='purchase-history' element={<PurchaseHistory />}></Route>
               <Route path="purchase-history/order-details/:orderId" element={<PurchaseDetails />}></Route>
+              <Route path="my-products" element={<UserProducts />}></Route>
             </Route>
           
           </Route>
-
           <Route path='*' element=
             {<h1>There's nothing here!</h1>}
           ></Route>

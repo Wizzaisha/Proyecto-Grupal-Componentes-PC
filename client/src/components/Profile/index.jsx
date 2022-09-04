@@ -14,16 +14,18 @@ function Profile(){
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    function handleHistoryClick() {
-        navigate(`/profile/purchase-history/`);
+    function handleClick(value) {
+        if (value === "history") {
+            navigate(`/profile/purchase-history/`);
+        } else if (value === "products") {
+            navigate(`/profile/my-products`);
+        }
+
     }
 
-    function handleFavoriteClick() {
-        console.log("Omg a favoritos");
-    }
     
     useEffect(() => {
-        dispatch(getCustomerHistory(auth.user.email));
+        if (auth.user.email) dispatch(getCustomerHistory(auth.user.email));
     }, [dispatch, auth.user.email]);
 
     return (
@@ -42,8 +44,9 @@ function Profile(){
             </div>
 
             <div className="btn-group" role="group">
-                <button type="button" className="btn btn-primary" onClick={handleHistoryClick}>Purchase history</button>
-                <button type="button" className="btn btn-primary" onClick={handleFavoriteClick}>Favorites</button>
+                <button type="button" className="btn btn-primary" onClick={() => handleClick("history")}>Purchase history</button>
+                <button type="button" className="btn btn-primary" onClick={() => handleClick("products")}>Products Purchased</button>
+
             </div>
 
             <div>
