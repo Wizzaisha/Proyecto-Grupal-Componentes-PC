@@ -18,11 +18,12 @@ router.get('/:productId', async (req, res, next)=>
 
 router.post('/:productId', async (req, res, next)=>
 {
-    let {comentario , email}=req.body
+    let {comentario , email, rating}=req.body
     let {productId} = req.params
     try
     {
     let comentarioCreado = await crearComentario(comentario , email, productId)
+    let productoCalificado = await agregarRatingProducto(productId, rating)
     comentarioCreado.flag? res.send(comentarioCreado.message)
     :res.send(comentarioCreado.message)
     }
