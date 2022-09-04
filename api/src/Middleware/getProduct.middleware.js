@@ -1,4 +1,4 @@
-const {Product,Category} = require("../db")
+const {Product,Category,Comment} = require("../db")
 
 const obtenerProductos = async ()=>
 {
@@ -26,7 +26,7 @@ return toObj;
 }
 const obtenerProductosById = async (id)=>
 {
-let e = await Product.findByPk(id,{ include: Category })
+let e = await Product.findByPk(id,{ include: [{model: Category}, {model: Comment}] })
 
 const producto = {
     id: e.id,
@@ -40,7 +40,8 @@ const producto = {
     stock: e.stock,
     rating: e.rating,
     category: e.category.name,
-    isDeleted: e.isDeleted
+    isDeleted: e.isDeleted,
+    reviews: e.comment
 };
 
 return producto;
