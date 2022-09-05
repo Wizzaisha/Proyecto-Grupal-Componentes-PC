@@ -44,7 +44,7 @@ function Header() {
                         <Link className="nav-link text-light fw-semibold" to="/contact">Contact</Link>
 
                         {auth.user !==null
-                        ?<Link className="nav-link tx4 fw-semibold" to="/login">LogOut</Link>
+                        ?<Link className="nav-link tx3 fw-semibold" to="/login">LogOut</Link>
                         :<Link className="nav-link text-light fw-semibold" to="/login">Login</Link>}
                         {auth.user===null &&
                         <Link className="nav-link text-light fw-semibold" to="/signup">SignUp</Link>}
