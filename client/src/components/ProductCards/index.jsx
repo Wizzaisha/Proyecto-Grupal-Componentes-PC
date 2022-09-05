@@ -127,6 +127,7 @@ function ProductCards() {
                                         model={product.model}
                                         price={product.price}
                                         stock={product.stock}
+                                        rating={product.rating}
                                     />
                                 )
                             }) : (
