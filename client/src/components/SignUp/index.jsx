@@ -59,12 +59,12 @@ function SignUp() {
                 }}
             >
             {error &&
-                <Form.Group className="mb-3 shadow-lg p-3 bg-danger rounded">
+                <Form.Group className="mb-3 shadow-lg p-3 bg4 rounded">
                     <Form.Text>
                         <h6 className="text-light">{error}</h6>
                     </Form.Text>
                 </Form.Group>}
-            <Form.Group className="mb-3 shadow-lg p-3 bg-body rounded" controlId="formBasicEmail">
+            <Form.Group className="mb-3 shadow-lg p-3 bg2 rounded" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" placeholder="Enter email"
                 onChange={(e)=>{
@@ -75,7 +75,7 @@ function SignUp() {
                 We'll never share your email with anyone else.
                 </Form.Text>
             </Form.Group>
-            <Form.Group className="mb-3 shadow-lg p-3 bg-body rounded" controlId="formBasicEmail2">
+            <Form.Group className="mb-3 shadow-lg p-3 bg2 rounded" controlId="formBasicEmail2">
                 <Form.Label>Username</Form.Label>
                 <Form.Control type="text" placeholder="Enter username"
                 onChange={(e)=>{
@@ -86,7 +86,7 @@ function SignUp() {
                 Enter a username for your account
                 </Form.Text>
             </Form.Group>
-            <Form.Group className="mb-3 shadow-lg p-3 bg-body rounded" controlId="formBasicPassword">
+            <Form.Group className="mb-3 shadow-lg p-3 bg2 rounded" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control type={checkOut} placeholder="Password"
                     onChange={(e)=>{
@@ -98,23 +98,23 @@ function SignUp() {
                 the password must be greater than eight characters
                 </Form.Text>
             </Form.Group>
-            <Form.Group className="mb-3 shadow-lg p-3 bg-body rounded" controlId="formBasicCheckbox">
+            <Form.Group className="mb-3 shadow-lg p-3 bg2 rounded" controlId="formBasicCheckbox">
                 <Form.Check onClick={(e)=>{
                     handlerCheckOut(e)
                 }} type="checkbox" label="Check me out" />
             </Form.Group>
-            <Form.Group className="mb-3 shadow-lg p-3 bg-body rounded">
+            <Form.Group className="mb-3 shadow-lg p-3 bg2 rounded">
             <div className="d-flex flex-column">
                     <div className="d-flex justify-content-around">
-                    <Button variant="primary" type="">
-                    <Link to={"/login"} className="text-light"
+                    <Button type="button" className="bg4 border border-0 btn btn btn-dark">
+                    <Link to={"/login"} className="bg4 border border-0 btn btn btn-dark"
                         style={{
                             textDecoration: 'none'
                         }}
                     >Log in</Link>
                     </Button>
-                    <Button variant="primary" type="">
-                        <Link to={"/login"} className="text-light"
+                    <Button type="button" className="bg4 border border-0 btn btn btn-dark">
+                        <Link className="bg4 border border-0 btn btn btn-dark" to={"/login"}
                         style={{
                             textDecoration: 'none'
                         }}>
@@ -130,11 +130,11 @@ function SignUp() {
             {
                 password.length < 6 || password.length > 16
                 ?
-                <Button variant="warning" type="submit" disabled>
+                <Button className="bg4 border border-0 btn btn btn-dark" type="submit" disabled>
                     Register
                 </Button>
                 :
-                <Button variant="primary" type="submit">
+                <Button className="bg4 border border-0 btn btn btn-dark" type="submit">
                     Register
                 </Button>
             }
