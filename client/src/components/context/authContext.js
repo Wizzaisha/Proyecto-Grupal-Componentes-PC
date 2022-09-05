@@ -120,11 +120,12 @@ export function AuthProvider({ children }) {
         const userDb = await getDoc(docRef)
         const data = userDb.data()
         setFavorite(data.favorite)
+        console.log(favorite);
         return favorite
     }
 
 
     return (
-        <authContext.Provider value={{ register, login, user, admin, logout, loginWithGoogle, addFavorite, removeFavorite, getFavorite, resetPassword }}>{children}</authContext.Provider>
+        <authContext.Provider value={{ register, login, user, admin, logout, loginWithGoogle, addFavorite, removeFavorite, getFavorite, resetPassword, favorite }}>{children}</authContext.Provider>
     );
 }
