@@ -3,6 +3,8 @@ const {obtenerComentariosPorProducto} = require('../Middleware/getComment.middle
 const {crearComentario} = require('../Middleware/createComment.middleware')
 const {modificarComentario} = require('../Middleware/updateComment.middleware') 
 const {eliminarComentario} = require('../Middleware/deleteComment.middleware')
+const {agregarRatingProducto}= require('../Middleware/addReatingProduct.middleware')
+
 const router = Router()
 
 router.get('/:productId', async (req, res, next)=>
@@ -18,11 +20,13 @@ router.get('/:productId', async (req, res, next)=>
 
 router.post('/:productId', async (req, res, next)=>
 {
-    let {comentario , email}=req.body
-    let {productId} = req.params
+    let {comentario , email, rating}=req.body;
+    let {productId} = req.params;
+
     try
     {
     let comentarioCreado = await crearComentario(comentario , email, productId)
+    let productoCalificado = await agregarRatingProducto(productId, rating)
     comentarioCreado.flag? res.send(comentarioCreado.message)
     :res.send(comentarioCreado.message)
     }
