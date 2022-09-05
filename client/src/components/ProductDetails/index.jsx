@@ -18,16 +18,31 @@ function ProductDetails() {
     const [favorite, setFavorite] = useState(false)
 
     useEffect(() => {
+        const getFav = async () => {
+            await auth.getFavorite();
+        }
+        getFav();
+        if (auth.favorite.includes(details.id)) {
+            setFavorite(true)
+        }
+        else {
+            setFavorite(false)
+        }
+    }, [])
+
+    useEffect(() => {
         window.scrollTo({
             top: 0,
             left: 0,
             behavior: 'smooth'
         })
+
     }, [dispatch])
 
     useEffect(() => {
         dispatch(getProductDetails(idProduct))
     }, [dispatch, idProduct])
+
 
     function handleButton(e) {
         e.preventDefault();
@@ -64,11 +79,11 @@ function ProductDetails() {
 
     const handleFavorite = async () => {
         if (auth.user !== null) {
-            if (favorite === false) {
+            if (favorite == false) {
                 await auth.addFavorite(details.id)
                 console.log('agrego');
                 setFavorite(true)
-            } else if (favorite === true) {
+            } else if (favorite == true) {
                 await auth.removeFavorite(details.id)
                 setFavorite(false)
                 await auth.getFavorite();
@@ -83,7 +98,7 @@ function ProductDetails() {
         if (e.target.value === '+' && value < details.stock) { setValue(value + 1) }
         if (e.target.value === '-' && value > 1) { setValue(value - 1) }
     }
-
+    console.log(favorite);
     return (
         <div className="container">
             <button onClick={handleFavorite} className="btn border border-0 ">

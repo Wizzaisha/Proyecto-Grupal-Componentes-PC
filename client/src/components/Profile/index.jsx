@@ -74,6 +74,7 @@ function Profile() {
                             <img src={e.image} className="img" alt="img" />
                             <p>{`${e.category} ${e.brand} ${e.model}`}</p>
                             <p>{`$ ${e.price}`}</p>
+                            <p>{e.id}</p>
                         </div>
                     ))}
             </div>
