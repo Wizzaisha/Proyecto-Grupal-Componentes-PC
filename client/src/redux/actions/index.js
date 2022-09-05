@@ -23,6 +23,7 @@ export const GET_STATISTICS_DATA = "GET_STATISTICS_DATA";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT"; 
 export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
+export const CREATE_REVIEW = "CREATE_REVIEW";
 
 export const getAllProducts = () => {
     return async (dispatch) => {
@@ -219,3 +220,10 @@ export const setMessage = (message) => ({
 export const clearMessage = () => ({
     type: CLEAR_MESSAGE,
 });
+
+export const createReview = (data, productId) => {
+    return async (dispatch) => {
+        await axios.post(`http://localhost:3001/api/reviews/${productId}`, data);
+        return dispatch({ type: CREATE_REVIEW });
+    }
+}

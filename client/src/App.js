@@ -46,6 +46,7 @@ import {
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import PurchaseDetails from './components/PurchaseDetails';
+import UserProducts from './components/UserProducts';
 
 function App() {
 
@@ -90,6 +91,7 @@ function App() {
             <Route path='profile' element={<Profile />}>
               <Route path='purchase-history' element={<PurchaseHistory />}></Route>
               <Route path="purchase-history/order-details/:orderId" element={<PurchaseDetails />}></Route>
+              <Route path="my-products" element={<UserProducts />}></Route>
             </Route>
 
           </Route>

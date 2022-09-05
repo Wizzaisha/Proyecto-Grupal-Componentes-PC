@@ -61,6 +61,7 @@ function Profile() {
                 <button type="button" className="btn btn-primary" onClick={() => handleClick("history")}>Purchase history</button>
                 <button type="button" className="btn btn-primary" onClick={() => handleClick("products")}>Products Purchased</button>
                 <button type="button" className="btn btn-primary" onClick={() => handleClick(handleFavoriteClick())}>Favorites</button>
+
             </div>
             <div>
                 {
