@@ -43,9 +43,9 @@ function UserProducts() {
     function handleSubmitReview (event) {
 
         const data = {
-            comentario: reviewText,
-            email: auth.user.email,
-            rating: rating
+            userReview: reviewText,
+            emailUser: auth.user.email,
+            userRating: rating
         }
 
         dispatch(createReview(data, currentProduct.id));

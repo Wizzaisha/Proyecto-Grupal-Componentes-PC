@@ -16,6 +16,7 @@ function ProductCard(props) {
                 <div className="textComplement">
                     <p>{props.brand} {props.model}</p>
                     <p>{props.price} $</p>
+                    <p>{props.rating}</p>
                     {props.stock === 1 ? <p>{props.stock} unit available</p> : <p>{props.stock} units available</p>}
                 </div>
             </Link>
