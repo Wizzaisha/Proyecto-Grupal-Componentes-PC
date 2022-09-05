@@ -12,16 +12,15 @@ module.exports = (sequelize) => {
       specs: { type: DataTypes.ARRAY(DataTypes.STRING), },
       benchmark: { type: DataTypes.INTEGER },
       price: { type: DataTypes.FLOAT }, 
-      points : { type: DataTypes.INTEGER},
-      buyers: { type: DataTypes.INTEGER},
-      rating: { type: DataTypes.VIRTUAL , defaultValue: 0,
-               get(){ return Math.round(this.points / this.buyers) }   },
       stock: { type: DataTypes.INTEGER },
       isDeleted: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
+      },
+      rating: {
+        type: DataTypes.FLOAT,
+        defaultValue: 0,
       }
-
     });
 
 };

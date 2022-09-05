@@ -4,7 +4,6 @@ const {crearProducto} = require('../Middleware/createProduct.middleware')
 const {modificarProducto} = require('../Middleware/updateProduct.middleware')
 const {modificarStockProducto} = require('../Middleware/discountStok.middleware')
 const {eliminarProducto} = require('../Middleware/deleteProduct.middleware')
-const {agregarRatingProducto}= require('../Middleware/addReatingProduct.middleware')
 const router = Router()
 
 router.get('/', async (req, res, next)=>
@@ -50,19 +49,6 @@ router.put('/:id', async (req, res, next)=>
     let productoModificado = await modificarProducto(id,brand,model,image,description,specs,benchmark,price,stock,category)
     productoModificado.flag? res.send(productoModificado.message)
     :res.send(productoModificado.message)
-    }
-    catch (error) { next(error)  }
-})
-
-router.put('/rating/:id', async (req, res, next)=>
-{
-    let {rating}=req.body
-    let {id} = req.params
-    try
-    {
-    let productoCalificado = await agregarRatingProducto(id, rating)
-    productoCalificado.flag? res.send(productoCalificado.message)
-    :res.send(productoCalificado.message)
     }
     catch (error) { next(error)  }
 })

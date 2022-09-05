@@ -7,9 +7,9 @@ const category = require ('./category.route')
 const user = require ('./user.route')
 const checkout = require("./checkout.route")
 const orderList = require("./OrderList.route");
-const comment =require("./comment.route");
 const statistics = require("./statistics.route")
 const question = require("./question.route");
+const reviews = require("./reviews.route");
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -17,7 +17,7 @@ const question = require("./question.route");
 router.use('/productos', product)
 router.use('/categorias', category)
 router.use('/usuarios', user)
-router.use('/comentarios', comment)
+router.use('/reviews', reviews);
 router.use('/checkout', checkout)
 router.use("/order-list", orderList);
 router.use("/statistics-data", statistics);

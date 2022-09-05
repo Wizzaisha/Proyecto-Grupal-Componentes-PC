@@ -223,7 +223,7 @@ export const clearMessage = () => ({
 
 export const createReview = (data, productId) => {
     return async (dispatch) => {
-        await axios.post(`http://localhost:3001/api/comentarios/${productId}`, data);
+        await axios.post(`http://localhost:3001/api/reviews/${productId}`, data);
         return dispatch({ type: CREATE_REVIEW });
     }
 }
