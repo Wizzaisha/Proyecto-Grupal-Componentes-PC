@@ -88,7 +88,7 @@ function ProductDetails() {
         <div className="container">
             <button onClick={handleFavorite} className="btn border border-0 ">
                 {
-                    favorite === true ? <img src={starFilled} /> : <img src={starEmpty} />
+                    favorite === true ? <img src={starFilled} alt="img" /> : <img src={starEmpty} alt="img" />
                 }
             </button>
             <div className={`containerRow`}>

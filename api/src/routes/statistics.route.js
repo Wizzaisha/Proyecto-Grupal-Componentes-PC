@@ -39,65 +39,73 @@ router.get("/", async (req, res, next) => {
     let dailyData = [];
     let topSelling = [];
 
+    try {
 
-    const data = await getOrderData();
-    const dataProducts = await obtenerProductos();
-
-    const amountData = data.map(order => {
-        const date = new Date(order.created);
-
-        const dateFormated = date.toLocaleDateString('en-US');
+        const data = await getOrderData();
+        const dataProducts = await obtenerProductos();
     
-        return {
-            created: dateFormated,
-            amount: order.amount
-        }
-    });
+        const amountData = data.map(order => {
+            const date = new Date(order.created);
+    
+            const dateFormated = date.toLocaleDateString('en-US');
+        
+            return {
+                created: dateFormated,
+                amount: order.amount
+            }
+        });
+    
+        let productsSold = data.map(order => JSON.parse(order.metadata.productsOrdered)[0]);
+    
+        amountData.forEach(e => {
+            const findIndexObj = dailyData.findIndex(item => item.day === e.created);
+            if (findIndexObj === -1) {
+                dailyData.push({day: e.created, totalAmount: e.amount});
+            }
+            else {
+                dailyData[findIndexObj].totalAmount += e.amount;
+            }
+    
+        });
+    
+        productsSold.forEach(element => {
+            const findIndexObj = topSelling.findIndex(item => item.id === element.id);
+            const findProduct = dataProducts.find(e => e.id === element.id);
+            if (findIndexObj === -1) {
+                topSelling.push({
+                    id: element.id, 
+                    price: element.price/100, 
+                    unitsSold: 1,
+                    name: `${findProduct.brand} ${findProduct.model}`
+                });
+            }
+            else {
+                topSelling[findIndexObj].unitsSold += 1;
+            }
+        })
+    
+        const stockData = dataProducts.map(item => {
+            return {
+                id: item.id,
+                stock: item.stock,
+                name: `${item.brand} ${item.model}`
+            }
+        });
+    
+        sortAscending(dailyData, "day");
+    
+        res.status(200).send({
+            dailyData,
+            topSelling,
+            stockData
+        });
+        
+    } catch (error) {
+        res.status(400).send({message: error});
+    }
 
-    let productsSold = data.map(order => JSON.parse(order.metadata.productsOrdered)[0]);
 
-    amountData.forEach(e => {
-        const findIndexObj = dailyData.findIndex(item => item.day === e.created);
-        if (findIndexObj === -1) {
-            dailyData.push({day: e.created, totalAmount: e.amount});
-        }
-        else {
-            dailyData[findIndexObj].totalAmount += e.amount;
-        }
 
-    });
-
-    productsSold.forEach(element => {
-        const findIndexObj = topSelling.findIndex(item => item.id === element.id);
-        const findProduct = dataProducts.find(e => e.id === element.id);
-        if (findIndexObj === -1) {
-            topSelling.push({
-                id: element.id, 
-                price: element.price/100, 
-                unitsSold: 1,
-                name: `${findProduct.brand} ${findProduct.model}`
-            });
-        }
-        else {
-            topSelling[findIndexObj].unitsSold += 1;
-        }
-    })
-
-    const stockData = dataProducts.map(item => {
-        return {
-            id: item.id,
-            stock: item.stock,
-            name: `${item.brand} ${item.model}`
-        }
-    });
-
-    sortAscending(dailyData, "day");
-
-    res.status(200).send({
-        dailyData,
-        topSelling,
-        stockData
-    });
 });
 
 module.exports = router;

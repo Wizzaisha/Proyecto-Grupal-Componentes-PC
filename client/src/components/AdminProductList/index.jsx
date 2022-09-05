@@ -1,5 +1,5 @@
 import "./AdminProductList.css";
-
+import {  Link    } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { adminFilterCategory, clearAdminFilter, deleteProduct, setAdminCategory } from "../../redux/actions";
 import DataNotFound from "../DataNotFound";
@@ -27,11 +27,6 @@ function AdminProductList() {
         dispatch(clearAdminFilter());
     }
 
-
-    function handleEditButton (productId) {
-        console.log(productId);
-        console.log("Edit");
-    }
 
     function handleDeleteButton (productId) {
         dispatch(deleteProduct(productId))
@@ -101,11 +96,9 @@ function AdminProductList() {
                                                     <p style={{color: product.stock < 5 ? "red" : ""}}>{product.stock}</p>
                                                     {product.stock < 5 ? <p style={{color: "red"}}>Low stock</p> : null}
                                                 </td>
-                                                <td>
-                                                    <button 
-                                                        className="btn btn-outline-secondary"
-                                                        onClick={() => handleEditButton(product.id)}
-                                                    >Edit</button></td>
+
+                                                <td> <div><Link to={`update-product/${product.id}`}>
+                                                 <button className="btn btn-outline-secondary">Edit</button> </Link></div> </td>
                                                 <td>
                                                     <button 
                                                         className={`btn ${!product.isDeleted ? "btn-outline-danger" : "btn-outline-info"}`}

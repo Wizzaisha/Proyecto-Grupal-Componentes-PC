@@ -10,27 +10,37 @@ import { useDispatch, useSelector } from "react-redux";
 
 function Profile() {
 
-    let productState = useSelector(state => state.products);
-    let allProducts = productState.filter(e => e.isDeleted === false)
+    let productState = useSelector(state => state.productsCopy);
 
     const [favorite, setFavorite] = useState([])
+    const [product, setProduct] = useState([])
     const auth = useAuth();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    function handleHistoryClick() {
-        navigate(`/profile/purchase-history/`);
+    function handleClick(value) {
+        if (value === "history") {
+            navigate(`/profile/purchase-history/`);
+        } else if (value === "products") {
+            navigate(`/profile/my-products`);
+        }
+
     }
 
     const handleFavoriteClick = async () => {
-        console.log("Omg a favoritos");
         setFavorite(await auth.getFavorite())
-        console.log(favorite);
+        const filter = favorite.map((i) => {
+            const findOneProduct = productState.find(e => e.id === i)
+            return findOneProduct
+        })
+        setProduct(filter)
     }
+    console.log(product)
 
     useEffect(() => {
-        dispatch(getCustomerHistory(auth.user.email));
+        if (auth.user.email) dispatch(getCustomerHistory(auth.user.email));
     }, [dispatch, auth.user.email]);
+
 
     return (
         <div>
@@ -48,16 +58,19 @@ function Profile() {
             </div>
 
             <div className="btn-group" role="group">
-                <button type="button" className="btn btn-primary" onClick={handleHistoryClick}>Purchase history</button>
-                <button type="button" className="btn btn-primary" onClick={handleFavoriteClick}>Favorites</button>
+                <button type="button" className="btn btn-primary" onClick={() => handleClick("history")}>Purchase history</button>
+                <button type="button" className="btn btn-primary" onClick={() => handleClick("products")}>Products Purchased</button>
+                <button type="button" className="btn btn-primary" onClick={() => handleClick(handleFavoriteClick())}>Favorites</button>
             </div>
             <div>
-                {/* {favorite && favorite.map((e) => {
-                    let filter = allProducts.filter(f => f.id === e)
-                    return filter.map((p) => {
-                        return <div>{p}</div>
-                    })
-                })} */}
+                {
+
+
+                    product && product.map((e) => {
+                        <div>
+                            <h5>{e.model}</h5>
+                        </div>
+                    })}
             </div>
             <div>
                 <Outlet />

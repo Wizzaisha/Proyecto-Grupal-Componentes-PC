@@ -21,6 +21,7 @@ import PurchaseHistory from './components/PurchaseHistory';
 
 
 
+
 // Admin
 import AdminProductList from "./components/AdminProductList";
 import AdminCreateProduct from "./components/AdminCreateProduct";
@@ -28,6 +29,7 @@ import AdminProductDetails from "./components/AdminProductDetails";
 import AdminOrdersList from "./components/AdminOrdersList";
 import AdminOrderDetails from "./components/AdminOrderDetails";
 import AdminCustomerHistory from "./components/AdminCustomerHistory";
+import AdminUpdateProduct from "./components/AdminUpdateProduct"
 
 // globalizo la funcion AuthProvider a todos los componentes
 import { AuthProvider } from './components/context/authContext';
@@ -36,7 +38,7 @@ import AdminStatistics from './components/AdminStatistics';
 import {
   getAllProducts,
   getAllCategories,
-  getOrdersList, 
+  getOrdersList,
   getStatisticsData
 } from "./redux/actions";
 
@@ -49,12 +51,12 @@ function App() {
 
 
   const dispatch = useDispatch();
-    
+
   useEffect(() => {
-      dispatch(getAllProducts());
-      dispatch(getAllCategories());
-      dispatch(getOrdersList());
-      dispatch(getStatisticsData());
+    dispatch(getAllProducts());
+    dispatch(getAllCategories());
+    dispatch(getOrdersList());
+    dispatch(getStatisticsData());
   }, [dispatch]);
 
   return (
@@ -84,14 +86,13 @@ function App() {
               <Login />
             }></Route>
             <Route path='signup' element={<SignUp />}></Route>
-          
+
             <Route path='profile' element={<Profile />}>
               <Route path='purchase-history' element={<PurchaseHistory />}></Route>
               <Route path="purchase-history/order-details/:orderId" element={<PurchaseDetails />}></Route>
             </Route>
-          
-          </Route>
 
+          </Route>
           <Route path='*' element=
             {<h1>There's nothing here!</h1>}
           ></Route>

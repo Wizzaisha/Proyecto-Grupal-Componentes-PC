@@ -7,6 +7,7 @@ function AdminPanel() {
 
 
     return (
+      
         <div className="container-fluid adminPanelContainer">
             
             <div className="row">
