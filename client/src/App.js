@@ -18,6 +18,7 @@ import Payment from './components/Payment';
 import SuccesBuy from './components/SuccesBuy';
 import Profile from './components/Profile';
 import PurchaseHistory from './components/PurchaseHistory';
+import "./scss/custom.scss"
 
 
 
@@ -60,7 +61,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="App container-fluid p-0">
+    <div className="App container-fluid p-0 bg1">
       <AuthProvider>
         <Routes>
           <Route path='/' element={<Home />}>

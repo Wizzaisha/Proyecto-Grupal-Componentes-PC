@@ -48,16 +48,15 @@ export function AuthProvider({ children }) {
         return () => unsuscribe()
     }, [])
     //crea un usuario en la tabla de firabase
-
-    const register = async (email, password, admin = false) => {
+    const register = async (user,email, password, admin = false) => {
         const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
             .then((userData) => {
                 return userData
             });
         const docRef = doc(db, `user/${userCredentials.user.uid}`)
         setDoc(docRef, {
+            user : user,
             email: email,
-            password: password,
             admin: admin,
             favorites: []
         })
@@ -66,7 +65,7 @@ export function AuthProvider({ children }) {
         const docRef = doc(db, `user/${uid}`)
         const userDb = await getDoc(docRef)
         const data = userDb.data()
-        localStorage.setItem("username", data.userName)
+        localStorage.setItem("username", data.user)
             if(data.admin === true){
                 localStorage.setItem("admin" , "true" )
                 setAdmin(true)
@@ -79,16 +78,23 @@ export function AuthProvider({ children }) {
     const login = async (email, password) => {
         await signInWithEmailAndPassword(auth, email, password)
             .then((userData) => {
-                console.log(userData)
                 getRole(userData.user.uid)
             });
     }
-    const loginWithGoogle = () => {
+    const loginWithGoogle  = async () => {
         const googleProvider = new GoogleAuthProvider()
         googleProvider.setCustomParameters({
             'login_hint': 'user@example.com'
         });
-        return signInWithPopup(auth, googleProvider)
+        const result = await signInWithPopup(auth, googleProvider);
+        const user = result.user;
+        const docRef = doc(db, `user/${user.uid}`);
+        setDoc(docRef, {
+            user : user.displayName,
+            email: user.email,
+            admin: false,
+            favorites: []
+        });
     }
     //reset password
     const resetPassword = async (email) => {
@@ -122,9 +128,13 @@ export function AuthProvider({ children }) {
         setFavorite(data.favorite)
         console.log(favorite);
     }
-
-
+    const addAndRemoveAdmin = async (uid, admin) => {
+        const docRef = doc(db, `user/${uid}`)
+        setDoc(docRef, {
+            admin: admin,
+        })
+    }
     return (
-        <authContext.Provider value={{ register, login, user, admin, logout, loginWithGoogle, addFavorite, removeFavorite, getFavorite, resetPassword }}>{children}</authContext.Provider>
+        <authContext.Provider value={{ register, login, user, admin, logout, loginWithGoogle, addFavorite, removeFavorite, getFavorite, resetPassword, addAndRemoveAdmin}}>{children}</authContext.Provider>
     );
 }
