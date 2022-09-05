@@ -21,7 +21,7 @@ function Cart() {
         // Traemos el «cart» del localStorage y lo parseamos para poder manipularlo
         let cart = JSON.parse(localStorage.getItem('cart'));
         // Filtramos los productos del «cart» por el id que nos pasa el event
-        cart = cart.filter(p => p.id !== e.target.value)
+        cart = cart.filter(p => p.id != e.target.value)
         // Sobreescribimos el localStorage con el «cart» modificado (que ya no tiene el producto que eliminamos)
         localStorage.setItem('cart', JSON.stringify(cart))
         // Actualizamos el estado del componente para que vuelva a renderizarse
