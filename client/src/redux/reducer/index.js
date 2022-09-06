@@ -24,6 +24,10 @@ import {
     SET_MESSAGE,
     CLEAR_MESSAGE,
     GET_USER_PRODUCTS,
+    CREATE_QUESTION,
+    RESPONSE_QUESTION,
+    GET_QUESTION,
+
 } from "../actions";
 
 import { filterCurrentBrands, filterData } from "../utils";
@@ -47,7 +51,8 @@ const initialState = {
     orderDetails: {},
     customerHistory: [],
     message: "",
-    userProducts: []
+    userProducts: [],
+    question: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -278,8 +283,18 @@ const rootReducer = (state = initialState, action) => {
                 userProducts: action.payload
             }
 
+        case CREATE_QUESTION:
+            return {...state,}
+
+        case RESPONSE_QUESTION:
+            return {...state,}
+
+        case GET_QUESTION:
+            return { ...state,
+                question: action.payload } 
+
         default:
-            return { ...state }
+            return {...state}
     }
 }
 
