@@ -1,65 +1,68 @@
 .container {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 }
 
-
 .containerRow {
-    justify-content: space-around;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .containerColumn {
-    height: 100%;
-    width: 30rem;
-    display: flex;
-    flex-direction: column;
+  height: 100%;
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .containerColumn2 {
-    height: 100%;
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .img {
-    width: 300px;
-    height: 300px;
-    object-fit: contain;
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
 }
 
 .specs {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .description {
-    text-align: justify;
+  text-align: justify;
 }
 
 .row {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    flex-direction: row;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: row;
 }
 
 .button3 {
-    width: 100%;
+  width: 100%;
 }
 
 .start {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.reviewsMainContainer {
+  border: 1px solid black;
 }
