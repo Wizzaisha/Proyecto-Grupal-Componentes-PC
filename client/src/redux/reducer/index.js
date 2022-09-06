@@ -220,58 +220,57 @@ const rootReducer = (state = initialState, action) => {
 //------------------------------------------------------
         case SEARCH_PRODUCTS:
 
-            const wanted = action.payload
-            if (wanted.length === 0) {
-                console.log(wanted)
+                const wanted = action.payload
+                if (wanted.length === 0) {
+                    console.log(wanted)
+                    return {
+                        ...state,
+                        products: state.productsCopy2,
+                        productsCopy: state.productsCopy2
+                    }
+                }
                 return {
                     ...state,
-                    products: state.productsCopy2,
-                    productsCopy: state.productsCopy2
+                    products: [...state.productsCopy.filter(e => e.isDeleted === false).filter(e => {
+                        if (e.brand.toUpperCase().includes(wanted.toUpperCase())) {
+                            return true
+                        } else if (e.category.toUpperCase().includes(wanted.toUpperCase())) {
+                            return true
+                        } else if (e.model.toUpperCase().includes(wanted.toUpperCase())) {
+                            return true
+                        } else {
+                            return false
+                        }
+                    })
+                    ],
+                    productsCopy: [...state.productsCopy.filter(e => e.isDeleted === false).filter(e => {
+                        if (e.brand.toUpperCase().includes(wanted.toUpperCase())) {
+                            return true
+                        } else if (e.category.toUpperCase().includes(wanted.toUpperCase())) {
+                            return true
+                        } else if (e.model.toUpperCase().includes(wanted.toUpperCase())) {
+                            return true
+                        } else {
+                            return false
+                        }
+                    })
+                    ]
                 }
-            }
-            return {
-                ...state,
-                products: [...state.productsCopy.filter(e => e.isDeleted === false).filter(e => {
-                    if (e.brand.toUpperCase().includes(wanted.toUpperCase())) {
-                        return true
-                    } else if (e.category.toUpperCase().includes(wanted.toUpperCase())) {
-                        return true
-                    } else if (e.model.toUpperCase().includes(wanted.toUpperCase())) {
-                        return true
-                    } else {
-                        return false
-                    }
-                })
-                ],
-                productsCopy: [...state.productsCopy.filter(e => e.isDeleted === false).filter(e => {
-                    if (e.brand.toUpperCase().includes(wanted.toUpperCase())) {
-                        return true
-                    } else if (e.category.toUpperCase().includes(wanted.toUpperCase())) {
-                        return true
-                    } else if (e.model.toUpperCase().includes(wanted.toUpperCase())) {
-                        return true
-                    } else {
-                        return false
-                    }
-                })
-                ]
-            }
+            
+            case GET_STATISTICS_DATA:
+                
+                return {
+                    ...state,
+                    statisticsData: action.payload
+                }
 
-        case GET_STATISTICS_DATA:
-            return {
-                ...state,
-                statisticsData: action.payload
-            }
-               
-        case UPDATE_PRODUCT:
-            return {  
-                ...state    
-        }
+            case UPDATE_PRODUCT:
+                return {  ...state    }
 
-        case SET_MESSAGE:
-            return { message: action.payload };
-        case CLEAR_MESSAGE:
-            return { message: "" };
+            case SET_MESSAGE:
+                return { message: action.payload };
+            case CLEAR_MESSAGE:
+                return { message: "" };
 
         case GET_USER_PRODUCTS:
             return {

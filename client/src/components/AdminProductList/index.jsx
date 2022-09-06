@@ -1,7 +1,7 @@
 import "./AdminProductList.css";
-import {  Link    } from 'react-router-dom'
+import {  useNavigate   } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
-import { adminFilterCategory, clearAdminFilter, deleteProduct, setAdminCategory } from "../../redux/actions";
+import { adminFilterCategory, clearAdminFilter, deleteProduct, setAdminCategory, getProductDetails } from "../../redux/actions";
 import DataNotFound from "../DataNotFound";
 import { useState } from "react";
 
@@ -10,11 +10,18 @@ function AdminProductList() {
     const allProducts2 = useSelector(state => state.productsAdmin);
     const categories = useSelector(state => state.allCategories)
     const admCurrCategory = useSelector(state => state.admCurrCategory);
+    var navigate = useNavigate ();
+
 
     const dispatch = useDispatch();
 
     const [productDeleted, setProductDeleted] = useState({});
-
+    
+  function  handleEditButton (idProduct)
+  {
+    dispatch(getProductDetails(idProduct))
+    .then(() => navigate(`update-product/${idProduct}`))
+  }
     function handleCategorySelect (event) {
         const { value } = event.target;
 
@@ -99,8 +106,11 @@ function AdminProductList() {
                                                     {product.stock < 5 ? <p style={{color: "red"}}>Low stock</p> : null}
                                                 </td>
 
-                                                <td> <div><Link to={`update-product/${product.id}`}>
-                                                 <button className="btn btn-outline-secondary">Edit</button> </Link></div> </td>
+                                                <td> <div>
+                                                 <button className="btn btn-outline-secondary"
+                                                 onClick={() => handleEditButton(product.id)}>Edit</button>
+                                                </div> </td>
+
                                                 <td>
                                                     <button 
                                                         className={`btn ${!product.isDeleted ? "btn-outline-danger" : "btn-outline-info"}`}

@@ -29,7 +29,8 @@
   align-items: center;
 }
 
-.cartImg{
-  height: 50px;
-  width: 50px;
+.cartImg {
+  height: 125px;
+  width: 125px;
+  object-fit: contain;
 }

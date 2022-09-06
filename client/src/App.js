@@ -81,7 +81,7 @@ function App() {
             <Route path='payment' element={<Payment />}></Route>
             <Route path='succesfulPurchase' element={<SuccesBuy />}></Route>
             <Route path='failedPurchase' element={<FailedPayment />}></Route>
-            
+
               <Route path='adminpanel' element={
                 <ProtectedRouter>
                   <AdminPanel />
@@ -96,8 +96,8 @@ function App() {
                 <Route path='order-details/:idPayment' element={<AdminOrderDetails />}></Route>
                 <Route path='customer-history/:idCustomer' element={<AdminCustomerHistory />}></Route>
                 <Route path='user-management' element={<AdminSetNewAdmin />}></Route>
+                <Route path='list-product/update-product/:idProduct' element={<AdminUpdateProduct />}></Route>
               </Route>
-            
             
             <Route path='login' element={
               <Login />

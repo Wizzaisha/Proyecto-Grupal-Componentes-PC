@@ -202,13 +202,15 @@ export function createProduct(input){
         return product
     }
 }
-export const editProduct = (id, brand,model,image,description,specs,benchmark,price,stock,category) => {
+export const editProduct = (id, input) => {
     return async  (dispatch) => {
         try {
-            let response = await axios.put(`http://localhost:3001/api/productos/${id}`, {
-                id, brand,model,image,description,specs,benchmark,price,stock,category})
+            let response = await axios.put(`http://localhost:3001/api/productos/${id}`,input)
                 console.log(response.data)
-                return dispatch({type: UPDATE_PRODUCT});
+                dispatch(getAllProducts())
+                dispatch(getAllCategories())
+                dispatch({type: UPDATE_PRODUCT});
+                return response.data;
         } catch (error) {
             console.log(error)
         }
