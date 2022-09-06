@@ -1,0 +1,36 @@
+$color1: #fffffe;
+$color2: #d1d1e9;
+$color3: #6246ea;
+$color4: #e45858;
+/* fuente global */
+$font-family: sans-serif;
+/* colores para fondo */
+.bg1 {
+  background-color: $color1;
+}
+.bg2 {
+  background-color: $color2;
+}
+.bg3 {
+  background-color: $color3;
+}
+.bg4 {
+  background-color: $color4;
+}
+/* colores para texto */
+.tx1 {
+  color: $color1;
+}
+.tx2 {
+  color: $color2;
+}
+.tx3 {
+  color: $color3;
+}
+.tx4 {
+  color: $color4;
+}
+/* fuente */
+.sans {
+  font-family: $font-family;
+}

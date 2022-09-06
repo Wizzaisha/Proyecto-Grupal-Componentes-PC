@@ -22,7 +22,8 @@ import {
     GET_STATISTICS_DATA,
     UPDATE_PRODUCT,
     SET_MESSAGE,
-    CLEAR_MESSAGE
+    CLEAR_MESSAGE,
+    GET_USER_PRODUCTS,
 } from "../actions";
 
 import { filterCurrentBrands, filterData } from "../utils";
@@ -39,13 +40,14 @@ const initialState = {
     category: "",
     admCurrCategory: "",
     currentSort: "",
-    details: [],
+    details: {},
     cart: [],
     orderList: [],
     orderListCopy: [],
     orderDetails: {},
     customerHistory: [],
     message: "",
+    userProducts: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -195,65 +197,87 @@ const rootReducer = (state = initialState, action) => {
             }
 
         case DELETE_PRODUCT:
+
+            const idObject = action.payload;
+
+            const findIndex = state.productsCopy.findIndex(e => e.id === idObject);
+            const findObject = state.productsCopy.find(e => e.id === idObject);
+
+            findObject.isDeleted = !findObject.isDeleted;
+
+            return {
+                ...state,
+                products: [...state.products.slice(0, findIndex), findObject, ...state.products.slice(findIndex + 1)],
+                productsCopy: [...state.productsCopy.slice(0, findIndex), findObject, ...state.productsCopy.slice(findIndex + 1)],
+            }
+
+
+//-------------------Crear Producto----------
+        case "POST_PRODUCT":
+            return{
+                ...state,
+        }
+//------------------------------------------------------
+        case SEARCH_PRODUCTS:
+
+            const wanted = action.payload
+            if (wanted.length === 0) {
+                console.log(wanted)
+                return {
+                    ...state,
+                    products: state.productsCopy2,
+                    productsCopy: state.productsCopy2
+                }
+            }
+            return {
+                ...state,
+                products: [...state.productsCopy.filter(e => e.isDeleted === false).filter(e => {
+                    if (e.brand.toUpperCase().includes(wanted.toUpperCase())) {
+                        return true
+                    } else if (e.category.toUpperCase().includes(wanted.toUpperCase())) {
+                        return true
+                    } else if (e.model.toUpperCase().includes(wanted.toUpperCase())) {
+                        return true
+                    } else {
+                        return false
+                    }
+                })
+                ],
+                productsCopy: [...state.productsCopy.filter(e => e.isDeleted === false).filter(e => {
+                    if (e.brand.toUpperCase().includes(wanted.toUpperCase())) {
+                        return true
+                    } else if (e.category.toUpperCase().includes(wanted.toUpperCase())) {
+                        return true
+                    } else if (e.model.toUpperCase().includes(wanted.toUpperCase())) {
+                        return true
+                    } else {
+                        return false
+                    }
+                })
+                ]
+            }
+
+        case GET_STATISTICS_DATA:
             return {
                 ...state,
                 statisticsData: action.payload
             }
-            case SEARCH_PRODUCTS:
+               
+        case UPDATE_PRODUCT:
+            return {  
+                ...state    
+        }
 
-                const wanted = action.payload
-                if (wanted.length === 0) {
-                    console.log(wanted)
-                    return {
-                        ...state,
-                        products: state.productsCopy2,
-                        productsCopy: state.productsCopy2
-                    }
-                }
-                return {
-                    ...state,
-                    products: [...state.productsCopy.filter(e => e.isDeleted === false).filter(e => {
-                        if (e.brand.toUpperCase().includes(wanted.toUpperCase())) {
-                            return true
-                        } else if (e.category.toUpperCase().includes(wanted.toUpperCase())) {
-                            return true
-                        } else if (e.model.toUpperCase().includes(wanted.toUpperCase())) {
-                            return true
-                        } else {
-                            return false
-                        }
-                    })
-                    ],
-                    productsCopy: [...state.productsCopy.filter(e => e.isDeleted === false).filter(e => {
-                        if (e.brand.toUpperCase().includes(wanted.toUpperCase())) {
-                            return true
-                        } else if (e.category.toUpperCase().includes(wanted.toUpperCase())) {
-                            return true
-                        } else if (e.model.toUpperCase().includes(wanted.toUpperCase())) {
-                            return true
-                        } else {
-                            return false
-                        }
-                    })
-                    ]
-                }
-            
-            case GET_STATISTICS_DATA:
-                
-                return {
-                    ...state,
-                    statisticsData: action.payload
-                }
+        case SET_MESSAGE:
+            return { message: action.payload };
+        case CLEAR_MESSAGE:
+            return { message: "" };
 
-            case UPDATE_PRODUCT:
-                return {  ...state    }
-
-            case SET_MESSAGE:
-                return { message: action.payload };
-            case CLEAR_MESSAGE:
-                return { message: "" };
-
-                
+        case GET_USER_PRODUCTS:
+            return {
+                ...state,
+                userProducts: action.payload
+            }
 
         default:
             return { ...state }

@@ -13,7 +13,7 @@ import ProductCard from "../ProductCard";
 import CategoriesBar from "../CategoriesBar";
 import DataNotFound from "../DataNotFound";
 
-let pageSize = 10;
+let pageSize = 9;
 
 function ProductCards() {
 
@@ -64,9 +64,8 @@ function ProductCards() {
     }
 
     return (
-        <div className="cardsMainContainer">
+        <div className="card container-sm cardsMainContainer">
             <div className="filtersContainer">
-
                 <CategoriesBar
                     setCurrentPage={setCurrentPage}
                 />
@@ -76,7 +75,6 @@ function ProductCards() {
                         {currentBrands && currentCategory && currentBrands.map((brand, index) => {
                             return (
                                 <div key={index} className="form-check">
-
                                     <input
                                         className="form-check-input"
                                         type={"checkbox"}
@@ -91,8 +89,6 @@ function ProductCards() {
                     </div>
                 }
             </div>
-
-
             <div>
                 <div className="sortsContainer">
                     <div className="sortContainer">
@@ -110,13 +106,11 @@ function ProductCards() {
                         </select>
                     </div>
                 </div>
-
                 {allProducts.message
                     ? <DataNotFound />
                     :
                     <div>
                         <div className="cardsContainer">
-
                             {currentProducts.length > 0 ? currentProducts.map((product) => {
                                 return (
                                     <ProductCard
@@ -124,9 +118,11 @@ function ProductCards() {
                                         id={product.id}
                                         image={product.image}
                                         brand={product.brand}
+                                        category={product.category}
                                         model={product.model}
                                         price={product.price}
                                         stock={product.stock}
+                                        rating={product.rating}
                                     />
                                 )
                             }) : (
@@ -134,8 +130,6 @@ function ProductCards() {
                                     <h1>No products found...</h1>
                                 </div>)
                             }
-
-
                         </div>
                         <div>
                             <Pagination
@@ -147,9 +141,7 @@ function ProductCards() {
                         </div>
                     </div>
                 }
-
             </div>
-
         </div>
     )
 }

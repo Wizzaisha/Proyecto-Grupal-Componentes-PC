@@ -1,10 +1,8 @@
 .homeContainer {
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
 }
 
 .contentContainer {
-  border: 2px solid blue;
   margin: 0.5rem;
 }

@@ -1,5 +1,5 @@
 .checked {
-  background-color: #727a85;
+  background-color: #6246ea;
   color: white;
 }
 
@@ -11,12 +11,37 @@
   width: 150px;
 }
 
+.radioButton:hover {
+  background-color: #6246ea;
+}
+
+.radioButton:focus {
+  background-color: #6246ea;
+}
+
 .collapseButton {
   width: 150px;
+  background-color: color3;
+}
+
+.collapseButton:hover {
+  background-color: black;
+}
+
+.collapseButton:focus {
+  background-color: #6246ea;
 }
 
 .clearFilters {
   width: 150px;
+}
+
+.clearFilters:hover {
+  background-color: #000000;
+}
+
+.clearFilters:focus {
+  background-color: #6246ea;
 }
 
 .categoriesBarContainer {
