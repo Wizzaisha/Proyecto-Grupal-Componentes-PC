@@ -9,7 +9,7 @@ import {
     clearStoreFilter
 } from "../../redux/actions";
 
-function CategoriesBar (props) {
+function CategoriesBar(props) {
 
     const allCategories = useSelector(state => state.allCategories);
     const currentCategory = useSelector(state => state.category);
@@ -25,32 +25,32 @@ function CategoriesBar (props) {
         dispatch(filterAndSortBy());
         dispatch(getCurrentBrands(value));
         props.setCurrentPage(1);
-        
+
     }
 
-    function handleClearFilters () {
+    function handleClearFilters() {
         dispatch(clearStoreFilter());
     }
 
 
     return (
         <div className="categoriesBarContainer">
-                            
+
             <div>
-                { currentCategory &&
-                    <button 
+                {currentCategory &&
+                    <button
                         onClick={handleClearFilters}
-                        className="btn btn-secondary clearFilters"
+                        className="btn clearFilters bg3 tx1"
                     >Clear Filters</button>
                 }
             </div>
             <div>
-                <button 
-                    className="btn btn-secondary collapseButton" 
-                    type="button" 
-                    data-bs-toggle="collapse" 
-                    data-bs-target="#collapseExample" 
-                    aria-expanded="false" 
+                <button
+                    className="btn collapseButton bg3 tx1"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseExample"
+                    aria-expanded="false"
                     aria-controls="collapseExample"
                 >Filter by categories
                 </button>
@@ -59,17 +59,17 @@ function CategoriesBar (props) {
                         {allCategories && allCategories.map((category, index) => {
                             return (
                                 <div key={index}>
-                                    <label 
+                                    <label
                                         className={`radioButton btn btn-outline-secondary ${currentCategory === category ? "checked" : "nochecked"} `}
                                     >
                                         <input
-                                            type={"radio"} 
+                                            type={"radio"}
                                             className="btn-check"
                                             autoComplete="off"
                                             value={category}
                                             onChange={handleCategorySelect}
                                             checked={currentCategory === category ? true : false}
-                                        /> 
+                                        />
                                         {category}
                                     </label>
 
