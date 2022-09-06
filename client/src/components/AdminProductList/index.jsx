@@ -17,10 +17,10 @@ function AdminProductList() {
 
     const [productDeleted, setProductDeleted] = useState({});
     
-  function  handleEditButton (productId)
+  function  handleEditButton (idProduct)
   {
-    dispatch(getProductDetails(productId))
-    .then(() => navigate(`update-product/${productId}`))
+    dispatch(getProductDetails(idProduct))
+    .then(() => navigate(`update-product/${idProduct}`))
   }
     function handleCategorySelect (event) {
         const { value } = event.target;

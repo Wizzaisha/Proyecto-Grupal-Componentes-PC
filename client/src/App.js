@@ -86,6 +86,7 @@ function App() {
               <Route path='product-details' element={<AdminProductDetails />}></Route>
               <Route path='admin-statistics' element={<AdminStatistics />}></Route>
               <Route path='order-list' element={<AdminOrdersList />}></Route>
+              <Route path='list-product/update-product/:idProduct' element={<AdminUpdateProduct />}></Route>
               <Route path='order-details/:idPayment' element={<AdminOrderDetails />}></Route>
               <Route path='customer-history/:idCustomer' element={<AdminCustomerHistory />}></Route>
             </Route>

@@ -1,7 +1,7 @@
 import React, {  useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { editProduct, cancelUpdate } from '../../redux/actions'
+import { editProduct } from '../../redux/actions'
 import "./UpdateProduct.css";
 import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
@@ -30,8 +30,7 @@ export default function UpdateProduct()
 
 const exit = (e) =>{
     e.preventDefault();
-    dispatch(cancelUpdate())
-    navigate('/adminpanel/list-product');
+      navigate('/adminpanel/list-product');
      }
 
   //Inputs
