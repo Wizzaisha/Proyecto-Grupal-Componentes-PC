@@ -30,7 +30,7 @@ function ProductDetails() {
         else {
             setFavorite(false)
         }
-    }, [])
+    }, [auth, details.id]);
 
     useEffect(() => {
         window.scrollTo({
@@ -81,15 +81,13 @@ function ProductDetails() {
 
     const handleFavorite = async () => {
         if (auth.user !== null) {
-            if (favorite == false) {
+            if (favorite === false) {
                 await auth.addFavorite(details.id)
-                console.log('agrego');
                 setFavorite(true)
-            } else if (favorite == true) {
+            } else if (favorite === true) {
                 await auth.removeFavorite(details.id)
                 setFavorite(false)
                 await auth.getFavorite();
-                console.log('removio');
             }
         } else {
             console.log('debes iniciar sesion');
@@ -102,47 +100,72 @@ function ProductDetails() {
     }
 
     return (
-        <div className="container">
-            <button onClick={handleFavorite} className="btn border border-0 ">
-                {
-                    favorite === true ? <img src={starFilled} alt="img" /> : <img src={starEmpty} alt="img" />
-                }
-            </button>
-            <div className={`containerRow`}>
-                {details.stock === 0 ? <h4 style={{ color: "red" }}>Out of stock</h4> : null}
-                <div>
-                    <img src={details.image} className="img" alt="img" />
-                </div>
-                <div className='start'>
-                    <h3>Description</h3>
-                    <p className='description'>{details.description}</p>
-                    <h3>Specs</h3>
-                    <div className="specs">
-                        {details.specs && details.specs.map((e) => { return <li>{e}</li> })}
+        <div>
+            <div className="container">
+                <button onClick={handleFavorite} className="btn border border-0 ">
+                    {
+                        favorite === true ? <img src={starFilled} alt="img" /> : <img src={starEmpty} alt="img" />
+                    }
+                </button>
+                <div className={`containerRow`}>
+                    {details.stock === 0 ? <h4 style={{ color: "red" }}>Out of stock</h4> : null}
+                    <div>
+                        <img src={details.image} className="img" alt="img" />
+                    </div>
+                    <div className='start'>
+                        <h3>Description</h3>
+                        <p className='description'>{details.description}</p>
+                        <h3>Specs</h3>
+                        <div className="specs">
+                            {details.specs && details.specs.map((e) => { return <li>{e}</li> })}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="containerColumn2">
-                <h1>{`${details.category} ${details.brand} ${details.model}`}</h1>
-                <h3>Brand: {details.brand}</h3>
-                <h3>Model: {details.model}</h3>
-                <h3>${details.price}</h3>
-                <p>{`Stock available: (${details.stock} available)`} </p>
-                <div className="input-group">
-                    <button type="button" className="btn btn-outline-primary" value={'-'} onClick={(e) => stockValidator(e) /*setValue(value - 1)*/}>-</button>
-                    <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
-                    <button type="button" className="btn btn-outline-primary" value={'+'} onClick={(e) => stockValidator(e) /*setValue(value + 1)*/}>+</button>
+                <div className="containerColumn2">
+                    <h1>{`${details.category} ${details.brand} ${details.model}`}</h1>
+                    <h3>Brand: {details.brand}</h3>
+                    <h3>Model: {details.model}</h3>
+                    <h3>${details.price}</h3>
+                    <p>{`Stock available: (${details.stock} available)`} </p>
+                    <div className="input-group">
+                        <button type="button" className="btn btn-outline-primary" value={'-'} onClick={(e) => stockValidator(e) /*setValue(value - 1)*/}>-</button>
+                        <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
+                        <button type="button" className="btn btn-outline-primary" value={'+'} onClick={(e) => stockValidator(e) /*setValue(value + 1)*/}>+</button>
+                    </div>
+                    <button
+                        type="submit"
+                        className="btn btn-primary button3"
+                        onClick={e => handleButton(e)}
+                        disabled={details.stock === 0 ? "true" : null}
+                    >Add to cart</button>
                 </div>
-                <button
-                    type="submit"
-                    className="btn btn-primary button3"
-                    onClick={e => handleButton(e)}
-                    disabled={details.stock === 0 ? "true" : null}
-                >Add to cart</button>
+                <Link to={'/store'}>
+                    <button className="btn btn-primary">X</button>
+                </Link>
             </div>
-            <Link to={'/store'}>
-                <button className="btn btn-primary">X</button>
-            </Link>
+            <div className="reviewsMainContainer">
+                <h3>User reviews</h3>
+                {details.reviews.length === 0 
+                    ? 
+                        <p>There are no reviews</p>
+                    : 
+                        details.reviews.map(review => {
+                            return (
+                                <div key={review.id} className="reviewContainer">
+                                    <div className="reviewUserName">
+                                        <p>{review.userName === "undefined" ? "Anonymous" : review.userName}</p>
+                                    </div>
+                                    <div className="reviewRating">
+                                        <p>{review.userRating}</p>
+                                    </div>
+                                    <div className="reviewText">
+                                        <p>{review.userReview}</p>
+                                    </div>
+                                </div>
+                            )
+                        })
+                }
+            </div>
         </div>
     )
 }
