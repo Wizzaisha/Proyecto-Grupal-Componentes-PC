@@ -74,15 +74,17 @@ function Profile() {
                 <button type="button" className="btn btn-primary" onClick={() => handleClick("products")}>Products Purchased</button>
                 <button type="button" className="btn btn-primary" onClick={() => handleFavoriteClick()}>Favorites</button>
             </div>
-            <div className='d-flex flex-column align-items-center'>
+            <div className='d-flex flex-column align-items-center pt-4'>
                 {
                     viewFavorite && product && product.map((e) => (
-                        <div className="card d-flex flex-row justify-content-around align-items-center" style={{ width: '50rem' }}>
-                            <img src={e.image} className="img" alt="img" />
-                            <p>{`${e.category} ${e.brand} ${e.model}`}</p>
-                            <p>{`$ ${e.price}`}</p>
+                        <div className="card d-flex flex-row justify-content-around align-items-center" style={{ width: '85rem', height: '15rem' }}>
+                            <img src={e.image} className="img" alt="img" style={{ height: '13rem' }} />
+                            <div>
+                                <p>{`${e.category} ${e.brand} ${e.model}`}</p>
+                                <p>{`$ ${e.price}`}</p>
+                            </div>
                             <button onClick={handleDelete(e.id)} className="btn border border-0 ">
-                                <img src={trash} alt="delete from favorites" />
+                                <img src={trash} alt="delete from favorites" style={{ height: '4rem' }} />
                             </button>
                         </div>
                     ))}
