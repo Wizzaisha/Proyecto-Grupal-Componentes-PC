@@ -21,7 +21,7 @@ import {
     getDoc,
     arrayUnion,
     arrayRemove,
-    updateDoc
+    updateDoc,
 } from "firebase/firestore"
 
 export const authContext = createContext();
@@ -66,14 +66,15 @@ export function AuthProvider({ children }) {
         const docRef = doc(db, `user/${uid}`)
         const userDb = await getDoc(docRef)
         const data = userDb.data()
-        localStorage.setItem("username", data.userName)
-        if (data.admin === true) {
-            localStorage.setItem("admin", "true")
-            setAdmin(true)
-        } else {
-            localStorage.setItem("admin", "false")
-            setAdmin(false)
-        }
+        localStorage.setItem("username", data.user)
+        localStorage.setItem("email", data.email)
+            if(data.admin === true){
+                localStorage.setItem("admin" , "true" )
+                setAdmin(true)
+            }else{
+                localStorage.setItem("admin", "false")
+                setAdmin(false)
+            }
     }
     // loguea un usuario existente
     const login = async (email, password) => {
@@ -120,11 +121,15 @@ export function AuthProvider({ children }) {
         const userDb = await getDoc(docRef)
         const data = userDb.data()
         setFavorite(data.favorite)
-        return favorite
+        return(favorite);
+    }
+    const addAndRemoveAdmin = async (uid, admin) => {
+        const docRef = doc(db, `user/${uid}`)
+        setDoc(docRef, { admin : admin }, { merge: true });
     }
 
 
     return (
-        <authContext.Provider value={{ register, login, user, admin, logout, loginWithGoogle, addFavorite, removeFavorite, getFavorite, resetPassword, favorite }}>{children}</authContext.Provider>
+        <authContext.Provider value={{ register, login, user, admin, logout, loginWithGoogle, addFavorite, removeFavorite, getFavorite, resetPassword, favorite ,addAndRemoveAdmin }}>{children}</authContext.Provider>
     );
 }
