@@ -10,7 +10,7 @@ router.get('/:productId', async (req, res, next)=>
     try
     {
     let preguntasRespuestas = await mostrarCuestionario(productId)
-    preguntasRespuestas? res.send(preguntasRespuestas.cuestionario)
+    preguntasRespuestas.flag? res.send(preguntasRespuestas.cuestionario)
     :res.send(preguntasRespuestas.message)
     }
     catch (error) { next(error) ; console.log(error) }
