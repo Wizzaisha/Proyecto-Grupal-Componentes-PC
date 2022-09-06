@@ -19,6 +19,7 @@ export const SET_ADMIN_CATEGORY = "SET_ADMIN_CATEGORY";
 export const FILTER_CATEGORY_ADMIN = "FILTER_CATEGORY_ADMIN";
 export const CLEAR_FILTER_ADMIN = "CLEAR_FILTER_ADMIN";
 export const CLEAR_FILTER_STORE = "CLEAR_FILTER_STORE";
+export const CLEAR_DETAIL="CLEAR_DETAIL";
 export const GET_STATISTICS_DATA = "GET_STATISTICS_DATA";
 
 
@@ -195,5 +196,12 @@ export function createProduct(input){
     return async function(dispatch){
         const product=await axios.post("http://localhost:3001/api/productos/", input)
         return product
+    }
+}
+
+//--------------LIMPIAR ESTADO DETAIL--------------
+export const clearDetail = () => {
+    return (dispatch) => {
+        return dispatch({ type: CLEAR_DETAIL });
     }
 }

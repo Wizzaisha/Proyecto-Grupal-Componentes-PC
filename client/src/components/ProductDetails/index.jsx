@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import { useParams } from 'react-router-dom'
-import { getProductDetails, } from '../../redux/actions'
+import { getProductDetails,clearDetail } from '../../redux/actions'
 
 function ProductDetails() {
 
@@ -63,6 +63,10 @@ function ProductDetails() {
         if (e.target.value === '-' && value > 1) { setValue(value - 1) }
     }
 
+    function handleCleanDetail(){
+        dispatch(clearDetail())
+    }
+
     return (
         <div className="container">
             <div className={`containerRow`}>
@@ -98,8 +102,9 @@ function ProductDetails() {
                 >Add to cart</button>
             </div>
             <Link to={'/store'}>
-                <button className="btn btn-primary">X</button>
+                <button className="btn btn-primary" onClick={handleCleanDetail}>X</button>
             </Link>
+           
         </div>
     )
 }

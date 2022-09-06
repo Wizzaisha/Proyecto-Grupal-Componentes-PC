@@ -19,7 +19,8 @@ import {
     FILTER_CATEGORY_ADMIN,
     CLEAR_FILTER_ADMIN,
     CLEAR_FILTER_STORE,
-    GET_STATISTICS_DATA
+    GET_STATISTICS_DATA,
+    CLEAR_DETAIL
 
 } from "../actions";
 
@@ -259,6 +260,13 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 statisticsData: action.payload
             }
+ //-----clear detail----------           
+        case CLEAR_DETAIL:
+            return{
+                ...state,
+                details:[]
+            }   
+//---------------------------------            
 
 
         default:
