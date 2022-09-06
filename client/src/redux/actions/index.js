@@ -24,6 +24,8 @@ export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 export const CREATE_REVIEW = "CREATE_REVIEW";
+export const GET_USER_PRODUCTS = "GET_USER_PRODUCTS";
+export const UPDATE_REVIEW = "UPDATE_REVIEW";
 
 export const getAllProducts = () => {
     return async (dispatch) => {
@@ -223,7 +225,21 @@ export const clearMessage = () => ({
 
 export const createReview = (data, productId) => {
     return async (dispatch) => {
-        await axios.post(`http://localhost:3001/api/reviews/${productId}`, data);
-        return dispatch({ type: CREATE_REVIEW });
+        const response = await axios.post(`http://localhost:3001/api/reviews/${productId}`, data);
+        return dispatch({ type: CREATE_REVIEW, payload: response.data});
+    }
+}
+
+export const getUserProdutcs = (email) => {
+    return async (dispatch) => {
+        const response = await axios.get(`http://localhost:3001/api/reviews/${email}`);
+        return dispatch({ type: GET_USER_PRODUCTS, payload: response.data });
+    }
+}
+
+export const updateReview = (data, idReview) => {
+    return async (dispatch) => {
+        const response = await axios.put(`http://localhost:3001/api/reviews/${idReview}`, data);
+        return dispatch({ type: UPDATE_REVIEW, payload: response.data});
     }
 }
