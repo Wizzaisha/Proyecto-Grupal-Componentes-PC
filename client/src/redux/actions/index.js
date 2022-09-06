@@ -26,6 +26,9 @@ export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 export const CREATE_REVIEW = "CREATE_REVIEW";
 export const GET_USER_PRODUCTS = "GET_USER_PRODUCTS";
 export const UPDATE_REVIEW = "UPDATE_REVIEW";
+export const CREATE_QUESTION = "CREATE_QUESTION";
+export const RESPONSE_QUESTION = "RESPONSE_QUESTION";
+export const GET_QUESTION = "GET_QUESTION";
 
 export const getAllProducts = () => {
     return async (dispatch) => {
@@ -202,18 +205,61 @@ export function createProduct(input){
         return product
     }
 }
-export const editProduct = (id, brand,model,image,description,specs,benchmark,price,stock,category) => {
+export const editProduct = (id, input) => {
     return async  (dispatch) => {
         try {
-            let response = await axios.put(`http://localhost:3001/api/productos/${id}`, {
-                id, brand,model,image,description,specs,benchmark,price,stock,category})
+            let response = await axios.put(`http://localhost:3001/api/productos/${id}`,input)
                 console.log(response.data)
-                return dispatch({type: UPDATE_PRODUCT});
+                dispatch(getAllProducts())
+                dispatch(getAllCategories())
+                dispatch({type: UPDATE_PRODUCT});
+                return response.data;
         } catch (error) {
             console.log(error)
         }
     }
 }
+//------------CREAR PREGUNTA--------------
+export const createQuestion = (id,input) => {
+    return async  (dispatch) => {
+        try {
+            let response = await axios.post(`http://localhost:3001/api/question/user/${id}`,input)
+                console.log(response.data)
+                   dispatch({type: CREATE_QUESTION});
+                return response.data;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+//------------CREAR RESPUESTA--------------
+export const responseQuestion = (id,input) => {
+    return async  (dispatch) => {
+        try {
+            let response = await axios.put(`http://localhost:3001/api/question/admin/${id}`,input)
+                console.log(response.data)
+                   dispatch({type: RESPONSE_QUESTION});
+                return response.data;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+//------------OBTENER COMENTARIOS POR PRODUCTO--------------
+export const getQuestion = (id) => {
+    return async  (dispatch) => {
+        try {
+            let response = await axios.get(`http://localhost:3001/api/question/${id}`)
+                console.log(response.data)
+                   dispatch({type: GET_QUESTION , payload: response.data});
+                
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
 export const setMessage = (message) => ({
     type: SET_MESSAGE,
     payload: message,

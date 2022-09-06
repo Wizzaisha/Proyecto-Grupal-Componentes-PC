@@ -8,6 +8,7 @@ import { useAuth } from '../context/authContext'
 import starFilled from '../img/icons8-estrella-96 (1).png'
 import starEmpty from '../img/icons8-estrella-96.png'
 import StarsComponent from "../StarsComponent"
+import LoadingPage from "../LoadingPage"
 
 function ProductDetails() {
 
@@ -18,8 +19,12 @@ function ProductDetails() {
     const auth = useAuth()
     const [favorite, setFavorite] = useState(false)
 
+    const [loadingData, setLoadingData] = useState(false);
+
     useEffect(() => {
+        setLoadingData(true);
         dispatch(getProductDetails(idProduct))
+        .then(() => setLoadingData(false));
     }, [dispatch, idProduct])
 
     useEffect(() => {
@@ -97,49 +102,61 @@ function ProductDetails() {
     }
 
     return (
+
+        loadingData 
+        ? 
+            <LoadingPage />
+        :
         <div className="container">
             {details.hasOwnProperty("brand") &&
-                <div className="row detailsContainer d-flex flex-column align-items-center">
-                    <div className="card col-12 d-flex flex-sm-column flex-md-row align-items-center justify-content-center">
-                        <div className=" container-sm d-flex flex-column ">
-                            <button onClick={handleFavorite} className="btn border border-0 " style={{ width: '5rem', height: '5rem' }}>
-                                {
-                                    favorite === true ? <img src={starFilled} alt="img" style={{ width: '4rem', height: '4rem' }} /> : <img src={starEmpty} alt="img" style={{ width: '4rem', height: '4rem' }} />
-                                }
-                            </button>
-                            {details.stock === 0 ? <h3 style={{ color: "red" }}>Out of stock</h3> : null}
-                            <div>
-                                <img src={details.image} className="img" alt="img" />
+                    <div className="row detailsContainer d-flex flex-column align-items-center">
+                        <div className="card row detailsContainer d-flex flex-column align-items-center">
+                            <div className="d-flex flex-row justify-content-between">
+                                    <button onClick={handleFavorite} className="btn border border-0 " style={{ width: '5rem', height: '5rem' }}>
+                                        {
+                                            favorite === true ? <img src={starFilled} alt="img" style={{ width: '4rem', height: '4rem' }} /> : <img src={starEmpty} alt="img" style={{ width: '4rem', height: '4rem' }} />
+                                        }
+                                    </button>
+                                    <Link to={'/store'} className="align-self-start">
+                                        <button className="btn btn-primary bg3 border-0 m-3" style={{ width: '2.3rem' }} >X</button>
+                                    </Link>
                             </div>
-                            <div className='d-flex flex-column m-5 align-items-start'>
-                                <h3 className='tx4'>Description</h3>
-                                <p className='description'>{details.description}</p>
-                                <h3 className='tx4'>Specs</h3>
-                                <div className="specs">
-                                    {details.specs && details.specs.map((e) => { return <li>{e}</li> })}
+                            <div className=" col-12 d-flex flex-sm-column flex-md-row align-items-center justify-content-center">
+                                
+                                <div className="d-flex flex-column" style={{ width: '65%' }}>
+
+                                    {details.stock === 0 ? <h3 style={{ color: "red" }}>Out of stock</h3> : null}
+                                    <div>
+                                        <img src={details.image} className="img" alt="img" />
+                                    </div>
+                                    <div className='d-flex flex-column m-5 align-items-start'>
+                                        <h3 className='tx4'>Description</h3>
+                                        <p className='description'>{details.description}</p>
+                                        <h3 className='tx4'>Specs</h3>
+                                        <div className="specs">
+                                            {details.specs && details.specs.map((e) => { return <li>{e}</li> })}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div className="container-sm d-flex flex-column align-items-start justify-content-around border-start border-dark border-opacity-10">
-                            <div className="d-flex flex-column align-items-start justify-content-around" >
-                                <h1 className="d-flex flex-column align-items-start tx4">{`${details.category} ${details.brand} ${details.model}`}</h1>
-                                <h4>Brand: {details.brand}</h4>
-                                <h4>Model: {details.model}</h4>
-                                <h4>Price: ${details.price}</h4>
-                            </div>
-                            <div className="d-flex flex-column w-100" >
-                                <p className={`align-self-center ${details.stock < 5 ? 'text-danger fw-bold ' : null}`}>{`Stock available: (${details.stock} available)`} </p>
-                                <div className="input-group">
-                                    <button type="button" className="btn btn-outline-primary" value={'-'} onClick={(e) => stockValidator(e) /*setValue(value - 1)*/}>-</button>
-                                    <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
-                                    <button type="button" className="btn btn-outline-primary" value={'+'} onClick={(e) => stockValidator(e) /*setValue(value + 1)*/}>+</button>
+                            <div className="container-6 p-3 d-flex flex-column align-items-start justify-content-around border-start border-dark border-opacity-10">
+                                <div className="d-flex flex-column align-items-start justify-content-around" >
+                                    <h1 className="d-flex flex-column align-items-start tx4">{`${details.category} ${details.brand} ${details.model}`}</h1>
+                                    <h4>Brand: {details.brand}</h4>
+                                    <h4>Model: {details.model}</h4>
+                                    <h4>Price: ${details.price}</h4>
                                 </div>
+                                <div className="d-flex flex-column w-100" >
+                                    <p className={`align-self-center ${details.stock < 5 ? 'text-danger fw-bold ' : null}`}>{`Stock available: (${details.stock} available)`} </p>
+                                    <div className="input-group">
+                                        <button type="button" className="btn btn-outline-primary" value={'-'} onClick={(e) => stockValidator(e) /*setValue(value - 1)*/}>-</button>
+                                        <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
+                                        <button type="button" className="btn btn-outline-primary" value={'+'} onClick={(e) => stockValidator(e) /*setValue(value + 1)*/}>+</button>
+                                    </div>
+                                </div>
+                                <button type="submit" className="btn btn-primary button3 bg3 border-0" onClick={e => handleButton(e)} disabled={details.stock === 0 ? "true" : null}>Add to cart</button>
                             </div>
-                            <button type="submit" className="btn btn-primary button3 bg3 border-0" onClick={e => handleButton(e)} disabled={details.stock === 0 ? "true" : null}>Add to cart</button>
+
                         </div>
-                        <Link to={'/store'} className="align-self-start">
-                            <button className="btn btn-primary bg3 border-0 m-3" style={{ width: '2.3rem' }} >X</button>
-                        </Link>
                     </div>
                     <div className="card reviewsMainContainer col-12">
                         <div className="row">
@@ -168,7 +185,6 @@ function ProductDetails() {
                                 })
                             }
                         </div>
-                        <button type="submit" className="btn btn-primary button3 bg3 border-0" onClick={e => handleButton(e)} disabled={details.stock === 0 ? "true" : null}>Add to cart</button>
                     </div>
                 </div>
             }

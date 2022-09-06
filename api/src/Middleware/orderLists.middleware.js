@@ -29,7 +29,7 @@ const dataOrderController = (data) => {
 
 
 const getProductsInfo = async (items) => {
-    
+
     let data = JSON.parse(items);
     
     await Promise.all(
@@ -49,25 +49,27 @@ const getProductsInfo = async (items) => {
 const dataOrderControllerCustomer = async (data) => {
 
     const newData = data;
-
+    
     const response = await Promise.all(
         newData.map(async element => {
 
             const chargesData = element.charges.data[0];
             
-            return {
+            const data = {
                 id: element.id,
                 amount: chargesData.amount/100,
                 created: dateFormated(chargesData.created),
                 description: chargesData.description,
                 orderStatus: element.metadata.orderStatus,
-                productsOrdered: await getProductsInfo(chargesData.metadata.productsOrdered),
+                productsOrdered: await getProductsInfo(element.metadata.productsOrdered),
                 payment_method_details: chargesData.payment_method_details,
                 receipt_email: chargesData.receipt_email,
                 receipt_number: chargesData.receipt_number,
                 receipt_url: chargesData.receipt_url,
                 shipping: chargesData.shipping
             }
+
+            return data;
         })
     );
 
