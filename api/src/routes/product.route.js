@@ -54,18 +54,18 @@ router.put('/:id', async (req, res, next)=>
     catch (error) { next(error)  }
 })
 
-router.put('/rating/:id', async (req, res, next)=>
-{
-    let {rating}=req.body
-    let {id} = req.params
-    try
-    {
-    let productoCalificado = await agregarRatingProducto(id, rating)
-    productoCalificado.flag? res.send(productoCalificado.message)
-    :res.send(productoCalificado.message)
-    }
-    catch (error) { next(error)  }
-})
+// router.put('/rating/:id', async (req, res, next)=>
+// {
+//     let {rating}=req.body
+//     let {id} = req.params
+//     try
+//     {
+//     let productoCalificado = await agregarRatingProducto(id, rating)
+//     productoCalificado.flag? res.send(productoCalificado.message)
+//     :res.send(productoCalificado.message)
+//     }
+//     catch (error) { next(error)  }
+// })
 
 router.put('/stock/:id', async (req, res, next)=>
 {

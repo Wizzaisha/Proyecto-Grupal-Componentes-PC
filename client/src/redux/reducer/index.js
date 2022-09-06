@@ -22,8 +22,8 @@ import {
     GET_STATISTICS_DATA,
     UPDATE_PRODUCT,
     SET_MESSAGE,
-    CLEAR_MESSAGE
-} from "../actions";
+    CLEAR_MESSAGE,
+ } from "../actions";
 
 import { filterCurrentBrands, filterData } from "../utils";
 
@@ -39,7 +39,7 @@ const initialState = {
     category: "",
     admCurrCategory: "",
     currentSort: "",
-    details: [],
+    details: {},
     cart: [],
     orderList: [],
     orderListCopy: [],
@@ -72,6 +72,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 allCategories: action.payload
             }
+            
         case GET_CURRENT_BRANDS:
 
             const categoryType = action.payload;
@@ -246,14 +247,17 @@ const rootReducer = (state = initialState, action) => {
                 }
 
             case UPDATE_PRODUCT:
-                return {  ...state    }
+                return {
+                    ...state,
+                    details: {}
+                }
 
             case SET_MESSAGE:
                 return { message: action.payload };
             case CLEAR_MESSAGE:
                 return { message: "" };
 
-                
+              
 
         default:
             return { ...state }
