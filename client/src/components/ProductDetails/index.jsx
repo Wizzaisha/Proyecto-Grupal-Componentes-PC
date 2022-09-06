@@ -100,47 +100,48 @@ function ProductDetails() {
     }
     console.log(favorite);
     return (
-        <div className="container">
-            <button onClick={handleFavorite} className="btn border border-0 ">
-                {
-                    favorite === true ? <img src={starFilled} alt="img" /> : <img src={starEmpty} alt="img" />
-                }
-            </button>
-            <div className={`containerRow`}>
-                {details.stock === 0 ? <h4 style={{ color: "red" }}>Out of stock</h4> : null}
-                <div>
-                    <img src={details.image} className="img" alt="img" />
-                </div>
-                <div className='start'>
-                    <h3>Description</h3>
-                    <p className='description'>{details.description}</p>
-                    <h3>Specs</h3>
-                    <div className="specs">
-                        {details.specs && details.specs.map((e) => { return <li>{e}</li> })}
+        <div className="d-flex flex-column align-items-center">
+            <div className="card d-flex flex-row mt-4 " style={{ width: '85rem' }}>
+                <div className="d-flex flex-column" style={{ width: '65%' }}>
+                    <button onClick={handleFavorite} className="btn border border-0 " style={{ width: '5rem', height: '5rem' }}>
+                        {
+                            favorite === true ? <img src={starFilled} alt="img" style={{ width: '4rem', height: '4rem' }} /> : <img src={starEmpty} alt="img" style={{ width: '4rem', height: '4rem' }} />
+                        }
+                    </button>
+                    {details.stock === 0 ? <h4 style={{ color: "red" }}>Out of stock</h4> : null}
+                    <div>
+                        <img src={details.image} className="img" alt="img" />
+                    </div>
+                    <div className='d-flex flex-column m-5 align-items-start'>
+                        <h3 className='tx4'>Description</h3>
+                        <p className='description'>{details.description}</p>
+                        <h3 className='tx4'>Specs</h3>
+                        <div className="specs">
+                            {details.specs && details.specs.map((e) => { return <li>{e}</li> })}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="containerColumn2">
-                <h1>{`${details.category} ${details.brand} ${details.model}`}</h1>
-                <h3>Brand: {details.brand}</h3>
-                <h3>Model: {details.model}</h3>
-                <h3>${details.price}</h3>
-                <p>{`Stock available: (${details.stock} available)`} </p>
-                <div className="input-group">
-                    <button type="button" className="btn btn-outline-primary" value={'-'} onClick={(e) => stockValidator(e) /*setValue(value - 1)*/}>-</button>
-                    <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
-                    <button type="button" className="btn btn-outline-primary" value={'+'} onClick={(e) => stockValidator(e) /*setValue(value + 1)*/}>+</button>
+                <div className="d-flex flex-column align-items-start justify-content-around border-start border-dark border-opacity-10 ps-4" style={{ width: '35%' }}>
+                    <div className="d-flex flex-column align-items-start justify-content-around" style={{ height: '60%' }}>
+                        <h1 className="d-flex flex-column align-items-start tx4">{`${details.category} ${details.brand} ${details.model}`}</h1>
+                        <h4>Brand: {details.brand}</h4>
+                        <h4>Model: {details.model}</h4>
+                        <h4>Price: ${details.price}</h4>
+                    </div>
+                    <div className="d-flex flex-column" style={{ width: '100%' }}>
+                        <p className="align-self-center">{`Stock available: (${details.stock} available)`} </p>
+                        <div className="input-group">
+                            <button type="button" className="btn btn-outline-primary" value={'-'} onClick={(e) => stockValidator(e) /*setValue(value - 1)*/}>-</button>
+                            <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
+                            <button type="button" className="btn btn-outline-primary" value={'+'} onClick={(e) => stockValidator(e) /*setValue(value + 1)*/}>+</button>
+                        </div>
+                    </div>
+                    <button type="submit" className="btn btn-primary button3 bg3 border-0" onClick={e => handleButton(e)} disabled={details.stock === 0 ? "true" : null}>Add to cart</button>
                 </div>
-                <button
-                    type="submit"
-                    className="btn btn-primary button3"
-                    onClick={e => handleButton(e)}
-                    disabled={details.stock === 0 ? "true" : null}
-                >Add to cart</button>
+                <Link to={'/store'} className="align-self-start">
+                    <button className="btn btn-primary bg3 border-0 m-3" style={{ width: '2.3rem' }} >X</button>
+                </Link>
             </div>
-            <Link to={'/store'}>
-                <button className="btn btn-primary">X</button>
-            </Link>
         </div>
     )
 }

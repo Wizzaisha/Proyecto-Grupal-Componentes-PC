@@ -27,7 +27,7 @@ const index = () => {
 
         const getTotal = () => {
             let total2 = 0;
-            cart.map((el) => {return total2 += el.price * el.quantities });
+            cart.map((el) => { return total2 += el.price * el.quantities });
             return total2;
         }
 

@@ -5,6 +5,7 @@ import { useAuth } from '../context/authContext';
 import { getCustomerHistory } from "../../redux/actions";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import trash from '../img/icons8-eliminar-papelera-96.png'
 
 function Profile() {
 
@@ -47,6 +48,12 @@ function Profile() {
         }
         getFav();
     }, [])
+
+    const handleDelete = async (e) => {
+        await auth.removeFavorite(e)
+        console.log('removio');
+    }
+
     console.log(auth.favorite);
     return (
         <div>
@@ -74,7 +81,9 @@ function Profile() {
                             <img src={e.image} className="img" alt="img" />
                             <p>{`${e.category} ${e.brand} ${e.model}`}</p>
                             <p>{`$ ${e.price}`}</p>
-                            <p>{e.id}</p>
+                            <button onClick={handleDelete(e.id)} className="btn border border-0 ">
+                                <img src={trash} alt="delete from favorites" />
+                            </button>
                         </div>
                     ))}
             </div>
