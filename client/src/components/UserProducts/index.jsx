@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useAuth } from '../context/authContext';
 import StarRating from "../StarRating";
-import { createReview, getUserProdutcs, updateReview } from "../../redux/actions";
+import { createReview, getAllProducts, getUserProdutcs, updateReview } from "../../redux/actions";
 
 function UserProducts() {
 
@@ -49,7 +49,8 @@ function UserProducts() {
             reviewId: currentReviewId
         }
         
-        dispatch(createReview(data, currentProductId));
+        dispatch(createReview(data, currentProductId))
+        .then(() => dispatch(getAllProducts()));
         dispatch(getUserProdutcs(auth.user.email));
 
         setReviewText("");
@@ -68,7 +69,7 @@ function UserProducts() {
         }
 
         dispatch(updateReview(data, currentReviewId))
-        .then(response => console.log(response));
+        .then(() => dispatch(getAllProducts()));
         dispatch(getUserProdutcs(auth.user.email));
 
         setRating(0);
