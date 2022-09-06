@@ -64,5 +64,29 @@
 }
 
 .reviewsMainContainer {
-  border: 1px solid black;
+  padding: 1rem;
+  margin: 0.5rem;
+  text-align: start;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.reviewContainer {
+  padding: 1rem;
+  margin: 0.3rem;
+}
+
+.reviewUserName p {
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.reviewText {
+  padding: 1rem;
+}
+
+.reviewRating p {
+  margin: 0;
 }

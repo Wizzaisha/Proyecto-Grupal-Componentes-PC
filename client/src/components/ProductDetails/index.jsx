@@ -7,6 +7,7 @@ import { getProductDetails, } from '../../redux/actions'
 import { useAuth } from '../context/authContext'
 import starFilled from '../img/icons8-estrella-96 (1).png'
 import starEmpty from '../img/icons8-estrella-96.png'
+import StarsComponent from "../StarsComponent"
 
 function ProductDetails() {
 
@@ -96,10 +97,10 @@ function ProductDetails() {
     }
     
     return (
-        <div>
+        <div className="container">
             {details.hasOwnProperty("brand") &&
-                <div className="d-flex flex-column align-items-center">
-                    <div className="card d-flex flex-row mt-4 " style={{ width: '85rem' }}>
+                <div className="row detailsContainer d-flex flex-column align-items-center">
+                    <div className="card col-12 d-flex flex-sm-column flex-md-row align-items-center justify-content-center">
                         <div className="d-flex flex-column" style={{ width: '65%' }}>
                             <button onClick={handleFavorite} className="btn border border-0 " style={{ width: '5rem', height: '5rem' }}>
                                 {
@@ -140,28 +141,33 @@ function ProductDetails() {
                             <button className="btn btn-primary bg3 border-0 m-3" style={{ width: '2.3rem' }} >X</button>
                         </Link>
                     </div>
-                    <div className="reviewsMainContainer">
-                        <h3>User reviews</h3>
-                        {details.reviews.length === 0 
-                            ? 
-                                <p>There are no reviews</p>
-                            : 
-                                details.reviews.map(review => {
-                                    return (
-                                        <div key={review.id} className="reviewContainer">
-                                            <div className="reviewUserName">
-                                                <p>{review.userName === "undefined" ? "Anonymous" : review.userName}</p>
+                    <div className="card reviewsMainContainer col-12">
+                        <div className="row">
+                            <h3>User reviews</h3>
+                            {details.reviews.length === 0 
+                                ? 
+                                    <p>There are no reviews</p>
+                                : 
+                                    details.reviews.map(review => {
+                                        return (
+                                            <div key={review.id} className="card reviewContainer">
+                                                <div className="reviewUserName">
+                                                    <p>{review.userName === "undefined" ? "Anonymous" : review.userName}</p>
+                                                </div>
+                                                <div className="reviewRating">
+                                                    <p>Rating: </p>
+                                                    <StarsComponent rating={review.userRating} />
+                                                </div>
+                                                <p>Review: </p>
+                                                <div className="card reviewText">
+                                                    
+                                                    <p>{review.userReview}</p>
+                                                </div>
                                             </div>
-                                            <div className="reviewRating">
-                                                <p>{review.userRating}</p>
-                                            </div>
-                                            <div className="reviewText">
-                                                <p>{review.userReview}</p>
-                                            </div>
-                                        </div>
-                                    )
-                                })
-                        }
+                                        )
+                                    })
+                            }
+                        </div>
                     </div>
                 </div>
             }
