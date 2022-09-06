@@ -40,13 +40,13 @@ function CategoriesBar(props) {
                 {currentCategory &&
                     <button
                         onClick={handleClearFilters}
-                        className="btn clearFilters bg3 tx1"
+                        className="btn btn-dark clearFilters bg3 tx1"
                     >Clear Filters</button>
                 }
             </div>
             <div>
                 <button
-                    className="btn collapseButton bg3 tx1"
+                    className="btn btn-dark bg3 custom-color collapseButton"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapseExample"
@@ -60,7 +60,7 @@ function CategoriesBar(props) {
                             return (
                                 <div key={index}>
                                     <label
-                                        className={`radioButton btn btn-outline-secondary ${currentCategory === category ? "checked" : "nochecked"} `}
+                                        className={`radioButton btn btn-outline-dark ${currentCategory === category ? "checked" : "nochecked"} `}
                                     >
                                         <input
                                             type={"radio"}

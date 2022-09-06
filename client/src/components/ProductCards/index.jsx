@@ -64,7 +64,7 @@ function ProductCards() {
     }
 
     return (
-        <div className="card container-fluid cardsMainContainer" style={{ width: '96rem' }}>
+        <div className="card container-fluid cardsMainContainer">
             <div className="filtersContainer">
                 <CategoriesBar
                     setCurrentPage={setCurrentPage}
