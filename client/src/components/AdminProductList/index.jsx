@@ -35,6 +35,8 @@ function AdminProductList() {
     
     return (
         <div className="container-fluid">
+            <h3>Product List</h3>
+
             <div>
                 <button className="btn btn-outline-primary">Create product</button>
             </div>

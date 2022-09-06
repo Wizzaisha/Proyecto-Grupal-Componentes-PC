@@ -6,7 +6,7 @@ function AdminNavBar() {
 
     return (
         <div>
-            <h6 className = "text-primary"   >Product Management</h6 >
+            <h6 className = "text-primary"   >Product Management</h6>
             <ul className= "list-group">
                 <Link to="/adminpanel/list-product" className="listLink"><li className="list-group-item">Product list</li></Link>
  
@@ -18,6 +18,10 @@ function AdminNavBar() {
             <h6 className = "text-primary" >Order Management</h6>
             <ul className="list-group">
                 <Link to="/adminpanel/order-list" className="listLink"><li className="list-group-item">Order List</li></Link>
+            </ul>
+            <h6 className = "text-primary" >User Management</h6>
+            <ul className="list-group">
+                <Link to="/adminpanel/user-management" className="listLink"><li className="list-group-item">User management</li></Link>
             </ul>
         </div>
     )

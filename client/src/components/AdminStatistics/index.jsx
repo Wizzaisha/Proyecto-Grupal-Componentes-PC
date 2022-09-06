@@ -20,6 +20,7 @@ function AdminStatistics () {
 
     return (
         <div>
+            <h3>Store statistics</h3>
             <div className="chartContainer">
                 <h4>Turnover</h4>
                 <div className="chart">

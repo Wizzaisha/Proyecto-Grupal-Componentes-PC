@@ -7,6 +7,7 @@ import { useAuth } from '../context/authContext'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from "react-redux";
 import { getAllProducts } from '../../redux/actions';
+import LoadingPage from '../LoadingPage';
 
 const index = () => {
 
@@ -29,7 +30,9 @@ const index = () => {
             let total2 = 0;
             cart.map((el) => { return total2 += el.price * el.quantities });
             return total2;
-        }
+        }  
+
+        const [loadingPayment, setLoadingPayment] = useState(false);
 
         const sumaTotal = getTotal();
 
@@ -43,6 +46,7 @@ const index = () => {
                 if (city === '' || state === '' || street === '' || phone === '' || name === '') {
                     alert('Please fill in all the fields')
                 } else {
+                    setLoadingPayment(true);
                     const body = {
                         method_pay: paymentMethod.id,
                         customerEmail: auth.user.email,
@@ -66,12 +70,23 @@ const index = () => {
                             name: name
                         }
                     }
-                    const { data } = await axios.post('http://localhost:3001/api/checkout', body)
-                    console.log(data);
-                    alert('Successful payment!')
-                    localStorage.setItem('cart', '[ ]')
-                    navigate('/succesfulPurchase')
-                    dispatch(getAllProducts());
+                    axios.post('http://localhost:3001/api/checkout', body)
+                    .then((response) => {
+                        setLoadingPayment(false);
+                        
+                        if (response.data.message) {
+                            navigate('/succesfulPurchase');
+                            localStorage.setItem('cart', '[ ]')
+                            dispatch(getAllProducts());
+                        }     
+                    })
+                    .catch((error) => {
+                        setLoadingPayment(false);
+                        if (error.message) {
+                            navigate('/failedPurchase');
+                        }
+                    })
+                    
                 }
             } else {
                 alert('payment failed, please check the data.')
@@ -100,6 +115,12 @@ const index = () => {
         }
 
         return (
+            loadingPayment ? 
+                <div>
+                    <LoadingPage />
+                </div>
+                : 
+            
             <div className=" d-flex align-items-center justify-content-center pt-4" >
                 <div className="card d-flex flex-row p-5" style={{ width: '85rem' }}>
                     <div className="me-4" style={{ width: '65%' }}>
