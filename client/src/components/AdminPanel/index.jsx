@@ -1,5 +1,6 @@
 import "./AdminPanel.css";
 import AdminNavBar from "../AdminNavBar";
+import SetAdmin from "../AdminSetNewAdmin";
 
 import { Outlet } from "react-router-dom";
 
@@ -17,6 +18,9 @@ function AdminPanel() {
                 <div className="col-lg-10 adminContentContainer ">
                     <h2>Admin panel</h2>
                     <Outlet />
+                </div>
+                <div>
+                    <SetAdmin/>
                 </div>
             </div>
         </div>

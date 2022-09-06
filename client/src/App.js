@@ -18,6 +18,8 @@ import Payment from './components/Payment';
 import SuccesBuy from './components/SuccesBuy';
 import Profile from './components/Profile';
 import PurchaseHistory from './components/PurchaseHistory';
+import "./scss/custom.scss"
+
 
 
 
@@ -37,7 +39,7 @@ import AdminStatistics from './components/AdminStatistics';
 import {
   getAllProducts,
   getAllCategories,
-  getOrdersList, 
+  getOrdersList,
   getStatisticsData
 } from "./redux/actions";
 
@@ -51,16 +53,16 @@ function App() {
 
 
   const dispatch = useDispatch();
-    
+
   useEffect(() => {
-      dispatch(getAllProducts());
-      dispatch(getAllCategories());
-      dispatch(getOrdersList());
-      dispatch(getStatisticsData());
+    dispatch(getAllProducts());
+    dispatch(getAllCategories());
+    dispatch(getOrdersList());
+    dispatch(getStatisticsData());
   }, [dispatch]);
 
   return (
-    <div className="App container-fluid p-0">
+    <div className="App container-fluid p-0 bg1">
       <AuthProvider>
         <Routes>
           <Route path='/' element={<Home />}>
@@ -86,13 +88,13 @@ function App() {
               <Login />
             }></Route>
             <Route path='signup' element={<SignUp />}></Route>
-          
+
             <Route path='profile' element={<Profile />}>
               <Route path='purchase-history' element={<PurchaseHistory />}></Route>
               <Route path="purchase-history/order-details/:orderId" element={<PurchaseDetails />}></Route>
               <Route path="my-products" element={<UserProducts />}></Route>
             </Route>
-          
+
           </Route>
           <Route path='*' element=
             {<h1>There's nothing here!</h1>}

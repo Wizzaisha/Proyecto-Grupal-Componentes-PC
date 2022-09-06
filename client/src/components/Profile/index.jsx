@@ -3,34 +3,53 @@ import "./Profile.css";
 import { useNavigate, Outlet } from "react-router-dom";
 import { useAuth } from '../context/authContext';
 import { getCustomerHistory } from "../../redux/actions";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+function Profile() {
 
+    let productState = useSelector(state => state.productsCopy);
 
-function Profile(){
-
+    // const [favorite, setFavorite] = useState([])
+    const [viewFavorite, setViewFavorite] = useState(false)
+    const [product, setProduct] = useState([])
     const auth = useAuth();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     function handleClick(value) {
+        setViewFavorite(false)
         if (value === "history") {
             navigate(`/profile/purchase-history/`);
         } else if (value === "products") {
             navigate(`/profile/my-products`);
         }
-
     }
 
-    
+    const handleFavoriteClick = () => {
+        setViewFavorite(true)
+        if (auth.favorite.length > 0) {
+            const filter = auth.favorite.map((i) => {
+                const findOneProduct = productState.find(e => e.id === i)
+                return findOneProduct
+            })
+            setProduct(filter)
+        }
+    }
+
     useEffect(() => {
-        if (auth.user.email) dispatch(getCustomerHistory(auth.user.email));
+        if (auth.user.email) dispatch(getCustomerHistory(auth.user.email))
     }, [dispatch, auth.user.email]);
 
+    useEffect(() => {
+        const getFav = async () => {
+            await auth.getFavorite();
+        }
+        getFav();
+    }, [])
+    console.log(auth.favorite);
     return (
         <div>
-
             <h1>Profile</h1>
             <div className="container-fluid profileContainer">
                 <div className="profileDiv">
@@ -46,9 +65,19 @@ function Profile(){
             <div className="btn-group" role="group">
                 <button type="button" className="btn btn-primary" onClick={() => handleClick("history")}>Purchase history</button>
                 <button type="button" className="btn btn-primary" onClick={() => handleClick("products")}>Products Purchased</button>
-
+                <button type="button" className="btn btn-primary" onClick={() => handleFavoriteClick()}>Favorites</button>
             </div>
-
+            <div className='d-flex flex-column align-items-center'>
+                {
+                    viewFavorite && product && product.map((e) => (
+                        <div className="card d-flex flex-row justify-content-around align-items-center" style={{ width: '50rem' }}>
+                            <img src={e.image} className="img" alt="img" />
+                            <p>{`${e.category} ${e.brand} ${e.model}`}</p>
+                            <p>{`$ ${e.price}`}</p>
+                            <p>{e.id}</p>
+                        </div>
+                    ))}
+            </div>
             <div>
                 <Outlet />
             </div>
