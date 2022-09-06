@@ -10,8 +10,8 @@ router.get('/:productId', async (req, res, next)=>
     try
     {
     let preguntasRespuestas = await mostrarCuestionario(productId)
-    preguntasRespuestas.flag? res.send(preguntasRespuestas.cuestionario)
-    :res.send(preguntasRespuestas.message)
+    preguntasRespuestas.length? res.send(preguntasRespuestas)
+    :res.send("no hay preguntas")
     }
     catch (error) { next(error) ; console.log(error) }
 })
