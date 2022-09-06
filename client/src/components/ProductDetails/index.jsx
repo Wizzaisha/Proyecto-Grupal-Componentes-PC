@@ -168,6 +168,7 @@ function ProductDetails() {
                                     })
                             }
                         </div>
+                        <button type="submit" className="btn btn-primary button3 bg3 border-0" onClick={e => handleButton(e)} disabled={details.stock === 0 ? "true" : null}>Add to cart</button>
                     </div>
                 </div>
             }
