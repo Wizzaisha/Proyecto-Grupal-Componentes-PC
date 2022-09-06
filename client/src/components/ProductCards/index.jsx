@@ -64,7 +64,7 @@ function ProductCards() {
     }
 
     return (
-        <div className="card container-sm cardsMainContainer">
+        <div className="card container-sm cardsMainContainer mt-4">
             <div className="filtersContainer">
                 <CategoriesBar
                     setCurrentPage={setCurrentPage}
