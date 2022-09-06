@@ -100,62 +100,60 @@ const index = () => {
         }
 
         return (
-            <div className="container2022">
-                <div>
-                    {
-                        cart.length ? cart.map(el =>
-                            <div className="card mb-4" style={{ width: "540px" }}>
-                                <div className="tarjetas">
-                                    <div className="col-md-2">
-                                        <img src={el.image} alt={el.model} className="img-cover" style={{ width: '100%' }} />
-                                    </div>
-                                    <div className="card-body">
-                                        <h5 className="card-title">{`${el.category} ${el.brand} ${el.model}`}</h5>
-                                        <p className='card-text'>x{el.quantities}</p>
-                                        <p className='card-text'>price: ${el.price}</p>
+            <div className=" d-flex align-items-center justify-content-center pt-4" >
+                <div className="card d-flex flex-row p-5" style={{ width: '85rem' }}>
+                    <div className="me-4" style={{ width: '65%' }}>
+                        {
+                            cart.length ? cart.map(el =>
+                                <div className="card mb-4" >
+                                    <div className="tarjetas">
+                                        <div className="col-md-2">
+                                            <img src={el.image} alt={el.model} className="img-cover" style={{ width: '100%' }} />
+                                        </div>
+                                        <div className="card-body">
+                                            <h5 className="card-title tx4">{`${el.category} ${el.brand} ${el.model}`}</h5>
+                                            <p className='card-text'>x{el.quantities}</p>
+                                            <p className='card-text'>price: ${el.price}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ) : <p>You don't add any product...</p>
-                    }
-                </div>
-
-                <form onSubmit={handleSubmit} className="card card-body formslide" style={{ width: '25rem' }}>
-                    <h2>shipping adress:</h2>
-                    <p>Name</p>
-                    <input type="text" name="Name" placeholder="write your name" onChange={(e) => handleInputName(e)}></input>
-                    <p>Phone number</p>
-                    <input type="number" name="Phone number" placeholder="write your phone number" onChange={(e) => handleInputPhone(e)}></input>
-                    <p>City</p>
-                    <input type="text" name="City" placeholder="write your city" onChange={(e) => handleInputCity(e)}></input>
-                    <p>State / Province / Region</p>
-                    <input type="text" name="State" placeholder="write your state, province or region" onChange={(e) => handleInputState(e)}></input>
-                    <p>Street address</p>
-                    <input type="text" name="Street address" placeholder="write your street address" onChange={(e) => handleInputStreet(e)}></input>
-                    <p>Add credit or debit card</p>
-                    <div className="form-group">
-                        <CardElement className="form-control" />
+                            ) : <p>You don't add any product...</p>
+                        }
                     </div>
-                    {sumaTotal && (
-                        <p>Total: ${sumaTotal}</p>
-                    )
-                    }
-                    <button className="btn btn-success">
-                        Buy
-                    </button>
-                </form>
+                    <form onSubmit={handleSubmit} className="card card-body formslide" style={{ width: '35%' }}>
+                        <h2 className='tx4'>shipping adress:</h2>
+                        <p>Name</p>
+                        <input type="text" name="Name" placeholder="write your name" onChange={(e) => handleInputName(e)}></input>
+                        <p>Phone number</p>
+                        <input type="number" name="Phone number" placeholder="write your phone number" onChange={(e) => handleInputPhone(e)}></input>
+                        <p>City</p>
+                        <input type="text" name="City" placeholder="write your city" onChange={(e) => handleInputCity(e)}></input>
+                        <p>State / Province / Region</p>
+                        <input type="text" name="State" placeholder="write your state, province or region" onChange={(e) => handleInputState(e)}></input>
+                        <p>Street address</p>
+                        <input type="text" name="Street address" placeholder="write your street address" onChange={(e) => handleInputStreet(e)}></input>
+                        <p>Add credit or debit card</p>
+                        <div className="form-group">
+                            <CardElement className="form-control" />
+                        </div>
+                        {sumaTotal && (
+                            <p>Total: ${sumaTotal}</p>
+                        )
+                        }
+                        <button className="btn btn-success bg3">
+                            Buy
+                        </button>
+                    </form>
+                </div>
             </div>
         )
     }
 
     return (
         <Elements stripe={stripePromise}>
-            <div className="container p-4">
-                <CheckoutForm />
-            </div>
+            <CheckoutForm />
         </Elements>
     )
 }
 
 export default index
-
