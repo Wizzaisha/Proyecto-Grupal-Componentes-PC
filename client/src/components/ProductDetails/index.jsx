@@ -99,9 +99,9 @@ function ProductDetails() {
     }
     console.log(favorite);
     return (
-        <div className="d-flex flex-column align-items-center">
-            <div className="card d-flex flex-row mt-4 " style={{ width: '85rem' }}>
-                <div className="d-flex flex-column" style={{ width: '65%' }}>
+        <div className="container-sm d-flex flex-column align-items-center">
+            <div className="row card d-flex flex-row mt-4 " >
+                <div className="col-10 d-flex flex-column" style={{ width: '65%' }}>
                     <button onClick={handleFavorite} className="btn border border-0 " style={{ width: '5rem', height: '5rem' }}>
                         {
                             favorite === true ? <img src={starFilled} alt="img" style={{ width: '4rem', height: '4rem' }} /> : <img src={starEmpty} alt="img" style={{ width: '4rem', height: '4rem' }} />
@@ -120,8 +120,11 @@ function ProductDetails() {
                         </div>
                     </div>
                 </div>
-                <div className="d-flex flex-column align-items-start justify-content-around border-start border-dark border-opacity-10 ps-4" style={{ width: '35%' }}>
-                    <div className="d-flex flex-column align-items-start justify-content-around" style={{ height: '60%' }}>
+                <div className="col-2 d-flex flex-column align-items-start justify-content-between border-start border-dark border-opacity-10 p-4" style={{ width: '35%' }}>
+                    <div className="d-flex flex-column align-items-start justify-content-between" style={{ height: '60%' }}>
+                        <Link to={'/store'} className="align-self-end">
+                            <button className="btn btn-primary bg3 border-0" style={{ width: '2.3rem' }} >X</button>
+                        </Link>
                         <h1 className="d-flex flex-column align-items-start tx4">{`${details.category} ${details.brand} ${details.model}`}</h1>
                         <h4>Brand: {details.brand}</h4>
                         <h4>Model: {details.model}</h4>
@@ -134,12 +137,9 @@ function ProductDetails() {
                             <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
                             <button type="button" className="btn btn-outline-primary" value={'+'} onClick={(e) => stockValidator(e) /*setValue(value + 1)*/}>+</button>
                         </div>
+                        <button type="submit" className="btn btn-primary button3 bg3 border-0" onClick={e => handleButton(e)} disabled={details.stock === 0 ? "true" : null}>Add to cart</button>
                     </div>
-                    <button type="submit" className="btn btn-primary button3 bg3 border-0" onClick={e => handleButton(e)} disabled={details.stock === 0 ? "true" : null}>Add to cart</button>
                 </div>
-                <Link to={'/store'} className="align-self-start">
-                    <button className="btn btn-primary bg3 border-0 m-3" style={{ width: '2.3rem' }} >X</button>
-                </Link>
             </div>
         </div>
     )
