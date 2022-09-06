@@ -42,7 +42,7 @@ const Pagination = props => {
         <div className="paginationContainer">
             <nav aria-label="...">
                 <ul className="pagination">
-                    <li 
+                    <li
                         className={`page-item ${currentPage === 1 ? "disabled" : null}`}
                         onClick={() => onPrevious(currentPage)}
                     >
@@ -55,20 +55,20 @@ const Pagination = props => {
                                 key={index}
                                 className="page-item"
                             >
-                                <span 
+                                <span
                                     onClick={() => onPageChange(pageNumber)}
                                     className={`page-link ${pageNumber === currentPage ? "active" : null}`}
                                 >{pageNumber}</span>
-                            </li>   
+                            </li>
                         )
                     })}
-                    <li 
+                    <li
                         className={`page-item ${currentPage === lastPage ? "disabled" : null}`}
                         onClick={() => onNext(currentPage)}
                     >
                         <span className="page-link"><FaAngleRight /></span>
                     </li>
-                
+
                 </ul>
             </nav>
         </div>

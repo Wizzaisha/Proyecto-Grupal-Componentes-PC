@@ -105,7 +105,7 @@ const index = () => {
                     <div className="me-4" style={{ width: '65%' }}>
                         {
                             cart.length ? cart.map(el =>
-                                <div className="card mb-4" >
+                                <div className="products card mb-4" >
                                     <div className="tarjetas">
                                         <div className="col-md-2">
                                             <img src={el.image} alt={el.model} className="img-cover" style={{ width: '100%' }} />

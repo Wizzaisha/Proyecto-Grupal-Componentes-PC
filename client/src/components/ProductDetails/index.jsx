@@ -36,8 +36,7 @@ function ProductDetails() {
             left: 0,
             behavior: 'smooth'
         })
-
-    }, [dispatch])
+    }, [])
 
     useEffect(() => {
         dispatch(getProductDetails(idProduct))
@@ -108,7 +107,7 @@ function ProductDetails() {
                             favorite === true ? <img src={starFilled} alt="img" style={{ width: '4rem', height: '4rem' }} /> : <img src={starEmpty} alt="img" style={{ width: '4rem', height: '4rem' }} />
                         }
                     </button>
-                    {details.stock === 0 ? <h4 style={{ color: "red" }}>Out of stock</h4> : null}
+                    {details.stock === 0 ? <h3 style={{ color: "red" }}>Out of stock</h3> : null}
                     <div>
                         <img src={details.image} className="img" alt="img" />
                     </div>
@@ -129,7 +128,7 @@ function ProductDetails() {
                         <h4>Price: ${details.price}</h4>
                     </div>
                     <div className="d-flex flex-column" style={{ width: '100%' }}>
-                        <p className="align-self-center">{`Stock available: (${details.stock} available)`} </p>
+                        <p className={`align-self-center ${details.stock < 5 ? 'text-danger fw-bold ' : null}`}>{`Stock available: (${details.stock} available)`} </p>
                         <div className="input-group">
                             <button type="button" className="btn btn-outline-primary" value={'-'} onClick={(e) => stockValidator(e) /*setValue(value - 1)*/}>-</button>
                             <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
