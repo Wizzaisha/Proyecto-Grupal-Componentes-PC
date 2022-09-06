@@ -3,6 +3,7 @@
   border: 0.1rem solid #000000;
   border-radius: 20px;
   box-shadow: 9px 10px 15px -10px rgba(0, 0, 0, 0.12);
+  padding: 1rem;
 }
 
 .cardContainer:hover {
@@ -19,6 +20,16 @@
   color: red;
 }
 
+.fewUnits:hover {
+  border: 0.1rem solid red;
+  color: red;
+}
+
+.fewUnits:focus {
+  border: 0.1rem solid red;
+  color: red;
+}
+
 .cardImage {
   display: block;
   width: 100%;
@@ -27,4 +38,8 @@
   border-radius: 20px;
   justify-content: center;
   object-fit: contain;
+}
+
+.textComplement p {
+  margin: 0;
 }
