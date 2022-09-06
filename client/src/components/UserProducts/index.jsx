@@ -1,37 +1,36 @@
 import "./UserProducts.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from '../context/authContext';
 import StarRating from "../StarRating";
-import { createReview } from "../../redux/actions";
+import { createReview, getUserProdutcs, updateReview } from "../../redux/actions";
 
 function UserProducts() {
 
-    const productsUser = [];
 
     const auth = useAuth();
+    const username = localStorage.getItem("username");
 
-    const customerHistory = useSelector(state => state.customerHistory);
+    const productsUser = useSelector(state => state.userProducts); 
 
     const [show, setShow] = useState(false);
+
+    const [edit, setEdit] = useState(false);
+    const [create, setCreate] = useState(false);
+
     const [hover, setHover] = useState(0);
-    const [currentProduct, setCurrentProduct] = useState({});
+    const [currentProductId, setCurrentProductId] = useState("");
+    const [currentReviewId, setCurrentReviewId] = useState("");
+ 
     const [rating, setRating] = useState(0);
     const [reviewText, setReviewText] = useState("");
     
-
     const dispatch = useDispatch();
 
-    customerHistory.forEach(element => {
-        element.productsOrdered.forEach(product => {
-            if (productsUser.findIndex(e => e.id === product.id) === -1) productsUser.push(product);
-        });
-    });
-
-
-    function handleShow (productId) {
+    function handleShow (productId, reviewId) {
         setShow(true);
-        setCurrentProduct(productsUser.find(e => e.id === productId));
+        setCurrentProductId(productId);
+        setCurrentReviewId(reviewId);
     }
     
     function handleTextReview (event) {
@@ -40,22 +39,48 @@ function UserProducts() {
         setReviewText(value);
     }
 
-    function handleSubmitReview (event) {
+    function handleSubmitReview () {
 
         const data = {
             userReview: reviewText,
             emailUser: auth.user.email,
-            userRating: rating
+            userRating: rating,
+            userName: auth.user.displayName || username,
+            reviewId: currentReviewId
         }
-
-        dispatch(createReview(data, currentProduct.id));
-
-        event.preventDefault();
+        
+        dispatch(createReview(data, currentProductId));
+        dispatch(getUserProdutcs(auth.user.email));
 
         setReviewText("");
         setRating(0);
-
+        setCreate(false);
+        setHover(0);
     }
+
+    function handleEditReview () {
+        
+        const data = {
+            newReview: reviewText,
+            emailUser: auth.user.email,
+            newRating: rating,
+            productId: currentProductId
+        }
+
+        dispatch(updateReview(data, currentReviewId))
+        .then(response => console.log(response));
+        dispatch(getUserProdutcs(auth.user.email));
+
+        setRating(0);
+        setReviewText("");
+        setEdit(false);
+        setHover(0);
+    }
+
+    useEffect(() => {
+        dispatch(getUserProdutcs(auth.user.email));
+    }, [dispatch, auth.user.email]);
+
 
     return (
         <div>
@@ -77,16 +102,37 @@ function UserProducts() {
                                     <tr key={product.id}>
                                         <th scope="row">{product.id}</th>
                                         <td>{product.brand} {product.model}</td>
-                                        <td>Rating</td>
-                                        <td>Review</td>
+                                        {product.userRating === 0 ? <td>No rating</td> : <td>{product.userRating}</td>}
+                                        {product.userReview.length === 0 ? <td>No review</td> : <td>{product.userReview}</td>}
                                         <td>
-                                            <button 
-                                                type="button" 
-                                                className="btn btn-warning"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#staticBackdrop" 
-                                                onClick={() => handleShow(product.id)}
-                                            >Review Product</button>
+                                            { product.userRating === 0 && product.userReview.length === 0 
+                                                ? 
+                                                    <button 
+                                                        type="button" 
+                                                        className="btn btn-warning"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#staticBackdrop" 
+                                                        onClick={() => {
+                                                            handleShow(product.id, product.reviewId); 
+                                                            setCreate(true);
+                                                            setHover(0);
+                                                        }}
+                                                    >Review Product</button>
+                                                :
+                                                    <button 
+                                                        type="button" 
+                                                        className="btn btn-info"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#staticBackdrop" 
+                                                        onClick={() => {
+                                                            handleShow(product.id, product.idReview); 
+                                                            setEdit(true);
+                                                            setHover(product.userRating);
+                                                            setRating(product.userRating);
+                                                            setReviewText(product.userReview);
+                                                        }}
+                                                    >Edit Review</button>
+                                            }
                                         </td>
                                     </tr>
                                 )
@@ -101,9 +147,27 @@ function UserProducts() {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title">
-                                Review {currentProduct.brand} {currentProduct.model}
+                                Review Product
                             </h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => {setShow(false); setRating(0)}}></button>
+                            <button 
+                                type="button" 
+                                className="btn-close" 
+                                data-bs-dismiss="modal" 
+                                aria-label="Close" 
+                                onClick={() => {                                    
+                                    if (create){
+                                        setShow(false); 
+                                        setRating(0);
+                                        setHover(0);
+                                        setCreate(false);
+                                    } else if (edit) {
+                                        setShow(false); 
+                                        setRating(0);
+                                        setHover(0);
+                                        setEdit(false);
+                                    }
+                                }}
+                            ></button>
                         </div>
                         <div className="modal-body">
                             <div className="ratingContainer">
@@ -118,13 +182,50 @@ function UserProducts() {
                             <div>
                                 <p>Leave a product review</p>
                                 <div className="mb-3">
-                                    <textarea className="form-control" rows="3" onChange={handleTextReview} value={reviewText}></textarea>
+                                    <textarea 
+                                        className="form-control" 
+                                        rows="3" 
+                                        onChange={handleTextReview} 
+                                        value={reviewText}
+                                    ></textarea>
                                 </div>
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={() => {setShow(false); setRating(0)}}>Close</button>
-                            <button type="button" className="btn btn-primary" onClick={handleSubmitReview}>Send</button>
+                            <button 
+                                type="button" 
+                                className="btn btn-secondary" 
+                                data-bs-dismiss="modal" 
+                                onClick={() => {
+                                    if (create){
+                                        setShow(false); 
+                                        setRating(0);
+                                        setHover(0);
+                                        setCreate(false);
+                                    } else if (edit) {
+                                        setShow(false); 
+                                        setRating(0);
+                                        setHover(0);
+                                        setEdit(false);
+                                    }
+                                }}
+                            >Close</button>
+                            
+                            <button 
+                                type="button" 
+                                className="btn btn-primary" 
+                                data-bs-dismiss="modal"
+                                disabled={reviewText.length === 0 || rating === 0 ? true : null} 
+                                onClick={() => {
+                                    if (create) {
+                                        setShow(false); 
+                                        handleSubmitReview();
+                                    } else if (edit) {
+                                        setShow(false); 
+                                        handleEditReview();
+                                    }
+                                }}
+                            >Send</button>
                         </div>
                     </div>
                 </div>

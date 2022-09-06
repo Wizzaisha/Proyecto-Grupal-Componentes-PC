@@ -17,6 +17,8 @@ function ProductDetails() {
     const auth = useAuth()
     const [favorite, setFavorite] = useState(false)
 
+    
+
     useEffect(() => {
         window.scrollTo({
             top: 0,
@@ -83,7 +85,7 @@ function ProductDetails() {
         if (e.target.value === '+' && value < details.stock) { setValue(value + 1) }
         if (e.target.value === '-' && value > 1) { setValue(value - 1) }
     }
-
+    console.log(details.reviews);
     return (
         <div className="container">
             <button onClick={handleFavorite} className="btn border border-0 ">

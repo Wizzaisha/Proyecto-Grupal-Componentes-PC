@@ -22,7 +22,10 @@ import {
     GET_STATISTICS_DATA,
     UPDATE_PRODUCT,
     SET_MESSAGE,
-    CLEAR_MESSAGE
+    CLEAR_MESSAGE,
+    GET_USER_PRODUCTS,
+    CREATE_REVIEW,
+    UPDATE_REVIEW
 } from "../actions";
 
 import { filterCurrentBrands, filterData } from "../utils";
@@ -46,6 +49,7 @@ const initialState = {
     orderDetails: {},
     customerHistory: [],
     message: "",
+    userProducts: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -270,6 +274,58 @@ const rootReducer = (state = initialState, action) => {
             return { message: action.payload };
         case CLEAR_MESSAGE:
             return { message: "" };
+
+        case GET_USER_PRODUCTS:
+            return {
+                ...state,
+                userProducts: action.payload
+            }
+        case CREATE_REVIEW:
+
+            const idProduct = action.payload.id;
+
+            const findProId = state.productsCopy.findIndex(e => e.id === parseInt(idProduct));
+            const findProObject = state.productsCopy.find(e => e.id === parseInt(idProduct));
+
+            findProObject.reviews.push(action.payload);
+
+            const allReviews = findProObject.reviews.length;
+            const totalRating = findProObject.reviews.map(e => e.userRating).reduce((curr, acc) => curr + acc, 0);
+            
+            findProObject.rating = Math.round(totalRating / allReviews);
+
+            return {
+                ...state,
+                products: [...state.products.slice(0, findProId), findProObject, ...state.products.slice(findProId + 1)],
+                productsCopy: [...state.productsCopy.slice(0, findProId), findProObject, ...state.productsCopy.slice(findProId + 1)],
+            }
+
+        case UPDATE_REVIEW:
+
+            const idReview = action.payload.id;
+            const idProductU = action.payload.productId;
+
+            const findProIdU = state.productsCopy.findIndex(e => e.id === parseInt(idProductU));
+            const findProObjectU = state.productsCopy.find(e => e.id === parseInt(idProductU));
+
+            const findReview = findProObjectU.reviews.find(e => e.id === idReview);
+
+            findReview.userReview = action.payload.userReview;
+            findReview.userRating = action.payload.userRating;
+
+            findProObjectU.reviews = [...findProObjectU.reviews.slice(0, idReview), findReview, ...findProObjectU.reviews.slice(idReview + 1)];
+
+            const allReviewsUpdated = findProObjectU.reviews.length;
+            const totalRatingUpdated = findProObjectU.reviews.map(e => e.userRating).reduce((curr, acc) => curr + acc, 0);
+            
+            findProObjectU.rating = Math.round(totalRatingUpdated / allReviewsUpdated);
+
+            return {
+                ...state,
+                products: [...state.products.slice(0, findProIdU), findProObjectU, ...state.products.slice(findProIdU + 1)],
+                productsCopy: [...state.productsCopy.slice(0, findProIdU), findProObjectU, ...state.productsCopy.slice(findProIdU + 1)],
+            }
+            
 
         default:
             return { ...state }

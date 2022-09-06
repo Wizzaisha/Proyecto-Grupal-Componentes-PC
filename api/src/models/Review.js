@@ -9,6 +9,7 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
+            unique: true
         },
         userReview: {
             type: DataTypes.STRING
@@ -23,6 +24,9 @@ module.exports = (sequelize) => {
         emailUser: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        userName: {
+            type: DataTypes.STRING,
         }
     },  {
         timestamps: false
