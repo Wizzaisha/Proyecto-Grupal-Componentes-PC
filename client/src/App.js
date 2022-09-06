@@ -33,6 +33,8 @@ import AdminUpdateProduct from "./components/AdminUpdateProduct"
 
 // globalizo la funcion AuthProvider a todos los componentes
 import { AuthProvider } from './components/context/authContext';
+// ruta protegida
+import { ProtectedRouter } from './components/ProtectedRoute/protectedRoute';
 import AdminStatistics from './components/AdminStatistics';
 
 import {
@@ -73,8 +75,11 @@ function App() {
             <Route path='cart' element={<Cart />}></Route>
             <Route path='payment' element={<Payment />}></Route>
             <Route path='succesfulPurchase' element={<SuccesBuy />}></Route>
-
-            <Route path='adminpanel' element={<AdminPanel />}>
+      
+            <Route path='adminpanel' element={
+            <ProtectedRouter>
+              <AdminPanel />
+            </ProtectedRouter>}>
               <Route path='list-product' element={<AdminProductList />}></Route>
               <Route path='create-product' element={<AdminCreateProduct />}></Route>
               <Route path='product-details' element={<AdminProductDetails />}></Route>
