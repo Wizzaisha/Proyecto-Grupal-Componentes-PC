@@ -3,7 +3,11 @@ import {  useNavigate   } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { adminFilterCategory, clearAdminFilter, deleteProduct, setAdminCategory, getProductDetails } from "../../redux/actions";
 import DataNotFound from "../DataNotFound";
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import Pagination from "../Pagination";
+
+
+let pageSize = 10;
 
 function AdminProductList() {
 
@@ -15,13 +19,23 @@ function AdminProductList() {
 
     const dispatch = useDispatch();
 
+    // Pagination
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const currentProductsAdmin = useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * pageSize;
+        const lastPageIndex = firstPageIndex + pageSize;
+
+        return !allProducts2.message && allProducts2.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage, allProducts2]);
+
     const [productDeleted, setProductDeleted] = useState({});
     
-  function  handleEditButton (idProduct)
-  {
-    dispatch(getProductDetails(idProduct))
-    .then(() => navigate(`update-product/${idProduct}`))
-  }
+    function  handleEditButton (idProduct)
+    {
+        dispatch(getProductDetails(idProduct))
+        .then(() => navigate(`update-product/${idProduct}`))
+    }
     function handleCategorySelect (event) {
         const { value } = event.target;
 
@@ -44,18 +58,18 @@ function AdminProductList() {
         <div className="container-fluid">
             <h3>Product List</h3>
 
-            <div>
+            <div className="buttonsProductList">
                 <button className="btn btn-outline-primary">Create product</button>
+                <button
+                        className="btn btn-outline-warning"
+                        onClick={handleClearAdminFilter}
+                    >Clear filter
+                </button>
             </div>
 
             {allProducts2.message 
                 ?   <DataNotFound />  
                 : <div>
-                    <button
-                        className="btn btn-outline-warning"
-                        onClick={handleClearAdminFilter}
-                    >Clear filter
-                    </button>
                     <div>
                         <div className="btn-group adminFilterContainer">
                             {categories && categories.map((category, index) => {
@@ -95,7 +109,7 @@ function AdminProductList() {
                                 </tr>
                             </thead>
                             <tbody>
-                                    {allProducts2 && allProducts2.map(product => {
+                                    {currentProductsAdmin && currentProductsAdmin.map(product => {
                                         return (
                                             <tr key={product.id}>
                                                 <th scope="row">{product.id}</th>
@@ -121,6 +135,14 @@ function AdminProductList() {
                                     })}
                             </tbody>
                         </table>
+                        <div>
+                            <Pagination 
+                                currentPage={currentPage}
+                                totalCount={allProducts2.length}
+                                pageSize={pageSize}
+                                onPageChange={page => setCurrentPage(page)}
+                            />
+                        </div>
                     </div>
                 </div>
             }

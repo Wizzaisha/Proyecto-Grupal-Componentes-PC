@@ -2,9 +2,8 @@ import "./Profile.css";
 
 import { useNavigate, Outlet } from "react-router-dom";
 import { useAuth } from '../context/authContext';
-import { getCustomerHistory } from "../../redux/actions";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import trash from '../img/icons8-eliminar-papelera-96.png'
 
 function Profile() {
@@ -16,7 +15,7 @@ function Profile() {
     const [product, setProduct] = useState([])
     const auth = useAuth();
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+
 
     function handleClick(value) {
         setViewFavorite(false)
@@ -39,10 +38,7 @@ function Profile() {
     }
 
     useEffect(() => {
-        if (auth.user.email) dispatch(getCustomerHistory(auth.user.email))
-    }, [dispatch, auth.user.email]);
-
-    useEffect(() => {
+        console.log("useEffect de obtener favoritos en profile")
         const getFav = async () => {
             await auth.getFavorite();
         }
@@ -59,6 +55,10 @@ function Profile() {
         <div>
             <h1>Profile</h1>
             <div className="container-fluid profileContainer">
+                <div className="profileDiv">
+                    <h4 className="start display-8">User ID</h4>
+                    <label className="pt-2">{auth.user.uid}</label>
+                </div>
                 <div className="profileDiv">
                     <h4 className="start display-8">Email</h4>
                     <label className="pt-2">{auth.user.email}</label>

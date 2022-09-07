@@ -26,7 +26,6 @@ import "./scss/custom.scss"
 // Admin
 import AdminProductList from "./components/AdminProductList";
 import AdminCreateProduct from "./components/AdminCreateProduct";
-import AdminProductDetails from "./components/AdminProductDetails";
 import AdminOrdersList from "./components/AdminOrdersList";
 import AdminOrderDetails from "./components/AdminOrderDetails";
 import AdminCustomerHistory from "./components/AdminCustomerHistory";
@@ -44,8 +43,6 @@ import AdminStatistics from './components/AdminStatistics';
 import {
   getAllProducts,
   getAllCategories,
-  getOrdersList,
-  getStatisticsData
 } from "./redux/actions";
 
 
@@ -56,6 +53,7 @@ import UserProducts from './components/UserProducts';
 import AdminSetNewAdmin from './components/AdminSetNewAdmin';
 import AdminPanelInfo from './components/AdminPanelInfo';
 import FailedPayment from './components/FailedPayment';
+import Checkout from './components/Checkout';
 
 function App() {
 
@@ -65,8 +63,6 @@ function App() {
   useEffect(() => {
     dispatch(getAllProducts());
     dispatch(getAllCategories());
-    dispatch(getOrdersList());
-    dispatch(getStatisticsData());
   }, [dispatch]);
 
   return (
@@ -80,10 +76,11 @@ function App() {
             <Route path='store/:idProduct' element={<ProductDetails />}></Route>
             <Route path='contact' element={<Contact />}></Route>
             <Route path='cart' element={<Cart />}></Route>
-            <Route path='payment' element={<Payment />}></Route>
-            <Route path='succesfulPurchase' element={<SuccesBuy />}></Route>
-            <Route path='failedPurchase' element={<FailedPayment />}></Route>
-
+            <Route path='payment' element={<Checkout />}>
+              <Route index element={<Payment />} ></Route>
+              <Route path='successfullPurchase' element={<SuccesBuy />}></Route>
+              <Route path='failedPurchase' element={<FailedPayment />}></Route>
+            </Route>
             <Route path='adminpanel' element={
 
               <AdminPanel />
@@ -92,7 +89,6 @@ function App() {
               <Route index element={<AdminPanelInfo />}></Route>
               <Route path='list-product' element={<AdminProductList />}></Route>
               <Route path='create-product' element={<AdminCreateProduct />}></Route>
-              <Route path='product-details' element={<AdminProductDetails />}></Route>
               <Route path='admin-statistics' element={<AdminStatistics />}></Route>
               <Route path='order-list' element={<AdminOrdersList />}></Route>
               <Route path='order-details/:idPayment' element={<AdminOrderDetails />}></Route>

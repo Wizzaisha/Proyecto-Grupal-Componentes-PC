@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import { useParams } from 'react-router-dom'
 import { createQuestion, getProductDetails } from '../../redux/actions'
-import { useAuth } from '../context/authContext'
-import starFilled from '../img/icons8-estrella-96 (1).png'
-import starEmpty from '../img/icons8-estrella-96.png'
+// import { useAuth } from '../context/authContext'
+// import starFilled from '../img/icons8-estrella-96 (1).png'
+// import starEmpty from '../img/icons8-estrella-96.png'
 import StarsComponent from "../StarsComponent"
 import LoadingPage from "../LoadingPage"
 
@@ -16,31 +16,33 @@ function ProductDetails() {
     const { idProduct } = useParams()
     const details = useSelector(state => state.details)
     const [value, setValue] = useState(1)
-    const auth = useAuth()
     // const email = JSON.parse(localStorage.getItem(email))
-    const [favorite, setFavorite] = useState(false)
     const preguntas = useSelector(state => state.question)
+    // const auth = useAuth()
+    // const [favorite, setFavorite] = useState(false)
     const [loadingData, setLoadingData] = useState(false);
     const [question, setQuestion] = useState('');
 
     useEffect(() => {
+
         setLoadingData(true);
         dispatch(getProductDetails(idProduct))
             .then(() => setLoadingData(false));
     }, [dispatch, idProduct])
 
-    useEffect(() => {
-        const getFav = async () => {
-            await auth.getFavorite();
-        }
-        getFav();
-        if (auth.favorite.includes(details.id)) {
-            setFavorite(true)
-        }
-        else {
-            setFavorite(false)
-        }
-    }, [auth, details.id]);
+    // useEffect(() => {
+
+    //     const getFav = async () => {
+    //         await auth.getFavorite();
+    //     }
+    //     getFav();
+    //     if (auth.favorite.includes(details.id)) {
+    //         setFavorite(true)
+    //     }
+    //     else {
+    //         setFavorite(false)
+    //     }
+    // }, []);
 
     useEffect(() => {
         window.scrollTo({
@@ -87,20 +89,20 @@ function ProductDetails() {
 
     }
 
-    const handleFavorite = async () => {
-        if (auth.user !== null) {
-            if (favorite === false) {
-                await auth.addFavorite(details.id)
-                setFavorite(true)
-            } else if (favorite === true) {
-                await auth.removeFavorite(details.id)
-                setFavorite(false)
-                await auth.getFavorite();
-            }
-        } else {
-            console.log('debes iniciar sesion');
-        }
-    }
+    // const handleFavorite = async () => {
+    //     if (auth.user !== null) {
+    //         if (favorite === false) {
+    //             await auth.addFavorite(details.id)
+    //             setFavorite(true)
+    //         } else if (favorite === true) {
+    //             await auth.removeFavorite(details.id)
+    //             setFavorite(false)
+    //             await auth.getFavorite();
+    //         }
+    //     } else {
+    //         console.log('debes iniciar sesion');
+    //     }
+    // }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -134,11 +136,11 @@ function ProductDetails() {
                     <div className="row detailsContainer d-flex flex-column align-items-center">
                         <div className="card row detailsContainer d-flex flex-column align-items-center">
                             <div className="d-flex flex-row justify-content-between">
-                                <button onClick={handleFavorite} className="btn border border-0 " style={{ width: '5rem', height: '5rem' }}>
+                                {/* <button onClick={handleFavorite} className="btn border border-0 " style={{ width: '5rem', height: '5rem' }}>
                                     {
                                         favorite === true ? <img src={starFilled} alt="img" style={{ width: '4rem', height: '4rem' }} /> : <img src={starEmpty} alt="img" style={{ width: '4rem', height: '4rem' }} />
                                     }
-                                </button>
+                                </button> */}
                                 <Link to={'/store'} className="align-self-start">
                                     <button className="btn btn-primary bg3 border-0 m-3" style={{ width: '2.3rem' }} >X</button>
                                 </Link>
@@ -149,7 +151,7 @@ function ProductDetails() {
 
                                     {details.stock === 0 ? <h3 style={{ color: "red" }}>Out of stock</h3> : null}
                                     <div>
-                                        <img src={details.image} className="img" alt="img" />
+                                        <img src={details.image} className="img w-75" alt="img" />
                                     </div>
                                     <div className='d-flex flex-column m-5 align-items-start'>
                                         <h3 className='tx4'>Description</h3>
@@ -173,7 +175,49 @@ function ProductDetails() {
                                             <button type="button" className="btn btn-outline-primary" value={'-'} onClick={(e) => stockValidator(e) /*setValue(value - 1)*/}>-</button>
                                             <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
                                             <button type="button" className="btn btn-outline-primary" value={'+'} onClick={(e) => stockValidator(e) /*setValue(value + 1)*/}>+</button>
+
                                         </div>
+                                    </div>
+                                    <button type="submit" className="btn btn-primary button3 bg3 border-0" onClick={e => handleButton(e)} disabled={details.stock === 0 ? "true" : null}>Add to cart</button>
+                                </div>
+                            </div>
+                            <div className="">
+                                <div className='d-flex flex-column align-items-start'>
+                                    <h3 className='tx4'>Description</h3>
+                                    <p className='description'>{details.description}</p>
+                                    <h3 className='tx4'>Specs</h3>
+                                    <div className="specs">
+                                        {details.specs && details.specs.map((e) => { return <li>{e}</li> })}
+                                    </div>
+                                </div>
+                                {/* </div> */}
+
+                                {/* </div> */}
+                                <div className="card reviewsMainContainer col-12">
+                                    <div className="row">
+                                        <h3>User reviews</h3>
+                                        {details.reviews.length === 0
+                                            ?
+                                            <p>There are no reviews</p>
+                                            :
+                                            details.reviews.map(review => {
+                                                return (
+                                                    <div key={review.id} className="card reviewContainer">
+                                                        <div className="reviewUserName">
+                                                            <p>{review.userName === "undefined" ? "Anonymous" : review.userName}</p>
+                                                        </div>
+                                                        <div className="reviewRating">
+                                                            <p>Rating: </p>
+                                                            <StarsComponent rating={review.userRating} />
+                                                        </div>
+                                                        <p>Review: </p>
+                                                        <div className="card reviewText">
+                                                            <p>{review.userReview}</p>
+                                                        </div>
+
+                                                    </div>)
+                                            })
+                                        }
                                     </div>
                                     <button type="submit" className="btn btn-primary button3 bg3 border-0" onClick={e => handleButton(e)} disabled={details.stock === 0 ? "true" : null}>Add to cart</button>
                                 </div>
