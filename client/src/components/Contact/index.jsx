@@ -74,17 +74,6 @@ if(input.name && input.email && input.affair && input.message){
 }
 
     }
-
-
-
-
-
-
-
-
-    
-
-
     return (
         <div className="card container contactContainer" >
             <div>

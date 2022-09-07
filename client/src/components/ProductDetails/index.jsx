@@ -22,12 +22,14 @@ function ProductDetails() {
     const [loadingData, setLoadingData] = useState(false);
 
     useEffect(() => {
+        
         setLoadingData(true);
         dispatch(getProductDetails(idProduct))
         .then(() => setLoadingData(false));
     }, [dispatch, idProduct])
 
     useEffect(() => {
+        
         const getFav = async () => {
             await auth.getFavorite();
         }
@@ -38,7 +40,7 @@ function ProductDetails() {
         else {
             setFavorite(false)
         }
-    }, [auth, details.id]);
+    }, []);
 
     useEffect(() => {
         window.scrollTo({

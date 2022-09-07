@@ -26,7 +26,6 @@ import "./scss/custom.scss"
 // Admin
 import AdminProductList from "./components/AdminProductList";
 import AdminCreateProduct from "./components/AdminCreateProduct";
-import AdminProductDetails from "./components/AdminProductDetails";
 import AdminOrdersList from "./components/AdminOrdersList";
 import AdminOrderDetails from "./components/AdminOrderDetails";
 import AdminCustomerHistory from "./components/AdminCustomerHistory";
@@ -42,8 +41,6 @@ import AdminStatistics from './components/AdminStatistics';
 import {
   getAllProducts,
   getAllCategories,
-  getOrdersList,
-  getStatisticsData
 } from "./redux/actions";
 
 
@@ -64,8 +61,6 @@ function App() {
   useEffect(() => {
     dispatch(getAllProducts());
     dispatch(getAllCategories());
-    dispatch(getOrdersList());
-    dispatch(getStatisticsData());
   }, [dispatch]);
 
   return (
@@ -85,14 +80,13 @@ function App() {
               <Route path='failedPurchase' element={<FailedPayment />}></Route>
             </Route>
               <Route path='adminpanel' element={
-                <ProtectedRouter>
+                
                   <AdminPanel />
-                </ProtectedRouter>
+                
                 }>
                 <Route index element={<AdminPanelInfo />}></Route>
                 <Route path='list-product' element={<AdminProductList />}></Route>
                 <Route path='create-product' element={<AdminCreateProduct />}></Route>
-                <Route path='product-details' element={<AdminProductDetails />}></Route>
                 <Route path='admin-statistics' element={<AdminStatistics />}></Route>
                 <Route path='order-list' element={<AdminOrdersList />}></Route>
                 <Route path='order-details/:idPayment' element={<AdminOrderDetails />}></Route>

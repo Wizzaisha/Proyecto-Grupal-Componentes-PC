@@ -101,7 +101,7 @@ function UserProducts() {
     }
 
     useEffect(() => {
-
+        console.log("useEffect de userproducts")
         setLoadingData(true);
 
         dispatch(getUserProdutcs(auth.user.email))
