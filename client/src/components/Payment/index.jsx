@@ -75,15 +75,15 @@ const index = () => {
                         setLoadingPayment(false);
                         
                         if (response.data.message) {
-                            navigate('/succesfulPurchase');
+                            navigate('/payment/successfullPurchase');
                             localStorage.setItem('cart', '[ ]')
                             dispatch(getAllProducts());
                         }     
                     })
                     .catch((error) => {
                         setLoadingPayment(false);
-                        if (error.message) {
-                            navigate('/failedPurchase');
+                        if (error.response.data.message) {
+                            navigate('/payment/failedPurchase');
                         }
                     })
                     
