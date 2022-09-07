@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import { useParams } from 'react-router-dom'
 import { getProductDetails, } from '../../redux/actions'
-import { useAuth } from '../context/authContext'
-import starFilled from '../img/icons8-estrella-96 (1).png'
-import starEmpty from '../img/icons8-estrella-96.png'
+// import { useAuth } from '../context/authContext'
+// import starFilled from '../img/icons8-estrella-96 (1).png'
+// import starEmpty from '../img/icons8-estrella-96.png'
 import StarsComponent from "../StarsComponent"
 import LoadingPage from "../LoadingPage"
 
@@ -16,8 +16,8 @@ function ProductDetails() {
     const { idProduct } = useParams()
     const details = useSelector(state => state.details)
     const [value, setValue] = useState(1)
-    const auth = useAuth()
-    const [favorite, setFavorite] = useState(false)
+    // const auth = useAuth()
+    // const [favorite, setFavorite] = useState(false)
 
     const [loadingData, setLoadingData] = useState(false);
 
@@ -28,19 +28,19 @@ function ProductDetails() {
         .then(() => setLoadingData(false));
     }, [dispatch, idProduct])
 
-    useEffect(() => {
+    // useEffect(() => {
         
-        const getFav = async () => {
-            await auth.getFavorite();
-        }
-        getFav();
-        if (auth.favorite.includes(details.id)) {
-            setFavorite(true)
-        }
-        else {
-            setFavorite(false)
-        }
-    }, []);
+    //     const getFav = async () => {
+    //         await auth.getFavorite();
+    //     }
+    //     getFav();
+    //     if (auth.favorite.includes(details.id)) {
+    //         setFavorite(true)
+    //     }
+    //     else {
+    //         setFavorite(false)
+    //     }
+    // }, []);
 
     useEffect(() => {
         window.scrollTo({
@@ -83,20 +83,20 @@ function ProductDetails() {
 
     }
 
-    const handleFavorite = async () => {
-        if (auth.user !== null) {
-            if (favorite === false) {
-                await auth.addFavorite(details.id)
-                setFavorite(true)
-            } else if (favorite === true) {
-                await auth.removeFavorite(details.id)
-                setFavorite(false)
-                await auth.getFavorite();
-            }
-        } else {
-            console.log('debes iniciar sesion');
-        }
-    }
+    // const handleFavorite = async () => {
+    //     if (auth.user !== null) {
+    //         if (favorite === false) {
+    //             await auth.addFavorite(details.id)
+    //             setFavorite(true)
+    //         } else if (favorite === true) {
+    //             await auth.removeFavorite(details.id)
+    //             setFavorite(false)
+    //             await auth.getFavorite();
+    //         }
+    //     } else {
+    //         console.log('debes iniciar sesion');
+    //     }
+    // }
 
     function stockValidator(e) {
         if (e.target.value === '+' && value < details.stock) { setValue(value + 1) }
@@ -114,11 +114,11 @@ function ProductDetails() {
                 <div className="row detailsMainContainer">
                     <div className="card row detailsContainer">
                         <div className="col col-12 d-flex flex-row align-items-center justify-content-between">
-                            <button onClick={handleFavorite} className="btn border border-0 ">
+                            {/* <button onClick={handleFavorite} className="btn border border-0 ">
                                 {
                                     favorite === true ? <img src={starFilled} alt="img"/> : <img src={starEmpty} alt="img" style={{ width: '4rem', height: '4rem' }} />
                                 }
-                            </button>
+                            </button> */}
                             <Link to={'/store'} className="align-self-start">
                                 <button className="btn btn-primary bg3 border-0 m-3" style={{ width: '2.3rem' }} >X</button>
                             </Link>
