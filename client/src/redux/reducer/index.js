@@ -24,6 +24,10 @@ import {
     SET_MESSAGE,
     CLEAR_MESSAGE,
     GET_USER_PRODUCTS,
+    CREATE_QUESTION,
+    RESPONSE_QUESTION,
+    GET_QUESTION,
+
 } from "../actions";
 
 import { filterCurrentBrands, filterData } from "../utils";
@@ -40,14 +44,15 @@ const initialState = {
     category: "",
     admCurrCategory: "",
     currentSort: "",
-    details: [],
+    details: {},
     cart: [],
     orderList: [],
     orderListCopy: [],
     orderDetails: {},
     customerHistory: [],
     message: "",
-    userProducts: []
+    userProducts: [],
+    question: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -220,58 +225,57 @@ const rootReducer = (state = initialState, action) => {
 //------------------------------------------------------
         case SEARCH_PRODUCTS:
 
-            const wanted = action.payload
-            if (wanted.length === 0) {
-                console.log(wanted)
+                const wanted = action.payload
+                if (wanted.length === 0) {
+                    console.log(wanted)
+                    return {
+                        ...state,
+                        products: state.productsCopy2,
+                        productsCopy: state.productsCopy2
+                    }
+                }
                 return {
                     ...state,
-                    products: state.productsCopy2,
-                    productsCopy: state.productsCopy2
+                    products: [...state.productsCopy.filter(e => e.isDeleted === false).filter(e => {
+                        if (e.brand.toUpperCase().includes(wanted.toUpperCase())) {
+                            return true
+                        } else if (e.category.toUpperCase().includes(wanted.toUpperCase())) {
+                            return true
+                        } else if (e.model.toUpperCase().includes(wanted.toUpperCase())) {
+                            return true
+                        } else {
+                            return false
+                        }
+                    })
+                    ],
+                    productsCopy: [...state.productsCopy.filter(e => e.isDeleted === false).filter(e => {
+                        if (e.brand.toUpperCase().includes(wanted.toUpperCase())) {
+                            return true
+                        } else if (e.category.toUpperCase().includes(wanted.toUpperCase())) {
+                            return true
+                        } else if (e.model.toUpperCase().includes(wanted.toUpperCase())) {
+                            return true
+                        } else {
+                            return false
+                        }
+                    })
+                    ]
                 }
-            }
-            return {
-                ...state,
-                products: [...state.productsCopy.filter(e => e.isDeleted === false).filter(e => {
-                    if (e.brand.toUpperCase().includes(wanted.toUpperCase())) {
-                        return true
-                    } else if (e.category.toUpperCase().includes(wanted.toUpperCase())) {
-                        return true
-                    } else if (e.model.toUpperCase().includes(wanted.toUpperCase())) {
-                        return true
-                    } else {
-                        return false
-                    }
-                })
-                ],
-                productsCopy: [...state.productsCopy.filter(e => e.isDeleted === false).filter(e => {
-                    if (e.brand.toUpperCase().includes(wanted.toUpperCase())) {
-                        return true
-                    } else if (e.category.toUpperCase().includes(wanted.toUpperCase())) {
-                        return true
-                    } else if (e.model.toUpperCase().includes(wanted.toUpperCase())) {
-                        return true
-                    } else {
-                        return false
-                    }
-                })
-                ]
-            }
+            
+            case GET_STATISTICS_DATA:
+                
+                return {
+                    ...state,
+                    statisticsData: action.payload
+                }
 
-        case GET_STATISTICS_DATA:
-            return {
-                ...state,
-                statisticsData: action.payload
-            }
-               
-        case UPDATE_PRODUCT:
-            return {  
-                ...state    
-        }
+            case UPDATE_PRODUCT:
+                return {  ...state    }
 
-        case SET_MESSAGE:
-            return { message: action.payload };
-        case CLEAR_MESSAGE:
-            return { message: "" };
+            case SET_MESSAGE:
+                return { message: action.payload };
+            case CLEAR_MESSAGE:
+                return { message: "" };
 
         case GET_USER_PRODUCTS:
             return {
@@ -279,8 +283,18 @@ const rootReducer = (state = initialState, action) => {
                 userProducts: action.payload
             }
 
+        case CREATE_QUESTION:
+            return {...state,}
+
+        case RESPONSE_QUESTION:
+            return {...state,}
+
+        case GET_QUESTION:
+            return { ...state,
+                question: action.payload } 
+
         default:
-            return { ...state }
+            return {...state}
     }
 }
 

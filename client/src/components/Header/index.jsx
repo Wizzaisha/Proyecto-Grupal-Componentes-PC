@@ -26,7 +26,7 @@ function Header() {
     }
 
     if (!localStorage.getItem('cart')) (localStorage.setItem('cart', '[]'));
-
+    
     return (
         <Navbar expand="lg" className="shadow-lg p-3 bg4">
             <Container fluid>

@@ -128,3 +128,13 @@
       font-size: small;
   }
   
+/* 
+#inputCategory{
+    display: none;
+} */
+#new{
+  display: none;
+}
+#add{
+  display: none;
+}

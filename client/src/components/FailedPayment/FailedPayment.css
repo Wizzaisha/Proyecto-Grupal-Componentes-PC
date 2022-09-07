@@ -1,4 +1,4 @@
-.successContainer {
+.failedContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,12 +6,12 @@
   padding: 4rem;
   height: 400px;
   margin: 2rem;
-  border: 0.1rem solid green;
+  border: 0.1rem solid red;
   border-radius: 20px;
-  background-color: rgba(0, 128, 0, 0.025);
+  background-color: rgba(255, 0, 0, 0.036);
 }
 
-.successContainer button {
+.failedContainer button {
   margin-top: 70px;
   padding: 1rem;
 }

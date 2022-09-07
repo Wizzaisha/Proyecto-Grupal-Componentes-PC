@@ -10,7 +10,9 @@ module.exports = (sequelize) =>
     emailUser: { type: DataTypes.STRING, allowNull: false},
     sendAdmin: { type: DataTypes.TEXT},
     emailAdmin: { type: DataTypes.STRING},
-    fecha: { type: DataTypes.DATE,allowNull: false}
+    fecha: { type: DataTypes.DATE, allowNull: false},
+    seenByAdmin: { type: DataTypes.BOOLEAN,  defaultValue: false },
+    seenByUser: { type: DataTypes.BOOLEAN,  defaultValue: false }
   });
 
 };

@@ -60,6 +60,10 @@ function Profile() {
             <h1>Profile</h1>
             <div className="container-fluid profileContainer">
                 <div className="profileDiv">
+                    <h4 className="start display-8">User ID</h4>
+                    <label className="pt-2">{auth.user.uid}</label>
+                </div>
+                <div className="profileDiv">
                     <h4 className="start display-8">Email</h4>
                     <label className="pt-2">{auth.user.email}</label>
                 </div>

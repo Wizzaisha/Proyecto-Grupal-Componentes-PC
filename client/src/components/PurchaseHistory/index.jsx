@@ -2,11 +2,23 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./PurchaseHistory.css";
+import { useMemo, useState } from "react";
+import Pagination from "../Pagination";
 
+let pageSize = 8;
 
 function PurchaseHistory () {
 
     const customerHistory = useSelector(state => state.customerHistory);
+
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const currentHistoryUser = useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * pageSize;
+        const lastPageIndex = firstPageIndex + pageSize;
+
+        return !customerHistory.message && customerHistory.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage, customerHistory]);
 
     return (
         <div className="customerHistoryContainer">
@@ -25,7 +37,7 @@ function PurchaseHistory () {
                                 </tr>
                             </thead>
                             <tbody>
-                                {customerHistory && customerHistory.map(order => {
+                                {currentHistoryUser && currentHistoryUser.map(order => {
                                     return (
                                         <tr key={order.id}>
                                             <th scope="row">
@@ -42,7 +54,16 @@ function PurchaseHistory () {
                                 })}
                             </tbody>
                         </table>
+                        <div>
+                            <Pagination
+                                currentPage={currentPage}
+                                totalCount={customerHistory.length}
+                                pageSize={pageSize}
+                                onPageChange={page => setCurrentPage(page)}
+                            />
+                        </div>
                     </div>
+                    
                 </div>
             }
         </div>

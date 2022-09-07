@@ -1,20 +1,41 @@
 import "./AdminProductList.css";
-import {  Link    } from 'react-router-dom'
+import {  useNavigate   } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
-import { adminFilterCategory, clearAdminFilter, deleteProduct, setAdminCategory } from "../../redux/actions";
+import { adminFilterCategory, clearAdminFilter, deleteProduct, setAdminCategory, getProductDetails } from "../../redux/actions";
 import DataNotFound from "../DataNotFound";
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import Pagination from "../Pagination";
+
+
+let pageSize = 10;
 
 function AdminProductList() {
 
     const allProducts2 = useSelector(state => state.productsAdmin);
     const categories = useSelector(state => state.allCategories)
     const admCurrCategory = useSelector(state => state.admCurrCategory);
+    var navigate = useNavigate ();
+
 
     const dispatch = useDispatch();
 
-    const [productDeleted, setProductDeleted] = useState({});
+    // Pagination
+    const [currentPage, setCurrentPage] = useState(1);
 
+    const currentProductsAdmin = useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * pageSize;
+        const lastPageIndex = firstPageIndex + pageSize;
+
+        return !allProducts2.message && allProducts2.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage, allProducts2]);
+
+    const [productDeleted, setProductDeleted] = useState({});
+    
+    function  handleEditButton (idProduct)
+    {
+        dispatch(getProductDetails(idProduct))
+        .then(() => navigate(`update-product/${idProduct}`))
+    }
     function handleCategorySelect (event) {
         const { value } = event.target;
 
@@ -35,18 +56,20 @@ function AdminProductList() {
     
     return (
         <div className="container-fluid">
-            <div>
+            <h3>Product List</h3>
+
+            <div className="buttonsProductList">
                 <button className="btn btn-outline-primary">Create product</button>
+                <button
+                        className="btn btn-outline-warning"
+                        onClick={handleClearAdminFilter}
+                    >Clear filter
+                </button>
             </div>
 
             {allProducts2.message 
                 ?   <DataNotFound />  
                 : <div>
-                    <button
-                        className="btn btn-outline-warning"
-                        onClick={handleClearAdminFilter}
-                    >Clear filter
-                    </button>
                     <div>
                         <div className="btn-group adminFilterContainer">
                             {categories && categories.map((category, index) => {
@@ -86,7 +109,7 @@ function AdminProductList() {
                                 </tr>
                             </thead>
                             <tbody>
-                                    {allProducts2 && allProducts2.map(product => {
+                                    {currentProductsAdmin && currentProductsAdmin.map(product => {
                                         return (
                                             <tr key={product.id}>
                                                 <th scope="row">{product.id}</th>
@@ -97,8 +120,11 @@ function AdminProductList() {
                                                     {product.stock < 5 ? <p style={{color: "red"}}>Low stock</p> : null}
                                                 </td>
 
-                                                <td> <div><Link to={`update-product/${product.id}`}>
-                                                 <button className="btn btn-outline-secondary">Edit</button> </Link></div> </td>
+                                                <td> <div>
+                                                 <button className="btn btn-outline-secondary"
+                                                 onClick={() => handleEditButton(product.id)}>Edit</button>
+                                                </div> </td>
+
                                                 <td>
                                                     <button 
                                                         className={`btn ${!product.isDeleted ? "btn-outline-danger" : "btn-outline-info"}`}
@@ -109,6 +135,14 @@ function AdminProductList() {
                                     })}
                             </tbody>
                         </table>
+                        <div>
+                            <Pagination 
+                                currentPage={currentPage}
+                                totalCount={allProducts2.length}
+                                pageSize={pageSize}
+                                onPageChange={page => setCurrentPage(page)}
+                            />
+                        </div>
                     </div>
                 </div>
             }

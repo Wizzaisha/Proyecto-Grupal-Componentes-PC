@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom'
 
 const index = () => {
     return (
-        <div>
-            <h1>successful purchase! Thanks a lot!</h1>
-            <Link to='/store'>
-                <button>Back to store</button>
-            </Link>
+        <div className="container-fluid">
+            <div className='successContainer'>
+                <h2>Successfull purchase! Thanks a lot!</h2>
+                <Link to='/store'>
+                    <button className='btn btn-success'>Back to store</button>
+                </Link>
+            </div>
         </div>
     )
 }
