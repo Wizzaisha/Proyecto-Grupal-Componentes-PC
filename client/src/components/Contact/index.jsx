@@ -86,19 +86,12 @@ if(input.name && input.email && input.affair && input.message){
 
 
     return (
-        <div className="container border" 
-        style={{marginTop:"0px",
-        width:'100%',
-        height:'30%',
-        backgroundImage:'url("https://www.rdstation.com/blog/wp-content/uploads/sites/2/2017/09/thestocks.jpg")',
-        backgroundPosition:'center',
-        backgroundSize:'cover'
-        }}>
+        <div className="card container contactContainer" >
             <div>
             <h1 style={{marginTop:'10px'}}>Contact</h1>
             </div>
            
-            <Form className="row" style={{margin:'25px 85px 75px 100px' }} onChange={handleB}
+            <Form className="formContainer" onChange={handleB}
             action="https://formsubmit.co/proyectofinalhenry2022@gmail.com" method="POST" id="form">
                 
                 <label>Name</label>

@@ -1,10 +1,14 @@
 import "./UserProducts.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useAuth } from '../context/authContext';
 import StarRating from "../StarRating";
 import { createReview, getAllProducts, getUserProdutcs, updateReview } from "../../redux/actions";
 import LoadingPage from "../LoadingPage";
+import Pagination from "../Pagination";
+
+
+let pageSize = 7;
 
 function UserProducts() {
 
@@ -29,6 +33,18 @@ function UserProducts() {
     const [reviewText, setReviewText] = useState("");
     
     const dispatch = useDispatch();
+
+
+    const [currentPage, setCurrentPage] = useState(1);
+
+
+    const currentProductsUser = useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * pageSize;
+        const lastPageIndex = firstPageIndex + pageSize;
+
+        return !productsUser.message && productsUser.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage, productsUser]);
+
 
     function handleShow (productId, reviewId) {
         setShow(true);
@@ -114,7 +130,7 @@ function UserProducts() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {productsUser.map(product => {
+                                            {currentProductsUser.map(product => {
                                                 return (
                                                     <tr key={product.id}>
                                                         <th scope="row">{product.id}</th>
@@ -156,6 +172,14 @@ function UserProducts() {
                                             })}
                                         </tbody>
                                     </table>
+                                    <div>
+                                        <Pagination
+                                            currentPage={currentPage}
+                                            totalCount={productsUser.length}
+                                            pageSize={pageSize}
+                                            onPageChange={page => setCurrentPage(page)}
+                                        />
+                                    </div>
                                 </div>
                         }
                         

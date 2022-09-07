@@ -1,15 +1,15 @@
 .container2022 {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .tarjetas {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-left: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 10px;
 }
 
 .products {
-    box-shadow: 9px 10px 15px -10px rgba(0, 0, 0, 0.12)
+  box-shadow: 9px 10px 15px -10px rgba(0, 0, 0, 0.12);
 }

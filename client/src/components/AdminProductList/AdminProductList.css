@@ -17,3 +17,18 @@
 .adminFilterButton {
   width: 150px;
 }
+
+.buttonsProductList {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5rem;
+  margin: 2rem 1rem;
+}
+
+@media screen and (max-width: 600px) {
+  .buttonsProductList {
+    padding: 0;
+  }
+}

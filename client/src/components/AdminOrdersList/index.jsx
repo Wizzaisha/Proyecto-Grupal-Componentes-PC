@@ -4,12 +4,26 @@ import "./AdminOrdersList.css";
 import { useDispatch } from "react-redux";
 import { filterByStatus } from "../../redux/actions";
 import DataNotFound from "../DataNotFound";
+import { useMemo, useState } from "react";
+import Pagination from "../Pagination/";
+
+let pageSize = 10;
 
 function AdminOrdersList () {
 
     const allOrders = useSelector(state => state.orderList);
     
     const dispatch = useDispatch();
+
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const currentOrders = useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * pageSize;
+        const lastPageIndex = firstPageIndex + pageSize;
+
+        return !allOrders.message && allOrders.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage, allOrders]);
+
 
     function handleChangeStatus (event) {
         const { value } = event.target;
@@ -19,7 +33,7 @@ function AdminOrdersList () {
         }
     } 
 
-
+    
     
     return (
         <div className="container-fluid">
@@ -47,7 +61,7 @@ function AdminOrdersList () {
                                 </tr>
                             </thead>
                             <tbody>
-                                {allOrders && allOrders.map(order => {
+                                {currentOrders && currentOrders.map(order => {
                                     return (
                                         <tr key={order.id}>
                                             <th scope="row">
@@ -69,6 +83,14 @@ function AdminOrdersList () {
                                 })}
                             </tbody>
                         </table>
+                        <div>
+                            <Pagination
+                                currentPage={currentPage}
+                                totalCount={allOrders.length}
+                                pageSize={pageSize}
+                                onPageChange={page => setCurrentPage(page)}
+                            />
+                        </div>
                     </div>
             }
         </div>
