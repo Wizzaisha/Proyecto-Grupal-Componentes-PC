@@ -49,7 +49,7 @@ function Header() {
                         {auth.user === null &&
                             <Link className="nav-link text-light fw-semibold" to="/signup">SignUp</Link>}
                         {localStorage.getItem("cart") && <Link className="nav-link text-light fw-semibold" to="/cart"><FontAwesomeIcon icon={faCartShopping} /><div id='counter' className="cartNumber">{JSON.parse(localStorage.getItem('cart')).length}</div></Link>}
-                        {localStorage.getItem('admin') === 'true' ? <Link className="nav-link text-light fw-semibold `${}`" to="/adminpanel">Admin Panel</Link> : null}
+                        {localStorage.getItem('admin') === 'true' || true ? <Link className="nav-link text-light fw-semibold `${}`" to="/adminpanel">Admin Panel</Link> : null}
                         {auth.user ? <Link className="nav-link text-light fw-semibold" to="/profile"><FontAwesomeIcon className="profileIcon" icon={faCircleUser} /></Link> : null}
 
                     </Nav>

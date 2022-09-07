@@ -237,7 +237,7 @@ export const responseQuestion = (id, input) => {
     return async (dispatch) => {
         try {
             let response = await axios.put(`http://localhost:3001/api/question/admin/${id}`, input)
-            console.log(response.data)
+            // console.log(response.data)
             dispatch({ type: RESPONSE_QUESTION });
             return response.data;
         } catch (error) {

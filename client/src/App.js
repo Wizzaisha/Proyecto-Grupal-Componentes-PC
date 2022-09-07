@@ -31,6 +31,8 @@ import AdminOrdersList from "./components/AdminOrdersList";
 import AdminOrderDetails from "./components/AdminOrderDetails";
 import AdminCustomerHistory from "./components/AdminCustomerHistory";
 import AdminUpdateProduct from "./components/AdminUpdateProduct";
+import AdminAnswers from "./components/AdminAnswers";
+
 
 
 // globalizo la funcion AuthProvider a todos los componentes
@@ -82,23 +84,24 @@ function App() {
             <Route path='succesfulPurchase' element={<SuccesBuy />}></Route>
             <Route path='failedPurchase' element={<FailedPayment />}></Route>
 
-              <Route path='adminpanel' element={
-                <ProtectedRouter>
-                  <AdminPanel />
-                </ProtectedRouter>
-                }>
-                <Route index element={<AdminPanelInfo />}></Route>
-                <Route path='list-product' element={<AdminProductList />}></Route>
-                <Route path='create-product' element={<AdminCreateProduct />}></Route>
-                <Route path='product-details' element={<AdminProductDetails />}></Route>
-                <Route path='admin-statistics' element={<AdminStatistics />}></Route>
-                <Route path='order-list' element={<AdminOrdersList />}></Route>
-                <Route path='order-details/:idPayment' element={<AdminOrderDetails />}></Route>
-                <Route path='customer-history/:idCustomer' element={<AdminCustomerHistory />}></Route>
-                <Route path='user-management' element={<AdminSetNewAdmin />}></Route>
-                <Route path='list-product/update-product/:idProduct' element={<AdminUpdateProduct />}></Route>
-              </Route>
-            
+            <Route path='adminpanel' element={
+
+              <AdminPanel />
+
+            }>
+              <Route index element={<AdminPanelInfo />}></Route>
+              <Route path='list-product' element={<AdminProductList />}></Route>
+              <Route path='create-product' element={<AdminCreateProduct />}></Route>
+              <Route path='product-details' element={<AdminProductDetails />}></Route>
+              <Route path='admin-statistics' element={<AdminStatistics />}></Route>
+              <Route path='order-list' element={<AdminOrdersList />}></Route>
+              <Route path='order-details/:idPayment' element={<AdminOrderDetails />}></Route>
+              <Route path='customer-history/:idCustomer' element={<AdminCustomerHistory />}></Route>
+              <Route path='user-management' element={<AdminSetNewAdmin />}></Route>
+              <Route path='list-product/update-product/:idProduct' element={<AdminUpdateProduct />}></Route>
+              <Route path='admin-answers' element={<AdminAnswers />}></Route>
+            </Route>
+
             <Route path='login' element={
               <Login />
             }></Route>

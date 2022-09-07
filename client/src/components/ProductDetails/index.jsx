@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import { useParams } from 'react-router-dom'
-import { getProductDetails, getQuestion } from '../../redux/actions'
+import { createQuestion, getProductDetails } from '../../redux/actions'
 import { useAuth } from '../context/authContext'
 import starFilled from '../img/icons8-estrella-96 (1).png'
 import starEmpty from '../img/icons8-estrella-96.png'
@@ -17,9 +17,11 @@ function ProductDetails() {
     const details = useSelector(state => state.details)
     const [value, setValue] = useState(1)
     const auth = useAuth()
+    // const email = JSON.parse(localStorage.getItem(email))
     const [favorite, setFavorite] = useState(false)
-
+    const preguntas = useSelector(state => state.question)
     const [loadingData, setLoadingData] = useState(false);
+    const [question, setQuestion] = useState('');
 
     useEffect(() => {
         setLoadingData(true);
@@ -48,10 +50,8 @@ function ProductDetails() {
         })
     }, [])
 
-    useEffect(() => {
-        // dispatch(getQuestion(details.id))
-        console.log(getQuestion(details.id));
-    }, [])
+
+
 
 
     function handleButton(e) {
@@ -102,11 +102,27 @@ function ProductDetails() {
         }
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(createQuestion(details.id, question))
+        console.log(question);
+    }
+
+    const handleChangeUser = (e) => {
+        e.preventDefault();
+        setQuestion({
+            sendUser: e.target.value,
+            emailUser: e.target.value
+        });
+    };
+
+
+
     function stockValidator(e) {
         if (e.target.value === '+' && value < details.stock) { setValue(value + 1) }
         if (e.target.value === '-' && value > 1) { setValue(value - 1) }
     }
-
+    console.log(preguntas);
     return (
 
         loadingData
@@ -164,9 +180,9 @@ function ProductDetails() {
 
                             </div>
                         </div>
-                        <div className="card reviewsMainContainer col-12">
+                        <div className="card reviewsMainContainer col-12 px-4">
                             <div className="row">
-                                <h3>User reviews</h3>
+                                <h3 className="tx4">User reviews</h3>
                                 {details.reviews.length === 0
                                     ?
                                     <p>There are no reviews</p>
@@ -189,6 +205,37 @@ function ProductDetails() {
                                             </div>
                                         )
                                     })
+                                }
+                            </div>
+                        </div>
+                        <div className="card px-5">
+                            <h3 className="d-flex flex-row justify-content-start card-title my-5 tx4">Questions and answers</h3>
+                            <h6 className="d-flex flex-row ">Any questions?</h6>
+
+                            <form onSubmit={(e) => { handleSubmit(e) }}>
+                                <input type="text" placeholder='write a question' onChange={handleChangeUser}></input>
+                                <button type='submit'>send question</button>
+                            </form>
+
+                            <h5 className="d-flex flex-row justify-content-start fw-semibold">Last questions asked:</h5>
+                            <div className="d-flex flex-column-reverse justify-content-start">
+                                {
+                                    preguntas !== undefined && Array.isArray(preguntas) && preguntas?.length > 0 ?
+                                        preguntas?.map(e => {
+                                            return (
+                                                <div className="card d-flex flex-column align-items-start px-3 my-2">
+                                                    <p className="fw-semibold">{e.emailUser}:</p>
+                                                    <p>{e.sendUser}</p>
+                                                    {e.sendAdmin &&
+                                                        <div className=" px-5">
+                                                            <p>↳ {e.sendAdmin}</p>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            )
+                                        })
+                                        :
+                                        <p>There are no questions yet...</p>
                                 }
                             </div>
                         </div>

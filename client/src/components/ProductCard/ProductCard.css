@@ -8,6 +8,7 @@
 
 .cardContainer:hover {
   border: 0rem solid #00000000;
+  cursor: pointer;
 }
 
 .linkStyle {
