@@ -11,11 +11,15 @@ module.exports = (sequelize) => {
       description: { type: DataTypes.TEXT },
       specs: { type: DataTypes.ARRAY(DataTypes.STRING), },
       benchmark: { type: DataTypes.INTEGER },
-      price: { type: DataTypes.FLOAT },
+      price: { type: DataTypes.FLOAT }, 
       stock: { type: DataTypes.INTEGER },
       isDeleted: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
+      },
+      rating: {
+        type: DataTypes.FLOAT,
+        defaultValue: 0,
       }
     });
 

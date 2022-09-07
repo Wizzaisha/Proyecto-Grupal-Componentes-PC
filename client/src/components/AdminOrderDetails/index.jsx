@@ -13,10 +13,11 @@ function AdminOrderDetails() {
     
     const [activateEdit, setActivateEdit] = useState(false);
     const [input, setInput] = useState({
-        metadata: ""
+        metadata: "",
     });
 
     const [paymentDetail, setPaymentDetail] = useState({});
+
 
     function handleEditButton () {
 
@@ -32,7 +33,7 @@ function AdminOrderDetails() {
 
         setActivateEdit(false);
         setInput({
-            metadata: ""
+            metadata: "",
         });
         
     }
@@ -41,9 +42,10 @@ function AdminOrderDetails() {
         const { value } = event.target;
         
         if (value !== "default") {
+
             setInput({
                 metadata: {
-                    orderStatus: value
+                    orderStatus: value,
                 }
             })
         }

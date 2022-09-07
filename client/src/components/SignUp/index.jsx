@@ -17,12 +17,12 @@ function SignUp() {
             setCheckOut("password")
         }
     }
-/*     const [user , setUser] = useState("")
+    const [user , setUser] = useState("")
     const handlerUser = (e) =>{
         setError("")
         setUser(e.target.value)
         console.log(user)
-    } */
+    }
     const [email , setEmail] = useState("")
     const handlerEmail = (e) =>{
         setError("")
@@ -36,8 +36,12 @@ function SignUp() {
         e.preventDefault()
         setError("")
         try {
-            await auth.register(email,password)
-            navigate("/")
+            if(user && email && password){
+                await auth.register(user,email,password)
+                navigate("/")
+            }else{
+                setError("complete the form to create the account")
+            }
         } catch (error) {
             if(error.code === "auth/email-already-in-use"){
                 setError("email already in use")
@@ -48,28 +52,19 @@ function SignUp() {
     }
     return (
         <>
-        <div className="containerForm justify-content-around">
-            {   error
-                ?<h1 className="display-6 shadow-lg p-3 mb-5 bg-body rounded">Error : {error}</h1>
-                :<h1 className="display-6 shadow-lg p-3 mb-5 bg-body rounded">Welcome, create an account to continue</h1>
-            }
+        <div className="container d-flex justify-content-center align-items-center">
             <Form
                 onSubmit={(e)=>{
                     handlerSubmit(e)
                 }}
             >
-{/*             <Form.Group className="mb-3 shadow-lg p-3 bg-body rounded" controlId="formBasicEmail">
-                <Form.Label>Username</Form.Label>
-                <Form.Control type="text" placeholder="Enter username"
-                onChange={(e)=>{
-                    handlerUser(e)
-                }}
-                />
-                <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-                </Form.Text>
-            </Form.Group> */}
-            <Form.Group className="mb-3 shadow-lg p-3 bg-body rounded" controlId="formBasicEmail">
+            {error &&
+                <Form.Group className="mb-3 shadow-lg p-3 bg4 rounded">
+                    <Form.Text>
+                        <h6 className="text-light">{error}</h6>
+                    </Form.Text>
+                </Form.Group>}
+            <Form.Group className="mb-3 shadow-lg p-3 bg2 rounded" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" placeholder="Enter email"
                 onChange={(e)=>{
@@ -80,7 +75,18 @@ function SignUp() {
                 We'll never share your email with anyone else.
                 </Form.Text>
             </Form.Group>
-            <Form.Group className="mb-3 shadow-lg p-3 bg-body rounded" controlId="formBasicPassword">
+            <Form.Group className="mb-3 shadow-lg p-3 bg2 rounded" controlId="formBasicEmail2">
+                <Form.Label>Username</Form.Label>
+                <Form.Control type="text" placeholder="Enter username"
+                onChange={(e)=>{
+                    handlerUser(e)
+                }}
+                />
+                <Form.Text className="text-muted">
+                Enter a username for your account
+                </Form.Text>
+            </Form.Group>
+            <Form.Group className="mb-3 shadow-lg p-3 bg2 rounded" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control type={checkOut} placeholder="Password"
                     onChange={(e)=>{
@@ -92,23 +98,23 @@ function SignUp() {
                 the password must be greater than eight characters
                 </Form.Text>
             </Form.Group>
-            <Form.Group className="mb-3 shadow-lg p-3 bg-body rounded" controlId="formBasicCheckbox">
+            <Form.Group className="mb-3 shadow-lg p-3 bg2 rounded" controlId="formBasicCheckbox">
                 <Form.Check onClick={(e)=>{
                     handlerCheckOut(e)
                 }} type="checkbox" label="Check me out" />
             </Form.Group>
-            <Form.Group className="mb-3 shadow-lg p-3 bg-body rounded">
+            <Form.Group className="mb-3 shadow-lg p-3 bg2 rounded">
             <div className="d-flex flex-column">
                     <div className="d-flex justify-content-around">
-                    <Button variant="primary" type="">
-                    <Link to={"/login"} className="text-light"
+                    <Button type="button" className="bg4 border border-0 btn btn btn-dark">
+                    <Link to={"/login"} className="bg4 border border-0 btn btn btn-dark"
                         style={{
                             textDecoration: 'none'
                         }}
                     >Log in</Link>
                     </Button>
-                    <Button variant="primary" type="">
-                        <Link to={"/login"} className="text-light"
+                    <Button type="button" className="bg4 border border-0 btn btn btn-dark">
+                        <Link className="bg4 border border-0 btn btn btn-dark" to={"/login"}
                         style={{
                             textDecoration: 'none'
                         }}>
@@ -124,11 +130,11 @@ function SignUp() {
             {
                 password.length < 6 || password.length > 16
                 ?
-                <Button variant="warning" type="submit" disabled>
+                <Button className="bg4 border border-0 btn btn btn-dark" type="submit" disabled>
                     Register
                 </Button>
                 :
-                <Button variant="primary" type="submit">
+                <Button className="bg4 border border-0 btn btn btn-dark" type="submit">
                     Register
                 </Button>
             }

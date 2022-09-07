@@ -12,7 +12,7 @@ router.get('/', async (req, res, next)=>
     {
         let productos = await obtenerProductos()
         productos.length > 0 ?
-        res.send(productos): res.send({ message:"No se encontraron los productos"})
+        res.send(productos): res.send({ message:"No products"})
     }
     catch (error) { next(error) ; console.log(error) }
 })
@@ -34,8 +34,8 @@ router.post('/', async (req, res, next)=>
     try
     {
     let productoCreado = await crearProducto(brand,model,image,description,specs,benchmark,price,stock,category)
-    productoCreado? res.send("Producto creado")
-    :res.send("Problema al crear el producto")
+    productoCreado.flag? res.send(productoCreado.message)
+    :res.send(productoCreado.message)
     }
     catch (error) { next(error)  }
 })
@@ -47,8 +47,8 @@ router.put('/:id', async (req, res, next)=>
     try
     {
     let productoModificado = await modificarProducto(id,brand,model,image,description,specs,benchmark,price,stock,category)
-    productoModificado? res.send("Producto modificado")
-    :res.send("Ya se encuentra la misma informacion guardada")
+    productoModificado.flag? res.send(productoModificado.message)
+    :res.send(productoModificado.message)
     }
     catch (error) { next(error)  }
 })
@@ -60,7 +60,7 @@ router.put('/stock/:id', async (req, res, next)=>
     try
     {
     let modificarStock = await modificarStockProducto(id,descontar,cantidad)
-    modificarStock? res.send("Stock modificado")
+    modificarStock? res.send("Stock was modified")
     :res.send("Error")
     }
     catch (error) { next(error)  }
@@ -72,8 +72,8 @@ router.delete('/:id', async (req, res, next)=>
     try
     {
     let productoEliminar = await eliminarProducto(id)
-    productoEliminar? res.send({message: "Product updated", id})
-    :res.send("Error al eliminar")
+    productoEliminar? res.send("Product deleted")
+    :res.send("Delete error")
     }
     catch (error) { next(error)  }
 })

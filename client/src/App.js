@@ -16,6 +16,12 @@ import Cart from './components/Cart';
 import LandingPage from './components/LandingPage';
 import Payment from './components/Payment';
 import SuccesBuy from './components/SuccesBuy';
+import Profile from './components/Profile';
+import PurchaseHistory from './components/PurchaseHistory';
+import "./scss/custom.scss"
+
+
+
 
 // Admin
 import AdminProductList from "./components/AdminProductList";
@@ -24,46 +30,57 @@ import AdminProductDetails from "./components/AdminProductDetails";
 import AdminOrdersList from "./components/AdminOrdersList";
 import AdminOrderDetails from "./components/AdminOrderDetails";
 import AdminCustomerHistory from "./components/AdminCustomerHistory";
+import AdminUpdateProduct from "./components/AdminUpdateProduct"
 
 // globalizo la funcion AuthProvider a todos los componentes
 import { AuthProvider } from './components/context/authContext';
+// ruta protegida
+import { ProtectedRouter } from './components/ProtectedRoute/protectedRoute';
 import AdminStatistics from './components/AdminStatistics';
 
 import {
   getAllProducts,
   getAllCategories,
+  getOrdersList,
+  getStatisticsData
 } from "./redux/actions";
 
 
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import PurchaseDetails from './components/PurchaseDetails';
+import UserProducts from './components/UserProducts';
 
 function App() {
 
 
   const dispatch = useDispatch();
-    
+
   useEffect(() => {
-      dispatch(getAllProducts());
-      dispatch(getAllCategories());
+    dispatch(getAllProducts());
+    dispatch(getAllCategories());
+    dispatch(getOrdersList());
+    dispatch(getStatisticsData());
   }, [dispatch]);
 
   return (
-    <div className="App">
+    <div className="App container-fluid p-0 bg1">
       <AuthProvider>
         <Routes>
           <Route path='/' element={<Home />}>
             <Route index element={<LandingPage />}></Route>
             <Route path='store' element={<ProductCards />}>
-
             </Route>
             <Route path='store/:idProduct' element={<ProductDetails />}></Route>
             <Route path='contact' element={<Contact />}></Route>
             <Route path='cart' element={<Cart />}></Route>
             <Route path='payment' element={<Payment />}></Route>
             <Route path='succesfulPurchase' element={<SuccesBuy />}></Route>
-
-            <Route path='adminpanel' element={<AdminPanel />}>
+      
+            <Route path='adminpanel' element={
+            <ProtectedRouter>
+              <AdminPanel />
+            </ProtectedRouter>}>
               <Route path='list-product' element={<AdminProductList />}></Route>
               <Route path='create-product' element={<AdminCreateProduct />}></Route>
               <Route path='product-details' element={<AdminProductDetails />}></Route>
@@ -76,8 +93,14 @@ function App() {
               <Login />
             }></Route>
             <Route path='signup' element={<SignUp />}></Route>
-          </Route>
 
+            <Route path='profile' element={<Profile />}>
+              <Route path='purchase-history' element={<PurchaseHistory />}></Route>
+              <Route path="purchase-history/order-details/:orderId" element={<PurchaseDetails />}></Route>
+              <Route path="my-products" element={<UserProducts />}></Route>
+            </Route>
+
+          </Route>
           <Route path='*' element=
             {<h1>There's nothing here!</h1>}
           ></Route>

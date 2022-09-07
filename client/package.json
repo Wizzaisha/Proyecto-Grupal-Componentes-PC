@@ -25,6 +25,8 @@
     "recharts": "^2.1.13",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
+    "sass": "^1.54.8",
+    "use-history": "^1.4.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

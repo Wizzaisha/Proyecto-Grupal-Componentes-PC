@@ -1,3 +1,24 @@
+.label{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.hola{
+  width: 100%;
+  max-width: 600px;
+  margin: 0auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.hola input{
+  width: 90%;
+  height: 30px;
+  margin: 0.5rem;
+}
+.hola button{
+  padding: 0.tem 1em;
+  border: none;
+}
 .container1 {
   padding-top: 3rem;
   padding-bottom: 3rem;
@@ -5,7 +26,7 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  background-color: #d1d1e9;
+  /* background-color: #d1d1e9; */
   border-radius: 10px;
 }
 .containerRow1 {

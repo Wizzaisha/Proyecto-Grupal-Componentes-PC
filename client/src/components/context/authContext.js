@@ -7,17 +7,21 @@ import {
     useState
 } from "react";
 import {
-    createUserWithEmailAndPassword ,
-    signInWithEmailAndPassword ,
-    onAuthStateChanged ,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
     signOut,
     GoogleAuthProvider,
-    signInWithPopup
+    signInWithPopup,
+    sendPasswordResetEmail
 } from "firebase/auth"
 import {
-    doc ,
+    doc,
     setDoc,
     getDoc,
+    arrayUnion,
+    arrayRemove,
+    updateDoc,
 } from "firebase/firestore"
 
 export const authContext = createContext();
@@ -34,43 +38,51 @@ export const useAuth = () => {
     return context;
 };
 export function AuthProvider({ children }) {
-    const [user, setUser] = useState(false)
-    useEffect(()=>{
-        const unsuscribe = onAuthStateChanged(auth , (currentUser) =>{
+    const [user, setUser] = useState(false);
+    const [admin, setAdmin] = useState(false);
+    const [favorite, setFavorite] = useState('')
+    useEffect(() => {
+        const unsuscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
         })
-        return () => unsuscribe();
-    },[])
+        return () => unsuscribe()
+    }, [])
     //crea un usuario en la tabla de firabase
-    const register = async (email,password,admin = false) => {
-        const userCredentials = await createUserWithEmailAndPassword(auth ,email,password)
-        .then((userData)=>{
-            return userData
-        });
-        const docRef = doc(db , `user/${userCredentials.user.uid}`)
-        setDoc(docRef,{
-            email : email,
-            password : password,
-            admin : admin
+
+    const register = async (email, password, admin = false) => {
+        const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
+            .then((userData) => {
+                return userData
+            });
+        const docRef = doc(db, `user/${userCredentials.user.uid}`)
+        setDoc(docRef, {
+            email: email,
+            password: password,
+            admin: admin,
+            favorites: []
         })
     }
-    const getRole = async (uid) =>{
-        const docRef = doc(db , `user/${uid}`)
+    const getRole = async (uid) => {
+        const docRef = doc(db, `user/${uid}`)
         const userDb = await getDoc(docRef)
         const data = userDb.data()
+        localStorage.setItem("username", data.user)
+        localStorage.setItem("email", data.email)
             if(data.admin === true){
                 localStorage.setItem("admin" , "true" )
+                setAdmin(true)
             }else{
                 localStorage.setItem("admin", "false")
+                setAdmin(false)
             }
     }
     // loguea un usuario existente
-    const login = async (email,password) => {
-        await signInWithEmailAndPassword(auth,email,password)
-        .then((userData)=>{
-            console.log(userData)
-            getRole(userData.user.uid)
-        });
+    const login = async (email, password) => {
+        await signInWithEmailAndPassword(auth, email, password)
+            .then((userData) => {
+                console.log(userData)
+                getRole(userData.user.uid)
+            });
     }
     const loginWithGoogle = () => {
         const googleProvider = new GoogleAuthProvider()
@@ -79,12 +91,45 @@ export function AuthProvider({ children }) {
         });
         return signInWithPopup(auth, googleProvider)
     }
+    //reset password
+    const resetPassword = async (email) => {
+        await sendPasswordResetEmail(auth, email)
+    }
     // cierra la sesion actual
-    const logout = async () =>{
+    const logout = async () => {
         await signOut(auth)
+        setAdmin(false)
         localStorage.removeItem("admin")
     }
+    // Agrega el atributo favorites al usuario
+    const addFavorite = async (id) => {
+        const docRef = doc(db, `user/${user.uid}`)
+        await updateDoc(docRef, {
+            favorite: arrayUnion(id)
+        })
+    }
+
+    const removeFavorite = async (id) => {
+        const docRef = doc(db, `user/${user.uid}`)
+        await updateDoc(docRef, {
+            favorite: arrayRemove(id)
+        })
+    }
+
+    const getFavorite = async () => {
+        const docRef = doc(db, `user/${user.uid}`)
+        const userDb = await getDoc(docRef)
+        const data = userDb.data()
+        setFavorite(data.favorite)
+        return(favorite);
+    }
+    const addAndRemoveAdmin = async (uid, admin) => {
+        const docRef = doc(db, `user/${uid}`)
+        setDoc(docRef, { admin : admin }, { merge: true });
+    }
+
+
     return (
-        <authContext.Provider value={{ register , login , user ,logout , loginWithGoogle}}>{children}</authContext.Provider>
+        <authContext.Provider value={{ register, login, user, admin, logout, loginWithGoogle, addFavorite, removeFavorite, getFavorite, resetPassword, favorite ,addAndRemoveAdmin }}>{children}</authContext.Provider>
     );
 }

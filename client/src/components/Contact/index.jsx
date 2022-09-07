@@ -69,7 +69,7 @@ const auth = useAuth()
 function handleB(){
 let button=document.getElementById("button")
 button.disabled=true
-if(input.name && input.email && input.affair && input.message){
+if(input.name.length && input.email.length && input.affair.length && input.message.length){
     button.disabled=false
 }
 
@@ -90,34 +90,34 @@ if(input.name && input.email && input.affair && input.message){
         style={{marginTop:"0px",
         width:'100%',
         height:'30%',
-        backgroundImage:'url("https://www.rdstation.com/blog/wp-content/uploads/sites/2/2017/09/thestocks.jpg")',
+        backgroundImage:'url("https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2018/02/286281-como-cambiar-cuenta-correo-perder-ningun-contacto-camino.jpg?itok=IBQUa2AZ")',
         backgroundPosition:'center',
         backgroundSize:'cover'
         }}>
             <div>
-            <h1 style={{marginTop:'10px'}}>Contact</h1>
+            <h1 style={{marginTop:'10px', marginLeft:'50px'}}>Contact</h1>
             </div>
            
             <Form className="row" style={{margin:'25px 85px 75px 100px' }} onChange={handleB}
             action="https://formsubmit.co/proyectofinalhenry2022@gmail.com" method="POST" id="form">
                 
-                <label>Name</label>
+                <label  className="label tx3">Name</label>
                  <input type="text" name="name" id="name"  placeholder="Enter name" className="form-control" value={input.name} onChange={handleChange}></input>
 
 
 
-                <label>Email</label>
+                <label className="label tx3">Email</label>
                 <input type='email' name='email'  placeholder="Enter Email" className="form-control" value={input.email} onChange={handleChange}></input>
             
 
-                <label>Affair</label>
+                <label  className="label tx3">Affair</label>
                 <input type="text" name="affair"  placeholder="Enter theme" className="form-control" value={input.affair} onChange={handleChange} ></input>
 
 
-                <label>Message</label>
+                <label className="label tx3">Message</label>
                 <textarea name='message' rows='4' className="form-control" placeholder="Enter your query" value={input.message} onChange={handleChange}/>
                
-                <button className="form-control btn btn-primary" style={{marginTop:'10px'}}  id="button" disabled>Send</button>
+                <button className="tex1 bg3" style={{marginTop:'10px'}}  id="button" disabled>Send</button>
 
 
                 {/* input de personalizacion     */}

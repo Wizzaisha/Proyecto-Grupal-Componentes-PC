@@ -4,6 +4,9 @@ import React,{useState, useEffect} from "react";
 import {getAllCategories, createProduct } from '../../redux/actions'
 import {useDispatch, useSelector} from 'react-redux';
 import Axios from "axios"
+import {Link,useNavigate} from "react-router-dom"
+
+// import{Link,useHistory} from 'react-router-dom'
 // import Button from 'react-bootstrap/Button';
 // import {Link,useHistory} from 'react-router-dom'
 
@@ -17,42 +20,54 @@ function validate(input){
     let errors={}
     // BRAND
     if(!input.brand.length){
-        errors.brand="Ingrese Brand"
+        errors.brand="Enter brand Brand"
     }
     //MODEL
     if(!input.model.length){
-        errors.model="Ingrese un Model"
+        errors.model="Enter un Model"
     }
     //IMG
     if(!input.image.length){
-        errors.image="Ingrese una img"
+        errors.image="Enter una image"
     }
     //PRICE
     if(!price){
-        errors.price="Ingrese un numero"
+        errors.price="Enter a data of type number"
     }
     if(price===0){
-        errors.price="Ingrese un valor mayor a 0"
+        errors.price="Enter a value greater than 0"
     }
     //STOCK
     if(!stock){
-        errors.stock="Ingrese un numero"
+        errors.stock="Enter a data of type number"
     }
     if(stock===0){
-        errors.stock="Ingrese un valor mayor a 0"
+        errors.stock="Enter a value greater than 0"
     }
     if(stock>501){
-        errors.stock="Ingrese un valor menor a 500"
+        errors.stock="Enter a value less than 500"
     }
     //benchmark
     if(!benchmark){
-        errors.benchmark="Ingrese un numero entre el 1-300"
+        errors.benchmark="Enter a value between 1 and 300"
     }
     if(benchmark===0){
-        errors.benchmark="Ingrese un valor mayor a 0"
+        errors.benchmark="Enter a value greater than 0"
     }
     if(benchmark>300){
-        errors.benchmark="Ingrese un valor menor a 300"
+        errors.benchmark="Enter a value less than 300"
+    }
+    //decription
+    if(input.description.length<20){
+        errors.description="Enter a description of at least 20 letters"
+    }
+    //specs
+    if(input.specs.length<2){
+        errors.specs="enter at least 3 specifications"
+    }
+    //category
+    if(!input.category.length){
+        errors.category="Enter category"
     }
     
     return errors
@@ -60,6 +75,7 @@ function validate(input){
 
 
 function AdminCreateProduct() {
+    const navigate=useNavigate()
 
     const[errors,setErrors]=useState({})
    
@@ -158,7 +174,7 @@ e.preventDefault()
 const inputSpecs=document.getElementById("specs")
 
 if(!inputSpecs.value){
-    alert ("Ingrese un specs")
+    alert ("Enter specs")
 }
 
 var array=[...input.specs]
@@ -242,11 +258,50 @@ function handleDeleteImage(){
     
 function handleSubmit(e){
     e.preventDefault()
-if(errors){
-    alert ("Rellena los campos, revisa los errores")
-}else{
+if(errors.brand!== undefined ||
+    errors.model !== undefined||
+    errors.image !==undefined||
+    errors.price !== undefined||
+    errors.category!==undefined||
+    errors.description!==undefined||
+    errors.specs!==undefined||
+    errors.benchmark!==undefined
+    ){
+    alert ("Check the errors")
+}else if(!input.brand.length ||
+    !input.model.length ||
+    !input.image.length ||
+    !input.description.length ||
+    !input.specs.length ||
+    !input.price.length ||
+    !input.benchmark.length ||
+    !input.category.length )
+    {
+        alert ("Fill in the empty fields")
+    }
+else if(errors.brand!== undefined ||
+    errors.model !== undefined||
+    errors.image !==undefined||
+    errors.price !== undefined||
+    errors.category!==undefined||
+    errors.description!==undefined||
+    errors.specs!==undefined||
+    errors.benchmark!==undefined ||
+    input.brand.length ||
+    input.model.length ||
+    input.image.length ||
+    input.description.length ||
+    input.specs.length ||
+    input.price.length ||
+    input.benchmark.length ||
+    input.category.length
+    ){
     dispatch(createProduct(input))
+    alert("Product created")
+    navigate("/adminpanel/create-product");
+    
 }
+// falta que no se cree el producto con los campos vacios
 
     
     
@@ -268,14 +323,13 @@ if(errors){
 
 
     return (
-        <div>
-            <div>
-             <p>Create Product</p>
-            </div>
+        <div >
+            <div className="hola">
+            <h4 className="tx4">Create Product</h4>
             <form onSubmit={(e)=>handleSubmit(e)}
            >
-                <div>
-                    <label>Brand:</label>
+                <div style={{margin: 0}}>
+                    <label className="label tx3">Brand:</label>
                     <input type="text" 
                     value={input.brand}
                     name="brand"
@@ -288,7 +342,7 @@ if(errors){
                 </div>
 
                 <div>
-                <label>Model:</label>
+                <label className="label tx3">Model:</label>
                     <input type="text" 
                     value={input.model}
                     name="model"
@@ -299,7 +353,7 @@ if(errors){
                 </div>
 
                 <div>
-                <label>Image:</label>
+                <label className="label tx3">Image:</label>
                 <br></br>
                 <label>Suba una imagen local</label>
                     <input
@@ -328,76 +382,50 @@ if(errors){
                 </div>
                 
                 <div>
-                <label>Description:</label>
+                <label className="label tx3">Description:</label>
                     <textarea type="text" 
                     value={input.description}
                     name="description"
                     rows='4'
                     onChange={(e)=>handleChange(e)}></textarea>
+                                   {
+                errors.description &&(
+                    <p className="danger">{errors.description}</p>
+                )
+               }
                 </div>
 
                 <div>
-                <label>Specs:</label>
+                <label className="label tx3">Specs:</label>
                     <input 
                     
                     name="specsI"
                     id="specs"
                     onChange={handleChange}></input>
-                    <button   onClick={handleSpecs}>+</button>
-                </div>
-
-                <div>
-                <label>Benchmark:</label>
-                    <input type="text" 
-                    value={input.benchmark}
-                    name="benchmark"
-                    id="benchmark"
-                    onChange={handleChange}></input>
-                                   {
-                errors.benchmark &&(
-                    <p className="danger">{errors.benchmark}</p>
+                    <button   onClick={handleSpecs} className="bg4 tx1">+</button>
+                    {
+                errors.specs &&(
+                    <p className="danger">{errors.specs}</p>
                 )
                }
                 </div>
 
                 <div>
-                <label>Price:</label>
-                    <input type="text" 
-                    value={input.price}
-                    name="price"
-                    id="price"
-                    onChange={handleChange}></input>
-                  {
-                errors.price &&(
-                    <p className="danger">{errors.price}</p>
+                <input type="button"  value="New Category" onClick={handleNew} className="bg4 tx1"></input>
+                <input type="button" value="Add Category" onClick={handleAdd} className="bg4 tx1"></input>
+                {
+                errors.category &&(
+                    <p className="danger">{errors.category}</p>
                 )
                }
-                </div>
-
-                <div>
-                <label>Stock:</label>
-                    <input type="text" 
-                    value={input.stock}
-                    name="stock"
-                    onChange={(e)=>handleChange(e)}></input>
-                 {
-                errors.stock &&(
-                    <p className="danger">{errors.stock}</p>
-                )
-               }
-                </div>
-
-                <div>
-                <input type="button"  value="New Category" onClick={handleNew}></input>
-                <input type="button" value="Add Category" onClick={handleAdd}></input>
                 </div>
 
              <div id="add">
-             <select onChange={handleSelect} defaultValue={'DEFAULT'}>
+             <select className="bg4 tx1" onChange={handleSelect} defaultValue={'DEFAULT'}>
                 <option value="DEFAULT" disabled>Category</option>
                 {allCategories.map((c)=>(<option key={c} value={c}>{c}</option>))}
                 </select>
-                <input id="+" type="button" value="+" onClick={handleButtonCategory}></input>
+                <input id="+" type="button" value="+" onClick={handleButtonCategory} className="bg4 tx1"></input>
              </div>
 
 
@@ -412,14 +440,61 @@ if(errors){
                 id="caja"
                 disabled={true} 
                 ></input>
-               <input id="+" type="button" value="+" onClick={handleButtonCategory}></input>
+               <input id="+" type="button" value="+" onClick={handleButtonCategory} className="bg4"></input>
                 </div>
+
+                <div>
+                <label className="label tx3">Benchmark:</label>
+                    <input type="text" 
+                    value={input.benchmark}
+                    name="benchmark"
+                    id="benchmark"
+                    onChange={handleChange}></input>
+                                   {
+                errors.benchmark &&(
+                    <p className="danger">{errors.benchmark}</p>
+                )
+               }
+                </div>
+
+                <div>
+                <label className="label tx3">Price:</label>
+                    <input type="text" 
+                    value={input.price}
+                    name="price"
+                    id="price"
+                    onChange={handleChange}></input>
+                  {
+                errors.price &&(
+                    <p className="danger">{errors.price}</p>
+                )
+               }
+                </div>
+
+                <div>
+                <label className="label tx3">Stock:</label>
+                    <input type="text" 
+                    value={input.stock}
+                    name="stock"
+                    onChange={(e)=>handleChange(e)}></input>
+                 {
+                errors.stock &&(
+                    <p className="danger">{errors.stock}</p>
+                )
+               }
+                </div>
+
+
                 <br/>
 
                 <div>
-                    <button type='submit'className="btn" onClick={handleSubmit}>Crear Product</button>
-                </div>              
+                   {/* <Link to={'/adminpanel/create-product'}> */}
+                   <button className="btn btn-primary button3 bg3 border-0" onClick={handleSubmit}>Crear Product</button>
+                   {/* </Link> */}
+                </div>    
+                          
             </form>
+            </div>
             {/* <div id="inputCategory"> */}
             {/* {input.category}
                 <button onClick={handleDelete}>x</button>
@@ -457,16 +532,18 @@ if(errors){
 
 
 
-<div className="container1">
+{/* <div className="container">
             <div className={`containerRow1`}>
-                <div>
+            
+                <div className="d-flex flex-column" style={{ width: '65%' }}>
+                <input className="btnDelete" type="button" value="X" onClick={handleDeleteImage}/>
                     <img src={input.image? input.image : "https://resizer.iproimg.com/unsafe/880x/filters:format(webp)/https://assets.iprofesional.com/assets/jpg/2020/05/496625.jpg"} className="img1" alt="img" />
-                    <input className="btnDelete" type="button" value="X" onClick={handleDeleteImage}/>
                 </div>
+                
                 <div className='start1'>
-                    <h3>Description</h3>
+                    <h3 className="tx4">Description</h3>
                     <p className='description1'>{input.description}</p>
-                    <h3>Specs</h3>
+                    <h3 className="tx4">Specs</h3>
                     <div className="specs1">
                         {input.specs && input.specs.map((e) => { return <li key={e}>{e}
                         <input className='btnDelete' type='button' value='X' onClick={() => handleDeleteSpecs(e)}></input></li> 
@@ -478,18 +555,70 @@ if(errors){
                     </div>
                 </div>
             </div>
-            <div className="containerColumn2">
-                <h1>{`${input.category} ${input.brand} ${input.model}`}</h1>
+            <div className="d-flex flex-column align-items-start justify-content-around border-start border-dark border-opacity-10 ps-4" style={{ width: '35%' }}>
+                <h1 className="tx4">{`${input.category} ${input.brand} ${input.model}`}</h1>
+                <div className="d-flex flex-column align-items-start justify-content-around" style={{ height: '60%', width:'300%' }}>
                 <h3>Brand: {input.brand}</h3>
                 <h3>Model: {input.model}</h3>
                 <h3>Category:</h3>
                 <h2>{input.category}<input className="btnDelete" type="button" value="X" onClick={handleDelete} /></h2>
+                </div>
                 <h3>${input.price}</h3>
                 <p>{`Stock available: (${input.stock} available)`} </p>
             </div>
         </div>
+ */}
 
+<div className="container">
+                <div className="row detailsContainer d-flex flex-column align-items-center">
+                    <div className="card col-12 d-flex flex-sm-column flex-md-row align-items-center justify-content-center">
+                        <div className="d-flex flex-column" style={{ width: '65%' }}>
+ 
+                            {input.stock === 0 ? <h3 style={{ color: "red" }}>Out of stock</h3> : null}
+                            
+                            <div className=" flex-column" style={{ width: '65%' }}>
+                           
+                                <img src={input.image ? input.image : "https://resizer.iproimg.com/unsafe/880x/filters:format(webp)/https://assets.iprofesional.com/assets/jpg/2020/05/496625.jpg"} className="img" alt="img" />
+                                <input className="btnDelete" type="button" value="X" onClick={handleDeleteImage}/>
+                            </div>
+                            
+                            <div className='d-flex flex-column m-5 align-items-start'>
+                                <h3 className='tx4'>Description</h3>
+                                <p className='description'>{input.description}</p>
+                                <h3 className='tx4'>Specs</h3>
+                                <div className="specs">
+                                {input.specs && input.specs.map((e) => { return <li key={e}>{e}
+                        <input className='btnDelete' type='button' value='X' onClick={() => handleDeleteSpecs(e)}></input></li> 
+                           }
+                           )}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="d-flex flex-column align-items-start justify-content-around border-start border-dark border-opacity-10 ps-4" style={{ width: '35%' }}>
+                            <div className="d-flex flex-column align-items-start justify-content-around" style={{ height: '60%' }}>
+                                <h1 className="d-flex flex-column align-items-start tx4">{`${input.category} ${input.brand} ${input.model}`}</h1>
+                                <h4>Brand: {input.brand}</h4>
+                                <h4>Model: {input.model}</h4>
+                                <h4>Price: ${input.price}</h4>
+                                <h4>Category: {input.category}<input className="btnDelete" type="button" value="X" onClick={handleDelete} /></h4>
+                            </div>
+                            <div className="d-flex flex-column" style={{ width: '100%' }}>
+                                <p className={`align-self-center ${input.stock < 5 ? 'text-danger fw-bold ' : null}`}>{`Stock available: (${input.stock} available)`} </p>
+                                <div className="input-group">
+                                    <button type="button" className="btn btn-outline-primary" value={'-'}>-</button>
+                                    <input aria-label="Example text with two button addons" className="text-center form-control" value="1" />
+                                    <button type="button" className="btn btn-outline-primary" value={'+'} >+</button>
+                                </div>
+                            </div>
+                            <button type="submit" className="btn btn-primary button3 bg3 border-0" >Add to cart</button>
+                        </div>
+                    </div>
 
+                </div>
+
+            
+
+        </div>
 
 
 

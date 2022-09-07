@@ -1,4 +1,5 @@
 
+const { response } = require("express");
 const { obtenerProductosById } = require("../Middleware/getProduct.middleware");
 
 const dateFormated = (dateToConvert) => {
@@ -25,6 +26,8 @@ const dataOrderController = (data) => {
 };
 
 
+
+
 const getProductsInfo = async (items) => {
     
     let data = JSON.parse(items);
@@ -42,6 +45,35 @@ const getProductsInfo = async (items) => {
     return data;
 };
 
+
+const dataOrderControllerCustomer = async (data) => {
+
+    const newData = data;
+
+    const response = await Promise.all(
+        newData.map(async element => {
+
+            const chargesData = element.charges.data[0];
+            
+            return {
+                id: element.id,
+                amount: chargesData.amount/100,
+                created: dateFormated(chargesData.created),
+                description: chargesData.description,
+                orderStatus: element.metadata.orderStatus,
+                productsOrdered: await getProductsInfo(chargesData.metadata.productsOrdered),
+                payment_method_details: chargesData.payment_method_details,
+                receipt_email: chargesData.receipt_email,
+                receipt_number: chargesData.receipt_number,
+                receipt_url: chargesData.receipt_url,
+                shipping: chargesData.shipping
+            }
+        })
+    );
+
+    return response;
+}
+
 const oneDataController = async (element) => {
     return {
         id: element.id,
@@ -55,8 +87,15 @@ const oneDataController = async (element) => {
         },
         payment_method: element.payment_method,
         receipt_email: element.receipt_email,
-        shipping: element.shipping
+        shipping: element.shipping,
+        charges: element.charges.data
     }
 }
 
-module.exports = { dateFormated, dataOrderController, oneDataController, getProductsInfo};
+module.exports = { 
+    dateFormated, 
+    dataOrderController, 
+    oneDataController, 
+    getProductsInfo,
+    dataOrderControllerCustomer
+};

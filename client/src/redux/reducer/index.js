@@ -20,7 +20,11 @@ import {
     CLEAR_FILTER_ADMIN,
     CLEAR_FILTER_STORE,
     GET_STATISTICS_DATA,
-    CLEAR_DETAIL
+    CLEAR_DETAIL,
+    UPDATE_PRODUCT,
+    SET_MESSAGE,
+    CLEAR_MESSAGE,
+    GET_USER_PRODUCTS,
 
 } from "../actions";
 
@@ -38,13 +42,14 @@ const initialState = {
     category: "",
     admCurrCategory: "",
     currentSort: "",
-    details: [],
+    details: {},
     cart: [],
     orderList: [],
     orderListCopy: [],
     orderDetails: {},
     customerHistory: [],
-    statisticsData: []
+    message: "",
+    userProducts: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -209,11 +214,11 @@ const rootReducer = (state = initialState, action) => {
             }
 
 
-            //-------------------Crear Producto----------
-            case "POST_PRODUCT":
-                return{
-                    ...state,
-                }
+//-------------------Crear Producto----------
+        case "POST_PRODUCT":
+            return{
+                ...state,
+        }
 //------------------------------------------------------
         case SEARCH_PRODUCTS:
 
@@ -253,13 +258,13 @@ const rootReducer = (state = initialState, action) => {
                 })
                 ]
             }
-        
+
         case GET_STATISTICS_DATA:
-            
             return {
                 ...state,
                 statisticsData: action.payload
             }
+
  //-----clear detail----------           
         case CLEAR_DETAIL:
             return{
@@ -268,6 +273,23 @@ const rootReducer = (state = initialState, action) => {
             }   
 //---------------------------------            
 
+               
+        case UPDATE_PRODUCT:
+            return {  
+                ...state    
+        }
+
+
+        case SET_MESSAGE:
+            return { message: action.payload };
+        case CLEAR_MESSAGE:
+            return { message: "" };
+
+        case GET_USER_PRODUCTS:
+            return {
+                ...state,
+                userProducts: action.payload
+            }
 
         default:
             return { ...state }

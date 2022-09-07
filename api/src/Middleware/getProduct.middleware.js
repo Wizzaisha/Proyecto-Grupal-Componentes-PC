@@ -1,8 +1,8 @@
-const {Product,Category} = require("../db")
+const {Product,Category,Review} = require("../db")
 
 const obtenerProductos = async ()=>
 {
-let productos = await Product.findAll({ include: Category })
+let productos = await Product.findAll({ include: [{model: Category}, {model: Review}] })
 let toObj = []
 productos?.map(  (e)=>
 { 
@@ -17,15 +17,18 @@ toObj.push ({
         benchmark: e.benchmark,
         price: e.price,
         stock: e.stock,
+        rating: e.rating,
         category: e.category.name,
-        isDeleted: e.isDeleted
+        isDeleted: e.isDeleted,
+        rating: e.rating,
+        reviews: e.reviews
        })
 })
 return toObj;
 }
 const obtenerProductosById = async (id)=>
 {
-let e = await Product.findByPk(id,{ include: Category })
+let e = await Product.findByPk(id, { include: [{model: Category}, {model: Review}] } )
 
 const producto = {
     id: e.id,
@@ -37,8 +40,11 @@ const producto = {
     benchmark: e.benchmark,
     price: e.price,
     stock: e.stock,
+    rating: e.rating,
     category: e.category.name,
-    isDeleted: e.isDeleted
+    isDeleted: e.isDeleted,
+    rating: e.rating,
+    reviews: e.reviews
 };
 
 return producto;
