@@ -22,22 +22,24 @@ router.get("/:email", async (req, res, next) => {
     const { email } = req.params;
 
     const productsUser = [];
-
+    
     try {
         
 
         const findCustomer = await stripe.customers.search({
             query: `email:\'${email}\'`
         });
-    
+        
         const response = await stripe.paymentIntents.list({
             customer: findCustomer.data[0].id,
             limit: 100
         });
+
     
         const listPayments = await dataOrderControllerCustomer(response.data);
-        
+
         listPayments.forEach(element => {
+            
             element.productsOrdered.forEach(product => {
                 if (productsUser.findIndex(e => e.id === product.id) === -1) productsUser.push(product);
             });
@@ -61,6 +63,7 @@ router.get("/:email", async (req, res, next) => {
         res.status(200).send(productsUser);
 
     } catch (error) {
+        console.log(error);
         res.status(400).send({message: error.message});
     }
     

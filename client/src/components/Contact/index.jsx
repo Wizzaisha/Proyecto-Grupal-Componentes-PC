@@ -74,18 +74,8 @@ if(input.name.length && input.email.length && input.affair.length && input.messa
 }
 
     }
-
-
-
-
-
-
-
-
-    
-
-
     return (
+
         <div className="container border" 
         style={{marginTop:"0px",
         width:'100%',
@@ -94,11 +84,12 @@ if(input.name.length && input.email.length && input.affair.length && input.messa
         backgroundPosition:'center',
         backgroundSize:'cover'
         }}>
+
             <div>
             <h1 style={{marginTop:'10px', marginLeft:'50px'}}>Contact</h1>
             </div>
            
-            <Form className="row" style={{margin:'25px 85px 75px 100px' }} onChange={handleB}
+            <Form className="formContainer" onChange={handleB}
             action="https://formsubmit.co/proyectofinalhenry2022@gmail.com" method="POST" id="form">
                 
                 <label  className="label tx3">Name</label>

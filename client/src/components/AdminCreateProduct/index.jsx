@@ -576,9 +576,10 @@ else if(errors.brand!== undefined ||
  
                             {input.stock === 0 ? <h3 style={{ color: "red" }}>Out of stock</h3> : null}
                             
-                            <div className=" flex-column" style={{ width: '65%' }}>
+                            <div className="flex-column" style={{ width: '65%' }}>
+                                {/* <img src={input.image} */}
                            
-                                <img src={input.image ? input.image : "https://resizer.iproimg.com/unsafe/880x/filters:format(webp)/https://assets.iprofesional.com/assets/jpg/2020/05/496625.jpg"} className="img" alt="img" />
+                                <img src={input.image ? input.image : "https://resizer.iproimg.com/unsafe/880x/filters:format(webp)/https://assets.iprofesional.com/assets/jpg/2020/05/496625.jpg"} className="imgDetail" alt="img" />
                                 <input className="btnDelete" type="button" value="X" onClick={handleDeleteImage}/>
                             </div>
                             

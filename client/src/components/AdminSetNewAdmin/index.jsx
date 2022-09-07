@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import { useAuth } from "../context/authContext";
 
 
-export default function SetAdmin () {
+export default function AdminSetNewAdmin () {
     const auth = useAuth()
     const [id , setId] = useState("")
     const [admin , setAdmin] = useState(false)
@@ -42,6 +42,7 @@ export default function SetAdmin () {
     <>
         {localStorage.getItem("email") === "superUser@gmail.com" &&
             <div className="d-flex justify-content-center align-items-center flex-column">
+                <h3>User management</h3>
                 <Form className={"form bg-body rounded"}
                     onSubmit={(e) => {
                         handlerSubmit(e)

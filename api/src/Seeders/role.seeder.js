@@ -1,7 +1,13 @@
 const {Role} =  require ("../db")
 const ROLES = require('./roles')
 
-function seederRole() {
+async function seederRole() {
+
+  const response = await Role.findAll();
+
+  if (response.length > 0) {
+    console.log("Roles ya creados");
+  } else {
     Role.create({
       id: 1,
       name: ROLES.User_role,
@@ -17,6 +23,9 @@ function seederRole() {
         name: ROLES.SuperAdmin,
       });
       console.log("SeederRole")
+  }
+
+
   }
   
   module.exports = {

@@ -4,9 +4,11 @@ const {crearCategoria} = require('../Middleware/createCategory.middleware')
 const modificarProducto = async ( id, brand,model,image,description,specs,benchmark,price,stock,category)=>
 {
 let producto = await Product.findByPk(id)
+/* let existe = await Product.findOne({where: {brand , model }})
+if(existe.id === producto.id){ }
+else{ return {flag : false , message :"Existing product!"} }
+*/
 
-let existe = await Product.findOne({where: {brand:brand , model:model, description: description,specs:specs}})
-if(existe) { return {flag : false , message :"Existing product!"} }
 brand ? producto.brand = brand : brand
 model ?   producto.model = model : model
 image ? producto.image = image : image
@@ -20,6 +22,7 @@ if(category)
     await producto.setCategory(cat)
 }
 producto.save();
-return {flag : true , message :"The product was modified!"};
+ 
+return {flag : true , message :'The product was modified!'};
 }
 module.exports ={modificarProducto}

@@ -7,6 +7,7 @@ import { useAuth } from '../context/authContext'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from "react-redux";
 import { getAllProducts } from '../../redux/actions';
+import LoadingPage from '../LoadingPage';
 
 const index = () => {
 
@@ -29,7 +30,9 @@ const index = () => {
             let total2 = 0;
             cart.map((el) => { return total2 += el.price * el.quantities });
             return total2;
-        }
+        }  
+
+        const [loadingPayment, setLoadingPayment] = useState(false);
 
         const sumaTotal = getTotal();
 
@@ -43,6 +46,7 @@ const index = () => {
                 if (city === '' || state === '' || street === '' || phone === '' || name === '') {
                     alert('Please fill in all the fields')
                 } else {
+                    setLoadingPayment(true);
                     const body = {
                         method_pay: paymentMethod.id,
                         customerEmail: auth.user.email,
@@ -66,12 +70,23 @@ const index = () => {
                             name: name
                         }
                     }
-                    const { data } = await axios.post('http://localhost:3001/api/checkout', body)
-                    console.log(data);
-                    alert('Successful payment!')
-                    localStorage.setItem('cart', '[ ]')
-                    navigate('/succesfulPurchase')
-                    dispatch(getAllProducts());
+                    axios.post('http://localhost:3001/api/checkout', body)
+                    .then((response) => {
+                        setLoadingPayment(false);
+                        
+                        if (response.data.message) {
+                            navigate('/payment/successfullPurchase');
+                            localStorage.setItem('cart', '[ ]')
+                            dispatch(getAllProducts());
+                        }     
+                    })
+                    .catch((error) => {
+                        setLoadingPayment(false);
+                        if (error.response.data.message) {
+                            navigate('/payment/failedPurchase');
+                        }
+                    })
+                    
                 }
             } else {
                 alert('payment failed, please check the data.')
@@ -100,14 +115,20 @@ const index = () => {
         }
 
         return (
-            <div className=" d-flex align-items-center justify-content-center pt-4" >
-                <div className="card d-flex flex-row p-5" style={{ width: '85rem' }}>
-                    <div className="me-4" style={{ width: '65%' }}>
+            loadingPayment ? 
+                <div>
+                    <LoadingPage />
+                </div>
+                : 
+            
+            <div className="container-fluid d-flex align-items-center justify-content-center" >
+                <div className="row card p-5 paymentContainer">
+                    <div className="col col-12 col-lg-6">
                         {
                             cart.length ? cart.map(el =>
                                 <div className="products card mb-4" >
                                     <div className="tarjetas">
-                                        <div className="col-md-2">
+                                        <div className="col col-5 col-md-2">
                                             <img src={el.image} alt={el.model} className="img-cover" style={{ width: '100%' }} />
                                         </div>
                                         <div className="card-body">
@@ -120,30 +141,32 @@ const index = () => {
                             ) : <p>You don't add any product...</p>
                         }
                     </div>
-                    <form onSubmit={handleSubmit} className="card card-body formslide" style={{ width: '35%' }}>
-                        <h2 className='tx4'>shipping adress:</h2>
-                        <p>Name</p>
-                        <input type="text" name="Name" placeholder="write your name" onChange={(e) => handleInputName(e)}></input>
-                        <p>Phone number</p>
-                        <input type="number" name="Phone number" placeholder="write your phone number" onChange={(e) => handleInputPhone(e)}></input>
-                        <p>City</p>
-                        <input type="text" name="City" placeholder="write your city" onChange={(e) => handleInputCity(e)}></input>
-                        <p>State / Province / Region</p>
-                        <input type="text" name="State" placeholder="write your state, province or region" onChange={(e) => handleInputState(e)}></input>
-                        <p>Street address</p>
-                        <input type="text" name="Street address" placeholder="write your street address" onChange={(e) => handleInputStreet(e)}></input>
-                        <p>Add credit or debit card</p>
-                        <div className="form-group">
-                            <CardElement className="form-control" />
-                        </div>
-                        {sumaTotal && (
-                            <p>Total: ${sumaTotal}</p>
-                        )
-                        }
-                        <button className="btn btn-success bg3">
-                            Buy
-                        </button>
-                    </form>
+                    <div className='col col-12 col-lg-6'>
+                        <form onSubmit={handleSubmit} className="card card-body formslide">
+                            <h2 className='tx4'>shipping adress:</h2>
+                            <p>Name</p>
+                            <input type="text" name="Name" placeholder="write your name" onChange={(e) => handleInputName(e)}></input>
+                            <p>Phone number</p>
+                            <input type="number" name="Phone number" placeholder="write your phone number" onChange={(e) => handleInputPhone(e)}></input>
+                            <p>City</p>
+                            <input type="text" name="City" placeholder="write your city" onChange={(e) => handleInputCity(e)}></input>
+                            <p>State / Province / Region</p>
+                            <input type="text" name="State" placeholder="write your state, province or region" onChange={(e) => handleInputState(e)}></input>
+                            <p>Street address</p>
+                            <input type="text" name="Street address" placeholder="write your street address" onChange={(e) => handleInputStreet(e)}></input>
+                            <p>Add credit or debit card</p>
+                            <div className="form-group">
+                                <CardElement className="form-control" />
+                            </div>
+                            {sumaTotal && (
+                                <p>Total: ${sumaTotal}</p>
+                            )
+                            }
+                            <button className="btn btn-success bg3">
+                                Buy
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         )
