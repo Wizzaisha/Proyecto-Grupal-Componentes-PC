@@ -1,39 +1,23 @@
-.container {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-}
-
-.containerRow {
-  justify-content: space-around;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.containerColumn {
-  height: 100%;
-  width: 30rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.containerColumn2 {
-  height: 100%;
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.img {
+.imgDetail {
   width: 300px;
   height: 300px;
   object-fit: contain;
+}
+
+.detailsContainer {
+  padding: 3rem 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.detailsMainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .specs {
@@ -89,4 +73,13 @@
 
 .reviewRating p {
   margin: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .imgDetail {
+    width: 100%;
+  }
+  .detailsContainer {
+    padding: 1rem;
+  }
 }

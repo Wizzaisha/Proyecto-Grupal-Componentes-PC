@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import { useParams } from 'react-router-dom'
 import { getProductDetails, } from '../../redux/actions'
-import { useAuth } from '../context/authContext'
-import starFilled from '../img/icons8-estrella-96 (1).png'
-import starEmpty from '../img/icons8-estrella-96.png'
+// import { useAuth } from '../context/authContext'
+// import starFilled from '../img/icons8-estrella-96 (1).png'
+// import starEmpty from '../img/icons8-estrella-96.png'
 import StarsComponent from "../StarsComponent"
 import LoadingPage from "../LoadingPage"
 
@@ -16,29 +16,31 @@ function ProductDetails() {
     const { idProduct } = useParams()
     const details = useSelector(state => state.details)
     const [value, setValue] = useState(1)
-    const auth = useAuth()
-    const [favorite, setFavorite] = useState(false)
+    // const auth = useAuth()
+    // const [favorite, setFavorite] = useState(false)
 
     const [loadingData, setLoadingData] = useState(false);
 
     useEffect(() => {
+        
         setLoadingData(true);
         dispatch(getProductDetails(idProduct))
         .then(() => setLoadingData(false));
     }, [dispatch, idProduct])
 
-    useEffect(() => {
-        const getFav = async () => {
-            await auth.getFavorite();
-        }
-        getFav();
-        if (auth.favorite.includes(details.id)) {
-            setFavorite(true)
-        }
-        else {
-            setFavorite(false)
-        }
-    }, [auth, details.id]);
+    // useEffect(() => {
+        
+    //     const getFav = async () => {
+    //         await auth.getFavorite();
+    //     }
+    //     getFav();
+    //     if (auth.favorite.includes(details.id)) {
+    //         setFavorite(true)
+    //     }
+    //     else {
+    //         setFavorite(false)
+    //     }
+    // }, []);
 
     useEffect(() => {
         window.scrollTo({
@@ -81,20 +83,20 @@ function ProductDetails() {
 
     }
 
-    const handleFavorite = async () => {
-        if (auth.user !== null) {
-            if (favorite === false) {
-                await auth.addFavorite(details.id)
-                setFavorite(true)
-            } else if (favorite === true) {
-                await auth.removeFavorite(details.id)
-                setFavorite(false)
-                await auth.getFavorite();
-            }
-        } else {
-            console.log('debes iniciar sesion');
-        }
-    }
+    // const handleFavorite = async () => {
+    //     if (auth.user !== null) {
+    //         if (favorite === false) {
+    //             await auth.addFavorite(details.id)
+    //             setFavorite(true)
+    //         } else if (favorite === true) {
+    //             await auth.removeFavorite(details.id)
+    //             setFavorite(false)
+    //             await auth.getFavorite();
+    //         }
+    //     } else {
+    //         console.log('debes iniciar sesion');
+    //     }
+    // }
 
     function stockValidator(e) {
         if (e.target.value === '+' && value < details.stock) { setValue(value + 1) }
@@ -109,54 +111,54 @@ function ProductDetails() {
         :
         <div className="container">
             {details.hasOwnProperty("brand") &&
-                    <div className="row detailsContainer d-flex flex-column align-items-center">
-                        <div className="card row detailsContainer d-flex flex-column align-items-center">
-                            <div className="d-flex flex-row justify-content-between">
-                                    <button onClick={handleFavorite} className="btn border border-0 " style={{ width: '5rem', height: '5rem' }}>
-                                        {
-                                            favorite === true ? <img src={starFilled} alt="img" style={{ width: '4rem', height: '4rem' }} /> : <img src={starEmpty} alt="img" style={{ width: '4rem', height: '4rem' }} />
-                                        }
-                                    </button>
-                                    <Link to={'/store'} className="align-self-start">
-                                        <button className="btn btn-primary bg3 border-0 m-3" style={{ width: '2.3rem' }} >X</button>
-                                    </Link>
-                            </div>
-                            <div className=" col-12 d-flex flex-sm-column flex-md-row align-items-center justify-content-center">
-                                
-                                <div className="d-flex flex-column" style={{ width: '65%' }}>
-
-                                    {details.stock === 0 ? <h3 style={{ color: "red" }}>Out of stock</h3> : null}
-                                    <div>
-                                        <img src={details.image} className="img" alt="img" />
-                                    </div>
-                                    <div className='d-flex flex-column m-5 align-items-start'>
-                                        <h3 className='tx4'>Description</h3>
-                                        <p className='description'>{details.description}</p>
-                                        <h3 className='tx4'>Specs</h3>
-                                        <div className="specs">
-                                            {details.specs && details.specs.map((e) => { return <li>{e}</li> })}
-                                        </div>
-                                    </div>
+                <div className="row detailsMainContainer">
+                    <div className="card row detailsContainer">
+                        <div className="col col-12 d-flex flex-row align-items-center justify-content-between">
+                            {/* <button onClick={handleFavorite} className="btn border border-0 ">
+                                {
+                                    favorite === true ? <img src={starFilled} alt="img"/> : <img src={starEmpty} alt="img" style={{ width: '4rem', height: '4rem' }} />
+                                }
+                            </button> */}
+                            <Link to={'/store'} className="align-self-start">
+                                <button className="btn btn-primary bg3 border-0 m-3" style={{ width: '2.3rem' }} >X</button>
+                            </Link>
+                        </div>
+                        <div className="row">
+                            <div className="col col-12 col-lg-6">
+                                {details.stock === 0 ? <h3 style={{ color: "red" }}>Out of stock</h3> : null}
+                                <div>
+                                    <img src={details.image} className="imgDetail" alt="img" />
                                 </div>
-                            <div className="container-6 p-3 d-flex flex-column align-items-start justify-content-around border-start border-dark border-opacity-10">
+                            </div>
+                            <div className="col">
                                 <div className="d-flex flex-column align-items-start justify-content-around" >
                                     <h1 className="d-flex flex-column align-items-start tx4">{`${details.category} ${details.brand} ${details.model}`}</h1>
                                     <h4>Brand: {details.brand}</h4>
                                     <h4>Model: {details.model}</h4>
                                     <h4>Price: ${details.price}</h4>
                                 </div>
-                                <div className="d-flex flex-column w-100" >
-                                    <p className={`align-self-center ${details.stock < 5 ? 'text-danger fw-bold ' : null}`}>{`Stock available: (${details.stock} available)`} </p>
-                                    <div className="input-group">
-                                        <button type="button" className="btn btn-outline-primary" value={'-'} onClick={(e) => stockValidator(e) /*setValue(value - 1)*/}>-</button>
-                                        <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
-                                        <button type="button" className="btn btn-outline-primary" value={'+'} onClick={(e) => stockValidator(e) /*setValue(value + 1)*/}>+</button>
-                                    </div>
+                                <div className="d-flex flex-column" >
+                                        <p className={`align-self-center ${details.stock < 5 ? 'text-danger fw-bold ' : null}`}>{`Stock available: (${details.stock} available)`} </p>
+                                        <div className="input-group">
+                                            <button type="button" className="btn btn-outline-primary" value={'-'} onClick={(e) => stockValidator(e) /*setValue(value - 1)*/}>-</button>
+                                            <input aria-label="Example text with two button addons" className="text-center form-control" value={value} />
+                                            <button type="button" className="btn btn-outline-primary" value={'+'} onClick={(e) => stockValidator(e) /*setValue(value + 1)*/}>+</button>
+                                        </div>
                                 </div>
                                 <button type="submit" className="btn btn-primary button3 bg3 border-0" onClick={e => handleButton(e)} disabled={details.stock === 0 ? "true" : null}>Add to cart</button>
                             </div>
-
                         </div>
+                        <div className="">
+                            <div className='d-flex flex-column align-items-start'>
+                                <h3 className='tx4'>Description</h3>
+                                <p className='description'>{details.description}</p>
+                                <h3 className='tx4'>Specs</h3>
+                                <div className="specs">
+                                    {details.specs && details.specs.map((e) => { return <li>{e}</li> })}
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <div className="card reviewsMainContainer col-12">
                         <div className="row">
@@ -177,7 +179,6 @@ function ProductDetails() {
                                             </div>
                                             <p>Review: </p>
                                             <div className="card reviewText">
-
                                                 <p>{review.userReview}</p>
                                             </div>
                                         </div>
@@ -186,7 +187,9 @@ function ProductDetails() {
                             }
                         </div>
                     </div>
+
                 </div>
+
             }
         </div>
     )

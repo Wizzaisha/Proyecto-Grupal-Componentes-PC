@@ -9,14 +9,14 @@ conn.sync().then(() => {
 
     server.listen(3001, () => {
         console.log('%s listening at 3001');
-
+        seederCategory();
+        seederRole();
+        productoSeeder();
     });
 });
 
 
 /*
-         seederCategory();
-         seederRole();
-         productoSeeder();
-{ force: true }
+
+
 */

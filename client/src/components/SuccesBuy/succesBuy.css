@@ -1,0 +1,17 @@
+.successContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+  height: 400px;
+  margin: 2rem;
+  border: 0.1rem solid green;
+  border-radius: 20px;
+  background-color: rgba(0, 128, 0, 0.025);
+}
+
+.successContainer button {
+  margin-top: 70px;
+  padding: 1rem;
+}
