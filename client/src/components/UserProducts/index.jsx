@@ -136,7 +136,7 @@ function UserProducts() {
                                                         <th scope="row">{product.id}</th>
                                                         <td>{product.brand} {product.model}</td>
                                                         {product.userRating === 0 ? <td>No rating</td> : <td>{product.userRating}</td>}
-                                                        {product.userReview.length === 0 ? <td>No review</td> : <td>{product.userReview}</td>}
+                                                        {product.userReview.length === 0 ? <td>No review</td> : <td className="col-4">{product.userReview}</td>}
                                                         <td>
                                                             { product.userRating === 0 && product.userReview.length === 0 
                                                                 ? 

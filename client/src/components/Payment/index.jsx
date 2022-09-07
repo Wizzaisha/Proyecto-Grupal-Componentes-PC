@@ -70,19 +70,21 @@ const index = () => {
                             name: name
                         }
                     }
-                    axios.post('http://localhost:3001/api/checkout', body)
+                    axios.post('https://henryhardware.herokuapp.com/api/checkout', body)
                     .then((response) => {
                         setLoadingPayment(false);
                         
-                        if (response.data.message) {
+                        if (response) {
+                            console.log(response);
                             navigate('/payment/successfullPurchase');
                             localStorage.setItem('cart', '[ ]')
                             dispatch(getAllProducts());
                         }     
                     })
                     .catch((error) => {
+                        console.log(error);
                         setLoadingPayment(false);
-                        if (error.response.data.message) {
+                        if (error) {
                             navigate('/payment/failedPurchase');
                         }
                     })
