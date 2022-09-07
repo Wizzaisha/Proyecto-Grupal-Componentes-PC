@@ -28,3 +28,21 @@ $font-family : sans-serif;
 .sans{
     font-family: $font-family;
 }
+
+.animation {
+    animation : move 1.5s ease-in-out;
+}
+@keyframes move {
+    0%{
+        transform: translate(-20%,20);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-10%,0);
+        opacity: .5;
+    }
+    100% {
+        transform: translate(0%,0);
+        opacity: 1;
+    }
+}

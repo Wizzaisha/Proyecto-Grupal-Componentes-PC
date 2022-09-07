@@ -52,7 +52,7 @@ function SignUp() {
     }
     return (
         <>
-        <div className="container d-flex justify-content-center align-items-center">
+        <div className="animation container d-flex justify-content-center align-items-center">
             <Form
                 onSubmit={(e)=>{
                     handlerSubmit(e)
