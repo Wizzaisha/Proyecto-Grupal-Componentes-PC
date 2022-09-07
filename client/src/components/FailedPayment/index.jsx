@@ -5,11 +5,13 @@ function FailedPayment() {
 
 
     return (
-        <div>
-            <h1>Payment Failed, please check your data and try again</h1>
-            <Link to='/cart'>
-                <button>Back to cart</button>
-            </Link>
+        <div className="container-fluid">
+            <div className="failedContainer">
+                <h2>Payment Failed, please check your payment method and try again</h2>
+                <Link to='/cart'>
+                    <button className="btn btn-danger">Back to cart</button>
+                </Link>
+            </div>
         </div>
     )
 }

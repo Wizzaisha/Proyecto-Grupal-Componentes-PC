@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
 const routes = require('./routes/index.js');
-
+const home = require("./routes/home.route");
 
 require('./db.js');
 
@@ -27,6 +27,7 @@ server.use((req, res, next) => {
   next();
 });
 
+server.use("/", home);
 server.use('/api', routes);
 
 // Error catching endware.

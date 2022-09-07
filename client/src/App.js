@@ -54,6 +54,7 @@ import UserProducts from './components/UserProducts';
 import AdminSetNewAdmin from './components/AdminSetNewAdmin';
 import AdminPanelInfo from './components/AdminPanelInfo';
 import FailedPayment from './components/FailedPayment';
+import Checkout from './components/Checkout';
 
 function App() {
 
@@ -78,10 +79,11 @@ function App() {
             <Route path='store/:idProduct' element={<ProductDetails />}></Route>
             <Route path='contact' element={<Contact />}></Route>
             <Route path='cart' element={<Cart />}></Route>
-            <Route path='payment' element={<Payment />}></Route>
-            <Route path='succesfulPurchase' element={<SuccesBuy />}></Route>
-            <Route path='failedPurchase' element={<FailedPayment />}></Route>
-
+            <Route path='payment' element={<Checkout />}>
+              <Route index element={<Payment />} ></Route>
+              <Route path='successfullPurchase' element={<SuccesBuy />}></Route>
+              <Route path='failedPurchase' element={<FailedPayment />}></Route>
+            </Route>
               <Route path='adminpanel' element={
                 <ProtectedRouter>
                   <AdminPanel />
