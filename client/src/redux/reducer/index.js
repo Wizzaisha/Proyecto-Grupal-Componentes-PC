@@ -20,6 +20,7 @@ import {
     CLEAR_FILTER_ADMIN,
     CLEAR_FILTER_STORE,
     GET_STATISTICS_DATA,
+    CLEAR_DETAIL,
     UPDATE_PRODUCT,
     SET_MESSAGE,
     CLEAR_MESSAGE,
@@ -27,6 +28,7 @@ import {
     CREATE_QUESTION,
     RESPONSE_QUESTION,
     GET_QUESTION,
+
 
 } from "../actions";
 
@@ -269,6 +271,16 @@ const rootReducer = (state = initialState, action) => {
                     statisticsData: action.payload
                 }
 
+
+
+ //-----clear detail----------           
+        case CLEAR_DETAIL:
+            return{
+                ...state,
+                details:[]
+            }   
+//---------------------------------            
+
             case UPDATE_PRODUCT:
                 return {  ...state    }
 
@@ -276,6 +288,7 @@ const rootReducer = (state = initialState, action) => {
                 return { message: action.payload };
             case CLEAR_MESSAGE:
                 return { message: "" };
+
 
         case GET_USER_PRODUCTS:
             return {

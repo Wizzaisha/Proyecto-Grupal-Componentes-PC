@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 import { useParams } from 'react-router-dom'
-import { createQuestion, getProductDetails } from '../../redux/actions'
+import { createQuestion, getProductDetails,clearDetail } from '../../redux/actions'
 // import { useAuth } from '../context/authContext'
 // import starFilled from '../img/icons8-estrella-96 (1).png'
 // import starEmpty from '../img/icons8-estrella-96.png'
@@ -125,6 +125,10 @@ function ProductDetails() {
         if (e.target.value === '-' && value > 1) { setValue(value - 1) }
     }
     console.log(preguntas);
+
+    function handleCleanDetail(){
+        dispatch(clearDetail())
+    }
     return (
 
         loadingData
@@ -142,7 +146,7 @@ function ProductDetails() {
                                     }
                                 </button> */}
                                 <Link to={'/store'} className="align-self-start">
-                                    <button className="btn btn-primary bg3 border-0 m-3" style={{ width: '2.3rem' }} >X</button>
+                                    <button className="btn btn-primary bg3 border-0 m-3" style={{ width: '2.3rem' }} onClick={handleCleanDetail}>X</button>
                                 </Link>
                             </div>
                             <div className=" col-12 d-flex flex-sm-column flex-md-row align-items-center justify-content-center">
@@ -182,18 +186,18 @@ function ProductDetails() {
                                 </div>
                             </div>
                             <div className="">
-                                <div className='d-flex flex-column align-items-start'>
+                                {/* <div className='d-flex flex-column align-items-start'>
                                     <h3 className='tx4'>Description</h3>
                                     <p className='description'>{details.description}</p>
                                     <h3 className='tx4'>Specs</h3>
                                     <div className="specs">
                                         {details.specs && details.specs.map((e) => { return <li>{e}</li> })}
                                     </div>
-                                </div>
+                                </div> */}
                                 {/* </div> */}
 
                                 {/* </div> */}
-                                <div className="card reviewsMainContainer col-12">
+                                {/* <div className="card reviewsMainContainer col-12">
                                     <div className="row">
                                         <h3>User reviews</h3>
                                         {details.reviews.length === 0
@@ -220,7 +224,7 @@ function ProductDetails() {
                                         }
                                     </div>
                                     <button type="submit" className="btn btn-primary button3 bg3 border-0" onClick={e => handleButton(e)} disabled={details.stock === 0 ? "true" : null}>Add to cart</button>
-                                </div>
+                                </div> */}
 
                             </div>
                         </div>
@@ -288,6 +292,5 @@ function ProductDetails() {
             </div>
     )
 }
-
 
 export default ProductDetails;

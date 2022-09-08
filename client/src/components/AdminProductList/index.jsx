@@ -1,5 +1,5 @@
 import "./AdminProductList.css";
-import {  useNavigate   } from 'react-router-dom'
+import {  Link, useNavigate   } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { adminFilterCategory, clearAdminFilter, deleteProduct, setAdminCategory, getProductDetails } from "../../redux/actions";
 import DataNotFound from "../DataNotFound";
@@ -56,15 +56,19 @@ function AdminProductList() {
     
     return (
         <div className="container-fluid">
+
             <h3>Product List</h3>
 
             <div className="buttonsProductList">
+            <Link to="/adminpanel/create-product">
                 <button className="btn btn-outline-primary">Create product</button>
+             </Link>
                 <button
                         className="btn btn-outline-warning"
                         onClick={handleClearAdminFilter}
                     >Clear filter
                 </button>
+
             </div>
 
             {allProducts2.message 

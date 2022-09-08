@@ -1,3 +1,67 @@
+.label{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.hola{
+  width: 100%;
+  max-width: 600px;
+  margin: 0auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.hola input{
+  width: 90%;
+  height: 30px;
+  margin: 0.5rem;
+}
+.hola button{
+  padding: 0.tem 1em;
+  border: none;
+}
+.container1 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  /* background-color: #d1d1e9; */
+  border-radius: 10px;
+}
+.containerRow1 {
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.img1 {
+ 
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+}
+.start1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.description1 {
+  text-align: justify;
+}
+.specs1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.containerColumn2 {
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 #new{
     display: none;
 }
@@ -7,3 +71,42 @@
 #inputCategory{
     display: none;
 }
+.countrieAndButton{
+    background-color: black;
+    border: grey 3px solid;
+    width: 3.2rem;
+    height: 3rem;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+  .btnDelete{
+    color: white;
+    background-color: red;
+    width: 1rem;
+    height: 1rem;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 0 0 0 33px;
+    padding: 0 0 0 0 ;
+    border-radius: 10px;
+    border: 0 0 0 0;
+    cursor: pointer	;
+    font-size: 10px ;
+  }
+  .textArea{
+    box-shadow: inset 1px 2px 6px 5px #141e27;
+    border-radius: 5px;
+    width: 100%;
+    margin: 2rem auto;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 8rem;
+  }
+  .danger{
+   color: red;
+  }
