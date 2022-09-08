@@ -45,7 +45,6 @@ const AdminAnswers = () => {
     console.log(productQuestions);
     return (
         <div>
-            <h1>Hola mundo</h1>
             {productQuestions && productQuestions.length > 0 ? (
                 <div>
                     {productQuestions.map(e => {
