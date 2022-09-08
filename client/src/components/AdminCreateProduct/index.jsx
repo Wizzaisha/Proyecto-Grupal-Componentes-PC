@@ -298,7 +298,7 @@ else if(errors.brand!== undefined ||
     ){
     dispatch(createProduct(input))
     alert("Product created")
-    navigate("/adminpanel/create-product");
+    navigate("/store");
     
 }
 // falta que no se cree el producto con los campos vacios

@@ -21,7 +21,7 @@ export const CLEAR_FILTER_ADMIN = "CLEAR_FILTER_ADMIN";
 export const CLEAR_FILTER_STORE = "CLEAR_FILTER_STORE";
 export const CLEAR_DETAIL="CLEAR_DETAIL";
 export const GET_STATISTICS_DATA = "GET_STATISTICS_DATA";
-export const UPDATE_PRODUCT = "UPDATE_PRODUCT"; 
+export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 export const CREATE_REVIEW = "CREATE_REVIEW";
@@ -200,9 +200,9 @@ export const getStatisticsData = () => {
     }
 }
 //------------CREAR PRODUCTO--------------
-export function createProduct(input){
-    return async function(dispatch){
-        const product=await axios.post("http://localhost:3001/api/productos/", input)
+export function createProduct(input) {
+    return async function (dispatch) {
+        const product = await axios.post("http://localhost:3001/api/productos/", input)
         return product
     }
 }
@@ -218,55 +218,54 @@ export const clearDetail = () => {
 
 
 export const editProduct = (id, input) => {
-
-    return async  (dispatch) => {
+    return async (dispatch) => {
         try {
-            let response = await axios.put(`http://localhost:3001/api/productos/${id}`,input)
-                console.log(response.data)
-                dispatch(getAllProducts())
-                dispatch(getAllCategories())
-                dispatch({type: UPDATE_PRODUCT});
-                return response.data;
+            let response = await axios.put(`http://localhost:3001/api/productos/${id}`, input)
+            console.log(response.data)
+            dispatch(getAllProducts())
+            dispatch(getAllCategories())
+            dispatch({ type: UPDATE_PRODUCT });
+            return response.data;
         } catch (error) {
             console.log(error)
         }
     }
 }
 //------------CREAR PREGUNTA--------------
-export const createQuestion = (id,input) => {
-    return async  (dispatch) => {
+export const createQuestion = (id, input) => {
+    return async (dispatch) => {
         try {
-            let response = await axios.post(`http://localhost:3001/api/question/user/${id}`,input)
-                console.log(response.data)
-                   dispatch({type: CREATE_QUESTION});
-                return response.data;
+            let response = await axios.post(`http://localhost:3001/api/question/user/${id}`, input)
+            console.log(response.data)
+            dispatch({ type: CREATE_QUESTION });
+            return response.data;
         } catch (error) {
             console.log(error)
         }
     }
 }
 //------------CREAR RESPUESTA--------------
-export const responseQuestion = (id,input) => {
-    return async  (dispatch) => {
+export const responseQuestion = (id, input) => {
+    return async (dispatch) => {
         try {
-            let response = await axios.put(`http://localhost:3001/api/question/admin/${id}`,input)
-                console.log(response.data)
-                   dispatch({type: RESPONSE_QUESTION});
-                return response.data;
+            let response = await axios.put(`http://localhost:3001/api/question/admin/${id}`, input)
+            console.log(response.data)
+            dispatch({ type: RESPONSE_QUESTION });
+            return response.data;
         } catch (error) {
             console.log(error)
         }
     }
 }
 
-//------------OBTENER COMENTARIOS POR PRODUCTO--------------
+//------------OBTENER PREGUNTAS POR PRODUCTO--------------
 export const getQuestion = (id) => {
-    return async  (dispatch) => {
+    return async (dispatch) => {
         try {
             let response = await axios.get(`http://localhost:3001/api/question/${id}`)
-                console.log(response.data)
-                   dispatch({type: GET_QUESTION , payload: response.data});
-                
+            console.log(response.data)
+            dispatch({ type: GET_QUESTION, payload: response.data });
+
         } catch (error) {
             console.log(error)
         }
@@ -285,7 +284,7 @@ export const clearMessage = () => ({
 export const createReview = (data, productId) => {
     return async (dispatch) => {
         const response = await axios.post(`http://localhost:3001/api/reviews/${productId}`, data);
-        return dispatch({ type: CREATE_REVIEW, payload: response.data});
+        return dispatch({ type: CREATE_REVIEW, payload: response.data });
     }
 }
 
@@ -299,7 +298,7 @@ export const getUserProdutcs = (email) => {
 export const updateReview = (data, idReview) => {
     return async (dispatch) => {
         const response = await axios.put(`http://localhost:3001/api/reviews/${idReview}`, data);
-        return dispatch({ type: UPDATE_REVIEW, payload: response.data});
+        return dispatch({ type: UPDATE_REVIEW, payload: response.data });
     }
 }
 

@@ -83,9 +83,9 @@ function Login() {
         <>
             {auth.user !== null
             ?
-            <div className="container justify-content-center align-items-center">
+            <div className="animation container justify-content-center align-items-center">
             {
-                <div className="container d-flex justify-content-center align-items-center flex-column">
+                <div className="animation container d-flex justify-content-center align-items-center flex-column">
                     <h1 className="display-6 shadow-lg p-3 mb-5 bg1 rounded">Welcome {auth.user.displayName || username}</h1>
                     <div className="d-flex justify-content-around">
                         <Button  className="btn btn-outline-light display-6 shadow-lg p-3 rounded m-1 bg4"animation="glow" type="Button"
@@ -105,7 +105,7 @@ function Login() {
             }
             </div>
             :
-            <div className="container d-flex justify-content-center align-items-center flex-column">
+            <div className="animation container d-flex justify-content-center align-items-center flex-column">
                 {reset &&
                 <Form.Group className="mb-3 shadow-lg p-3 bg3 rounded">
                     <Form.Text>
