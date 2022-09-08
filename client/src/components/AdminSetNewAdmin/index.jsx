@@ -31,6 +31,8 @@ export default function AdminSetNewAdmin () {
         try {
             if (id && admin){
                 await auth.addAndRemoveAdmin(id , admin)
+                setId("");
+                setAdmin(false);
             }else{
                 setError("Complete the form")
             }

@@ -21,7 +21,7 @@ const index = () => {
         const navigate = useNavigate();
 
         const dispatch = useDispatch();
-
+        
         useEffect(() => {
             setCart(JSON.parse(localStorage.getItem('cart')))
         }, [])
@@ -70,7 +70,7 @@ const index = () => {
                             name: name
                         }
                     }
-                    axios.post('http://localhost:3001/api/checkout', body)
+                    axios.post('https://henryhardware.herokuapp.com/api/checkout', body)
                     .then((response) => {
                         setLoadingPayment(false);
                         

@@ -107,7 +107,7 @@ function ProductDetails() {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(createQuestion(details.id, question))
-        console.log(question);
+        alert("Question delivered");
     }
 
     const handleChangeUser = (e) => {
@@ -272,7 +272,6 @@ function ProductDetails() {
                                         preguntas?.map(e => {
                                             return (
                                                 <div className="card d-flex flex-column align-items-start px-3 my-2">
-                                                    <p className="fw-semibold">{e.emailUser}:</p>
                                                     <p>{e.sendUser}</p>
                                                     {e.sendAdmin &&
                                                         <div className=" px-5">

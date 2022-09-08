@@ -39,10 +39,10 @@ const AdminAnswers = () => {
             dispatch(getAllProducts())
             console.log(id);
         }
+        alert("Question asnwered");
     }
 
     // const productQuestions = productos.filter((e) => e.questions.length > 0)
-    console.log(productQuestions);
     return (
         <div>
             {productQuestions && productQuestions.length > 0 ? (
@@ -55,7 +55,6 @@ const AdminAnswers = () => {
                                     <h3>{`${e.brand} ${e.model}`}</h3>
                                     {e.questions?.filter(e => e.sendAdmin === null).map(e => (
                                         <div>
-                                            <h3>{e.emailUser}</h3>
                                             <h4>{e.sendUser}</h4>
 
                                             <form onSubmit={(ev) => { handleAnswer(ev, e.id) }}>

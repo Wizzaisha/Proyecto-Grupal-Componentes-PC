@@ -33,7 +33,7 @@ export const GET_QUESTION = "GET_QUESTION";
 
 export const getAllProducts = () => {
     return async (dispatch) => {
-        const response = await axios.get("http://localhost:3001/api/productos");
+        const response = await axios.get("https://henryhardware.herokuapp.com/api/productos");
 
         return dispatch({ type: GET_ALL_PRODUCTS, payload: response.data });
     }
@@ -42,7 +42,7 @@ export const getAllProducts = () => {
 
 export const getAllCategories = () => {
     return async (dispatch) => {
-        const response = await axios.get("http://localhost:3001/api/categorias");
+        const response = await axios.get("https://henryhardware.herokuapp.com/api/categorias");
 
         return dispatch({ type: GET_ALL_CATEGORIES, payload: response.data })
     }
@@ -57,7 +57,7 @@ export const filterAndSortBy = (filterValues) => {
 
 export const getProductDetails = (payload) => {
     return async (dispatch) => {
-        const response = await axios.get(`http://localhost:3001/api/productos/${payload}`);
+        const response = await axios.get(`https://henryhardware.herokuapp.com/api/productos/${payload}`);
 
         return dispatch({ type: GET_PRODUCT_DETAILS, payload: response.data })
     }
@@ -91,7 +91,7 @@ export function postLogIn(email, password) {
     return async function (dispatch) {
         try {
             console.log(email, password)
-            let response = await axios.post(`http://localhost:3001/LogIn`, {
+            let response = await axios.post(`https://henryhardware.herokuapp.com/LogIn`, {
                 email,
                 password
             })
@@ -104,7 +104,7 @@ export function postLogIn(email, password) {
 export function postSingIn(user, email, password) {
     return async function (dispatch) {
         try {
-            let response = await axios.post(`http://localhost:3001/singin`, {
+            let response = await axios.post(`https://henryhardware.herokuapp.com/singin`, {
                 user,
                 email,
                 password
@@ -119,7 +119,7 @@ export function postSingIn(user, email, password) {
 export const getOrdersList = () => {
     return async (dispatch) => {
 
-        const response = await axios.get("http://localhost:3001/api/order-list");
+        const response = await axios.get("https://henryhardware.herokuapp.com/api/order-list");
 
         return dispatch({ type: GET_ALL_ORDERS, payload: response.data });
     }
@@ -127,7 +127,7 @@ export const getOrdersList = () => {
 
 export const getOrderDetails = (id) => {
     return async (dispatch) => {
-        const response = await axios.get(`http://localhost:3001/api/order-list/${id}`);
+        const response = await axios.get(`https://henryhardware.herokuapp.com/api/order-list/${id}`);
 
         return dispatch({ type: GET_ORDER_DETAILS, payload: response.data });
     }
@@ -135,7 +135,7 @@ export const getOrderDetails = (id) => {
 
 export const getCustomerHistory = (id) => {
     return async (dispatch) => {
-        const response = await axios.get(`http://localhost:3001/api/order-list/customer/${id}`);
+        const response = await axios.get(`https://henryhardware.herokuapp.com/api/order-list/customer/${id}`);
 
         return dispatch({ type: GET_CUSTOMER_HISTORY, payload: response.data });
     }
@@ -143,7 +143,7 @@ export const getCustomerHistory = (id) => {
 
 export const updateOrder = (id, data) => {
     return async (dispatch) => {
-        const response = await axios.post(`http://localhost:3001/api/order-list/${id}`, data);
+        const response = await axios.post(`https://henryhardware.herokuapp.com/api/order-list/${id}`, data);
 
         return dispatch({ type: UPDATED_ORDER, payload: response.data });
     }
@@ -157,7 +157,7 @@ export const filterByStatus = (value) => {
 
 export const deleteProduct = (id) => {
     return async (dispatch) => {
-        await axios.delete(`http://localhost:3001/api/productos/${id}`);
+        await axios.delete(`https://henryhardware.herokuapp.com/api/productos/${id}`);
         return dispatch({ type: DELETE_PRODUCT, payload: id });
     }
 }
@@ -194,7 +194,7 @@ export const clearStoreFilter = () => {
 
 export const getStatisticsData = () => {
     return async (dispatch) => {
-        const response = await axios.get("http://localhost:3001/api/statistics-data");
+        const response = await axios.get("https://henryhardware.herokuapp.com/api/statistics-data");
 
         return dispatch({ type: GET_STATISTICS_DATA, payload: response.data })
     }
@@ -202,7 +202,7 @@ export const getStatisticsData = () => {
 //------------CREAR PRODUCTO--------------
 export function createProduct(input) {
     return async function (dispatch) {
-        const product = await axios.post("http://localhost:3001/api/productos/", input)
+        const product = await axios.post("https://henryhardware.herokuapp.com/api/productos/", input)
         return product
     }
 }
@@ -220,7 +220,7 @@ export const clearDetail = () => {
 export const editProduct = (id, input) => {
     return async (dispatch) => {
         try {
-            let response = await axios.put(`http://localhost:3001/api/productos/${id}`, input)
+            let response = await axios.put(`https://henryhardware.herokuapp.com/api/productos/${id}`, input)
             console.log(response.data)
             dispatch(getAllProducts())
             dispatch(getAllCategories())
@@ -235,7 +235,7 @@ export const editProduct = (id, input) => {
 export const createQuestion = (id, input) => {
     return async (dispatch) => {
         try {
-            let response = await axios.post(`http://localhost:3001/api/question/user/${id}`, input)
+            let response = await axios.post(`https://henryhardware.herokuapp.com/api/question/user/${id}`, input)
             console.log(response.data)
             dispatch({ type: CREATE_QUESTION });
             return response.data;
@@ -248,7 +248,7 @@ export const createQuestion = (id, input) => {
 export const responseQuestion = (id, input) => {
     return async (dispatch) => {
         try {
-            let response = await axios.put(`http://localhost:3001/api/question/admin/${id}`, input)
+            let response = await axios.put(`https://henryhardware.herokuapp.com/api/question/admin/${id}`, input)
             console.log(response.data)
             dispatch({ type: RESPONSE_QUESTION });
             return response.data;
@@ -262,7 +262,7 @@ export const responseQuestion = (id, input) => {
 export const getQuestion = (id) => {
     return async (dispatch) => {
         try {
-            let response = await axios.get(`http://localhost:3001/api/question/${id}`)
+            let response = await axios.get(`https://henryhardware.herokuapp.com/api/question/${id}`)
             console.log(response.data)
             dispatch({ type: GET_QUESTION, payload: response.data });
 
@@ -283,21 +283,21 @@ export const clearMessage = () => ({
 
 export const createReview = (data, productId) => {
     return async (dispatch) => {
-        const response = await axios.post(`http://localhost:3001/api/reviews/${productId}`, data);
+        const response = await axios.post(`https://henryhardware.herokuapp.com/api/reviews/${productId}`, data);
         return dispatch({ type: CREATE_REVIEW, payload: response.data });
     }
 }
 
 export const getUserProdutcs = (email) => {
     return async (dispatch) => {
-        const response = await axios.get(`http://localhost:3001/api/reviews/${email}`);
+        const response = await axios.get(`https://henryhardware.herokuapp.com/api/reviews/${email}`);
         return dispatch({ type: GET_USER_PRODUCTS, payload: response.data });
     }
 }
 
 export const updateReview = (data, idReview) => {
     return async (dispatch) => {
-        const response = await axios.put(`http://localhost:3001/api/reviews/${idReview}`, data);
+        const response = await axios.put(`https://henryhardware.herokuapp.com/api/reviews/${idReview}`, data);
         return dispatch({ type: UPDATE_REVIEW, payload: response.data });
     }
 }

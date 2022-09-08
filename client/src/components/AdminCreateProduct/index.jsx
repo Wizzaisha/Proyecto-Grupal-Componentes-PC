@@ -1,7 +1,7 @@
 import "./AdminCreateProduct.css";
 import React,{useState, useEffect} from "react";
 // import {Link,useHistory} from 'react-router-dom'
-import {getAllCategories, createProduct } from '../../redux/actions'
+import {getAllCategories, createProduct, getAllProducts } from '../../redux/actions'
 import {useDispatch, useSelector} from 'react-redux';
 import Axios from "axios"
 import {Link,useNavigate} from "react-router-dom"
@@ -297,8 +297,14 @@ else if(errors.brand!== undefined ||
     input.category.length
     ){
     dispatch(createProduct(input))
-    alert("Product created")
-    navigate("/store");
+    .then(() => {
+        dispatch(getAllProducts());
+        dispatch(getAllCategories());
+    })
+    .then(() => {
+        alert("Product created")
+        navigate("/store");
+    })
     
 }
 // falta que no se cree el producto con los campos vacios
