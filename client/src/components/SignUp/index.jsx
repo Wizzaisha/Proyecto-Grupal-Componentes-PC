@@ -21,7 +21,6 @@ function SignUp() {
     const handlerUser = (e) =>{
         setError("")
         setUser(e.target.value)
-        console.log(user)
     }
     const [email , setEmail] = useState("")
     const handlerEmail = (e) =>{
@@ -47,6 +46,8 @@ function SignUp() {
                 setError("email already in use")
             }else if (error === "auth/internal-error"){
                 setError("Invalid email")
+            }else{
+                console.log(error)
             }
         }
     }
