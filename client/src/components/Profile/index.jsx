@@ -65,7 +65,7 @@ function Profile() {
                 </div>
                 <div className="profileDiv">
                     <h4 className="start display-8">User name</h4>
-                    <label className="pt-2">{auth.user.displayName}</label>
+                    <label className="pt-2">{auth.user.displayName || localStorage.getItem("username")}</label>
                 </div>
             </div>
 
