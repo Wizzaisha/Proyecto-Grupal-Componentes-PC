@@ -49,13 +49,12 @@ export function AuthProvider({ children }) {
     }, [])
     //crea un usuario en la tabla de firabase
 
-    const register = async (email, password, admin = false) => {
-        const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
-            .then((userData) => {
-                return userData
-            });
+    const register = async (username,email,password,admin = false) => {
+        const userCredentials = await createUserWithEmailAndPassword(auth ,email,password)
         const docRef = doc(db, `user/${userCredentials.user.uid}`)
+        localStorage.setItem("username", username)
         setDoc(docRef, {
+            userName : username,
             email: email,
             password: password,
             admin: admin,
@@ -66,7 +65,7 @@ export function AuthProvider({ children }) {
         const docRef = doc(db, `user/${uid}`)
         const userDb = await getDoc(docRef)
         const data = userDb.data()
-        localStorage.setItem("username", data.user)
+        localStorage.setItem("username", data.userName)
         localStorage.setItem("email", data.email)
             if(data.admin === true){
                 localStorage.setItem("admin" , "true" )
