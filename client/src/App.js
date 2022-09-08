@@ -82,9 +82,9 @@ function App() {
               <Route path='failedPurchase' element={<FailedPayment />}></Route>
             </Route>
             <Route path='adminpanel' element={
-
-              <AdminPanel />
-
+              <ProtectedRouter>
+                <AdminPanel />
+              </ProtectedRouter>
             }>
               <Route index element={<AdminPanelInfo />}></Route>
               <Route path='list-product' element={<AdminProductList />}></Route>
